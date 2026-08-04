@@ -48,8 +48,11 @@ describe("Home page", () => {
 
   it("renders the logo row companies", () => {
     render(<HomePage />);
-    expect(screen.getByText(/Dell/i)).toBeTruthy();
-    expect(screen.getByText(/Microsoft/i)).toBeTruthy();
+    // Logos are now Image components — query by alt text, not text content
+    expect(screen.getByAltText(/^Dell$/i)).toBeTruthy();
+    expect(screen.getByAltText(/^Microsoft$/i)).toBeTruthy();
+    // AWS has no source PNG, so it remains text-only
+    expect(screen.getByText(/^AWS$/i)).toBeTruthy();
   });
 
   it("renders both testimonials", () => {

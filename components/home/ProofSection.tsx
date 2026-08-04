@@ -1,14 +1,19 @@
-const logoRow = [
-  "Dell",
-  "Microsoft",
-  "Ford",
-  "Capital One",
-  "Wells Fargo",
-  "Disney",
-  "Netflix",
-  "Twitter",
-  "Facebook",
-  "AWS",
+import Image from "next/image";
+
+// Note: the Twitter/Facebook logos use their historical marks (bird / "f"),
+// not the current X/Meta rebrand — pending a decision on whether to update them.
+// AWS has no logo asset available and is rendered as text.
+
+const brandLogos = [
+  { name: "Dell", file: "/images/Brands_Dell.png", width: 48 },
+  { name: "Microsoft", file: "/images/Brands_Microsoft.png", width: 100 },
+  { name: "Ford", file: "/images/Brands_Ford.png", width: 56 },
+  { name: "Capital One", file: "/images/Brands_CapitalOne.png", width: 100 },
+  { name: "Wells Fargo", file: "/images/Brands_WellsFargo.png", width: 100 },
+  { name: "Disney", file: "/images/Brands_Disney.png", width: 72 },
+  { name: "Netflix", file: "/images/Brands_Netflix.png", width: 72 },
+  { name: "Twitter", file: "/images/Brands_Tw.png", width: 36 },
+  { name: "Facebook", file: "/images/Brands_Fb.png", width: 36 },
 ];
 
 const testimonials = [
@@ -44,20 +49,26 @@ export default function ProofSection() {
           business actually needs, and which parts it doesn&apos;t.
         </p>
 
-        {/* Logo row — text representation pending final logo assets */}
-        <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
-          {logoRow.map((name) => (
-            <span
-              key={name}
-              className="text-sm font-medium text-muted-foreground"
-            >
-              {name}
-            </span>
+        {/* Logo row — Brands_*.png images; AWS text-only (no source PNG) */}
+        <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-5">
+          {brandLogos.map((brand) => (
+            <Image
+              key={brand.name}
+              src={brand.file}
+              alt={brand.name}
+              width={brand.width}
+              height={32}
+              className="h-7 w-auto object-contain opacity-70"
+            />
           ))}
+          {/* AWS: no source PNG available — rendered as text */}
+          <span className="text-sm font-medium text-muted-foreground opacity-70">
+            AWS
+          </span>
         </div>
         <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-          Work I&apos;ve done at enterprise scale. Building at that size is how I know
-          what a business your size does and doesn&apos;t need.
+          Work I&apos;ve done at enterprise scale. Building at that size is how
+          I know what a business your size does and doesn&apos;t need.
         </p>
 
         {/* Testimonials */}
