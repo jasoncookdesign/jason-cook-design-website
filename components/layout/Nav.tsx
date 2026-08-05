@@ -1,57 +1,61 @@
 import Link from "next/link";
+import ThemeToggle from "@/components/layout/ThemeToggle";
 
 const CTA_URL = "https://cal.com/jasoncookdesign/engagement-consultation";
 
 export default function Nav() {
   return (
-    <header className="border-b border-border/40 bg-background">
+    <header className="sticky top-0 z-20 border-b border-border bg-bg">
       <nav
-        className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4"
+        className="mx-auto flex max-w-[1200px] items-center justify-between gap-10 px-10 py-[22px]"
         aria-label="Main navigation"
       >
         <Link
           href="/"
-          className="text-sm font-semibold tracking-tight text-foreground hover:text-foreground/80 transition-colors"
+          className="font-sans text-[15px] font-medium tracking-[-0.01em] text-ink"
         >
           Jason Cook Design
         </Link>
 
-        <ul className="flex items-center gap-6" role="list">
+        <ul className="hidden items-center gap-8 md:flex" role="list">
           <li>
-            <Link href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/" className="font-sans text-sm text-ink hover:text-link transition-colors">
               Home
             </Link>
           </li>
           <li>
-            <Link href="/work" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/work" className="font-sans text-sm text-muted-foreground hover:text-ink transition-colors">
               Work
             </Link>
           </li>
           <li>
-            <Link href="/engagements" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/engagements" className="font-sans text-sm text-muted-foreground hover:text-ink transition-colors">
               Engagements
             </Link>
           </li>
           <li>
-            <Link href="/writing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/writing" className="font-sans text-sm text-muted-foreground hover:text-ink transition-colors">
               Writing
             </Link>
           </li>
           <li>
-            <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/about" className="font-sans text-sm text-muted-foreground hover:text-ink transition-colors">
               About
             </Link>
           </li>
         </ul>
 
-        <a
-          href={CTA_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/80 transition-colors"
-        >
-          Start a conversation
-        </a>
+        <div className="flex items-center gap-4">
+          <ThemeToggle />
+          <a
+            href={CTA_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center rounded-[6px] bg-btn-bg px-[18px] py-[11px] font-sans text-sm font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
+          >
+            Start a conversation
+          </a>
+        </div>
       </nav>
     </header>
   );

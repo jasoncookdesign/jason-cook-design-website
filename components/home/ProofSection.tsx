@@ -33,54 +33,59 @@ const testimonials = [
 
 export default function ProofSection() {
   return (
-    <section className="py-20 sm:py-28">
-      <div className="mx-auto max-w-3xl px-6">
+    <section className="border-t border-border bg-surface">
+      <div className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
         {/* Fit-proof placeholder — renders literally until a real case exists */}
-        <div className="mb-16 rounded-xl bg-muted/40 px-6 py-8 text-sm text-muted-foreground font-mono">
+        <div className="rounded-[6px] border border-dashed border-ghost px-7 py-6 font-mono text-[13px] leading-relaxed text-muted-foreground">
           [FIT-PROOF &mdash; pending a real, consented case]
         </div>
 
         {/* Range proof */}
-        <h2 className="text-2xl font-semibold tracking-tight">
-          Where the method came from
-        </h2>
-        <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-          These are the programs where I learned which parts of a system a
-          business actually needs, and which parts it doesn&apos;t.
-        </p>
-
-        {/* Logo row — Brands_*.png images; AWS text-only (no source PNG) */}
-        <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-5">
-          {brandLogos.map((brand) => (
-            <Image
-              key={brand.name}
-              src={brand.file}
-              alt={brand.name}
-              width={brand.width}
-              height={32}
-              className="h-7 w-auto object-contain opacity-70"
-            />
-          ))}
-          {/* AWS: no source PNG available — rendered as text */}
-          <span className="text-sm font-medium text-muted-foreground opacity-70">
-            AWS
-          </span>
+        <div className="mt-16 grid gap-20 lg:grid-cols-2 lg:items-start">
+          <div>
+            <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+              Where the method came from
+            </p>
+            <h2 className="text-[28px] font-extralight leading-[1.15] tracking-[-0.03em] text-ink sm:text-[44px]">
+              These are the programs where I learned which parts of a system a
+              business{" "}
+              <span className="text-muted-foreground">actually needs.</span>
+            </h2>
+            <p className="mt-6 max-w-[520px] font-sans text-base leading-relaxed text-body">
+              Work I&apos;ve done at enterprise scale. Building at that size is how
+              I know what a business your size does and doesn&apos;t need.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-9 pt-2">
+            {brandLogos.map((brand) => (
+              <Image
+                key={brand.name}
+                data-brand="1"
+                src={brand.file}
+                alt={brand.name}
+                width={brand.width}
+                height={32}
+                className="h-7 w-auto object-contain opacity-55"
+              />
+            ))}
+            {/* AWS: no source PNG available — rendered as text */}
+            <span className="font-sans text-[15px] text-muted-foreground opacity-70">
+              AWS
+            </span>
+          </div>
         </div>
-        <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-          Work I&apos;ve done at enterprise scale. Building at that size is how
-          I know what a business your size does and doesn&apos;t need.
-        </p>
 
         {/* Testimonials */}
-        <div className="mt-16 grid gap-8 sm:grid-cols-2">
+        <div className="mt-20 grid gap-14 border-t border-border pt-14 sm:grid-cols-2">
           {testimonials.map((t) => (
-            <blockquote key={t.name} className="flex flex-col gap-4">
-              <p className="text-base leading-relaxed">
+            <blockquote key={t.name} className="flex flex-col gap-5">
+              <span className="block h-px w-5 bg-accent" />
+              <p className="font-sans text-[22px] font-light leading-relaxed text-ink">
                 &ldquo;{t.quote}&rdquo;
               </p>
-              <footer className="text-sm">
-                <strong className="font-semibold">{t.name}</strong>
-                <span className="text-muted-foreground"> &mdash; {t.role}</span>
+              <footer className="font-sans text-sm text-muted-foreground">
+                <strong className="font-medium text-ink">{t.name}</strong>
+                <span> &mdash; {t.role}</span>
               </footer>
             </blockquote>
           ))}

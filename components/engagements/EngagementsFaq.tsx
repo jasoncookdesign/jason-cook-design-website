@@ -62,36 +62,37 @@ const faqs = [
 
 export default function EngagementsFaq() {
   return (
-    <section className="py-20 sm:py-28 bg-muted/10">
-      <div className="mx-auto max-w-3xl px-6">
-        <h2 className="text-2xl font-semibold tracking-tight">Questions</h2>
-        <div className="mt-8">
-          <Accordion multiple={false}>
-            {faqs.map((faq) => (
-              <AccordionItem key={faq.id} value={faq.id}>
-                <AccordionTrigger className="text-base font-medium py-4">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="space-y-4 pb-4">
-                    {faq.answer.map((para, i) => (
-                      <p
-                        key={i}
-                        className={
-                          para.startsWith("[GAP:") || para.startsWith("[HOLD")
-                            ? "font-mono text-xs text-muted-foreground/70"
-                            : "text-sm leading-relaxed text-muted-foreground"
-                        }
-                      >
-                        {para}
-                      </p>
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+    <section className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
+      <div className="grid gap-20 lg:grid-cols-[320px_1fr]">
+        <div className="lg:sticky lg:top-24 lg:self-start">
+          <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+            Questions
+          </p>
+          <h2 className="text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-[44px] sm:leading-[1.15]">
+            Questions
+          </h2>
         </div>
+        <Accordion multiple={false}>
+          {faqs.map((faq) => (
+            <AccordionItem key={faq.id} value={faq.id}>
+              <AccordionTrigger>{faq.question}</AccordionTrigger>
+              <AccordionContent>
+                {faq.answer.map((para, i) => (
+                  <p
+                    key={i}
+                    className={
+                      para.startsWith("[GAP:") || para.startsWith("[HOLD")
+                        ? "font-mono text-xs text-muted-foreground"
+                        : "font-sans text-base leading-relaxed text-body"
+                    }
+                  >
+                    {para}
+                  </p>
+                ))}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
     </section>
   );

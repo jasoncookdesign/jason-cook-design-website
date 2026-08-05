@@ -8,47 +8,61 @@ export const metadata = {
 
 export default function WorkPage() {
   return (
-    <section className="py-24 sm:py-32">
-      <div className="mx-auto max-w-4xl px-6">
-        <h1 className="text-5xl font-light tracking-tight text-neutral-900 mb-4">
-          Work
-        </h1>
-        <p className="text-xl text-neutral-500 mb-16 max-w-2xl">
-          Eight enterprise engagements — each starting with a diagnosis of the
-          actual problem before any design work began.
+    <section className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
+      <div className="flex flex-wrap items-end justify-between gap-12 border-b border-ink pb-10">
+        <div className="max-w-[720px]">
+          <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+            Work
+          </p>
+          <h1 className="text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-5xl">
+            Work
+          </h1>
+          <p className="mt-4 font-sans text-xl font-light leading-relaxed text-body">
+            Eight enterprise engagements — each starting with a diagnosis of
+            the actual problem before any design work began.
+          </p>
+        </div>
+        <p className="whitespace-nowrap font-sans text-[80px] font-extralight leading-[0.8] tracking-[-0.05em] text-ghost sm:text-[100px]">
+          08
         </p>
-
-        <ul className="space-y-12">
-          {caseStudies.map((cs) => (
-            <li key={cs.slug}>
-              <Link
-                href={`/work/${cs.slug}`}
-                className="group block relative overflow-hidden rounded-sm bg-neutral-900"
-              >
-                <div className="relative h-56 md:h-72">
-                  <Image
-                    src={cs.backgroundImage}
-                    alt={cs.client}
-                    fill
-                    className="object-cover opacity-50 group-hover:opacity-60 transition-opacity duration-300"
-                  />
-                </div>
-                <div className="absolute inset-0 flex flex-col justify-end p-8">
-                  <p className="text-xs uppercase tracking-widest text-white/60 mb-1">
-                    {cs.client}
-                  </p>
-                  <h2 className="text-2xl font-light text-white mb-2">
-                    {cs.title}
-                  </h2>
-                  <p className="text-sm text-white/70 max-w-xl leading-relaxed">
-                    {cs.indexOneLiner}
-                  </p>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
       </div>
+
+      <ul className="list-none">
+        {caseStudies.map((cs, i) => (
+          <li key={cs.slug} className="border-b border-border">
+            <Link
+              href={`/work/${cs.slug}`}
+              className="group grid grid-cols-1 items-center gap-6 py-7 sm:grid-cols-[56px_340px_1fr_44px] sm:gap-10"
+            >
+              <span className="pl-2 font-mono text-[13px] text-muted-foreground">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="relative block h-[160px] overflow-hidden rounded-[6px] border border-border sm:h-[186px]">
+                <Image
+                  src={cs.backgroundImage}
+                  alt={cs.client}
+                  fill
+                  className="object-cover"
+                />
+              </span>
+              <span className="block pr-6">
+                <span className="block font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
+                  {cs.client}
+                </span>
+                <span className="mt-3 block font-sans text-2xl font-light leading-tight tracking-[-0.02em] text-ink sm:text-[30px]">
+                  {cs.title}
+                </span>
+                <span className="mt-3 block max-w-[560px] font-sans text-base leading-relaxed text-body">
+                  {cs.indexOneLiner}
+                </span>
+              </span>
+              <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-[6px] border border-border transition-colors group-hover:border-ink">
+                <span className="block h-[11px] w-[11px] -translate-x-[1px] rotate-45 border-r border-t border-accent" />
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

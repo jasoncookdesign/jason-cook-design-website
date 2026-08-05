@@ -84,6 +84,11 @@ describe("Work case study content component", () => {
     expect(document.body.textContent).toMatch(/300 basis point improvement in CSAT/);
   });
 
+  it("identifies Dovetail Systems as the company behind the Qu POS product", () => {
+    const cs = caseStudies.find((c) => c.slug === "qu-pos")!;
+    expect(cs.client).toBe("Dovetail Systems");
+  });
+
   it("renders the Qu POS $10 million outcome verbatim", () => {
     const cs = caseStudies.find((c) => c.slug === "qu-pos")!;
     render(<WorkCaseStudyContent cs={cs} />);

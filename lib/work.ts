@@ -257,7 +257,7 @@ export const caseStudies: CaseStudy[] = [
   // ─── cs03 — Qu POS ─────────────────────────────────────────────────────────
   {
     slug: "qu-pos",
-    client: "Qu",
+    client: "Dovetail Systems",
     title: "Qu POS",
     subtitle: "The world's first multi-touch, omnichannel point-of-sale system",
     indexOneLiner:

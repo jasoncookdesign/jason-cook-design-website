@@ -7,23 +7,27 @@ export const metadata = {
 // Booking URL: cal.com/jasoncookdesign/engagement-consultation
 export default function ContactPage() {
   return (
-    <section className="py-24 sm:py-32">
-      <div className="mx-auto max-w-3xl px-6">
-        <h1 className="text-5xl font-light tracking-tight text-neutral-900 mb-6">
+    <section className="mx-auto max-w-[1200px] px-6 py-[100px] sm:px-10 sm:py-[140px]">
+      <div className="max-w-[760px]">
+        <p className="mb-10 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+          Contact
+        </p>
+        <h1 className="text-3xl font-extralight tracking-[-0.035em] text-ink sm:text-[62px] sm:leading-[1.1]">
           Contact
         </h1>
-        <div className="mt-12">
+        <div className="mt-12 flex flex-wrap items-center gap-6">
           <Link
             href="https://cal.com/jasoncookdesign/engagement-consultation"
-            className="inline-block text-lg font-light text-white bg-neutral-900 px-8 py-4 hover:bg-neutral-700 transition-colors"
+            className="inline-flex items-center gap-3 rounded-[6px] bg-btn-bg px-[26px] py-4 font-sans text-base font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
           >
             Book your strategy call
+            <span className="block h-[7px] w-[7px] rotate-45 border-r border-t border-accent" />
           </Link>
-          <p className="mt-4 text-base text-neutral-500">
-            No commitment. 20 minutes. Find out what you need — and what you
-            don&rsquo;t.
-          </p>
         </div>
+        <p className="mt-5 font-sans text-[15px] leading-relaxed text-muted-foreground">
+          No commitment. 20 minutes. Find out what you need — and what you
+          don&rsquo;t.
+        </p>
       </div>
     </section>
   );

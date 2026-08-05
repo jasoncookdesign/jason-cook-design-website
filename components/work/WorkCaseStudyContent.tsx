@@ -8,53 +8,65 @@ function renderBlock(block: Block, idx: number) {
       return (
         <p
           key={idx}
-          className="text-base leading-relaxed text-neutral-700 mb-4"
+          className="mb-5 font-sans text-lg leading-[1.75] text-body-strong"
           dangerouslySetInnerHTML={{ __html: block.html }}
         />
       );
     case "img":
       return (
-        <div key={idx} className="my-8">
+        <figure key={idx} className="my-14">
           <Image
             src={block.src}
             alt={block.alt}
             width={900}
             height={600}
-            className="w-full h-auto rounded-sm"
+            className="h-auto w-full rounded-[6px] border border-border"
           />
-        </div>
+        </figure>
       );
     case "ul":
       return (
-        <ul key={idx} className="list-disc list-outside pl-6 mb-4 space-y-2">
+        <ul key={idx} className="mb-5 flex flex-col gap-3">
           {block.items.map((item, i) => (
             <li
               key={i}
-              className="text-base leading-relaxed text-neutral-700"
-              dangerouslySetInnerHTML={{ __html: item }}
-            />
+              className="grid grid-cols-[20px_1fr] gap-3 font-sans text-lg leading-[1.75] text-body-strong"
+            >
+              <span className="text-accent">&mdash;</span>
+              <span dangerouslySetInnerHTML={{ __html: item }} />
+            </li>
           ))}
         </ul>
       );
     case "ol":
       return (
-        <ol key={idx} className="list-decimal list-outside pl-6 mb-4 space-y-2">
+        <ol key={idx} className="mb-5 flex flex-col gap-3">
           {block.items.map((item, i) => (
             <li
               key={i}
-              className="text-base leading-relaxed text-neutral-700"
-              dangerouslySetInnerHTML={{ __html: item }}
-            />
+              className="grid grid-cols-[20px_1fr] gap-3 font-sans text-lg leading-[1.75] text-body-strong"
+            >
+              <span className="font-mono text-sm text-muted-foreground">
+                {i + 1}
+              </span>
+              <span dangerouslySetInnerHTML={{ __html: item }} />
+            </li>
           ))}
         </ol>
       );
     case "ul-strong":
       return (
-        <ul key={idx} className="list-disc list-outside pl-6 mb-4 space-y-2">
+        <ul key={idx} className="mb-5 flex flex-col gap-3">
           {block.items.map((item, i) => (
-            <li key={i} className="text-base leading-relaxed text-neutral-700">
-              <strong>{item.label}</strong>
-              {item.rest}
+            <li
+              key={i}
+              className="grid grid-cols-[20px_1fr] gap-3 font-sans text-lg leading-[1.75] text-body-strong"
+            >
+              <span className="text-accent">&mdash;</span>
+              <span>
+                <strong className="font-medium">{item.label}</strong>
+                {item.rest}
+              </span>
             </li>
           ))}
         </ul>
@@ -71,35 +83,34 @@ interface Props {
 export default function WorkCaseStudyContent({ cs: study }: Props) {
   return (
     <article>
-      {/* Hero */}
-      <div className="relative w-full h-64 md:h-96 bg-neutral-900 overflow-hidden mb-12">
-        <Image
-          src={study.backgroundImage}
-          alt={study.client}
-          fill
-          className="object-cover opacity-70"
-          priority
-        />
-        <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16">
-          <p className="text-sm uppercase tracking-widest text-white/70 mb-2">
+      {/* Hero — light, text-led. Case-study screenshots appear at full
+          opacity in the body; the hero itself carries no dimmed photo. */}
+      <div className="border-b border-border bg-surface">
+        <div className="mx-auto max-w-[1200px] px-6 pb-16 pt-24 sm:px-10 sm:pb-20 sm:pt-28">
+          <p className="mb-10 font-sans text-[13px] text-muted-foreground">
+            Work <span className="px-2 text-ghost">/</span> {study.client}
+          </p>
+          <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
             {study.client}
           </p>
-          <h1 className="text-3xl md:text-5xl font-light text-white leading-tight">
+          <h1 className="max-w-[800px] text-4xl font-extralight leading-[1.1] tracking-[-0.035em] text-ink sm:text-[62px]">
             {study.title}
           </h1>
-          <p className="mt-3 text-lg text-white/80">{study.subtitle}</p>
+          <p className="mt-6 max-w-[640px] font-sans text-xl font-light leading-relaxed text-body sm:text-[22px]">
+            {study.subtitle}
+          </p>
         </div>
       </div>
 
-      {/* Body */}
-      <div className="max-w-3xl mx-auto px-6 pb-24">
+      {/* Body — long-form reading measure */}
+      <div className="mx-auto max-w-[720px] px-6 py-20 sm:py-24">
         {study.sections.map((section, sIdx) => (
-          <section key={sIdx} className="mb-12">
-            <h2 className="text-2xl font-light text-neutral-900 mb-5 capitalize">
+          <section key={sIdx} className="mb-14">
+            <h2 className="mb-6 font-sans text-[32px] font-light capitalize leading-tight tracking-[-0.02em] text-ink">
               {section.heading}
             </h2>
             {section.diagnosisNote && (
-              <aside className="bg-neutral-50 border-l-4 border-neutral-300 pl-4 py-3 mb-6 text-sm text-neutral-600 italic">
+              <aside className="mb-7 rounded-[6px] border border-border bg-surface px-6 py-5 font-sans text-[15px] leading-relaxed text-body">
                 {section.diagnosisNote}
               </aside>
             )}
@@ -108,12 +119,13 @@ export default function WorkCaseStudyContent({ cs: study }: Props) {
         ))}
 
         {/* Testimonial */}
-        <blockquote className="border-l-4 border-neutral-800 pl-6 my-12">
-          <p className="text-lg leading-relaxed text-neutral-700 italic mb-4">
+        <blockquote className="my-14 flex flex-col gap-5">
+          <span className="block h-px w-5 bg-accent" />
+          <p className="font-sans text-2xl font-light leading-relaxed text-ink">
             &ldquo;{study.testimonial.quote}&rdquo;
           </p>
-          <footer className="text-sm text-neutral-500">
-            <strong className="text-neutral-800 not-italic">
+          <footer className="font-sans text-sm text-muted-foreground">
+            <strong className="font-medium text-ink">
               {study.testimonial.name}
             </strong>
             {" — "}
@@ -121,10 +133,10 @@ export default function WorkCaseStudyContent({ cs: study }: Props) {
           </footer>
         </blockquote>
 
-        <div className="mt-16 pt-8 border-t border-neutral-200">
+        <div className="mt-16 border-t border-border pt-8">
           <Link
             href="/work"
-            className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
+            className="font-sans text-sm text-muted-foreground transition-colors hover:text-ink"
           >
             &larr; All work
           </Link>
