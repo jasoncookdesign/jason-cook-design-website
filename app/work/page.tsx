@@ -4,6 +4,13 @@ import { caseStudies } from "@/lib/work";
 
 export const metadata = {
   title: "Work | Jason Cook Design",
+  description:
+    "Case studies from Jason Cook Design's enterprise and institutional work — eight engagements across software, consumer platforms, and regulated industries.",
+  openGraph: {
+    title: "Work | Jason Cook Design",
+    description:
+      "Case studies from Jason Cook Design's enterprise and institutional work — eight engagements across software, consumer platforms, and regulated industries.",
+  },
 };
 
 export default function WorkPage() {

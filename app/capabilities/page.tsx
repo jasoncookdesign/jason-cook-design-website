@@ -2,6 +2,13 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Capabilities | Jason Cook Design",
+  description:
+    "Architecture, specification, implementation, and handoff — the range of work Jason Cook Design takes on.",
+  openGraph: {
+    title: "Capabilities | Jason Cook Design",
+    description:
+      "Architecture, specification, implementation, and handoff — the range of work Jason Cook Design takes on.",
+  },
 };
 
 // Structural shell only; full page copy pending.

@@ -27,7 +27,7 @@ export default function ThemeToggle() {
         type="button"
         onClick={() => setTheme("light")}
         data-theme-btn="light"
-        className="theme-toggle-btn px-3 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground transition-colors"
+        className="theme-toggle-btn px-3 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
       >
         Light
       </button>
@@ -35,7 +35,7 @@ export default function ThemeToggle() {
         type="button"
         onClick={() => setTheme("dark")}
         data-theme-btn="dark"
-        className="theme-toggle-btn px-3 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground transition-colors"
+        className="theme-toggle-btn px-3 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
       >
         Dark
       </button>

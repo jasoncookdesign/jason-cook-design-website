@@ -21,6 +21,19 @@ export const metadata: Metadata = {
   title: "Jason Cook Design",
   description:
     "Working systems for startups and midmarket operators outgrowing their existing tools.",
+  manifest: "/site.webmanifest",
+  openGraph: {
+    type: "website",
+    title: "Jason Cook Design",
+    description:
+      "Working systems for startups and midmarket operators outgrowing their existing tools.",
+  },
+  twitter: {
+    card: "summary",
+    title: "Jason Cook Design",
+    description:
+      "Working systems for startups and midmarket operators outgrowing their existing tools.",
+  },
 };
 
 // Sets data-theme before paint so the persisted preference never flashes

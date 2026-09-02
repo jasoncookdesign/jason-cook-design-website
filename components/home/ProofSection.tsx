@@ -2,7 +2,6 @@ import Image from "next/image";
 
 // Note: the Twitter/Facebook logos use their historical marks (bird / "f"),
 // not the current X/Meta rebrand — pending a decision on whether to update them.
-// AWS has no logo asset available and is rendered as text.
 
 const brandLogos = [
   { name: "Dell", file: "/images/Brands_Dell.png", width: 48 },
@@ -14,6 +13,8 @@ const brandLogos = [
   { name: "Netflix", file: "/images/Brands_Netflix.png", width: 72 },
   { name: "Twitter", file: "/images/Brands_Tw.png", width: 36 },
   { name: "Facebook", file: "/images/Brands_Fb.png", width: 36 },
+  // AWS SVG: viewBox 304×182 → at 32px display height, width ≈ 53px
+  { name: "AWS", file: "/images/Brands_AWS.svg", width: 53 },
 ];
 
 const testimonials = [
@@ -68,10 +69,6 @@ export default function ProofSection() {
                 className="h-7 w-auto object-contain opacity-55"
               />
             ))}
-            {/* AWS: no source PNG available — rendered as text */}
-            <span className="font-sans text-[15px] text-muted-foreground opacity-70">
-              AWS
-            </span>
           </div>
         </div>
 

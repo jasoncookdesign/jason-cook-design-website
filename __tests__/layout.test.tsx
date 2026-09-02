@@ -1,5 +1,3 @@
-import { render, screen } from "@testing-library/react";
-
 // The layout wraps children with Nav and Footer.
 // We test this indirectly by checking that a page rendered inside the layout
 // receives the navigation chrome.

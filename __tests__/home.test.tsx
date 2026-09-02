@@ -48,11 +48,11 @@ describe("Home page", () => {
 
   it("renders the logo row companies", () => {
     render(<HomePage />);
-    // Logos are now Image components — query by alt text, not text content
+    // Logos are Image components — query by alt text
     expect(screen.getByAltText(/^Dell$/i)).toBeTruthy();
     expect(screen.getByAltText(/^Microsoft$/i)).toBeTruthy();
-    // AWS has no source PNG, so it remains text-only
-    expect(screen.getByText(/^AWS$/i)).toBeTruthy();
+    // AWS now has an SVG asset and must render as an image, not a text span
+    expect(screen.getByAltText(/^AWS$/i)).toBeTruthy();
   });
 
   it("renders both testimonials", () => {

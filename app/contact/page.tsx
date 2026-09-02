@@ -2,6 +2,13 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Contact | Jason Cook Design",
+  description:
+    "Book a strategy call with Jason Cook Design. No commitment, 20 minutes.",
+  openGraph: {
+    title: "Contact | Jason Cook Design",
+    description:
+      "Book a strategy call with Jason Cook Design. No commitment, 20 minutes.",
+  },
 };
 
 // Booking URL: cal.com/jasoncookdesign/engagement-consultation

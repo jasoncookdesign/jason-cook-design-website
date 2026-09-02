@@ -7,12 +7,12 @@ export default function Nav() {
   return (
     <header className="sticky top-0 z-20 border-b border-border bg-bg">
       <nav
-        className="mx-auto flex max-w-[1200px] items-center justify-between gap-10 px-10 py-[22px]"
+        className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-4 py-[22px] sm:px-6 lg:gap-10 lg:px-10"
         aria-label="Main navigation"
       >
         <Link
           href="/"
-          className="font-sans text-[15px] font-medium tracking-[-0.01em] text-ink"
+          className="flex-shrink-0 whitespace-nowrap font-sans text-[15px] font-medium tracking-[-0.01em] text-ink"
         >
           Jason Cook Design
         </Link>
@@ -45,13 +45,13 @@ export default function Nav() {
           </li>
         </ul>
 
-        <div className="flex items-center gap-4">
+        <div className="flex flex-shrink-0 items-center gap-4">
           <ThemeToggle />
           <a
             href={CTA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded-[6px] bg-btn-bg px-[18px] py-[11px] font-sans text-sm font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
+            className="hidden items-center rounded-[6px] bg-btn-bg px-[18px] py-[11px] font-sans text-sm font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover lg:inline-flex"
           >
             Start a conversation
           </a>

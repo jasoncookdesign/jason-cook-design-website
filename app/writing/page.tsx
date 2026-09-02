@@ -3,6 +3,13 @@ import { posts } from "@/lib/writing";
 
 export const metadata = {
   title: "Writing | Jason Cook Design",
+  description:
+    "Notes from the seam between design and engineering, by Jason Cook.",
+  openGraph: {
+    title: "Writing | Jason Cook Design",
+    description:
+      "Notes from the seam between design and engineering, by Jason Cook.",
+  },
 };
 
 export default function WritingPage() {
