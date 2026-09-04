@@ -28,8 +28,8 @@ export default function PricingSection() {
         </div>
 
         {/* Entry offer card */}
-        <div className="flex flex-col gap-6 rounded-[6px] border border-ink p-10">
-          <div className="flex items-baseline justify-between gap-6">
+        <div className="flex flex-col gap-6 rounded-[6px] border border-ink p-6 sm:p-10">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
             <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
               [ENTRY-OFFER-NAME]
             </p>

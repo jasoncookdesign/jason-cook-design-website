@@ -3,6 +3,32 @@ import WorkPage from "@/app/work/page";
 import WorkCaseStudyContent from "@/components/work/WorkCaseStudyContent";
 import { caseStudies } from "@/lib/work";
 
+describe("Work index responsive layout", () => {
+  it("work card links use md breakpoint grid, not sm, to prevent layout overflow at 640-720px viewport widths", () => {
+    const { container } = render(<WorkPage />);
+    const links = container.querySelectorAll('a[href*="/work/"]');
+    expect(links.length).toBeGreaterThan(0);
+    links.forEach((link) => {
+      // sm:grid-cols-[56px_340px would activate at 640px where 1fr collapses to ~0px
+      expect(link.className).not.toMatch(/sm:grid-cols-\[56px/);
+    });
+  });
+});
+
+describe("Work alt-text audit", () => {
+  it("every img block in every case study has non-empty alt text", () => {
+    for (const cs of caseStudies) {
+      for (const section of cs.sections) {
+        for (const block of section.blocks) {
+          if (block.type === "img") {
+            expect(block.alt.trim()).toBeTruthy();
+          }
+        }
+      }
+    }
+  });
+});
+
 describe("Work index page", () => {
   it("renders the Work h1 heading", () => {
     render(<WorkPage />);

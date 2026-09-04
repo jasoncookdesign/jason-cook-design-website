@@ -1,6 +1,23 @@
 import { render, screen } from "@testing-library/react";
 import HomePage from "@/app/page";
 
+describe("Home page responsive layout", () => {
+  it("pricing entry card uses responsive padding sm:p-10, not a flat p-10 that cramps 375px viewports", () => {
+    const { container } = render(<HomePage />);
+    // The pricing card contains the [ENTRY-OFFER-NAME] token and the $2,500 price
+    const entryNameEl = screen.getByText(/\[ENTRY-OFFER-NAME\]/);
+    // Walk up to find the card (has border-ink class)
+    let card: Element | null = entryNameEl;
+    while (card && !card.className.includes("border-ink")) {
+      card = card.parentElement;
+    }
+    expect(card).not.toBeNull();
+    // After fix: should have sm:p-10 (responsive), not just p-10 (fixed)
+    expect(card?.className).toMatch(/sm:p-10/);
+    void container;
+  });
+});
+
 describe("Home page", () => {
   it("renders the hero H1", () => {
     render(<HomePage />);

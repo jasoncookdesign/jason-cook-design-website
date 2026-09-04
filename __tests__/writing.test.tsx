@@ -3,6 +3,18 @@ import WritingPage from "@/app/writing/page";
 import WritingPostContent from "@/components/writing/WritingPostContent";
 import { posts } from "@/lib/writing";
 
+describe("Writing alt-text audit", () => {
+  it("every img block in every writing post has non-empty alt text", () => {
+    for (const post of posts) {
+      for (const block of post.content) {
+        if (block.type === "img") {
+          expect(block.alt.trim()).toBeTruthy();
+        }
+      }
+    }
+  });
+});
+
 describe("Writing index page", () => {
   it("renders the Writing h1 heading", () => {
     render(<WritingPage />);

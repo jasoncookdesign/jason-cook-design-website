@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="mt-auto border-t border-band-border bg-band-bg text-band-ink">
-      <div className="mx-auto max-w-[1200px] px-10 pb-10 pt-20">
+      <div className="mx-auto max-w-[1200px] px-6 sm:px-10 pb-10 pt-20">
         <div className="grid gap-14 border-b border-band-border pb-14 sm:grid-cols-3">
           <div>
             <p className="font-sans text-[28px] font-light leading-[1.25] tracking-[-0.02em] text-band-ink">

@@ -39,12 +39,12 @@ export default function WorkPage() {
           <li key={cs.slug} className="border-b border-border">
             <Link
               href={`/work/${cs.slug}`}
-              className="group grid grid-cols-1 items-center gap-6 py-7 sm:grid-cols-[56px_340px_1fr_44px] sm:gap-10"
+              className="group grid grid-cols-1 items-center gap-6 py-7 md:grid-cols-[56px_340px_1fr_44px] md:gap-10"
             >
               <span className="pl-2 font-mono text-[13px] text-muted-foreground">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="relative block h-[160px] overflow-hidden rounded-[6px] border border-border sm:h-[186px]">
+              <span className="relative block h-[160px] overflow-hidden rounded-[6px] border border-border md:h-[186px]">
                 <Image
                   src={cs.backgroundImage}
                   alt={cs.client}
@@ -56,7 +56,7 @@ export default function WorkPage() {
                 <span className="block font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
                   {cs.client}
                 </span>
-                <span className="mt-3 block font-sans text-2xl font-light leading-tight tracking-[-0.02em] text-ink sm:text-[30px]">
+                <span className="mt-3 block font-sans text-2xl font-light leading-tight tracking-[-0.02em] text-ink md:text-[30px]">
                   {cs.title}
                 </span>
                 <span className="mt-3 block max-w-[560px] font-sans text-base leading-relaxed text-body">
