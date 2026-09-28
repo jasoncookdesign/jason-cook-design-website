@@ -50,7 +50,7 @@ export default function ProofSection() {
             <h2 className="text-[28px] font-extralight leading-[1.15] tracking-[-0.03em] text-ink sm:text-[44px]">
               These are the programs where I learned which parts of a system a
               business{" "}
-              <span className="text-muted-foreground">actually needs.</span>
+              <span className="text-muted-foreground font-medium">actually needs.</span>
             </h2>
             <p className="mt-6 max-w-[520px] font-sans text-base leading-relaxed text-body">
               Work I&apos;ve done at enterprise scale. Building at that size is how
@@ -65,8 +65,8 @@ export default function ProofSection() {
                 src={brand.file}
                 alt={brand.name}
                 width={brand.width}
-                height={32}
-                className="h-7 w-auto object-contain opacity-55"
+                height={64}
+                className="h-11 w-auto object-contain opacity-55 lg:h-16"
               />
             ))}
           </div>

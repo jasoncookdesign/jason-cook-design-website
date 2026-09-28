@@ -72,6 +72,17 @@ describe("Home page", () => {
     expect(screen.getByAltText(/^AWS$/i)).toBeTruthy();
   });
 
+  it("brand logos are sized at h-11 base and lg:h-16 at the largest breakpoint", () => {
+    render(<HomePage />);
+    // Dell is the first logo in the row; its img element must carry the base
+    // height class (h-11) for smaller viewports and the responsive override
+    // (lg:h-16) for the site's largest defined breakpoint (~64px / ~50% larger).
+    const dell = screen.getByAltText(/^Dell$/i);
+    expect(dell.className).toMatch(/\bh-11\b/);
+    expect(dell.className).not.toMatch(/\bh-7\b/);
+    expect(dell.className).toMatch(/\blg:h-16\b/);
+  });
+
   it("renders both testimonials", () => {
     render(<HomePage />);
     expect(screen.getByText(/Chris Coen/i)).toBeTruthy();

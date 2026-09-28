@@ -16,7 +16,7 @@ export default function Hero() {
           </p>
           <h1 className="text-[42px] font-extralight leading-[1.1] tracking-[-0.035em] text-ink sm:text-[62px] lg:text-[76px] lg:leading-[1.08]">
             Get a working system that solves the problem you{" "}
-            <span className="text-muted-foreground">actually</span> have.
+            <span className="text-muted-foreground font-medium">actually</span> have.
           </h1>
           <div className="mt-12 flex flex-col gap-8 sm:flex-row sm:gap-14 sm:max-w-[840px]">
             <p className="flex-1 font-sans text-lg font-light leading-relaxed text-body">

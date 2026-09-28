@@ -33,7 +33,7 @@ export default function EngagementsPricing() {
         </p>
         <h2 className="text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-[52px] sm:leading-[1.12]">
           Three ways this gets priced, and only{" "}
-          <span className="text-muted-foreground">one of them is published.</span>
+          <span className="text-muted-foreground font-medium">one of them is published.</span>
         </h2>
       </div>
       <div className="mt-14 grid gap-6 sm:grid-cols-3">

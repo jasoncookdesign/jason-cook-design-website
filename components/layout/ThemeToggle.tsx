@@ -16,6 +16,80 @@ function setTheme(next: Theme) {
   }
 }
 
+// Minimal single-stroke sun: circle outline + 8 short hairline rays, matching
+// the hamburger icon's strokeWidth/strokeLinecap/stroke="currentColor" register.
+function SunIcon() {
+  const angles = [0, 45, 90, 135, 180, 225, 270, 315];
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+    >
+      {/* Circle outline, no fill */}
+      <circle
+        cx="8"
+        cy="8"
+        r="3.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      {/* 8 rays: each is the same vertical segment rotated around the center */}
+      {angles.map((angle) => (
+        <line
+          key={angle}
+          x1="8"
+          y1="1.5"
+          x2="8"
+          y2="3.5"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          transform={angle > 0 ? `rotate(${angle} 8 8)` : undefined}
+        />
+      ))}
+    </svg>
+  );
+}
+
+// Minimal single-stroke crescent moon: a circle outline masked by an offset
+// circle so only the crescent portion of the stroke is visible.  No fill,
+// no gradient — same stroke convention as the hamburger and sun icons.
+// mask="url(#moon-mask)" keyed off fill="white/black" is independent of
+// currentColor, so the stroke color from the active/inactive CSS state
+// continues to work correctly.
+function MoonIcon() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+    >
+      <defs>
+        <mask id="moon-mask">
+          {/* White = show stroke; black = hide stroke */}
+          <rect width="16" height="16" fill="white" />
+          {/* Shadow circle offset to the left cuts a crescent on the right side */}
+          <circle cx="5" cy="8" r="5" fill="black" />
+        </mask>
+      </defs>
+      <circle
+        cx="8"
+        cy="8"
+        r="5.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        mask="url(#moon-mask)"
+      />
+    </svg>
+  );
+}
+
 export default function ThemeToggle() {
   return (
     <div
@@ -27,17 +101,19 @@ export default function ThemeToggle() {
         type="button"
         onClick={() => setTheme("light")}
         data-theme-btn="light"
-        className="theme-toggle-btn px-3 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
+        aria-label="Light theme"
+        className="theme-toggle-btn cursor-pointer p-2 text-muted-foreground transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
       >
-        Light
+        <SunIcon />
       </button>
       <button
         type="button"
         onClick={() => setTheme("dark")}
         data-theme-btn="dark"
-        className="theme-toggle-btn px-3 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
+        aria-label="Dark theme"
+        className="theme-toggle-btn cursor-pointer p-2 text-muted-foreground transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
       >
-        Dark
+        <MoonIcon />
       </button>
     </div>
   );

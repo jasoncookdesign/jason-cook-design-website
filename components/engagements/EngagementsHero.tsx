@@ -8,7 +8,7 @@ export default function EngagementsHero() {
           </p>
           <h1 className="max-w-[900px] text-4xl font-extralight leading-[1.1] tracking-[-0.035em] text-ink sm:text-[62px] lg:text-[72px] lg:leading-[1.08]">
             Every phase leaves you something{" "}
-            <span className="text-muted-foreground">you can use.</span>
+            <span className="text-muted-foreground font-medium">you can use.</span>
           </h1>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 sm:gap-14 sm:max-w-[840px]">
             <p className="font-sans text-lg font-light leading-relaxed text-body">

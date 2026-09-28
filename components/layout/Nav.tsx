@@ -34,7 +34,7 @@ export default function Nav() {
       >
         <Link
           href="/"
-          className="flex-shrink-0 whitespace-nowrap font-sans text-[15px] font-medium tracking-[-0.01em] text-ink"
+          className="flex-shrink-0 whitespace-nowrap font-sans text-[15px] font-medium tracking-[-0.01em] text-ink transition-colors hover:opacity-80"
         >
           Jason Cook Design
         </Link>
@@ -75,7 +75,7 @@ export default function Nav() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen((prev) => !prev)}
-            className="flex items-center justify-center rounded-[6px] p-1.5 text-ink transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:hidden"
+            className="flex cursor-pointer items-center justify-center rounded-[6px] p-1.5 text-ink transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:hidden"
           >
             {open ? (
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
