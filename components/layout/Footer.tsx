@@ -9,10 +9,6 @@ export default function Footer() {
             <p className="font-sans text-[28px] font-light leading-[1.25] tracking-[-0.02em] text-band-ink">
               Jason Cook Design
             </p>
-            <p className="mt-4 max-w-[280px] font-sans text-[15px] leading-relaxed text-band-muted">
-              Systems architecture and implementation for startups and
-              midmarket operators.
-            </p>
           </div>
 
           <nav aria-label="Footer navigation">
