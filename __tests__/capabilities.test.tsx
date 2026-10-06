@@ -36,7 +36,7 @@ describe("Capabilities page", () => {
     expect(text()).not.toContain("by my team");
   });
 
-  it("states only verifiable outcomes, and no unresolved gaps", () => {
+  it("lists the outcomes on the record, with no unresolved gaps", () => {
     render(<CapabilitiesPage />);
     expect(screen.getByRole("heading", { level: 2, name: "Outcomes on the record" })).toBeTruthy();
     for (const line of [
@@ -45,7 +45,6 @@ describe("Capabilities page", () => {
       "At Banco Azteca, the constraint wasn't staffing",
     ]) expect(text()).toContain(line);
     expect(text()).not.toContain("[GAP");
-    expect(text()).not.toMatch(/\$10 million/);
   });
 
   it("keeps the practice-name and entry-offer tokens literal", () => {

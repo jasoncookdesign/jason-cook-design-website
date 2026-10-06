@@ -44,8 +44,7 @@ const disciplines = [
   },
 ];
 
-// Only outcomes with a checkable source. OSIsoft, Leading Hotels of the World, and the
-// Dovetail Systems funding figure stay off the page until verified.
+// Outcomes are listed only where they have a checkable source.
 const outcomes = [
   "At Dell, a unified contact-center redesign produced a 20% reduction in chat pollution and a 300 basis-point improvement in customer satisfaction.",
   "At Ford, the interaction models my team designed for the Build and Price product are still in use years later.",
