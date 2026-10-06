@@ -28,7 +28,7 @@ export default function PortabilitySection() {
           <p className="font-sans text-[17px] leading-[1.7] text-body">
             The tools I use to produce them stay mine. That split is written
             into the roadmap you get at the end of the first step.{" "}
-            <Link href="/#faq-11" className="text-link underline-offset-4 hover:underline">
+            <Link href="/#faq-11" className="text-link underline underline-offset-4 hover:text-accent">
               What do I keep when it&apos;s over?
             </Link>
           </p>

@@ -14,5 +14,7 @@ describe("Engagements portability links to the home FAQ on what the client keeps
     render(<EngagementsPage />);
     const link = screen.getByRole("link", { name: "What do I keep when it's over?" });
     expect(link.getAttribute("href")).toBe("/#faq-11");
+    // Inline in body text: underlined at rest so it isn't marked by color alone.
+    expect(link.className.split(" ")).toContain("underline");
   });
 });
