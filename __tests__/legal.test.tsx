@@ -21,6 +21,11 @@ describe("Legal page", () => {
     expect(section.querySelector("h2")?.textContent).toBe(heading);
     expect(section.textContent).toContain(`[LEGAL: ${heading} text pending]`);
   });
+
+  it.each(sections)("exposes $heading as a named region landmark", ({ heading }) => {
+    render(<LegalPage />);
+    expect(screen.getByRole("region", { name: heading })).toBeTruthy();
+  });
 });
 
 describe("Footer legal links", () => {

@@ -23,8 +23,8 @@ export default function LegalPage() {
           Legal
         </h1>
         {sections.map(({ id, heading }) => (
-          <section key={id} id={id} className="mt-16 scroll-mt-24">
-            <h2 className="text-2xl font-extralight tracking-[-0.03em] text-ink sm:text-[36px] sm:leading-[1.2]">
+          <section key={id} id={id} aria-labelledby={`${id}-heading`} className="mt-16 scroll-mt-24">
+            <h2 id={`${id}-heading`} className="text-2xl font-extralight tracking-[-0.03em] text-ink sm:text-[36px] sm:leading-[1.2]">
               {heading}
             </h2>
             <p className="mt-6 font-mono text-[13px] leading-relaxed text-muted-foreground">
