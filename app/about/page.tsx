@@ -1,11 +1,11 @@
 export const metadata = {
   title: "About | Jason Cook Design",
   description:
-    "The practice combines strategy, design, research, and implementation — not as a fixed service menu, but applied in whatever proportions the problem requires, held in one practice rather than handed across seams.",
+    "Enterprise-scale experience, sized for smaller businesses: strategy, design, research, and implementation in one practice, starting with a paid diagnosis.",
   openGraph: {
     title: "About | Jason Cook Design",
     description:
-      "The practice combines strategy, design, research, and implementation — not as a fixed service menu, but applied in whatever proportions the problem requires, held in one practice rather than handed across seams.",
+      "Enterprise-scale experience, sized for smaller businesses: strategy, design, research, and implementation in one practice, starting with a paid diagnosis.",
   },
 };
 
