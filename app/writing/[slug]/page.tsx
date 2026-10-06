@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { posts } from "@/lib/writing";
+import { pageTitle } from "@/lib/metadata";
 import WritingPostContent from "@/components/writing/WritingPostContent";
 
 export async function generateStaticParams() {
@@ -14,7 +15,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = posts.find((p) => p.slug === slug);
   if (!post) return {};
-  return { title: `${post.title} | Jason Cook Design` };
+  return { title: pageTitle(post.shortTitle ?? post.title) };
 }
 
 export default async function WritingPostPage({

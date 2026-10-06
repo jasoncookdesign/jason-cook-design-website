@@ -14,6 +14,8 @@ export type ContentBlock =
 export interface Post {
   slug: string;
   title: string;
+  /** Optional shorter title for the browser tab and search results, when the full title runs long. */
+  shortTitle?: string;
   date: string;
   tags: string[];
   excerpt: string;
@@ -27,6 +29,7 @@ export const posts: Post[] = [
     slug: "youre-not-building-a-tool-youre-building-an-organization",
     title:
       "You're Not Building a Tool. You're Building an Organization. Treat it That Way.",
+    shortTitle: "You're Building an Organization, Not a Tool",
     date: "2026-06-09",
     tags: ["ai", "security", "software-development"],
     excerpt:
