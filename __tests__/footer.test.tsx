@@ -37,3 +37,15 @@ describe("Footer", () => {
     expect(screen.getByText(/Jason Cook Design LLC/i)).toBeTruthy();
   });
 });
+
+describe("Footer content rules", () => {
+  it("carries no prose: only the name, link labels, contact, and legal", () => {
+    const { container } = render(<Footer />);
+    expect(screen.getByText("Jason Cook Design")).toBeTruthy();
+    expect(container.textContent).not.toContain("Systems architecture and implementation");
+    const prose = Array.from(container.querySelectorAll("p")).filter(
+      (p) => (p.textContent ?? "").trim().split(/\s+/).length > 5
+    );
+    expect(prose).toEqual([]);
+  });
+});
