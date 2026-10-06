@@ -57,13 +57,13 @@ describe("About page", () => {
 });
 
 describe("About page metadata", () => {
-  it("has a search snippet that fits in results and keeps the first-person practice framing", async () => {
+  it("has a search snippet that fits in results and drops the retired firm framing", async () => {
     const { metadata } = await import("@/app/about/page");
     const expected =
       "Enterprise-scale experience, sized for smaller businesses: strategy, design, research, and implementation in one practice, starting with a paid diagnosis.";
     expect(metadata.description).toBe(expected);
     expect(metadata.openGraph?.description).toBe(expected);
-    expect(expected.length).toBeLessThanOrEqual(155);
+    expect(metadata.description?.length).toBeLessThanOrEqual(155);
     expect(JSON.stringify(metadata)).not.toMatch(/consultancy|founder and principal/i);
   });
 });
