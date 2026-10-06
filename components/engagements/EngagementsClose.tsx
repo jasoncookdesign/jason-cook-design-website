@@ -20,7 +20,8 @@ export default function EngagementsClose() {
           <span className="block h-[7px] w-[7px] rotate-45 border-r border-t border-accent" />
         </a>
         <p className="font-sans text-sm leading-relaxed text-muted-foreground">
-          No commitment. 20 minutes.
+          No commitment. 20 minutes. Find out what you need &mdash; and what you
+          don&apos;t.
         </p>
       </div>
     </section>
