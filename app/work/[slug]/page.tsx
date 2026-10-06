@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { caseStudies } from "@/lib/work";
+import { pageTitle } from "@/lib/metadata";
 import WorkCaseStudyContent from "@/components/work/WorkCaseStudyContent";
 
 export async function generateStaticParams() {
@@ -14,7 +15,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const cs = caseStudies.find((c) => c.slug === slug);
   if (!cs) return {};
-  return { title: `${cs.title} | Jason Cook Design` };
+  return { title: pageTitle(cs.title) };
 }
 
 export default async function WorkCaseStudyPage({
