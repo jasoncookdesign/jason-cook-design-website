@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+const SHOW_FIT_PROOF = false;
+
 // Note: the Twitter/Facebook logos use their historical marks (bird / "f"),
 // not the current X/Meta rebrand — pending a decision on whether to update them.
 
@@ -36,13 +38,16 @@ export default function ProofSection() {
   return (
     <section className="border-t border-border bg-surface">
       <div className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
-        {/* Fit-proof placeholder — renders literally until a real case exists */}
-        <div className="rounded-[6px] border border-dashed border-ghost px-7 py-6 font-mono text-[13px] leading-relaxed text-muted-foreground">
-          [FIT-PROOF &mdash; pending a real, consented case]
-        </div>
+        {/* Fit-proof slot: off until a real, consented case exists. The block deletes cleanly;
+            nothing above or below refers to it. Flip SHOW_FIT_PROOF to render the placeholder. */}
+        {SHOW_FIT_PROOF && (
+          <div className="mb-16 rounded-[6px] border border-dashed border-ghost px-7 py-6 font-mono text-[13px] leading-relaxed text-muted-foreground">
+            [FIT-PROOF &mdash; pending a real, consented case]
+          </div>
+        )}
 
         {/* Range proof */}
-        <div className="mt-16 grid gap-20 lg:grid-cols-2 lg:items-start">
+        <div className="grid gap-20 lg:grid-cols-2 lg:items-start">
           <div>
             <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
               Where the method came from

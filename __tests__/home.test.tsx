@@ -56,11 +56,10 @@ describe("Home page", () => {
     expect(screen.getByText(/\[ENTRY-OFFER-NAME\]/)).toBeTruthy();
   });
 
-  it("renders the [FIT-PROOF] placeholder literally", () => {
-    render(<HomePage />);
-    expect(
-      screen.getByText(/\[FIT-PROOF — pending a real, consented case\]/)
-    ).toBeTruthy();
+  it("shows no fit-proof slot while no consented case exists, and the range proof still renders", () => {
+    const { container } = render(<HomePage />);
+    expect(container.textContent).not.toContain("[FIT-PROOF");
+    expect(screen.getByText("Where the method came from")).toBeTruthy();
   });
 
   it("renders the logo row companies", () => {
