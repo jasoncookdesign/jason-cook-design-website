@@ -1,5 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import AboutPage from "@/app/about/page";
+import { caseStudies } from "@/lib/work";
+
+const text = () => (document.body.textContent ?? "").replace(/\s+/g, " ");
 
 describe("About page", () => {
   it("renders the About h1 heading", () => {
@@ -7,32 +10,48 @@ describe("About page", () => {
     expect(screen.getByRole("heading", { level: 1, name: /About/i })).toBeTruthy();
   });
 
-  it("renders verified facts (name, entity, role)", () => {
+  it("opens with the first-person practice copy", () => {
     render(<AboutPage />);
-    const text = document.body.textContent ?? "";
-    expect(text).toMatch(/Jason Cook/);
-    expect(text).toMatch(/Jason Cook Design LLC/);
-    expect(text).toMatch(/Texas/);
+    expect(
+      screen.getByText(/^Most operators who end up working with me describe the same progression\./)
+    ).toBeTruthy();
+    expect(text()).toContain("The contexts differ. The diagnostic structure doesn't.");
+    expect(text()).toContain("That judgment is what Jason Cook Design is built on.");
+    expect(text()).toContain("The recommendation you can trust is the one that's built to say no.");
   });
 
-  it("renders the pending-content placeholder — invention ban marker must be present", () => {
+  it("names every program documented on the Work page, and counts them correctly", () => {
     render(<AboutPage />);
-    // This text must be visible (not just a JSX comment) so it's a regression guard
-    // against someone silently filling the page with invented copy
-    const text = document.body.textContent ?? "";
-    expect(text).toMatch(/more about the practice is coming soon/i);
+    // Copy uses short names ("Ford" for "Ford Motor Company"); the leading word identifies each client.
+    for (const study of caseStudies) expect(text()).toContain(study.client.split(" ")[0]);
+    expect(caseStudies).toHaveLength(8);
+    expect(text()).toContain("Eight of those programs are documented on the Work page");
   });
 
-  it("does not render invented marketing copy or persuasive narrative bio", () => {
+  it("keeps the entry-offer token literal until it is named", () => {
     render(<AboutPage />);
-    const text = document.body.textContent ?? "";
-    // These patterns would indicate invented copy — none should appear
-    expect(text).not.toMatch(/passionate about/i);
-    expect(text).not.toMatch(/thought leader/i);
-    expect(text).not.toMatch(/world-class/i);
-    expect(text).not.toMatch(/industry-leading/i);
-    expect(text).not.toMatch(/innovative solutions/i);
-    expect(text).not.toMatch(/help you achieve/i);
-    expect(text).not.toMatch(/let's work together/i);
+    expect(text()).toContain("That first step is [ENTRY-OFFER-NAME].");
+    expect(text()).toContain("[ENTRY-OFFER-NAME] is where it starts.");
+  });
+
+  it("drops the retired third-person firm framing, the placeholder, and the optional internal-systems paragraph", () => {
+    render(<AboutPage />);
+    expect(text()).not.toMatch(/The firm advises/i);
+    expect(text()).not.toMatch(/coming soon/i);
+    expect(text()).not.toMatch(/OPTIONAL|laboratory/i);
+  });
+
+  it("keeps the factual sidebar", () => {
+    render(<AboutPage />);
+    expect(text()).toContain("Texas, working remotely");
+    expect(screen.getByRole("link", { name: "hello@jasoncookdesign.com" })).toBeTruthy();
+  });
+
+  it("does not render generic marketing filler", () => {
+    render(<AboutPage />);
+    for (const phrase of [/passionate about/i, /thought leader/i, /world-class/i, /industry-leading/i,
+      /innovative solutions/i, /help you achieve/i, /let's work together/i]) {
+      expect(text()).not.toMatch(phrase);
+    }
   });
 });
