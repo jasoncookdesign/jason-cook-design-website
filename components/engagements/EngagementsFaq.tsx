@@ -14,7 +14,7 @@ const faqs = [
     answer: [
       "Yes. The specification is written to be built from, and it's the same specification either way.",
       "What changes is who does the build phase. The two phases before it don't change at all.",
-      "[GAP: whether guided adoption and handoff applies when the client's own team did the build.]",
+      "If your team builds it, I stay on as engineering lead, not engineer. It can still end in a handoff, and any later support starts from that handoff.",
     ],
   },
   {
