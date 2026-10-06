@@ -120,7 +120,7 @@ export default function FaqSection() {
         </div>
         <Accordion multiple={false}>
           {faqs.map((faq) => (
-            <AccordionItem key={faq.id} value={faq.id}>
+            <AccordionItem key={faq.id} id={faq.id} value={faq.id} className="scroll-mt-24">
               <AccordionTrigger>{faq.question}</AccordionTrigger>
               <AccordionContent>
                 {faq.answer.map((para, i) => (

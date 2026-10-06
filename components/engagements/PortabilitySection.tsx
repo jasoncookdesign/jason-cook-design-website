@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function PortabilitySection() {
   return (
     <section className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
@@ -25,7 +27,10 @@ export default function PortabilitySection() {
           </p>
           <p className="font-sans text-[17px] leading-[1.7] text-body">
             The tools I use to produce them stay mine. That split is written
-            into the roadmap you get at the end of the first step.
+            into the roadmap you get at the end of the first step.{" "}
+            <Link href="/#faq-11" className="text-link underline-offset-4 hover:underline">
+              What do I keep when it&apos;s over?
+            </Link>
           </p>
           <p className="mt-4 border-l border-accent py-1 pl-6 font-sans text-[22px] font-light leading-relaxed text-ink">
             The reason to keep me should be that the work is still worth what
