@@ -11,6 +11,7 @@ import { generateMetadata as workCaseStudy } from "@/app/work/[slug]/page";
 import { generateMetadata as writingPost } from "@/app/writing/[slug]/page";
 import { caseStudies } from "@/lib/work";
 import { posts } from "@/lib/writing";
+import { pageTitle } from "@/lib/metadata";
 
 const TITLE_MAX = 60;
 const DESCRIPTION_MAX = 155;
@@ -86,9 +87,15 @@ describe("page metadata lengths", () => {
     expect(m.title).toBe("Your AI Doesn't Have to Go Rogue to Break Your Rules");
   });
 
-  it("truncates a post title that cannot fit on its own at a word boundary with an ellipsis", async () => {
+  it("uses a post's short title when it has one", async () => {
     const m = await writingPost(params("youre-not-building-a-tool-youre-building-an-organization"));
-    expect(m.title).toBe("You're Not Building a Tool. You're Building an…");
+    expect(m.title).toBe("You're Building an Organization, Not a Tool");
+  });
+
+  it("falls back to cutting an over-long title at a word boundary with an ellipsis", () => {
+    expect(pageTitle("You're Not Building a Tool. You're Building an Organization. Treat it That Way.")).toBe(
+      "You're Not Building a Tool. You're Building an…"
+    );
   });
 
   it("keeps description and openGraph.description identical where both are set", async () => {

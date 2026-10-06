@@ -15,7 +15,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = posts.find((p) => p.slug === slug);
   if (!post) return {};
-  return { title: pageTitle(post.title) };
+  return { title: pageTitle(post.shortTitle ?? post.title) };
 }
 
 export default async function WritingPostPage({
