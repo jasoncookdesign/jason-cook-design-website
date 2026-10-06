@@ -1,5 +1,5 @@
 /**
- * Mouse-interaction affordance tests (INI-114 audit).
+ * Mouse-interaction affordance tests.
  *
  * Every interactive element must have a visible hover class (hover:*) in its
  * className.  These tests verify that requirement at the rendered-DOM level.

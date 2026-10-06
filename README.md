@@ -14,12 +14,14 @@ Marketing website for Jason Cook Design (JCD), a systems architecture and implem
 | Route | Content |
 |---|---|
 | `/` | Home |
-| `/engagements` | Engagement model and phase structure |
-| `/work` | Portfolio (placeholder) |
-| `/writing` | Writing (placeholder) |
-| `/about` | About (placeholder) |
-| `/capabilities` | Capabilities and institutional work (footer-only deep link) |
-| `/contact` | Redirects to booking |
+| `/engagements` | Engagement model, phases, and pricing |
+| `/work`, `/work/[slug]` | Eight case studies |
+| `/writing`, `/writing/[slug]` | Writing |
+| `/about` | About the practice |
+| `/capabilities` | Capabilities and institutional work (reached from the footer only) |
+| `/contact` | Booking page for the strategy call |
+
+URLs from the previous site (`/cs01.html`–`/cs08.html`, `/blog/...`, `/calendar/...`) redirect to their new homes; see `redirects()` in `next.config.ts`. Redirects need a server host (e.g. Vercel). A static export would drop them.
 
 ## Getting started
 
@@ -44,10 +46,10 @@ npm run build
 
 ## Content tokens
 
-Two placeholder tokens appear throughout the built pages and must remain
-literal until resolved by the content owner:
+These placeholder tokens appear in the built pages and must stay literal until the content owner resolves them:
 
-- `[ENTRY-OFFER-NAME]` — the named entry offer; replace by search once decided
-- `[FIT-PROOF — pending a real, consented case]` — client fit-proof slot; delete
-  or replace when a consented case exists
-- `[GAP: ...]` markers — open content questions; listed in the source copy docs
+- `[ENTRY-OFFER-NAME]`: the named entry offer. Replace by search once decided.
+- `[PRACTICE-NAME]`: the name of the practice discipline (Capabilities page). Replace by search once decided.
+- `[GAP: ...]`: open content questions. None should render. Tests guard the pages that had them.
+
+The home page's fit-proof slot (`[FIT-PROOF — pending a real, consented case]`) is switched off with `SHOW_FIT_PROOF` in `components/home/ProofSection.tsx` until a real, consented case exists.
