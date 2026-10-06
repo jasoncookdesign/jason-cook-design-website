@@ -55,3 +55,14 @@ describe("About page", () => {
     }
   });
 });
+
+describe("About page metadata", () => {
+  it("describes the practice in the page's own words, not the retired firm framing", async () => {
+    const { metadata } = await import("@/app/about/page");
+    const expected =
+      "The practice combines strategy, design, research, and implementation — not as a fixed service menu, but applied in whatever proportions the problem requires, held in one practice rather than handed across seams.";
+    expect(metadata.description).toBe(expected);
+    expect(metadata.openGraph?.description).toBe(expected);
+    expect(JSON.stringify(metadata)).not.toMatch(/consultancy|founder and principal/i);
+  });
+});

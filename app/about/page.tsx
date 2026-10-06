@@ -1,11 +1,11 @@
 export const metadata = {
   title: "About | Jason Cook Design",
   description:
-    "Jason Cook is the founder and principal of Jason Cook Design LLC, a design and strategy consultancy based in Texas.",
+    "The practice combines strategy, design, research, and implementation — not as a fixed service menu, but applied in whatever proportions the problem requires, held in one practice rather than handed across seams.",
   openGraph: {
     title: "About | Jason Cook Design",
     description:
-      "Jason Cook is the founder and principal of Jason Cook Design LLC, a design and strategy consultancy based in Texas.",
+      "The practice combines strategy, design, research, and implementation — not as a fixed service menu, but applied in whatever proportions the problem requires, held in one practice rather than handed across seams.",
   },
 };
 
