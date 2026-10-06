@@ -33,6 +33,14 @@ describe("legacy jasoncookdesign.github.io URLs keep working", () => {
     ["/blog/the-quality-gate", "/writing/the-quality-gate"],
     ["/blog/why-this-blog-exists", "/writing/why-this-blog-exists"],
     [
+      "/blog/your-ai-doesnt-have-to-go-rogue-to-break-your-rules",
+      "/writing/your-ai-doesnt-have-to-go-rogue-to-break-your-rules",
+    ],
+    [
+      "/blog/youre-not-building-a-tool-youre-building-an-organization",
+      "/writing/youre-not-building-a-tool-youre-building-an-organization",
+    ],
+    [
       "/blog/you-re-not-building-a-tool-you-re-building-an-organization-treat-it-that-way",
       "/writing/youre-not-building-a-tool-youre-building-an-organization",
     ],
