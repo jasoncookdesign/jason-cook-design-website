@@ -6,7 +6,7 @@ Next.js 16 site that will replace jasoncookdesign.github.io as jasoncookdesign.c
 
 - Run: `npm run dev`. Tests: `npm test` (Jest). `npm run build` must stay green.
 - Generated, never hand-edit: the nextjs-agent-rules block in `AGENTS.md` (rewritten by `next dev`), and `.next/`.
-- Copy comes from the JCD knowledge vault, which lives outside this repo. Placeholder tokens (`[ENTRY-OFFER-NAME]`, `[PRACTICE-NAME]`, `[FIT-PROOF — pending a real, consented case]`, `[GAP: …]`) stay verbatim until Jason resolves them.
+- Copy comes from the JCD knowledge vault, which lives outside this repo. Placeholder tokens (`[ENTRY-OFFER-NAME]`, `[PRACTICE-NAME]`, `[FIT-PROOF — pending a real, consented case]`, `[LEGAL: … text pending]`, `[GAP: …]`) stay verbatim until Jason resolves them.
 - Public repo: keep internal ticket IDs and machine names out of commits, code and docs.
 
 ## TDD exception (recorded ruling)

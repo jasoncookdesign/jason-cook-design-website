@@ -59,13 +59,13 @@ export default function Footer() {
 
         <div className="flex flex-col gap-4 pt-7 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap gap-x-6 gap-y-1">
-            <Link href="/privacy" className="font-sans text-[13px] text-band-muted hover:text-band-ink transition-colors">
+            <Link href="/legal#privacy" className="font-sans text-[13px] text-band-muted hover:text-band-ink transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/accessibility" className="font-sans text-[13px] text-band-muted hover:text-band-ink transition-colors">
+            <Link href="/legal#accessibility" className="font-sans text-[13px] text-band-muted hover:text-band-ink transition-colors">
               Accessibility Statement
             </Link>
-            <Link href="/terms" className="font-sans text-[13px] text-band-muted hover:text-band-ink transition-colors">
+            <Link href="/legal#terms" className="font-sans text-[13px] text-band-muted hover:text-band-ink transition-colors">
               Terms
             </Link>
           </div>
