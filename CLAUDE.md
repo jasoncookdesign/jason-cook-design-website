@@ -1,5 +1,17 @@
 @AGENTS.md
 
+# jason-cook-design-website
+
+Next.js 16 site that will replace jasoncookdesign.github.io as jasoncookdesign.com. Merging to main deploys nothing yet, because no host is wired. The live domain stays on jasoncookdesign.github.io until the DNS cutover, which needs Jason's explicit go.
+
+- Run: `npm run dev`. Tests: `npm test` (Jest). `npm run build` must stay green.
+- Generated, never hand-edit: the nextjs-agent-rules block in `AGENTS.md` (rewritten by `next dev`), and `.next/`.
+- Copy comes from the JCD knowledge vault, which lives outside this repo. Placeholder tokens (`[ENTRY-OFFER-NAME]`, `[PRACTICE-NAME]`, `[FIT-PROOF — pending a real, consented case]`, `[GAP: …]`) stay verbatim until Jason resolves them.
+- Public repo: keep internal ticket IDs and machine names out of commits, code and docs.
+
+## TDD exception (recorded ruling)
+None. Copy and components are test-first, and the tests assert copy verbatim. Pure styling changes with no behavior to assert are exempt; say so in the PR.
+
 <!-- BEGIN agentic-sdlc disciplines @68c3f3c -->
 
 ## Engineering disciplines (mandatory, every code task)
