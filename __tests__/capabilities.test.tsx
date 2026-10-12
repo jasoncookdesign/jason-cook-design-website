@@ -18,7 +18,8 @@ describe("Capabilities page", () => {
 
   it("lists the five disciplines, in order, as a definition list", () => {
     const { container } = render(<CapabilitiesPage />);
-    const terms = Array.from(container.querySelectorAll("dl dt")).map((dt) => dt.textContent?.trim());
+    const disciplines = container.querySelector("dl")!;
+    const terms = Array.from(disciplines.querySelectorAll("dt")).map((dt) => dt.textContent?.trim());
     expect(terms).toEqual([
       "Research and diagnosis",
       "Architecture",
@@ -26,7 +27,7 @@ describe("Capabilities page", () => {
       "Implementation",
       "Organizational capability",
     ]);
-    const details = Array.from(container.querySelectorAll("dl dd")).map((dd) => dd.textContent ?? "");
+    const details = Array.from(disciplines.querySelectorAll("dd")).map((dd) => dd.textContent ?? "");
     expect(details[2]).toContain("Technical specifications written to be built from — by me, by the client's team, or by another provider.");
     expect(details[4]).toContain("makes owner capability a deliverable rather than a courtesy");
   });
@@ -54,11 +55,45 @@ describe("Capabilities page", () => {
     expect(text()).toContain("[ENTRY-OFFER-NAME] is the paid first step");
   });
 
+  it("gives institutional readers the company data, with unrecorded identifiers left as tokens", () => {
+    render(<CapabilitiesPage />);
+    const heading = screen.getByRole("heading", { level: 2, name: "Company data" });
+    const list = heading.nextElementSibling!;
+    expect(list.tagName).toBe("DL");
+    const rows = Array.from(list.querySelectorAll("dt")).map((dt) => [
+      dt.textContent?.trim(),
+      (dt.nextElementSibling?.textContent ?? "").trim(),
+    ]);
+    expect(rows).toEqual([
+      ["Legal name", "Jason Cook Design LLC"],
+      ["Structure", "Single-member limited liability company, Texas"],
+      ["Formed", "November 15, 2024"],
+      ["UEI", "[UEI]"],
+      ["CAGE code", "[CAGE-CODE]"],
+      ["NAICS codes", "[NAICS-CODES]"],
+      ["SAM.gov registration", "[SAM-STATUS]"],
+      ["Contact", "hello@jasoncookdesign.com"],
+    ]);
+    expect(screen.getAllByRole("link", { name: "hello@jasoncookdesign.com" })[0].getAttribute("href")).toBe(
+      "mailto:hello@jasoncookdesign.com"
+    );
+  });
+
   it("drops the coming-soon placeholder and still links to the Work page", () => {
     render(<CapabilitiesPage />);
     expect(text()).not.toMatch(/coming soon/i);
     const hrefs = screen.getAllByRole("link").map((l) => l.getAttribute("href"));
     expect(hrefs).toContain("/work");
+  });
+
+  it("keeps the draft name candidates out of the rendered page", () => {
+    render(<CapabilitiesPage />);
+    for (const name of ["System Diagnostic", "Architecture Diagnostic", "Situational Diagnosis", "Problem Definition",
+      "Organizational Diagnosis", "Operating Architecture", "Systems Architecture", "Structural Architecture",
+      "Integrated Architecture", "Organizational Architecture"]) {
+      expect(text()).not.toContain(name);
+    }
+    expect(text()).toContain("[ENTRY-OFFER-NAME]");
   });
 
   it("does not render generic marketing filler", () => {

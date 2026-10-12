@@ -9,7 +9,10 @@ export const metadata = {
   },
 };
 
-// First-person practice copy; [ENTRY-OFFER-NAME] stays literal until the offer is named.
+// DRAFT — Jason to edit. First-person practice copy, ported from the 2026-09-10 placeholder draft.
+// [ENTRY-OFFER-NAME] stays literal until the offer is named.
+// Entry-offer name candidates (DRAFT, none chosen; rationale in docs/content-token-candidates.md):
+//   System Diagnostic · Architecture Diagnostic · Situational Diagnosis · Problem Definition · Organizational Diagnosis
 const paragraphs = [
   "Most operators who end up working with me describe the same progression. They've named a problem — a product that needed updating, a process that needed replacing, a system that had outgrown its original design — and somewhere in the effort to address it, they found the named problem wasn't the real one. The real one was structural: something in how the organization, the technology, and the customer experience related to each other.",
   "I recognize that pattern because I've spent years leading programs at enterprise scale where the presenting problem and the underlying one were rarely the same thing. Eight of those programs are documented on the Work page — at OSIsoft, Ford, Dovetail Systems, Banco Azteca, Millennium Systems International, Microsoft, Leading Hotels of the World, and Dell. The contexts differ. The diagnostic structure doesn't.",
@@ -18,6 +21,14 @@ const paragraphs = [
   "I start every engagement with a paid diagnosis. Nothing gets designed or built until there's a shared, written definition of what the problem actually is. That first step is [ENTRY-OFFER-NAME]. What it produces is a written recommendation: what the real problem is, what to address first, and what addressing it takes. If the right answer is that you shouldn't build — or that what you're looking for is outside what this practice does — that's what it says.",
   "AI is part of this work when it creates real leverage. It isn't the identity of the practice. The question the diagnosis answers is whether any given technology — AI included — is the right fit for the specific problem.",
   "The recommendation you can trust is the one that's built to say no. If that kind of rigor is what you're looking for, [ENTRY-OFFER-NAME] is where it starts.",
+];
+
+// DRAFT — Jason to edit. Career facts from Jason's own records; titles as recorded there.
+const background = [
+  { org: "Dell Technologies", years: "2019–2024", role: "Senior Manager of Research and Design, Global Services" },
+  { org: "Alpha Chi Technology", years: "2012–2019", role: "cofounder and Principal Experience Consultant" },
+  { org: "Meredith Xcelerated Marketing", years: "2011–2012", role: "Director of UX" },
+  { org: "IdentityMine", years: "2007–2011", role: "Director of UX" },
 ];
 
 export default function AboutPage() {
@@ -62,6 +73,20 @@ export default function AboutPage() {
             </dt>
             <dd className="font-sans text-base leading-snug text-ink">
               Architecture, specification, implementation, handoff
+            </dd>
+          </div>
+          <div className="flex flex-col gap-2">
+            <dt className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+              Background
+            </dt>
+            <dd className="font-sans text-base leading-snug text-ink">
+              <ul className="flex flex-col gap-3">
+                {background.map(({ org, years, role }) => (
+                  <li key={org}>
+                    {org}, {years}: <span className="text-body">{role}</span>
+                  </li>
+                ))}
+              </ul>
             </dd>
           </div>
           <div className="flex flex-col gap-2">
