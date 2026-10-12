@@ -43,7 +43,7 @@ Gathered with `dig`, `whois`, `curl -I`, and `gh api repos/jasoncookdesign/jason
 4. A decision on the three old PDFs: redirect them (for example to `/about`), copy them into `public/`, or let them 404.
 5. A decision on analytics: add a tag before cutover, or accept a gap.
 6. The Vercel project exists, builds `main` as production, and passes on the preview: `npm test`, `npm run build`, and the redirect spot checks below.
-7. Recommended: verify `jasoncookdesign.com` in the GitHub account's Pages settings (adds a `_github-pages-challenge-…` TXT record). It stops anyone else's Pages site from claiming the domain during the window when DNS and the Pages setting disagree.
+7. Recommended: verify `jasoncookdesign.com` in the GitHub account's Pages settings (adds a `_github-pages-challenge-…` TXT record). Once the old repo's custom domain is removed, any DNS record still pointing at GitHub (for example during a late rollback) could let another account's Pages site claim the domain; verification blocks that.
 8. Access confirmed: Jason can log in to the DNS dashboard and to Vercel, and has a copy of the current record table above.
 
 ## Steps, in order
@@ -57,7 +57,7 @@ Gathered with `dig`, `whois`, `curl -I`, and `gh api repos/jasoncookdesign/jason
 2. Change the `www` CNAME from `jasoncookdesign.github.io.` to Vercel's target.
 3. Touch nothing else.
 
-**T0 to T+1 hour: verify.**
+**T0 to T+1 hour: verify.** Vercel can only issue its certificate after DNS points at it, so expect a few minutes of HTTPS errors right after the switch; that alone isn't a reason to roll back.
 - Authoritative answer: `dig @ns-cloud-b1.googledomains.com jasoncookdesign.com A` and the same for `www` show the new values.
 - Public resolvers: `dig @1.1.1.1` and `dig @8.8.8.8` for both names, until they match.
 - Vercel's Domains panel shows both names as valid with a certificate issued.
@@ -75,11 +75,11 @@ Gathered with `dig`, `whois`, `curl -I`, and `gh api repos/jasoncookdesign/jason
 
 While the old Pages site still has its custom domain (until the T+2 days step), rollback is a DNS edit:
 
-1. Restore the four apex A records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`.
+1. Remove the Vercel apex record and, in the same edit, restore the four apex A records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`, so the apex never answers with a mix of both hosts.
 2. Restore the `www` CNAME to `jasoncookdesign.github.io.`
-3. Remove the Vercel apex record and any `_vercel` TXT record.
+3. Remove any `_vercel` TXT record.
 
-With TTLs at 300, most visitors are back on the old site within minutes. GitHub may need some time to confirm its certificate again, so HTTPS can show errors briefly; if it does, re-save the custom domain in the old repo's Pages settings. After the old site's custom domain is removed, rollback also means re-adding it there and waiting for GitHub to issue a new certificate.
+With TTLs at 300, most visitors are back on the old site within minutes. GitHub may need some time to confirm its certificate again, so HTTPS can show errors briefly; if it does, re-save the custom domain in the old repo's Pages settings. The GitHub certificate on record expires 2026-11-20; a rollback after GitHub has stopped renewing it also needs a fresh certificate. After the old site's custom domain is removed, rollback also means re-adding it there and waiting for GitHub to issue a new certificate.
 
 ## Out of scope
 

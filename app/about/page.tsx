@@ -24,7 +24,6 @@ const paragraphs = [
 ];
 
 // DRAFT — Jason to edit. Career facts from Jason's own records; titles as recorded there.
-// Not listed: the 2025 AWS contract role and the current employer. Add them only if they belong on this page.
 const background = [
   { org: "Dell Technologies", years: "2019–2024", role: "Senior Manager of Research and Design, Global Services" },
   { org: "Alpha Chi Technology", years: "2012–2019", role: "cofounder and Principal Experience Consultant" },

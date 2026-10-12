@@ -18,6 +18,7 @@ const intro = [
   "What they have in common isn't the industry or the client type. Each program began with a diagnostic phase — the situation mapped, the constraints identified, the real problem named — before any design or build decision was made. The architectural approach runs the same way across all eight contexts. The deliverables differ.",
 ];
 
+// DRAFT — Jason to edit.
 const disciplines = [
   {
     term: "Research and diagnosis",
@@ -45,7 +46,7 @@ const disciplines = [
   },
 ];
 
-// Outcomes are listed only where they have a checkable source.
+// DRAFT — Jason to edit. Outcomes are listed only where they have a checkable source.
 const outcomes = [
   "At Dell, a unified contact-center redesign produced a 20% reduction in chat pollution and a 300 basis-point improvement in customer satisfaction.",
   "At Ford, the interaction models my team designed for the Build and Price product are still in use years later.",

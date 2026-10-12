@@ -86,6 +86,16 @@ describe("Capabilities page", () => {
     expect(hrefs).toContain("/work");
   });
 
+  it("keeps the draft name candidates out of the rendered page", () => {
+    render(<CapabilitiesPage />);
+    for (const name of ["System Diagnostic", "Architecture Diagnostic", "Situational Diagnosis", "Problem Definition",
+      "Organizational Diagnosis", "Operating Architecture", "Systems Architecture", "Structural Architecture",
+      "Integrated Architecture", "Organizational Architecture"]) {
+      expect(text()).not.toContain(name);
+    }
+    expect(text()).toContain("[ENTRY-OFFER-NAME]");
+  });
+
   it("does not render generic marketing filler", () => {
     render(<CapabilitiesPage />);
     for (const phrase of [/world-class/i, /industry-leading/i, /innovative solutions/i,
