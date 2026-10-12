@@ -57,7 +57,7 @@ These placeholder tokens appear in the built pages and must stay literal until t
 
 Copy marked with a `DRAFT — Jason to edit` comment in the source is placeholder prose awaiting the owner's edit.
 
-The home page's fit-proof slot (`[FIT-PROOF — pending a real, consented case]`) is switched off with `SHOW_FIT_PROOF` in `components/home/ProofSection.tsx` until a real, consented case exists.
+The home page's fit-proof case in `components/home/ProofSection.tsx` is an anonymized draft. The client has cleared anonymized citation and sees the final text before publication.
 
 ## Docs
 
