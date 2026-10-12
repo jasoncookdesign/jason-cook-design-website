@@ -1,3 +1,4 @@
+// [ENTRY-OFFER-NAME] candidates (DRAFT, none chosen): see docs/content-token-candidates.md.
 const pricingCards = [
   {
     n: "01",

@@ -27,7 +27,7 @@ export default function PricingSection() {
           </div>
         </div>
 
-        {/* Entry offer card */}
+        {/* Entry offer card. [ENTRY-OFFER-NAME] candidates (DRAFT, none chosen): see docs/content-token-candidates.md. */}
         <div className="flex flex-col gap-6 rounded-[6px] border border-ink p-6 sm:p-10">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
             <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">

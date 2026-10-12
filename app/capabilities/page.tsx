@@ -11,7 +11,8 @@ export const metadata = {
   },
 };
 
-// Case-study register (procurement and institutional readers). Tokens stay literal until named.
+// DRAFT — Jason to edit. Case-study register for procurement and institutional readers, ported from the
+// 2026-09-10 placeholder draft. Tokens stay literal until named; candidates sit beside them below.
 const intro = [
   "Eight case studies. Each one documents a program across enterprise software, financial services, global consumer products, and regulated industries — the client's situation, what the work found, what was built, and what the outcome was.",
   "What they have in common isn't the industry or the client type. Each program began with a diagnostic phase — the situation mapped, the constraints identified, the real problem named — before any design or build decision was made. The architectural approach runs the same way across all eight contexts. The deliverables differ.",
@@ -51,6 +52,20 @@ const outcomes = [
   "At Microsoft, my research, designs, inventions, and libraries are part of Microsoft's ongoing natural user interface story.",
   "At Banco Azteca, the constraint wasn't staffing — the operations center had no room to expand headcount. The design made the existing team more effective.",
   "At Millennium Systems International, the platform has earned 40 industry awards.",
+];
+
+// DRAFT — Jason to edit. Company data for SAM.gov and procurement readers. Entity facts are from Jason's
+// own business records. Those records don't hold the identifiers or the registration's current status,
+// so those stay as tokens for Jason to fill from SAM.gov.
+const companyData: { term: string; detail: string; href?: string }[] = [
+  { term: "Legal name", detail: "Jason Cook Design LLC" },
+  { term: "Structure", detail: "Single-member limited liability company, Texas" },
+  { term: "Formed", detail: "November 15, 2024" },
+  { term: "UEI", detail: "[UEI]" },
+  { term: "CAGE code", detail: "[CAGE-CODE]" },
+  { term: "NAICS codes", detail: "[NAICS-CODES]" },
+  { term: "SAM.gov registration", detail: "[SAM-STATUS]" },
+  { term: "Contact", detail: "hello@jasoncookdesign.com", href: "mailto:hello@jasoncookdesign.com" },
 ];
 
 const h2 = "text-2xl font-extralight tracking-[-0.03em] text-ink sm:text-[36px] sm:leading-[1.2]";
@@ -102,6 +117,11 @@ export default function CapabilitiesPage() {
           ))}
         </ul>
 
+        {/* DRAFT — Jason to edit. Practice-name candidates (DRAFT, none chosen; rationale in
+            docs/content-token-candidates.md): Operating Architecture · Systems Architecture ·
+            Structural Architecture · Integrated Architecture · Organizational Architecture.
+            Entry-offer candidates: System Diagnostic · Architecture Diagnostic · Situational Diagnosis ·
+            Problem Definition · Organizational Diagnosis. */}
         <h2 className={`mt-20 ${h2}`}>[PRACTICE-NAME]</h2>
         <div className="mt-6 flex flex-col gap-5">
           <p className={body}>
@@ -115,6 +135,26 @@ export default function CapabilitiesPage() {
             [ENTRY-OFFER-NAME] is the paid first step: a written recommendation before any design or build begins.
           </p>
         </div>
+
+        <h2 className={`mt-20 ${h2}`}>Company data</h2>
+        <dl className="mt-6 border-t border-border">
+          {companyData.map(({ term, detail, href }) => (
+            <div key={term} className="grid gap-2 border-b border-border py-4 sm:grid-cols-[220px_1fr] sm:gap-8">
+              <dt className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground sm:pt-1">
+                {term}
+              </dt>
+              <dd className={body}>
+                {href ? (
+                  <a href={href} className="text-link transition-colors hover:text-accent">
+                    {detail}
+                  </a>
+                ) : (
+                  detail
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

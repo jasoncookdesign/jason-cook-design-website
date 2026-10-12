@@ -49,9 +49,17 @@ npm run build
 
 These placeholder tokens appear in the built pages and must stay literal until the content owner resolves them:
 
-- `[ENTRY-OFFER-NAME]`: the named entry offer. Replace by search once decided.
-- `[PRACTICE-NAME]`: the name of the practice discipline (Capabilities page). Replace by search once decided.
+- `[ENTRY-OFFER-NAME]`: the named entry offer. Replace by search once decided. Draft candidates: `docs/content-token-candidates.md`.
+- `[PRACTICE-NAME]`: the name of the practice discipline (Capabilities page). Replace by search once decided. Draft candidates: `docs/content-token-candidates.md`.
+- `[UEI]`, `[CAGE-CODE]`, `[NAICS-CODES]`, `[SAM-STATUS]`: the company's SAM.gov identifiers and registration status (Capabilities page, company data). Filled from SAM.gov by the owner and never guessed.
 - `[LEGAL: <section> text pending]`: legal text for each `/legal` section. Supplied by the owner and never drafted.
 - `[GAP: ...]`: open content questions. None should render. Tests guard the pages that had them.
 
+Copy marked with a `DRAFT — Jason to edit` comment in the source is placeholder prose awaiting the owner's edit.
+
 The home page's fit-proof slot (`[FIT-PROOF — pending a real, consented case]`) is switched off with `SHOW_FIT_PROOF` in `components/home/ProofSection.tsx` until a real, consented case exists.
+
+## Docs
+
+- `docs/cutover-plan.md`: the plan for moving jasoncookdesign.com from GitHub Pages to Vercel. Not yet executed.
+- `docs/content-token-candidates.md`: draft name candidates for the open content tokens.

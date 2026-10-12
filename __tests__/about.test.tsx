@@ -47,6 +47,21 @@ describe("About page", () => {
     expect(screen.getByRole("link", { name: "hello@jasoncookdesign.com" })).toBeTruthy();
   });
 
+  it("lists the career background in the sidebar, most recent first", () => {
+    const { container } = render(<AboutPage />);
+    const terms = Array.from(container.querySelectorAll("dl dt")).map((dt) => dt.textContent?.trim());
+    expect(terms).toContain("Background");
+    const items = Array.from(container.querySelectorAll("dl dd li")).map((li) =>
+      (li.textContent ?? "").replace(/\s+/g, " ").trim()
+    );
+    expect(items).toEqual([
+      "Dell Technologies, 2019–2024: Senior Manager of Research and Design, Global Services",
+      "Alpha Chi Technology, 2012–2019: cofounder and Principal Experience Consultant",
+      "Meredith Xcelerated Marketing, 2011–2012: Director of UX",
+      "IdentityMine, 2007–2011: Director of UX",
+    ]);
+  });
+
   it("does not render generic marketing filler", () => {
     render(<AboutPage />);
     for (const phrase of [/passionate about/i, /thought leader/i, /world-class/i, /industry-leading/i,

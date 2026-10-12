@@ -18,7 +18,8 @@ describe("Capabilities page", () => {
 
   it("lists the five disciplines, in order, as a definition list", () => {
     const { container } = render(<CapabilitiesPage />);
-    const terms = Array.from(container.querySelectorAll("dl dt")).map((dt) => dt.textContent?.trim());
+    const disciplines = container.querySelector("dl")!;
+    const terms = Array.from(disciplines.querySelectorAll("dt")).map((dt) => dt.textContent?.trim());
     expect(terms).toEqual([
       "Research and diagnosis",
       "Architecture",
@@ -26,7 +27,7 @@ describe("Capabilities page", () => {
       "Implementation",
       "Organizational capability",
     ]);
-    const details = Array.from(container.querySelectorAll("dl dd")).map((dd) => dd.textContent ?? "");
+    const details = Array.from(disciplines.querySelectorAll("dd")).map((dd) => dd.textContent ?? "");
     expect(details[2]).toContain("Technical specifications written to be built from — by me, by the client's team, or by another provider.");
     expect(details[4]).toContain("makes owner capability a deliverable rather than a courtesy");
   });
@@ -52,6 +53,30 @@ describe("Capabilities page", () => {
     expect(screen.getByRole("heading", { level: 2, name: "[PRACTICE-NAME]" })).toBeTruthy();
     expect(text()).toContain("The discipline behind all eight programs is [PRACTICE-NAME]");
     expect(text()).toContain("[ENTRY-OFFER-NAME] is the paid first step");
+  });
+
+  it("gives institutional readers the company data, with unrecorded identifiers left as tokens", () => {
+    render(<CapabilitiesPage />);
+    const heading = screen.getByRole("heading", { level: 2, name: "Company data" });
+    const list = heading.nextElementSibling!;
+    expect(list.tagName).toBe("DL");
+    const rows = Array.from(list.querySelectorAll("dt")).map((dt) => [
+      dt.textContent?.trim(),
+      (dt.nextElementSibling?.textContent ?? "").trim(),
+    ]);
+    expect(rows).toEqual([
+      ["Legal name", "Jason Cook Design LLC"],
+      ["Structure", "Single-member limited liability company, Texas"],
+      ["Formed", "November 15, 2024"],
+      ["UEI", "[UEI]"],
+      ["CAGE code", "[CAGE-CODE]"],
+      ["NAICS codes", "[NAICS-CODES]"],
+      ["SAM.gov registration", "[SAM-STATUS]"],
+      ["Contact", "hello@jasoncookdesign.com"],
+    ]);
+    expect(screen.getAllByRole("link", { name: "hello@jasoncookdesign.com" })[0].getAttribute("href")).toBe(
+      "mailto:hello@jasoncookdesign.com"
+    );
   });
 
   it("drops the coming-soon placeholder and still links to the Work page", () => {
