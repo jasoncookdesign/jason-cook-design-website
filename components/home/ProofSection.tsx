@@ -1,6 +1,11 @@
 import Image from "next/image";
 
-const SHOW_FIT_PROOF = false;
+// DRAFT — Jason to edit. Fit-proof case body.
+const fitProofParagraphs = [
+  "The owner of a confidential practice meets clients by appointment. The business ran on a patchwork of cloud tools for scheduling, email, files, and payments. The goal was AI doing real work without any provider reading client records, and systems the owner understood well enough to run without me.",
+  "Discovery came first. With the owner's input, I sorted the practice's information by sensitivity and drafted where each kind may go: client notes and identities never reach cloud AI, private strategy stays on local models, and some matters stay out of AI entirely. An outside calendar would see only blank \"Busy\" blocks, with the full record kept private. Scheduling would likely move first, running beside the old system until the owner could recover it without calling me.",
+  "It was an unbilled pilot, and the owner paused it after initial discovery, before I'd written an architecture or built anything. What exists is a written record of the objectives, the hard constraints, those rules, and the questions an architecture still has to answer.",
+];
 
 // Note: the Twitter/Facebook logos use their historical marks (bird / "f"),
 // not the current X/Meta rebrand — pending a decision on whether to update them.
@@ -38,13 +43,22 @@ export default function ProofSection() {
   return (
     <section className="border-t border-border bg-surface">
       <div className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
-        {/* Fit-proof slot: off until a real, consented case exists. The block deletes cleanly;
-            nothing above or below refers to it. Flip SHOW_FIT_PROOF to render the placeholder. */}
-        {SHOW_FIT_PROOF && (
-          <div className="mb-16 rounded-[6px] border border-dashed border-ghost px-7 py-6 font-mono text-[13px] leading-relaxed text-muted-foreground">
-            [FIT-PROOF &mdash; pending a real, consented case]
-          </div>
-        )}
+        {/* Fit-proof case. DRAFT — Jason to edit. Anonymized; the client cleared anonymized citation
+            and sees the final text before publication. Verify every edit against the engagement's
+            discovery record. The block deletes cleanly; nothing above or below refers to it. */}
+        <article className="mb-20 max-w-[720px] border-b border-border pb-20">
+          <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+            From a discovery engagement
+          </p>
+          <h2 className="text-[24px] font-extralight leading-[1.2] tracking-[-0.03em] text-ink sm:text-[32px]">
+            Deciding what the cloud is allowed to see
+          </h2>
+          {fitProofParagraphs.map((p) => (
+            <p key={p} className="mt-6 font-sans text-base leading-relaxed text-body">
+              {p}
+            </p>
+          ))}
+        </article>
 
         {/* Range proof */}
         <div className="grid gap-20 lg:grid-cols-2 lg:items-start">
