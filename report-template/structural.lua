@@ -57,10 +57,13 @@ function Para(p)
 end
 
 local function read_csv(path)
-  -- sidecar annotation coordinates are read by typst; this only checks existence
+  -- sidecar annotation coordinates are read by typst; this checks existence and returns the row count
   local f = io.open(path, "r")
-  if f then f:close() return true end
-  return false
+  if not f then return false end
+  local n = 0
+  for line in f:lines() do if line:match("%S") then n = n + 1 end end
+  f:close()
+  return true, n
 end
 
 function Div(d)
@@ -109,7 +112,7 @@ function Div(d)
     if not alt or alt == "" then warn("figure missing alt text: " .. tostring(src)) end
     local tier = d.attributes["width"] or "full"
     local sidecar = src:gsub("%.%w+$", ".notes.csv")
-    local has_sidecar = read_csv(sidecar)
+    local has_sidecar, rows = read_csv(sidecar)
     if not has_sidecar then warn("figure sidecar missing: " .. sidecar) end
     local caption, items = {}, {}
     for _, b in ipairs(d.content) do
@@ -118,6 +121,7 @@ function Div(d)
         for _, item in ipairs(b.content) do items[#items + 1] = "[" .. typ(item[1].content) .. "]" end
       end
     end
+    if has_sidecar and rows ~= #items then warn("figure has " .. #items .. " annotations but sidecar has " .. rows .. " markers: " .. src) end
     if #items == 0 then warn("figure has no numbered annotation list") end
     if tier ~= "full" and tier ~= "two-thirds" and tier ~= "half" then warn("figure width must be full, two-thirds or half: " .. tier) end
     local coords = has_sidecar and ('csv("' .. sidecar .. '")') or "()"
