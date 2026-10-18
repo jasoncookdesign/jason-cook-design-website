@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# report-template build output
+/report-template/samples/*.pdf
+/report-template/samples/sample-*.png
+/report-template/samples/hostile*-*.png
+/report-template/.build-*.typ
