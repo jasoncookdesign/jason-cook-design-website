@@ -41,7 +41,7 @@
 
 /* ---------- proof: logo strip, headline block, quotes ---------- */
 /* beats the dark-surface brand filter in globals.css, which loads after this file */
-.logos > div > img[data-brand] { display: block; width: auto; height: 40px; max-width: 100%; object-fit: contain; filter: brightness(0) invert(0.92); }
+.logos > div > img[data-brand] { display: block; width: auto; height: 52px; max-width: 100%; object-fit: contain; filter: brightness(0) invert(0.92); }
 @media (min-width: 900px) {
   .logos > *:nth-last-child(-n + 5) { border-bottom: 0; }
 }
