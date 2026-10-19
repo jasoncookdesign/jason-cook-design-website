@@ -52,7 +52,7 @@ const outcomes = [
   "At Ford, the interaction models my team designed for the Build and Price product are still in use years later.",
   "At Microsoft, my research, designs, inventions, and libraries are part of Microsoft's ongoing natural user interface story.",
   "At Banco Azteca, the constraint wasn't staffing — the operations center had no room to expand headcount. The design made the existing team more effective.",
-  "At Millennium Systems International, the platform has earned 40 industry awards.",
+  "At Millennium Systems International, the platform has earned 15 industry awards.",
 ];
 
 // DRAFT — Jason to edit. Company data for SAM.gov and procurement readers. Entity facts are from Jason's
