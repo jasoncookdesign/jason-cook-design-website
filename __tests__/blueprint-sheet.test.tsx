@@ -53,7 +53,7 @@ describe("guide token", () => {
 
 const kit = fs.readFileSync(path.join(root, "app/blueprint.css"), "utf8");
 
-describe("numbered mono index nav (kit-styled)", () => {
+describe("mono index nav (kit-styled, unnumbered)", () => {
   it("renders the five desktop links inside the kit's .nav", () => {
     render(<Nav />);
     const desktop = screen.getByRole("navigation", { name: /main navigation/i });
@@ -61,10 +61,10 @@ describe("numbered mono index nav (kit-styled)", () => {
     expect(desktop.querySelectorAll("ul a")).toHaveLength(5);
   });
 
-  it("sets the links in mono caps (kit) and numbers them with CSS counters and an empty alternative (globals)", () => {
+  it("sets the links in mono caps (kit) and does not number them: no CSS counter or generated content on the bar's links", () => {
     expect(kit).toMatch(/\.nav a\{[^}]*font:500 12px\/1 var\(--mono\)[^}]*text-transform:uppercase/);
-    expect(css).toMatch(/\.bar \.nav li\s*\{[^}]*counter-increment:\s*navi/);
-    expect(css).toMatch(/\.bar \.nav a::before\s*\{[^}]*content:\s*counter\(navi,\s*decimal-leading-zero\)\s*\/\s*""/);
+    expect(css).not.toMatch(/counter-increment:\s*navi/);
+    expect(css).not.toMatch(/\.bar \.nav a::before/);
   });
 });
 

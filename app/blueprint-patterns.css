@@ -55,6 +55,9 @@ a.cell:hover { background: var(--paper2); }
   width: 44px; height: 44px; border: 1px solid var(--ink); color: var(--ink);
 }
 a.row:hover { background: var(--paper2); }
+/* Link colour means "act here": the chevron box is outlined in it at rest and fills on hover or focus. */
+a.row .go { border-color: var(--link); color: var(--link); font-size: 24px; line-height: 1; }
+a.row:hover .go, a.row:focus-visible .go { background: var(--link); border-color: var(--link); color: var(--bg); }
 .row.hold { grid-template-columns: 120px 1fr; }
 .row .pair { display: grid; grid-template-columns: 120px 1fr; gap: 6px 20px; margin-top: 12px; }
 .row .pair dt { font: 500 12px/1.5 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
@@ -90,7 +93,7 @@ a.row:hover { background: var(--paper2); }
 .faq-trigger:hover { background: var(--paper2); }
 .faq-trigger .k { font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; color: var(--ink2); }
 .faq-trigger .mark { position: relative; width: 14px; height: 14px; justify-self: end; }
-.faq-trigger .mark::before, .faq-trigger .mark::after { content: ""; position: absolute; background: var(--ink); }
+.faq-trigger .mark::before, .faq-trigger .mark::after { content: ""; position: absolute; background: var(--link); }
 .faq-trigger .mark::before { left: 0; right: 0; top: 6px; height: 1.5px; }
 .faq-trigger .mark::after { top: 0; bottom: 0; left: 6px; width: 1.5px; transition: transform 0.2s ease; }
 .faq-trigger[aria-expanded="true"] .mark::after { transform: scaleY(0); }

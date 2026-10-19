@@ -94,8 +94,8 @@ ul.rows, ol.rows { list-style: none; margin: 0; padding: 0; }
 .book-sheet { padding: 44px var(--pad) 0; }
 .book .cal-inline { width: 100%; min-height: 640px; border: 1px solid var(--rule); background: var(--paper); overflow: hidden; }
 .book-fallback { margin: 0; padding: 12px 0 0; font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; }
-.book-fallback a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink2); }
-.book-fallback a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+.book-fallback a { display: inline-flex; align-items: center; min-height: 44px; color: var(--link); text-decoration: underline; text-underline-offset: 4px; }
+.book-fallback a:hover { color: var(--ink); }
 .book-sheet .book-fallback { padding-bottom: 20px; }
 
 /* ---------- about: the portrait, desaturated and tinted into the sheet's navy ---------- */
