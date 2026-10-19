@@ -56,13 +56,17 @@ const outcomes = [
   "At Millennium Systems International, the platform has earned 40 industry awards.",
 ];
 
-// DRAFT — Jason to edit. Company data for SAM.gov and procurement readers. Entity facts are from Jason's
-// own business records. Those records don't hold the SAM.gov identifiers (UEI, CAGE code, NAICS codes) or
-// the registration's current status, so those rows are left out until Jason supplies them.
+// DRAFT — Jason to edit. Company data for SAM.gov and procurement readers. UEI, CAGE code, and registration
+// status are from Jason (2026-10-19). The NAICS codes are the six ratified for the retired opportunity
+// engine's search scope; confirm they match the registration's Goods and Services list.
 const companyData: { term: string; detail: string; href?: string }[] = [
   { term: "Legal name", detail: "Jason Cook Design LLC" },
   { term: "Structure", detail: "Single-member limited liability company, Texas" },
   { term: "Formed", detail: "November 15, 2024" },
+  { term: "UEI", detail: "QVJFVZEBQAL5" },
+  { term: "CAGE code", detail: "22J29" },
+  { term: "NAICS codes", detail: "541511, 541512, 541519, 541430, 541611, 541990" },
+  { term: "SAM.gov registration", detail: "Current" },
   { term: "Contact", detail: "hello@jasoncookdesign.com", href: "mailto:hello@jasoncookdesign.com" },
 ];
 

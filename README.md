@@ -57,7 +57,7 @@ npm run build
 
 ## Content tokens
 
-No placeholder tokens are open. `[ENTRY-OFFER-NAME]` and `[PRACTICE-NAME]` were retired in favor of plain wording ("the paid first step", "the paid diagnosis"). Any `[GAP: ...]` marker is an open content question and must not render; tests guard the pages that had them. The SAM.gov identifiers (UEI, CAGE code, NAICS codes, registration status) are left off the Capabilities page until the owner supplies them from SAM.gov; they are never guessed.
+No placeholder tokens are open. `[ENTRY-OFFER-NAME]` and `[PRACTICE-NAME]` were retired in favor of plain wording ("the paid first step", "the paid diagnosis"). Any `[GAP: ...]` marker is an open content question and must not render; tests guard the pages that had them. The SAM.gov identifiers (UEI, CAGE code, NAICS codes, registration status) appear in the Capabilities page company data, supplied by the owner and never guessed. The NAICS list is the ratified search scope and should be confirmed against the SAM.gov Goods and Services tab.
 
 Copy marked with a `DRAFT — Jason to edit` comment in the source is placeholder prose awaiting the owner's edit. The `/legal` text (`lib/legal.ts`) is a draft written from what the site does; the privacy and terms text needs legal review before launch.
 
