@@ -11,10 +11,9 @@ describe("Engagements page", () => {
     ).toBeTruthy();
   });
 
-  it("renders the hero eyebrow", () => {
-    render(<EngagementsPage />);
-    // Exact match to avoid collision with "Scoped after the first step." in pricing terms
-    expect(screen.getByText("After the first step")).toBeTruthy();
+  it("renders the hero eyebrow as the type name", () => {
+    const { container } = render(<EngagementsPage />);
+    expect(container.querySelector("section p")!.textContent).toBe("Operating Engagement");
   });
 
   it("renders the four problem cards ahead of the phases", () => {
