@@ -49,59 +49,48 @@ const availability = {
   closes: "Nothing further. You can stop here, and there is no obligation to continue.",
 };
 
-const dtClass =
-  "font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground sm:pt-1";
-const ddClass = "font-sans text-base leading-relaxed text-body";
-const dlClass = "mt-5 grid gap-x-6 gap-y-3 sm:grid-cols-[120px_1fr]";
-
 export default function OfferingPhases() {
   return (
-    <section className="border-t border-border bg-surface">
-      <div className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
-        <h2 className="max-w-[720px] text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-[44px] sm:leading-[1.15]">
-          Six phases. Each one is a place you can stop.
-        </h2>
-        <ol className="mt-14 flex list-none flex-col gap-6">
-          {phases.map((p, i) => (
-            <li key={p.label} className="rounded-[6px] border border-border p-6 sm:p-8">
-              <span className="font-mono text-xs text-muted-foreground">
-                {String(i).padStart(2, "0")}
-              </span>
-              <h3 className="mt-2 text-2xl font-light tracking-[-0.02em] text-ink">
-                {p.label}
-              </h3>
-              <dl className={dlClass}>
-                <dt className={dtClass}>{HOLDS}</dt>
-                <dd className={ddClass}>{p.holds}</dd>
-                <dt className={dtClass}>{CLOSES}</dt>
-                <dd className={ddClass}>{p.closes}</dd>
+    <section data-sheet="A-103" data-name="PHASES">
+      <div className="intro g">
+        <div className="t">
+          <h2>Six phases. Each one is a place you can stop.</h2>
+        </div>
+      </div>
+      <ol className="rows">
+        {phases.map((p, i) => (
+          <li key={p.label} className="row hold">
+            <span className="k">{String(i).padStart(2, "0")}</span>
+            <div>
+              <h3>{p.label}</h3>
+              <dl className="pair">
+                <dt>{HOLDS}</dt>
+                <dd>{p.holds}</dd>
+                <dt>{CLOSES}</dt>
+                <dd>{p.closes}</dd>
               </dl>
-            </li>
-          ))}
-          <li className="rounded-[6px] border border-dashed border-border p-6 sm:p-8">
-            <span className="font-mono text-xs text-muted-foreground">05</span>
-            <h3 className="mt-2 text-2xl font-light tracking-[-0.02em] text-ink">
-              {availability.label}
-            </h3>
-            <p className="mt-4 font-sans text-base leading-relaxed text-body">
-              {availability.intro}
-            </p>
-            <ul className="mt-3 flex list-none flex-col gap-2">
+            </div>
+          </li>
+        ))}
+        <li className="row hold opt">
+          <span className="k">05</span>
+          <div>
+            <h3>{availability.label}</h3>
+            <p>{availability.intro}</p>
+            <ul>
               {availability.forms.map((f) => (
-                <li key={f} className="font-sans text-base leading-relaxed text-body">
-                  {f}
-                </li>
+                <li key={f}>{f}</li>
               ))}
             </ul>
-            <dl className={dlClass}>
-              <dt className={dtClass}>{HOLDS}</dt>
-              <dd className={ddClass}>{availability.holds}</dd>
-              <dt className={dtClass}>{CLOSES}</dt>
-              <dd className={ddClass}>{availability.closes}</dd>
+            <dl className="pair">
+              <dt>{HOLDS}</dt>
+              <dd>{availability.holds}</dd>
+              <dt>{CLOSES}</dt>
+              <dd>{availability.closes}</dd>
             </dl>
-          </li>
-        </ol>
-      </div>
+          </div>
+        </li>
+      </ol>
     </section>
   );
 }

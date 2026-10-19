@@ -1,0 +1,90 @@
+/* Blueprint area styles: engagements. Owned by the engagements builder; uses the kit in blueprint.css and the tokens in globals.css. */
+
+/* ---------- selector: the segmented control sits at the head of the first sheet, above the hero ---------- */
+.eng-select { padding: 28px var(--pad); }
+/* The shell already rules each sheet off from the one above; the intro's own rule would double it. */
+main:has(.eng-select) section > .intro:first-child { border-top: 0; }
+.eng-select .seg .sit { font-size: 22px; line-height: 1.25; letter-spacing: -0.01em; text-wrap: balance; }
+.seg > [aria-current] .sit { color: var(--bg); }
+
+/* ---------- hero: the home grammar without the drawing; the metric is a one-cell stat row ---------- */
+.eng-hero { padding: 40px 0 48px; }
+.eng-hero .side { align-self: end; }
+.eng-hero h1 span { font-weight: 400; color: var(--ink2); }
+.eng-hero-copy { margin-top: 26px; max-width: 52ch; }
+.eng-hero-copy p { margin: 0; font-size: 20px; line-height: 1.5; text-wrap: pretty; }
+.eng-hero-copy p:first-child { font-size: 25px; line-height: 1.35; max-width: 40ch; }
+.eng-hero-copy p + p { margin-top: 14px; }
+.hero.eng-hero .statrow { grid-column: auto; margin-top: 0; }
+.hero.eng-hero .statrow .l { max-width: none; }
+.hero.eng-hero .statrow .v { font-size: 92px; letter-spacing: -0.03em; }
+
+/* ---------- cells: a 2 x 2 grid needs a rule between its rows and none before its second row's first cell ---------- */
+.cells.c2 > .cell:nth-child(odd) { border-left: 0; }
+.cells.c2 > .cell:nth-child(n + 3) { border-top: 1px solid var(--rule); }
+.eng-statements > .cell { padding-bottom: 44px; }
+.eng-statements > .cell > p { font-size: 22px; line-height: 1.45; }
+
+/* ---------- ledger: ordered phases and terms ---------- */
+ol.rows, ul.rows { margin: 0; padding: 0; list-style: none; }
+.row.hold p + p { margin-top: 10px; }
+.row .pair { margin-top: 16px; }
+.row .pair dd p { margin: 0; max-width: none; }
+.row .pair dd p + p { margin-top: 6px; }
+.row .pair dd .term { font-size: 16px; color: var(--ink2); }
+ol.rows .pair { grid-template-columns: 180px 1fr; }
+.row ul { margin: 14px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--rule); }
+.row ul li { padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: 18px; line-height: 1.45; }
+.rows > .row:has(+ .row.opt) { border-bottom: 0; }
+.row.opt { border-top: 1px dashed var(--ink); }
+ul.rows .row.hold { align-items: start; }
+
+/* ---------- prose body under an intro ---------- */
+.eng-body { padding: 8px var(--pad) 56px; }
+.muted { color: var(--ink2); }
+
+/* ---------- the spec plate on engagement sheets ---------- */
+.plate.eng-plate { border-top: 0; padding: 36px 0 56px; }
+.eng-plate .pl:only-child { grid-column: 1 / 13; }
+.eng-price .plate.eng-plate { padding: 72px 0 80px; }
+.eng-price .pl-h { align-items: center; }
+.eng-price .pl-h .price { font: 400 44px/1 var(--serif); letter-spacing: -0.02em; }
+
+/* ---------- close: a centered sheet ---------- */
+.eng-close {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 96px var(--pad) 104px;
+}
+.eng-close h2 { margin: 0; max-width: 22ch; font-weight: 400; font-size: 48px; line-height: 1.06; letter-spacing: -0.02em; text-wrap: balance; }
+.eng-close-lead { margin: 22px 0 0; font-size: 25px; line-height: 1.35; }
+.eng-close .btn { margin-top: 34px; }
+.eng-close .strip { margin-top: 22px; justify-items: center; }
+
+@media (max-width: 899px) {
+  .eng-select { padding: 18px var(--pad); }
+  .eng-select .seg .sit { font-size: 20px; }
+  .eng-hero { padding: 32px 0 40px; }
+  .eng-hero-copy { margin-top: 22px; max-width: none; }
+  .eng-hero-copy p:first-child { font-size: 22px; max-width: none; }
+  .eng-hero-copy p { font-size: 19px; }
+  .eng-hero .side { margin-top: 32px; }
+  .hero.eng-hero .statrow > div { display: block; padding: 22px 0 8px; }
+  .hero.eng-hero .statrow .v { min-width: 0; font-size: 72px; }
+  .hero.eng-hero .statrow .l { margin-top: 10px; }
+  .cells.c2 > .cell:nth-child(n) { border-left: 0; }
+  .cells.c2 > .cell:nth-child(n + 2) { border-top: 1px solid var(--rule); }
+  .eng-statements > .cell > p { font-size: 20px; }
+  ol.rows .pair { grid-template-columns: 1fr; }
+  .row .pair dd + dt { margin-top: 10px; }
+  .eng-body { padding-bottom: 40px; }
+  .plate.eng-plate { padding: 28px 0 40px; }
+  .eng-plate .pl:only-child { margin-top: 0; }
+  .eng-price .plate.eng-plate { padding: 36px 0 44px; }
+  .eng-price .pl-h { align-items: flex-start; }
+  .eng-price .pl-h .price { font-size: 36px; }
+  .eng-statements > .cell { padding-bottom: 30px; }
+  .eng-close { padding: 56px var(--pad) 64px; }
+  .eng-close h2 { font-size: 36px; }
+  .eng-close-lead { font-size: 22px; }
+  .eng-close .btn { align-self: stretch; }
+}

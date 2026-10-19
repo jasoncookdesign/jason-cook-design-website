@@ -2,71 +2,40 @@ import Image from "next/image";
 import Link from "next/link";
 import { CaseStudy, Block } from "@/lib/work";
 
-function renderBlock(block: Block, idx: number) {
+function renderBlock(block: Block, idx: number, fig: number) {
   switch (block.type) {
     case "p":
-      return (
-        <p
-          key={idx}
-          className="mb-5 font-sans text-lg leading-[1.75] text-body-strong"
-          dangerouslySetInnerHTML={{ __html: block.html }}
-        />
-      );
+      return <p key={idx} dangerouslySetInnerHTML={{ __html: block.html }} />;
     case "img":
       return (
-        <figure key={idx} className="my-14">
-          <Image
-            src={block.src}
-            alt={block.alt}
-            width={900}
-            height={600}
-            className="h-auto w-full rounded-[6px] border border-border"
-          />
+        <figure key={idx} className="fig">
+          <Image src={block.src} alt={block.alt} width={900} height={600} />
+          <figcaption>FIG. {fig}</figcaption>
         </figure>
       );
     case "ul":
       return (
-        <ul key={idx} className="mb-5 flex flex-col gap-3">
+        <ul key={idx}>
           {block.items.map((item, i) => (
-            <li
-              key={i}
-              className="grid grid-cols-[20px_1fr] gap-3 font-sans text-lg leading-[1.75] text-body-strong"
-            >
-              <span className="text-accent">&mdash;</span>
-              <span dangerouslySetInnerHTML={{ __html: item }} />
-            </li>
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
           ))}
         </ul>
       );
     case "ol":
       return (
-        <ol key={idx} className="mb-5 flex flex-col gap-3">
+        <ol key={idx}>
           {block.items.map((item, i) => (
-            <li
-              key={i}
-              className="grid grid-cols-[20px_1fr] gap-3 font-sans text-lg leading-[1.75] text-body-strong"
-            >
-              <span className="font-mono text-sm text-muted-foreground">
-                {i + 1}
-              </span>
-              <span dangerouslySetInnerHTML={{ __html: item }} />
-            </li>
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
           ))}
         </ol>
       );
     case "ul-strong":
       return (
-        <ul key={idx} className="mb-5 flex flex-col gap-3">
+        <ul key={idx}>
           {block.items.map((item, i) => (
-            <li
-              key={i}
-              className="grid grid-cols-[20px_1fr] gap-3 font-sans text-lg leading-[1.75] text-body-strong"
-            >
-              <span className="text-accent">&mdash;</span>
-              <span>
-                <strong className="font-medium">{item.label}</strong>
-                {item.rest}
-              </span>
+            <li key={i}>
+              <strong>{item.label}</strong>
+              {item.rest}
             </li>
           ))}
         </ul>
@@ -81,69 +50,86 @@ interface Props {
 }
 
 export default function WorkCaseStudyContent({ cs: study }: Props) {
+  // Plates are numbered through the whole study, FIG. 1 onward.
+  let figCount = 0;
+  const sheets = study.sections.map((section) => ({
+    section,
+    blocks: section.blocks.map((block) => ({
+      block,
+      fig: block.type === "img" ? ++figCount : 0,
+    })),
+  }));
+  const proofSheet = 102 + study.sections.length;
+
   return (
     <article>
-      {/* Hero — light, text-led. Case-study screenshots appear at full
-          opacity in the body; the hero itself carries no dimmed photo. */}
-      <div className="border-b border-border bg-surface">
-        <div className="mx-auto max-w-[1200px] px-6 pb-16 pt-24 sm:px-10 sm:pb-20 sm:pt-28">
-          <p className="mb-10 font-sans text-[13px] text-muted-foreground">
-            Work <span className="px-2 text-ghost">/</span> {study.client}
-          </p>
-          <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-            {study.client}
-          </p>
-          <h1 className="max-w-[800px] text-4xl font-extralight leading-[1.1] tracking-[-0.035em] text-ink sm:text-[62px]">
-            {study.title}
-          </h1>
-          <p className="mt-6 max-w-[640px] font-sans text-xl font-light leading-relaxed text-body sm:text-[22px]">
-            {study.subtitle}
-          </p>
+      {/* Title block: a light, text-led hero. Screenshots appear at full opacity as plates in the body. */}
+      <section className="hero page long g" data-sheet="A-101" data-name="HERO">
+        <div className="main">
+          <nav className="crumb" aria-label="Breadcrumb">
+            <Link href="/work">Work</Link>
+            <span aria-hidden="true">/</span>
+            <span>{study.client}</span>
+          </nav>
+          <p className="eyebrow">{study.client}</p>
+          <h1>{study.title}</h1>
+          <div>
+            <p className="lead">{study.subtitle}</p>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Body — long-form reading measure */}
-      <div className="mx-auto max-w-[720px] px-6 py-20 sm:py-24">
-        {study.sections.map((section, sIdx) => (
-          <section key={sIdx} className="mb-14">
-            <h2 className="mb-6 font-sans text-[32px] font-light capitalize leading-tight tracking-[-0.02em] text-ink">
-              {section.heading}
-            </h2>
+      {sheets.map(({ section, blocks }, sIdx) => (
+        <section
+          key={sIdx}
+          className="pgs"
+          data-sheet={`A-${102 + sIdx}`}
+          data-name="BODY"
+        >
+          <div className="intro g">
+            <div className="t">
+              <p className="eyebrow">{String(sIdx + 1).padStart(2, "0")}</p>
+              <h2>{section.heading}</h2>
+            </div>
+          </div>
+          <div className="pg">
             {section.diagnosisNote && (
-              <aside className="mb-7 rounded-[6px] border border-border bg-surface px-6 py-5 font-sans text-[15px] leading-relaxed text-body">
-                {section.diagnosisNote}
-              </aside>
+              <aside className="note">{section.diagnosisNote}</aside>
             )}
-            {section.blocks.map((block, bIdx) => renderBlock(block, bIdx))}
-          </section>
-        ))}
+            <div className="prose">
+              {blocks.map(({ block, fig }, bIdx) => renderBlock(block, bIdx, fig))}
+            </div>
+          </div>
+        </section>
+      ))}
 
-        {/* Testimonial */}
-        {study.testimonial && (
-        <blockquote className="my-14 flex flex-col gap-5">
-          <span className="block h-px w-5 bg-accent" />
-          <p className="font-sans text-2xl font-light leading-relaxed text-ink">
-            &ldquo;{study.testimonial.quote}&rdquo;
-          </p>
-          <footer className="font-sans text-sm text-muted-foreground">
-            <strong className="font-medium text-ink">
-              {study.testimonial.name}
-            </strong>
-            {" — "}
-            {study.testimonial.role}
-          </footer>
-        </blockquote>
-        )}
+      {study.testimonial && (
+        <section className="pgs" data-sheet={`A-${proofSheet}`} data-name="PROOF">
+          <div className="quotes one">
+            <figure>
+              <blockquote>
+                &ldquo;{study.testimonial.quote}&rdquo;
+              </blockquote>
+              <figcaption>
+                <b>{study.testimonial.name}</b>
+                {study.testimonial.role}
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+      )}
 
-        <div className="mt-16 border-t border-border pt-8">
-          <Link
-            href="/work"
-            className="font-sans text-sm text-muted-foreground transition-colors hover:text-ink"
-          >
+      <section
+        className="pgs"
+        data-sheet={`A-${proofSheet + (study.testimonial ? 1 : 0)}`}
+        data-name="CLOSE"
+      >
+        <div className="pg">
+          <Link href="/work" className="btn ghost">
             &larr; All work
           </Link>
         </div>
-      </div>
+      </section>
     </article>
   );
 }

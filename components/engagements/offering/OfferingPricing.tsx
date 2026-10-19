@@ -1,25 +1,45 @@
 // DRAFT — Jason to edit
 export default function OfferingPricing() {
   return (
-    <section className="mx-auto max-w-[1200px] border-t border-border px-6 py-24 sm:px-10 sm:py-28">
-      <h2 className="max-w-[720px] text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-[44px] sm:leading-[1.15]">
-        What it costs
-      </h2>
-      <div className="mt-10 flex max-w-[520px] flex-col gap-4 rounded-[6px] border border-ink p-6 sm:p-10">
-        <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
-          Assess the decision
-        </p>
-        <p className="font-sans text-2xl font-extralight tracking-[-0.02em] text-ink">
-          $2,500
-        </p>
-        <p className="font-sans text-base leading-relaxed text-body">
-          The first phase is paid. It concludes before anything is designed or
-          built.
-        </p>
-        <p className="font-sans text-base leading-relaxed text-muted-foreground">
-          Every later phase is quoted on its own, once the one before it has
-          closed.
-        </p>
+    <section className="eng-price" data-sheet="A-105" data-name="PRICE">
+      <div className="plate eng-plate g">
+        <div className="t">
+          <h2>What it costs</h2>
+        </div>
+        <div className="pl">
+          <span className="regs" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+            <i />
+          </span>
+          <div className="pl-h">
+            <span>Assess the decision</span>
+            <span className="price">$2,500</span>
+          </div>
+          <div className="sp">
+            <div className="k">
+              <span className="sq" />
+              <span className="w">
+                <span className="l">A</span>
+              </span>
+            </div>
+            <div className="v">
+              <p>The first phase is paid. It concludes before anything is designed or built.</p>
+            </div>
+          </div>
+          <div className="sp">
+            <div className="k">
+              <span className="sq" />
+              <span className="w">
+                <span className="l">B</span>
+              </span>
+            </div>
+            <div className="v">
+              <p>Every later phase is quoted on its own, once the one before it has closed.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

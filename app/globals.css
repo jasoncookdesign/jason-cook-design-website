@@ -1,15 +1,37 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "./blueprint.css";
+@import "./blueprint-patterns.css";
+@import "./blueprint-layers.css";
+@import "./bp-drawing.css";
+@import "./bp-home.css";
+@import "./bp-engagements.css";
+@import "./bp-content.css";
+@import "./blueprint-motion.css";
+
+@theme {
+  --font-weight-extralight: 400;
+  --font-weight-light: 400;
+
+  /* The serif reads smaller than the previous sans at the same size: body 19px, small 16px. */
+  --text-sm: 1rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1.1875rem;
+  --text-base--line-height: 1.5;
+  --text-lg: 1.3125rem;
+  --text-lg--line-height: 1.45;
+}
 
 @custom-variant dark (&:is([data-theme="dark"] *));
 
 @theme inline {
   --color-background: var(--bg);
   --color-foreground: var(--ink);
-  --font-sans: var(--font-sans);
+  /* The site's body and display face is the serif in the blueprint look; the utility names stay. */
+  --font-sans: var(--font-serif);
   --font-mono: var(--font-mono);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-serif);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -43,6 +65,7 @@
   --color-body: var(--body);
   --color-ghost: var(--ghost);
   --color-link: var(--link);
+  --color-decision: var(--decision);
   --color-btn-bg: var(--btn-bg);
   --color-btn-ink: var(--btn-ink);
   --color-btn-bg-hover: var(--btn-bg-hover);
@@ -66,68 +89,46 @@
 }
 
 /*
- * JCD design system tokens (DESIGN.md). Dark mode is a token swap only —
- * spacing, type scale, radius and borders are identical in both modes.
+ * JCD blueprint tokens (dark only). One palette in :root. The token names are the
+ * ones the components already use (bg, surface, ink, body, muted, link, accent, band-*),
+ * re-pointed at the blueprint field and ink. `accent` is the line and mark color
+ * (rule steel-blue, never text). `decision` is the single orange reserved for one
+ * decision point per sheet.
  */
 :root {
-  --bg: #FFFFFF;
-  --surface: #FAFAFA;
-  --border: #E6E8EC;
-  --ink: #0E1013;
-  --body-strong: #2A2E34;
-  --body: #4A5058;
-  --muted: #6B7078;
-  --ghost: #D4D7DC;
-  --accent: #4DA3FF;
-  --link: #176DBF;
+  color-scheme: dark;
 
-  --btn-bg: #0E1013;
-  --btn-ink: #FFFFFF;
-  --btn-bg-hover: #2A2E34;
-  --band-bg: #0E1013;
-  --band-ink: #FFFFFF;
-  --band-body: #C8CCD2;
-  --band-muted: #A8AEB6;
-  --band-border: #2A2E34;
-  --band-btn-bg: #FFFFFF;
-  --band-btn-ink: #0E1013;
-  --band-btn-hover: #E6E8EC;
+  --bg: #0D2438;
+  --surface: #133049;
+  --border: #5E7E96;
+  --ink: #E8EFF5;
+  --body-strong: #E8EFF5;
+  --body: #D3DEE8;
+  --muted: #A9BDCD;
+  --ghost: #2F5775;
+  --guide: #173650;
+  --accent: #8FB2CC;
+  --decision: #FF9B6B;
+  /* the lockups' orange: a fine accent in small places (never a fill) */
+  --signal: #E8723C;
+  /* motion: one curve, one duration; the duration is zero under reduced motion */
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --t: .25s;
+  --link: #9CCBFF;
 
-  --radius: 6px;
+  --btn-bg: #E8EFF5;
+  --btn-ink: #0D2438;
+  --btn-bg-hover: #C9D8E5;
+  --band-bg: #133049;
+  --band-ink: #E8EFF5;
+  --band-body: #D3DEE8;
+  --band-muted: #A9BDCD;
+  --band-border: #5E7E96;
+  --band-btn-bg: #E8EFF5;
+  --band-btn-ink: #0D2438;
+  --band-btn-hover: #C9D8E5;
 
-  --sidebar: var(--surface);
-  --sidebar-foreground: var(--ink);
-  --sidebar-primary: var(--btn-bg);
-  --sidebar-primary-foreground: var(--btn-ink);
-  --sidebar-accent: var(--surface);
-  --sidebar-accent-foreground: var(--ink);
-  --sidebar-border: var(--border);
-  --sidebar-ring: var(--accent);
-}
-
-[data-theme="dark"] {
-  --bg: #0E1013;
-  --surface: #16191E;
-  --border: #2A2E34;
-  --ink: #F2F4F6;
-  --body-strong: #D7DBE0;
-  --body: #B4BAC2;
-  --muted: #969DA6;
-  --ghost: #3A4047;
-  --accent: #4DA3FF;
-  --link: #7CC0FF;
-
-  --btn-bg: #F2F4F6;
-  --btn-ink: #0E1013;
-  --btn-bg-hover: #D7DBE0;
-  --band-bg: #16191E;
-  --band-ink: #F2F4F6;
-  --band-body: #C8CCD2;
-  --band-muted: #A8AEB6;
-  --band-border: #343A42;
-  --band-btn-bg: #F2F4F6;
-  --band-btn-ink: #0E1013;
-  --band-btn-hover: #D7DBE0;
+  --radius: 0px;
 
   --sidebar: var(--surface);
   --sidebar-foreground: var(--ink);
@@ -154,15 +155,212 @@
   }
 }
 
+/*
+ * Sheet grammar (decorative, CSS only, no DOM changes). Each section on a page is a numbered
+ * sheet (A-101, A-102, ...), and a binding-margin rule runs down the left edge on wide screens.
+ * The generated text carries an empty alternative so assistive technology skips it.
+ */
+main {
+  counter-reset: sheet;
+}
+main section {
+  position: relative;
+  counter-increment: sheet;
+}
+main section::before {
+  content: "A-1" counter(sheet, decimal-leading-zero) / "";
+  position: absolute;
+  top: 14px;
+  right: var(--pad);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  opacity: 0.7;
+  pointer-events: none;
+}
+main section[data-sheet]::before {
+  content: attr(data-sheet) / "";
+}
+@media (max-width: 639px) {
+  main section::before {
+    display: none;
+  }
+}
+
+/* A section whose root is the 1200px container spans the frame, so its rules reach the edges;
+   padding puts the content back on the same measure. */
+.frame main > section[class*="max-w-[1200px]"] {
+  max-width: none;
+  padding-inline: max(var(--pad), calc((100% - 1200px) / 2 + var(--pad)));
+}
+
+/* Every section after the first is a new sheet, divided by an ink rule that spans the frame. */
+.frame main > section:not(:first-child) {
+  border-top: 1px solid var(--ink);
+}
+
+/* A section that sets only bottom padding (it used to follow the hero) gets the same top padding under its rule. */
+.frame main > section:not(:first-child)[class*="pb-24"]:not([class*="py-"]):not([class*="pt-"]) {
+  padding-top: 6rem;
+}
+@media (min-width: 640px) {
+  .frame main > section:not(:first-child)[class*="pb-24"]:not([class*="py-"]):not([class*="pt-"]) {
+    padding-top: 7rem;
+  }
+}
+
+/* Header (concept .bar): sticky inside the frame, the lockup is the mark beside the mono wordmark, and the
+   desktop links are a numbered index. Hover rules live here because the bar is styled by the kit. */
+.frame > .bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.bar .wordmark {
+  align-items: center;
+  min-height: 44px;
+  gap: 12px;
+  font: 500 12px/1 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.bar .wordmark:hover {
+  opacity: 0.8;
+}
+.bar .wm-mark {
+  display: block;
+  height: 22px;
+  width: auto;
+  flex: none;
+}
+.bar .nav ul {
+  display: flex;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: navi;
+}
+.bar .nav li {
+  counter-increment: navi;
+}
+.bar .nav a {
+  white-space: nowrap;
+}
+.bar .nav a::before {
+  content: counter(navi, decimal-leading-zero) / "";
+  color: var(--ink2);
+}
+/* The layer toggle is an understated 44px icon button beside the primary action. */
+.bar .lv {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 44px;
+  min-height: 44px;
+  padding: 0;
+  gap: 0;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink2);
+}
+.bar .lv[hidden] { display: none; }
+.bar .lv:hover { border-color: var(--ink); color: var(--ink); }
+.bar .lv[aria-pressed="true"] { background: var(--paper2); border-color: var(--ink); color: var(--signal); }
+.bar .lv .lv-icon { display: block; width: 22px; height: 22px; }
+.bar .btn.sm {
+  margin-left: 0;
+}
+.bar .menu-btn {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  font: 500 12px/1 var(--mono);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.bar .menu-btn:hover {
+  background: var(--paper2);
+}
+.bar .menu nav a:hover {
+  background: var(--paper2);
+}
+.bar .menu nav .menu-cta {
+  margin: 12px 0;
+  justify-content: space-between;
+}
+
+/* Footer plate (concept .colo below ruled cells) */
+.foot-sheet {
+  border-top: 1px solid var(--ink);
+}
+.foot-sheet .foot-mark {
+  display: block;
+  height: 48px;
+  width: auto;
+  align-self: flex-start;
+}
+.foot-sheet ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.foot-sheet .cell a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  width: fit-content;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 1.4;
+}
+.foot-sheet .cell a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.foot-sheet .foot-mail {
+  font-size: 22px;
+}
+.foot-sheet .colo a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 /* Brand logos on dark surfaces (DESIGN.md §5) */
 [data-theme="dark"] img[data-brand] {
   filter: invert(1) brightness(1.9) contrast(0.9);
 }
 
-/* ThemeToggle: active/inactive is CSS-driven off <html data-theme>, not
- * component state — correct on first paint, no hydration mismatch. */
-html[data-theme="light"] .theme-toggle-btn[data-theme-btn="light"],
-html[data-theme="dark"] .theme-toggle-btn[data-theme-btn="dark"] {
-  background: var(--ink);
-  color: var(--bg);
+
+/* Phone: the lockup, layers button, and menu must fit the bar, so the document index steps aside. */
+@media (max-width: 899px) {
+  .bar .idx { display: none; }
+  .bar .wordmark { gap: 10px; font-size: 11px; letter-spacing: 0.04em; }
+}
+
+/* One rule between sheets: when a sheet opens with a block that has its own top rule, the section's rule is the only one. */
+main section > :first-child:is(.intro, .logos, .cells, .rows) { border-top: 0; }
+.foot-sheet > .cells:first-child { border-top: 0; }
+.pl > .sp:last-child { border-bottom: 0; }
+
+/* Below 1200px the desktop links are hidden: the wordmark takes the free space so the button, layers toggle, and
+   menu stay together in the right corner instead of trailing the wordmark. */
+@media (max-width: 1199px) {
+  .bar > .wordmark { margin-right: auto; }
+  .bar .menu { margin-left: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --t: 0s; }
 }

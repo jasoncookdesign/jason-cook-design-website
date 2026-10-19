@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { withSocial } from "@/lib/metadata";
 
-export const metadata = {
+export const metadata = withSocial({
   title: "Capabilities | Jason Cook Design",
   description:
     "Architecture, specification, implementation, and handoff — the range of work Jason Cook Design takes on.",
@@ -9,7 +10,7 @@ export const metadata = {
     description:
       "Architecture, specification, implementation, and handoff — the range of work Jason Cook Design takes on.",
   },
-};
+});
 
 // DRAFT — Jason to edit. Case-study register for procurement and institutional readers, ported from the
 // 2026-09-10 placeholder draft. Tokens stay literal until named; candidates sit beside them below.
@@ -69,94 +70,105 @@ const companyData: { term: string; detail: string; href?: string }[] = [
   { term: "Contact", detail: "hello@jasoncookdesign.com", href: "mailto:hello@jasoncookdesign.com" },
 ];
 
-const h2 = "text-2xl font-extralight tracking-[-0.03em] text-ink sm:text-[36px] sm:leading-[1.2]";
-const body = "font-sans text-[17px] leading-[1.7] text-body";
-
 export default function CapabilitiesPage() {
   return (
-    <section className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
-      <div className="max-w-[800px]">
-        <p className="mb-10 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-          Capabilities and institutional work
-        </p>
-        <h1 className="text-3xl font-extralight tracking-[-0.035em] text-ink sm:text-[62px] sm:leading-[1.1]">
-          Capabilities
-        </h1>
-
-        <div className="mt-8 flex flex-col gap-5">
-          <p className="font-sans text-xl font-light leading-relaxed text-body">{intro[0]}</p>
-          <p className={body}>{intro[1]}</p>
+    <>
+      <section className="hero page g" data-sheet="A-101" data-name="HERO">
+        <div className="main">
+          <p className="eyebrow">Capabilities and institutional work</p>
+          <h1>Capabilities</h1>
+          <div>
+            <p className="lead">{intro[0]}</p>
+            <p className="sub">{intro[1]}</p>
+          </div>
+          <div className="actions">
+            <Link href="/work" className="btn ghost">
+              See all case studies &rarr;
+            </Link>
+          </div>
         </div>
+      </section>
 
-        <Link
-          href="/work"
-          className="mt-8 inline-block font-sans text-base text-link transition-colors hover:text-accent"
-        >
-          See all case studies &rarr;
-        </Link>
-
-        <p className={`mt-16 ${body}`}>
-          The work on these programs has spanned the full arc a complex problem requires.
-        </p>
-        <dl className="mt-6 border-t border-border">
+      <section className="pgs" data-sheet="A-102" data-name="SCOPE">
+        <div className="intro g">
+          <div className="t">
+            <p className="eyebrow">01</p>
+            <p className="lead">
+              The work on these programs has spanned the full arc a complex problem requires.
+            </p>
+          </div>
+        </div>
+        <dl className="defs">
           {disciplines.map(({ term, detail }) => (
-            <div key={term} className="grid gap-2 border-b border-border py-6 sm:grid-cols-[220px_1fr] sm:gap-8">
-              <dt className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground sm:pt-1">
-                {term}
-              </dt>
-              <dd className={body}>{detail}</dd>
+            <div key={term} className="d">
+              <dt>{term}</dt>
+              <dd>{detail}</dd>
             </div>
           ))}
         </dl>
+      </section>
 
-        <h2 className={`mt-20 ${h2}`}>Outcomes on the record</h2>
-        <ul className="mt-6 flex flex-col gap-4">
-          {outcomes.map((line) => (
-            <li key={line} className={body}>
-              {line}
+      <section className="pgs" data-sheet="A-103" data-name="PROOF">
+        <div className="intro g">
+          <div className="t">
+            <p className="eyebrow">02</p>
+            <h2>Outcomes on the record</h2>
+          </div>
+        </div>
+        <ul className="rows out">
+          {outcomes.map((line, i) => (
+            <li key={line} className="row hold">
+              <span className="k">{String(i + 1).padStart(2, "0")}</span>
+              <p>{line}</p>
             </li>
           ))}
         </ul>
+      </section>
 
-        {/* DRAFT — Jason to edit. Practice-name candidates (DRAFT, none chosen; rationale in
-            docs/content-token-candidates.md): Operating Architecture · Systems Architecture ·
-            Structural Architecture · Integrated Architecture · Organizational Architecture.
-            Entry-offer candidates: System Diagnostic · Architecture Diagnostic · Situational Diagnosis ·
-            Problem Definition · Organizational Diagnosis. */}
-        <h2 className={`mt-20 ${h2}`}>[PRACTICE-NAME]</h2>
-        <div className="mt-6 flex flex-col gap-5">
-          <p className={body}>
-            The discipline behind all eight programs is [PRACTICE-NAME]: the organizational architecture that spans
-            people, process, information, AI, software, infrastructure, and client experience — diagnosed before
-            it&apos;s designed, designed before it&apos;s built, held in one practice from the first step through
-            handoff.
-          </p>
-          <p className={body}>
-            The Work page has the full case studies. For institutional or government procurement inquiries,
-            [ENTRY-OFFER-NAME] is the paid first step: a written recommendation before any design or build begins.
-          </p>
+      {/* DRAFT — Jason to edit. Practice-name candidates (DRAFT, none chosen; rationale in
+          docs/content-token-candidates.md): Operating Architecture · Systems Architecture ·
+          Structural Architecture · Integrated Architecture · Organizational Architecture.
+          Entry-offer candidates: System Diagnostic · Architecture Diagnostic · Situational Diagnosis ·
+          Problem Definition · Organizational Diagnosis. */}
+      <section className="pgs" data-sheet="A-104" data-name="PRACTICE">
+        <div className="intro g">
+          <div className="t">
+            <p className="eyebrow">03</p>
+            <h2>[PRACTICE-NAME]</h2>
+          </div>
         </div>
+        <div className="pg">
+          <div className="prose">
+            <p>
+              The discipline behind all eight programs is [PRACTICE-NAME]: the organizational architecture that spans
+              people, process, information, AI, software, infrastructure, and client experience — diagnosed before
+              it&apos;s designed, designed before it&apos;s built, held in one practice from the first step through
+              handoff.
+            </p>
+            <p>
+              The Work page has the full case studies. For institutional or government procurement inquiries,
+              [ENTRY-OFFER-NAME] is the paid first step: a written recommendation before any design or build begins.
+            </p>
+          </div>
+        </div>
+      </section>
 
-        <h2 className={`mt-20 ${h2}`}>Company data</h2>
-        <dl className="mt-6 border-t border-border">
+      <section className="pgs" data-sheet="A-105" data-name="COMPANY">
+        <div className="intro g">
+          <div className="t">
+            <p className="eyebrow">04</p>
+            <h2>Company data</h2>
+          </div>
+        </div>
+        <dl className="defs">
           {companyData.map(({ term, detail, href }) => (
-            <div key={term} className="grid gap-2 border-b border-border py-4 sm:grid-cols-[220px_1fr] sm:gap-8">
-              <dt className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground sm:pt-1">
-                {term}
-              </dt>
-              <dd className={body}>
-                {href ? (
-                  <a href={href} className="text-link transition-colors hover:text-accent">
-                    {detail}
-                  </a>
-                ) : (
-                  detail
-                )}
-              </dd>
+            <div key={term} className="d">
+              <dt>{term}</dt>
+              <dd>{href ? <a href={href}>{detail}</a> : detail}</dd>
             </div>
           ))}
         </dl>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

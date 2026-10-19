@@ -22,13 +22,13 @@ describe("Nav", () => {
     expect(screen.getByRole("navigation", { name: /Main navigation/i })).toBeTruthy();
   });
 
-  it("renders the CTA button linking to cal.com", () => {
+  it("renders the CTA button linking to the booking page", () => {
     render(<Nav />);
     // The desktop CTA is always in the DOM; getAllByRole handles the case
     // where the mobile menu CTA is also present.
     const ctas = screen.getAllByRole("link", { name: /Start a conversation/i });
     expect(ctas.length).toBeGreaterThanOrEqual(1);
-    expect((ctas[0] as HTMLAnchorElement).href).toContain("cal.com");
+    expect((ctas[0] as HTMLAnchorElement).getAttribute("href")).toBe("/contact");
   });
 });
 
@@ -69,13 +69,13 @@ describe("Nav - hamburger menu", () => {
     expect(within(mobileNav).getByRole("link", { name: /About/i })).toBeTruthy();
   });
 
-  it("includes the CTA in the mobile menu linking to cal.com", () => {
+  it("includes the CTA in the mobile menu linking to the booking page", () => {
     render(<Nav />);
     fireEvent.click(screen.getByRole("button", { name: /Open menu/i }));
     const mobileNav = screen.getByRole("navigation", { name: /Mobile navigation/i });
     const cta = within(mobileNav).getByRole("link", { name: /Start a conversation/i });
     expect(cta).toBeTruthy();
-    expect((cta as HTMLAnchorElement).href).toContain("cal.com");
+    expect(cta.getAttribute("href")).toBe("/contact");
   });
 
   it("closes the menu when a mobile nav link is clicked", () => {

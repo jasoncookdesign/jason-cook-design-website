@@ -17,33 +17,129 @@ const solutionCards = [
   },
 ];
 
+const COLS = Array.from({ length: 12 }, (_, i) => i);
+
+// One 12-column track: nine working-day columns and three shaded columns past the decision line.
+function Track({ children }: { children?: React.ReactNode }) {
+  return (
+    <div className="trk">
+      <div className="cols" aria-hidden="true">
+        {COLS.map((i) => (
+          <i key={i} className={i >= 9 ? "z" : undefined} />
+        ))}
+      </div>
+      <span className="dec" aria-hidden="true" />
+      {children}
+    </div>
+  );
+}
+
+// The schedule figure from the concept. The scale, stage labels, and bar positions are placeholders until
+// Jason resolves them, so the [SAMPLE: ...] text stays verbatim.
+const stages = [
+  { n: "01", label: "[SAMPLE: stage 1, interview with owner]", s: "0%", w: "16.667%", d: ".1s", days: "[SAMPLE: days 1 to 2]", mark: "A" },
+  { n: "02", label: "[SAMPLE: stage 2, how the business runs now]", s: "8.333%", w: "33.333%", d: ".2s", days: "[SAMPLE: days 2 to 5]" },
+  { n: "03", label: "[SAMPLE: stage 3, what customers experience]", s: "33.333%", w: "25%", d: ".3s", days: "[SAMPLE: days 5 to 7]" },
+  { n: "04", label: "[SAMPLE: stage 4, written recommendation]", s: "50%", w: "25%", d: ".4s", days: "[SAMPLE: days 7 to 9]" },
+];
+
+function ScheduleFigure() {
+  return (
+    <figure className="sheet" aria-labelledby="fig1">
+      <div className="sheet-top">
+        <div className="ttl">
+          <span className="idx">FIG. 1</span>
+          <b id="fig1">Find the real problem</b>
+        </div>
+        <span className="ph">[SAMPLE: scale and bar positions are placeholders]</span>
+      </div>
+
+      <div className="rw hd">
+        <div className="lab">
+          <span className="ph">[SAMPLE: scale, working days]</span>
+        </div>
+        <div className="trk" aria-hidden="true">
+          <div className="cols">
+            {COLS.map((i) => (
+              <i key={i} className={i >= 9 ? "z" : undefined}>
+                {i < 9 ? i + 1 : null}
+              </i>
+            ))}
+          </div>
+          <span className="dec" />
+          <span className="mk hdm" style={{ left: "calc(75% + 26px)" }}>
+            <b>[C]</b>
+          </span>
+        </div>
+      </div>
+
+      {stages.map((st) => (
+        <div className="rw" key={st.n}>
+          <div className="lab">
+            <span className="idx">{st.n}</span>
+            <span className="ph">{st.label}</span>
+          </div>
+          <Track>
+            <span className="bx" style={{ "--s": st.s, "--w": st.w, "--d": st.d } as React.CSSProperties}>
+              <span className="sr">{st.days}</span>
+            </span>
+            {st.mark ? (
+              <span className="mk" style={{ left: "calc(16.667% + 14px)" }} aria-hidden="true">
+                <b>[{st.mark}]</b>
+              </span>
+            ) : null}
+          </Track>
+        </div>
+      ))}
+
+      <div className="rw last">
+        <div className="lab">
+          <span className="idx">05</span>
+          <span className="ph">[SAMPLE: decision point, build or stop]</span>
+        </div>
+        <Track>
+          <span className="mk acc l" style={{ left: "calc(75% - 5px)" }} aria-hidden="true">
+            <b>[B]</b>
+          </span>
+          <span className="bx dash" aria-hidden="true" />
+          <span className="mk d" aria-hidden="true">
+            <b>[D]</b>
+          </span>
+        </Track>
+      </div>
+
+      <figcaption className="foot">
+        <div className="cap">
+          <span className="idx">FIG. 1 — 01</span>
+          <p>
+            It starts with a paid diagnosis. Nothing gets designed or built until we write down what the
+            problem is, with a shared definition of success.
+          </p>
+        </div>
+      </figcaption>
+    </figure>
+  );
+}
+
 export default function StartSection() {
   return (
-      <section className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
-        <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-          Where I start
-        </p>
-        <h2 className="max-w-[720px] text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-[44px] sm:leading-[1.15]">
-          I find the real problem first. Then I build the answer.
-        </h2>
-        <div className="mt-14 grid gap-6 sm:grid-cols-3">
-          {solutionCards.map((card) => (
-            <div
-              key={card.label}
-              className="flex flex-col gap-5 rounded-[6px] border border-border p-8"
-            >
-              <span className="flex h-8 w-8 items-center justify-center rounded-[6px] border border-accent font-mono text-xs font-medium text-link">
-                {card.n}
-              </span>
-              <p className="font-sans text-[22px] font-normal leading-tight tracking-[-0.015em] text-ink">
-                {card.label}
-              </p>
-              <p className="font-sans text-base leading-relaxed text-body">
-                {card.body}
-              </p>
-            </div>
-          ))}
+    <section data-sheet="A-103" data-name="START">
+      <div className="intro g">
+        <div className="t">
+          <p className="eyebrow">Where I start</p>
+          <h2>I find the real problem first. Then I build the answer.</h2>
         </div>
-      </section>
+      </div>
+      <ScheduleFigure />
+      <div className="cells c3">
+        {solutionCards.map((card) => (
+          <article key={card.label} className="cell">
+            <span className="idx">{card.n}</span>
+            <h3>{card.label}</h3>
+            <p>{card.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }

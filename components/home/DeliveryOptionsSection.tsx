@@ -15,34 +15,21 @@ const options = [
 
 export default function DeliveryOptionsSection() {
   return (
-    <section className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
-      <div className="max-w-[760px]">
-        <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-          How you buy it
-        </p>
-        <h2 className="text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-[52px] sm:leading-[1.12]">
-          Two ways to get it built.
-        </h2>
+    <section data-sheet="A-104" data-name="DELIVERY">
+      <div className="intro g">
+        <div className="t">
+          <p className="eyebrow">How you buy it</p>
+          <h2>Two ways to get it built.</h2>
+        </div>
       </div>
-      <div className="mt-14 grid gap-6 sm:grid-cols-2">
+      <div className="cells c2">
         {options.map((opt) => (
-          <div
-            key={opt.label}
-            className="flex flex-col gap-[18px] rounded-[6px] border border-border p-9"
-          >
-            <span className="flex h-8 w-8 items-center justify-center rounded-[6px] border border-accent font-mono text-xs font-medium text-link">
-              {opt.n}
-            </span>
-            <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
-              {opt.label}
-            </p>
-            <p className="font-sans text-[28px] font-light leading-[1.25] tracking-[-0.02em] text-ink">
-              {opt.headline}
-            </p>
-            <p className="font-sans text-base leading-relaxed text-body">
-              {opt.body}
-            </p>
-          </div>
+          <article key={opt.label} className="cell">
+            <span className="idx">{opt.n}</span>
+            <p className="lbl">{opt.label}</p>
+            <h3>{opt.headline}</h3>
+            <p>{opt.body}</p>
+          </article>
         ))}
       </div>
     </section>

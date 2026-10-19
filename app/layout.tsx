@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
-import { Inter, IBM_Plex_Mono } from "next/font/google";
+import { Newsreader, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
+import SheetFrame from "@/components/layout/SheetFrame";
+import RevealOnScroll from "@/components/layout/RevealOnScroll";
+import PrivacyBanner from "@/components/layout/PrivacyBanner";
+import { LAYER_BOOT_SCRIPT } from "@/lib/layer-view-boot";
 
-const inter = Inter({
-  // Named --font-sans so shadcn CSS @theme references (--font-sans) resolve correctly
-  variable: "--font-sans",
+const newsreader = Newsreader({
+  // The serif carries the site's body and display roles; globals.css aliases font-sans to this variable.
+  variable: "--font-serif",
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
 });
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -21,40 +26,44 @@ export const metadata: Metadata = {
   title: "Jason Cook Design",
   description:
     "Jason Cook Design assesses, designs, and builds the products and systems a business needs, and each phase leaves you something you can use.",
+  metadataBase: new URL("https://jasoncookdesign.com"),
   manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
+    siteName: "Jason Cook Design",
+    url: "/",
+    locale: "en_US",
     title: "Jason Cook Design",
     description:
       "Jason Cook Design assesses, designs, and builds the products and systems a business needs, and each phase leaves you something you can use.",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Jason Cook Design",
     description:
       "Jason Cook Design assesses, designs, and builds the products and systems a business needs, and each phase leaves you something you can use.",
   },
 };
 
-// Sets data-theme before paint so the persisted preference never flashes
-// the wrong theme (localStorage isn't available to the server render).
-const themeInitScript = `(function(){try{var t=localStorage.getItem("jcd-theme");document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){document.documentElement.setAttribute("data-theme","light");}})();`;
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      data-theme="light"
-      className={`${inter.variable} ${ibmPlexMono.variable} h-full antialiased`}
+      data-theme="dark"
+      className={`${newsreader.variable} ${ibmPlexMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script dangerouslySetInnerHTML={{ __html: LAYER_BOOT_SCRIPT }} />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <Nav />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <RevealOnScroll />
+        <SheetFrame>
+          <Nav />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </SheetFrame>
+        <PrivacyBanner />
       </body>
     </html>
   );

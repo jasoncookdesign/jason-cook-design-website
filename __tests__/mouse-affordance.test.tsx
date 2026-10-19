@@ -15,48 +15,37 @@
 
 import { render, screen, fireEvent } from "@testing-library/react";
 import Nav from "@/components/layout/Nav";
-import ThemeToggle from "@/components/layout/ThemeToggle";
 import FaqSection from "@/components/home/FaqSection";
 import EngagementsFaq from "@/components/engagements/EngagementsFaq";
 import { Button } from "@/components/ui/button";
+import fs from "fs";
+import path from "path";
 
-// ---------------------------------------------------------------------------
-// ThemeToggle — both buttons need a visible hover state
-// ---------------------------------------------------------------------------
-describe("ThemeToggle — mouse affordance", () => {
-  beforeEach(() => {
-    document.documentElement.setAttribute("data-theme", "light");
-  });
+// The top bar is styled by the blueprint kit, so its hover feedback is a CSS rule, not a hover: utility class.
+const kitCss =
+  fs.readFileSync(path.join(process.cwd(), "app/blueprint.css"), "utf8") +
+  fs.readFileSync(path.join(process.cwd(), "app/globals.css"), "utf8");
+// The FAQ rows are styled by the kit's pattern sheet.
+const patternsCss = fs.readFileSync(path.join(process.cwd(), "app/blueprint-patterns.css"), "utf8");
 
-  it("Light button has a hover: class for visual feedback", () => {
-    render(<ThemeToggle />);
-    const btn = screen.getByRole("button", { name: /Light theme/i });
-    expect(btn.className).toMatch(/hover:/);
-  });
-
-  it("Dark button has a hover: class for visual feedback", () => {
-    render(<ThemeToggle />);
-    const btn = screen.getByRole("button", { name: /Dark theme/i });
-    expect(btn.className).toMatch(/hover:/);
-  });
-});
 
 // ---------------------------------------------------------------------------
 // Nav — logo link and hamburger button
 // ---------------------------------------------------------------------------
 describe("Nav — mouse affordance", () => {
-  it("logo/brand link has a hover: class for visual feedback", () => {
+  it("logo/brand link is the kit's .wordmark and the kit gives it a hover rule", () => {
     const { container } = render(<Nav />);
-    // The brand link is the first anchor with text "Jason Cook Design"
     const brandLink = container.querySelector('a[href="/"]') as HTMLAnchorElement | null;
     expect(brandLink).not.toBeNull();
-    expect(brandLink!.className).toMatch(/hover:/);
+    expect(brandLink!.classList.contains("wordmark")).toBe(true);
+    expect(kitCss).toMatch(/\.wordmark:hover\s*\{/);
   });
 
-  it("hamburger button has a hover: class for visual feedback", () => {
+  it("menu button is kit-styled and the kit gives it a hover rule", () => {
     render(<Nav />);
     const hamburger = screen.getByRole("button", { name: /Open menu/i });
-    expect(hamburger.className).toMatch(/hover:/);
+    expect(hamburger.classList.contains("menu-btn")).toBe(true);
+    expect(kitCss).toMatch(/\.menu-btn:hover\s*\{/);
   });
 });
 
@@ -64,20 +53,22 @@ describe("Nav — mouse affordance", () => {
 // AccordionTrigger — both FAQ sections share the same component
 // ---------------------------------------------------------------------------
 describe("FaqSection accordion — mouse affordance", () => {
-  it("accordion trigger buttons have a hover: class for visual feedback", () => {
+  it("accordion trigger buttons are kit FAQ rows and the kit gives them a hover rule", () => {
     const { container } = render(<FaqSection />);
     const trigger = container.querySelector('[data-slot="accordion-trigger"]') as HTMLElement | null;
     expect(trigger).not.toBeNull();
-    expect(trigger!.className).toMatch(/hover:/);
+    expect(trigger!.classList.contains("faq-trigger")).toBe(true);
+    expect(patternsCss).toMatch(/\.faq-trigger:hover\s*\{/);
   });
 });
 
 describe("EngagementsFaq accordion — mouse affordance", () => {
-  it("accordion trigger buttons have a hover: class for visual feedback", () => {
+  it("accordion trigger buttons are kit FAQ rows and the kit gives them a hover rule", () => {
     const { container } = render(<EngagementsFaq />);
     const trigger = container.querySelector('[data-slot="accordion-trigger"]') as HTMLElement | null;
     expect(trigger).not.toBeNull();
-    expect(trigger!.className).toMatch(/hover:/);
+    expect(trigger!.classList.contains("faq-trigger")).toBe(true);
+    expect(patternsCss).toMatch(/\.faq-trigger:hover\s*\{/);
   });
 });
 
@@ -85,29 +76,24 @@ describe("EngagementsFaq accordion — mouse affordance", () => {
 // Nav — desktop nav links (already have hover; confirm it isn't broken)
 // ---------------------------------------------------------------------------
 describe("Nav desktop links — mouse affordance (regression)", () => {
-  it("all five desktop nav links retain a hover: class", () => {
+  it("all five desktop nav links are kit-styled and the kit gives them a hover rule", () => {
     const { container } = render(<Nav />);
-    const desktopUl = container.querySelector("ul.hidden");
-    expect(desktopUl).not.toBeNull();
-    const links = desktopUl!.querySelectorAll("a");
-    links.forEach((link) => {
-      expect(link.className).toMatch(/hover:/);
-    });
+    expect(container.querySelectorAll(".nav ul a")).toHaveLength(5);
+    expect(kitCss).toMatch(/\.nav a:hover\s*\{/);
   });
 });
 
 // ---------------------------------------------------------------------------
-// Nav mobile links — check hover is present on mobile panel links
+// Nav mobile links — the panel is kit-styled and its links have a hover rule
 // ---------------------------------------------------------------------------
 describe("Nav mobile links — mouse affordance (regression)", () => {
-  it("mobile nav links retain a hover: class when panel is open", () => {
+  it("mobile nav links are inside the kit's .menu and have a hover rule when the panel is open", () => {
     render(<Nav />);
     fireEvent.click(screen.getByRole("button", { name: /Open menu/i }));
     const mobileNav = screen.getByRole("navigation", { name: /Mobile navigation/i });
-    const links = mobileNav.querySelectorAll("a");
-    links.forEach((link) => {
-      expect(link.className).toMatch(/hover:/);
-    });
+    expect(mobileNav.closest(".menu")).not.toBeNull();
+    expect(mobileNav.querySelectorAll("a").length).toBeGreaterThan(0);
+    expect(kitCss).toMatch(/\.menu nav a:hover\s*\{/);
   });
 });
 
@@ -116,23 +102,6 @@ describe("Nav mobile links — mouse affordance (regression)", () => {
 // <button> elements; every interactive button needs an explicit cursor-pointer
 // class.  <a>/<Link> elements are excluded (browser default already pointer).
 // ---------------------------------------------------------------------------
-describe("ThemeToggle — cursor-pointer affordance", () => {
-  beforeEach(() => {
-    document.documentElement.setAttribute("data-theme", "light");
-  });
-
-  it("Light button has cursor-pointer class", () => {
-    render(<ThemeToggle />);
-    const btn = screen.getByRole("button", { name: /Light theme/i });
-    expect(btn.className).toContain("cursor-pointer");
-  });
-
-  it("Dark button has cursor-pointer class", () => {
-    render(<ThemeToggle />);
-    const btn = screen.getByRole("button", { name: /Dark theme/i });
-    expect(btn.className).toContain("cursor-pointer");
-  });
-});
 
 describe("Nav hamburger — cursor-pointer affordance", () => {
   it("hamburger button has cursor-pointer class", () => {
@@ -143,20 +112,22 @@ describe("Nav hamburger — cursor-pointer affordance", () => {
 });
 
 describe("FaqSection accordion — cursor-pointer affordance", () => {
-  it("accordion trigger has cursor-pointer class", () => {
+  it("accordion trigger is a kit FAQ row and the kit sets cursor: pointer on it", () => {
     const { container } = render(<FaqSection />);
     const trigger = container.querySelector('[data-slot="accordion-trigger"]') as HTMLElement | null;
     expect(trigger).not.toBeNull();
-    expect(trigger!.className).toContain("cursor-pointer");
+    expect(trigger!.classList.contains("faq-trigger")).toBe(true);
+    expect(patternsCss).toMatch(/\.faq-trigger\s*\{[^}]*cursor:\s*pointer/);
   });
 });
 
 describe("EngagementsFaq accordion — cursor-pointer affordance", () => {
-  it("accordion trigger has cursor-pointer class", () => {
+  it("accordion trigger is a kit FAQ row and the kit sets cursor: pointer on it", () => {
     const { container } = render(<EngagementsFaq />);
     const trigger = container.querySelector('[data-slot="accordion-trigger"]') as HTMLElement | null;
     expect(trigger).not.toBeNull();
-    expect(trigger!.className).toContain("cursor-pointer");
+    expect(trigger!.classList.contains("faq-trigger")).toBe(true);
+    expect(patternsCss).toMatch(/\.faq-trigger\s*\{[^}]*cursor:\s*pointer/);
   });
 });
 
