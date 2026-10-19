@@ -8,8 +8,24 @@ export const BOOKING_PATH = "/contact";
 /** The Cal.com event: username/event-slug. */
 export const CAL_LINK = "jasoncookdesign/engagement-consultation";
 
+/** The Cal.com account the events live under. */
+const CAL_USER = "jasoncookdesign";
+
+/** The events a visitor can choose between on the contact page (the old site's list, with the strategy call first). */
+export const BOOKING_TYPES = [
+  { slug: "engagement-consultation", label: "Strategy call" },
+  { slug: "meeting", label: "Meeting" },
+  { slug: "coffee", label: "Coffee" },
+  { slug: "breakfast", label: "Breakfast" },
+  { slug: "lunch", label: "Lunch" },
+  { slug: "dinner", label: "Dinner" },
+] as const;
+
+export const calLinkFor = (slug: string) => `${CAL_USER}/${slug}`;
+
 /** The event page on Cal.com. Also the fallback link under the embed. */
-export const BOOKING_URL = `https://cal.com/${CAL_LINK}`;
+export const calUrlFor = (calLink: string) => `https://cal.com/${calLink}`;
+export const BOOKING_URL = calUrlFor(CAL_LINK);
 
 /**
  * Options for Cal("ui", ...). The widget runs in Cal.com's iframe, so it is themed through Cal's CSS variables;
