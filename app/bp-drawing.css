@@ -33,3 +33,7 @@
 @media (prefers-reduced-motion: reduce) {
   .drawing * { animation: none !important; }
 }
+
+/* The hero mark in the lockups' secondary colours: warm above the stripe, cool below. */
+.drawing .mark rect:first-child { fill: var(--warm); }
+.drawing .mark rect:last-child { fill: var(--cool); }

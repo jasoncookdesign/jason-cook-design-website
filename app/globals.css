@@ -108,6 +108,10 @@
   --guide: #173650;
   --accent: #8FB2CC;
   --decision: #FF9B6B;
+  /* secondary colours from the approved lockups: signal on the primary action, warm over cool on the hero mark */
+  --signal: #E8723C;
+  --warm: #FFB48A;
+  --cool: #5E9BD6;
   --link: #9CCBFF;
 
   --btn-bg: #E8EFF5;

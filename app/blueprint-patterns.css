@@ -154,7 +154,7 @@ a.row:hover { background: var(--paper2); }
 .crumb a { text-decoration: none; }
 .crumb a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .tag { display: inline-block; padding: 3px 8px; border: 1px solid var(--rule); font: 500 11px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
-.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
 .btn.ghost:hover { background: var(--paper2); color: var(--ink); }
 
 .prose { max-width: 720px; font-size: 20px; line-height: 1.7; }
