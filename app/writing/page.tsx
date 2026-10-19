@@ -62,7 +62,7 @@ export default function WritingPage() {
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="inline-flex items-center rounded-[6px] border border-border px-[10px] py-[5px] font-mono text-xs text-muted-foreground"
+                      className="inline-flex items-center rounded-md border border-border px-[10px] py-[5px] font-mono text-xs text-muted-foreground"
                     >
                       {tag}
                     </span>

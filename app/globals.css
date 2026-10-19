@@ -5,6 +5,14 @@
 @theme {
   --font-weight-extralight: 400;
   --font-weight-light: 400;
+
+  /* The serif reads smaller than the previous sans at the same size: body 19px, small 16px. */
+  --text-sm: 1rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1.1875rem;
+  --text-base--line-height: 1.5;
+  --text-lg: 1.3125rem;
+  --text-lg--line-height: 1.45;
 }
 
 @custom-variant dark (&:is([data-theme="dark"] *));

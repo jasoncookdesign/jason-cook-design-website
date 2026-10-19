@@ -63,7 +63,7 @@ export default function OfferingPhases() {
         </h2>
         <ol className="mt-14 flex list-none flex-col gap-6">
           {phases.map((p, i) => (
-            <li key={p.label} className="rounded-[6px] border border-border p-6 sm:p-8">
+            <li key={p.label} className="rounded-md border border-border p-6 sm:p-8">
               <span className="font-mono text-xs text-muted-foreground">
                 {String(i).padStart(2, "0")}
               </span>
@@ -78,7 +78,7 @@ export default function OfferingPhases() {
               </dl>
             </li>
           ))}
-          <li className="rounded-[6px] border border-dashed border-border p-6 sm:p-8">
+          <li className="rounded-md border border-dashed border-border p-6 sm:p-8">
             <span className="font-mono text-xs text-muted-foreground">05</span>
             <h3 className="mt-2 text-2xl font-light tracking-[-0.02em] text-ink">
               {availability.label}

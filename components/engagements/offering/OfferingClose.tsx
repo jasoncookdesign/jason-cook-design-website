@@ -12,7 +12,7 @@ export default function OfferingClose() {
           href={CTA_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 inline-flex items-center gap-3 rounded-[6px] bg-btn-bg px-6 py-[15px] font-sans text-[15px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
+          className="mt-3 inline-flex items-center gap-3 rounded-md bg-btn-bg px-6 py-[15px] font-sans text-[15px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
         >
           Book your strategy call
           <span className="block h-[7px] w-[7px] rotate-45 border-r border-t border-accent" />

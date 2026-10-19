@@ -11,7 +11,7 @@ import { hasFeeFigure } from "./helpers/prices";
 const root = path.resolve(__dirname, "..");
 
 function cardOf(el: Element) {
-  return el.closest("div.rounded-\\[6px\\], article, li") as HTMLElement | null;
+  return el.closest("div.rounded-md, article, li") as HTMLElement | null;
 }
 
 function offeringCard(container: HTMLElement): HTMLElement {

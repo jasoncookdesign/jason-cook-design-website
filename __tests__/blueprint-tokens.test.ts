@@ -74,3 +74,25 @@ describe("blueprint tokens", () => {
     expect(css).toMatch(/--font-weight-light:\s*400/);
   });
 });
+
+describe("blueprint shape and scale", () => {
+  it("has one radius, and it is square", () => {
+    expect(rootBlock()).toMatch(/--radius:\s*0px/);
+  });
+
+  it("sets the serif text scale: body 19px, small 16px", () => {
+    expect(css).toMatch(/--text-base:\s*1\.1875rem/);
+    expect(css).toMatch(/--text-sm:\s*1rem/);
+  });
+
+  it("uses no literal pixel radii in components (the radius token governs corners)", () => {
+    const glob = (dir: string): string[] =>
+      fs.readdirSync(path.join(process.cwd(), dir), { withFileTypes: true }).flatMap((e) =>
+        e.isDirectory() ? glob(path.join(dir, e.name)) : /\.tsx$/.test(e.name) ? [path.join(dir, e.name)] : []
+      );
+    const offenders = [...glob("app"), ...glob("components")].filter((f) =>
+      /rounded-\[\d+px\]/.test(fs.readFileSync(path.join(process.cwd(), f), "utf8"))
+    );
+    expect(offenders).toEqual([]);
+  });
+});

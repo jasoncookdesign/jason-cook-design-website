@@ -23,7 +23,7 @@ export default function EngagementFork() {
                   {t.situation}
                 </span>
               </span>
-              <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-[6px] border border-border transition-colors group-hover:border-ink">
+              <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-md border border-border transition-colors group-hover:border-ink">
                 <span className="block h-[11px] w-[11px] -translate-x-[1px] rotate-45 border-r border-t border-accent" />
               </span>
             </Link>

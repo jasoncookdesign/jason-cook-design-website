@@ -30,9 +30,9 @@ export default function StartSection() {
           {solutionCards.map((card) => (
             <div
               key={card.label}
-              className="flex flex-col gap-5 rounded-[6px] border border-border p-8"
+              className="flex flex-col gap-5 rounded-md border border-border p-8"
             >
-              <span className="flex h-8 w-8 items-center justify-center rounded-[6px] border border-accent font-mono text-xs font-medium text-link">
+              <span className="flex h-8 w-8 items-center justify-center rounded-md border border-accent font-mono text-xs font-medium text-link">
                 {card.n}
               </span>
               <p className="font-sans text-[22px] font-normal leading-tight tracking-[-0.015em] text-ink">

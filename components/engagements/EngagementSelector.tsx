@@ -15,7 +15,7 @@ export default function EngagementSelector() {
       aria-label="Engagement type"
       className="mx-auto max-w-[1200px] px-6 pt-16 sm:px-10 sm:pt-20"
     >
-      <div className="grid gap-px overflow-hidden rounded-[6px] border border-border bg-border sm:grid-cols-2">
+      <div className="grid gap-px overflow-hidden rounded-md border border-border bg-border sm:grid-cols-2">
         {engagementTypes.map((t) => {
           const isActive = t.slug === active.slug;
           return (

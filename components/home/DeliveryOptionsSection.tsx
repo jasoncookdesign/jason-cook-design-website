@@ -28,9 +28,9 @@ export default function DeliveryOptionsSection() {
         {options.map((opt) => (
           <div
             key={opt.label}
-            className="flex flex-col gap-[18px] rounded-[6px] border border-border p-9"
+            className="flex flex-col gap-[18px] rounded-md border border-border p-9"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-[6px] border border-accent font-mono text-xs font-medium text-link">
+            <span className="flex h-8 w-8 items-center justify-center rounded-md border border-accent font-mono text-xs font-medium text-link">
               {opt.n}
             </span>
             <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">

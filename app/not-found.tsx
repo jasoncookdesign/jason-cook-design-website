@@ -16,7 +16,7 @@ export default function NotFound() {
         <div className="mt-10">
           <Link
             href="/"
-            className="inline-flex items-center gap-3 rounded-[6px] bg-btn-bg px-[22px] py-4 font-sans text-[15px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
+            className="inline-flex items-center gap-3 rounded-md bg-btn-bg px-[22px] py-4 font-sans text-[15px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
           >
             Return to Home
             <span className="block h-[7px] w-[7px] rotate-45 border-r border-t border-accent" />

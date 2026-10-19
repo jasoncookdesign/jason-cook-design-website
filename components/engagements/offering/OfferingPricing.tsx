@@ -5,7 +5,7 @@ export default function OfferingPricing() {
       <h2 className="max-w-[720px] text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-[44px] sm:leading-[1.15]">
         What it costs
       </h2>
-      <div className="mt-10 flex max-w-[520px] flex-col gap-4 rounded-[6px] border border-ink p-6 sm:p-10">
+      <div className="mt-10 flex max-w-[520px] flex-col gap-4 rounded-md border border-ink p-6 sm:p-10">
         <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
           Assess the decision
         </p>

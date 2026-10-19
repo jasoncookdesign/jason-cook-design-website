@@ -36,7 +36,7 @@ export default function OfferingProblem() {
         {problemCards.map((card) => (
           <div
             key={card.label}
-            className="flex items-start gap-6 rounded-[6px] border border-border p-7"
+            className="flex items-start gap-6 rounded-md border border-border p-7"
           >
             <span className="flex-shrink-0 font-sans text-4xl font-extralight leading-none tracking-[-0.04em] text-ghost">
               {card.n}

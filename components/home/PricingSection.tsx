@@ -31,7 +31,7 @@ export default function PricingSection() {
 
         <div className="flex flex-col gap-6">
         {/* Offering Engagement entry card. */}
-        <div className="flex flex-col gap-6 rounded-[6px] border border-ink p-6 sm:p-10">
+        <div className="flex flex-col gap-6 rounded-md border border-ink p-6 sm:p-10">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
             <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
               Offering Engagement
@@ -49,7 +49,7 @@ export default function PricingSection() {
             href={CTA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 inline-flex w-fit items-center gap-3 rounded-[6px] bg-btn-bg px-[22px] py-[14px] font-sans text-[15px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
+            className="mt-2 inline-flex w-fit items-center gap-3 rounded-md bg-btn-bg px-[22px] py-[14px] font-sans text-[15px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
           >
             Book your strategy call
             <span className="block h-[7px] w-[7px] rotate-45 border-r border-t border-accent" />
@@ -57,7 +57,7 @@ export default function PricingSection() {
         </div>
 
         {/* Entry offer card. [ENTRY-OFFER-NAME] candidates (DRAFT, none chosen): see docs/content-token-candidates.md. */}
-        <div className="flex flex-col gap-6 rounded-[6px] border border-ink p-6 sm:p-10">
+        <div className="flex flex-col gap-6 rounded-md border border-ink p-6 sm:p-10">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
             <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
               [ENTRY-OFFER-NAME]
@@ -80,7 +80,7 @@ export default function PricingSection() {
             href={CTA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 inline-flex w-fit items-center gap-3 rounded-[6px] bg-btn-bg px-[22px] py-[14px] font-sans text-[15px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
+            className="mt-2 inline-flex w-fit items-center gap-3 rounded-md bg-btn-bg px-[22px] py-[14px] font-sans text-[15px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
           >
             Book your strategy call
             <span className="block h-[7px] w-[7px] rotate-45 border-r border-t border-accent" />

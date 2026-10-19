@@ -86,7 +86,7 @@ export default function Nav() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen((prev) => !prev)}
-            className="flex cursor-pointer items-center justify-center rounded-[6px] p-1.5 text-ink transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:hidden"
+            className="flex cursor-pointer items-center justify-center rounded-md p-1.5 text-ink transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:hidden"
           >
             {open ? (
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -102,7 +102,7 @@ export default function Nav() {
             href={CTA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center rounded-[6px] bg-btn-bg px-[18px] py-[11px] font-sans text-sm font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover lg:inline-flex"
+            className="hidden items-center rounded-md bg-btn-bg px-[18px] py-[11px] font-sans text-sm font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover lg:inline-flex"
           >
             Start a conversation
           </a>
@@ -120,7 +120,7 @@ export default function Nav() {
                 <Link
                   href={href}
                   onClick={() => setOpen(false)}
-                  className="block py-3 font-sans text-base text-ink transition-colors hover:text-link focus-visible:outline-none focus-visible:rounded-[6px] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                  className="block py-3 font-sans text-base text-ink transition-colors hover:text-link focus-visible:outline-none focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                 >
                   {label}
                 </Link>
@@ -133,7 +133,7 @@ export default function Nav() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="inline-flex items-center rounded-[6px] bg-btn-bg px-[18px] py-[11px] font-sans text-sm font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              className="inline-flex items-center rounded-md bg-btn-bg px-[18px] py-[11px] font-sans text-sm font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             >
               Start a conversation
             </a>

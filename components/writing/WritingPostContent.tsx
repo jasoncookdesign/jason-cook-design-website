@@ -55,7 +55,7 @@ function renderBlock(block: ContentBlock, idx: number) {
             alt={block.alt}
             width={960}
             height={540}
-            className="h-auto w-full rounded-[6px] border border-border"
+            className="h-auto w-full rounded-md border border-border"
           />
           {block.credit && (
             <figcaption
@@ -118,7 +118,7 @@ export default function WritingPostContent({ post }: Props) {
           {post.tags.map((tag) => (
             <span
               key={tag}
-              className="inline-flex items-center rounded-[6px] border border-border px-[10px] py-[5px] font-mono text-xs text-muted-foreground"
+              className="inline-flex items-center rounded-md border border-border px-[10px] py-[5px] font-mono text-xs text-muted-foreground"
             >
               {tag}
             </span>

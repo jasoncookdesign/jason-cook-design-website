@@ -14,7 +14,7 @@ export default function CtaSection() {
           href={CTA_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 inline-flex items-center gap-3 rounded-[6px] bg-band-btn-bg px-[26px] py-4 font-sans text-[15px] font-medium text-band-btn-ink transition-colors hover:bg-band-btn-hover"
+          className="mt-3 inline-flex items-center gap-3 rounded-md bg-band-btn-bg px-[26px] py-4 font-sans text-[15px] font-medium text-band-btn-ink transition-colors hover:bg-band-btn-hover"
         >
           Book your strategy call
           <span className="block h-[7px] w-[7px] rotate-45 border-r border-t border-link" />

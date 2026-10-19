@@ -20,7 +20,7 @@ function renderBlock(block: Block, idx: number) {
             alt={block.alt}
             width={900}
             height={600}
-            className="h-auto w-full rounded-[6px] border border-border"
+            className="h-auto w-full rounded-md border border-border"
           />
         </figure>
       );
@@ -110,7 +110,7 @@ export default function WorkCaseStudyContent({ cs: study }: Props) {
               {section.heading}
             </h2>
             {section.diagnosisNote && (
-              <aside className="mb-7 rounded-[6px] border border-border bg-surface px-6 py-5 font-sans text-[15px] leading-relaxed text-body">
+              <aside className="mb-7 rounded-md border border-border bg-surface px-6 py-5 font-sans text-[15px] leading-relaxed text-body">
                 {section.diagnosisNote}
               </aside>
             )}

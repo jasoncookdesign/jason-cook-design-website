@@ -40,7 +40,7 @@ export default function WorkPage() {
               href={`/work/${cs.slug}`}
               className="group grid grid-cols-1 items-center gap-6 py-7 md:grid-cols-[340px_1fr_44px] md:gap-10"
             >
-              <span className="relative block h-[160px] overflow-hidden rounded-[6px] border border-border md:h-[186px]">
+              <span className="relative block h-[160px] overflow-hidden rounded-md border border-border md:h-[186px]">
                 <Image
                   src={cs.backgroundImage}
                   alt={cs.client}
@@ -59,7 +59,7 @@ export default function WorkPage() {
                   {cs.indexOneLiner}
                 </span>
               </span>
-              <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-[6px] border border-border transition-colors group-hover:border-ink">
+              <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-md border border-border transition-colors group-hover:border-ink">
                 <span className="block h-[11px] w-[11px] -translate-x-[1px] rotate-45 border-r border-t border-accent" />
               </span>
             </Link>
