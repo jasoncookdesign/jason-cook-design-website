@@ -6,7 +6,7 @@ Next.js 16 site that will replace jasoncookdesign.github.io as jasoncookdesign.c
 
 - Run: `npm run dev`. Tests: `npm test` (Jest). `npm run build` must stay green.
 - Generated, never hand-edit: the nextjs-agent-rules block in `AGENTS.md` (rewritten by `next dev`), and `.next/`.
-- Copy comes from the JCD knowledge vault, which lives outside this repo. Open `[GAP: …]` markers stay verbatim until Jason resolves them. The SAM.gov identifiers are not on the site; never guess them.
+- Copy comes from the JCD knowledge vault, which lives outside this repo. Open `[GAP: …]` markers stay verbatim until Jason resolves them. The SAM.gov identifiers on Capabilities come from Jason; never guess them.
 - Public repo: keep internal ticket IDs and machine names out of commits, code and docs.
 
 ## TDD exception (recorded ruling)

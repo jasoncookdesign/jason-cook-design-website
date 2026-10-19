@@ -56,7 +56,7 @@ describe("Capabilities page", () => {
     expect(text()).toContain("For institutional or government procurement inquiries, every engagement opens with a paid first step: a written recommendation before any design or build begins.");
   });
 
-  it("gives institutional readers the company data, without unrecorded SAM.gov identifiers", () => {
+  it("gives institutional readers the company data, with the SAM.gov identifiers and status", () => {
     render(<CapabilitiesPage />);
     const heading = screen.getByRole("heading", { level: 2, name: "Company data" });
     const list = heading.closest("section")!.querySelector("dl")!;
@@ -69,6 +69,10 @@ describe("Capabilities page", () => {
       ["Legal name", "Jason Cook Design LLC"],
       ["Structure", "Single-member limited liability company, Texas"],
       ["Formed", "November 15, 2024"],
+      ["UEI", "QVJFVZEBQAL5"],
+      ["CAGE code", "22J29"],
+      ["NAICS codes", "541511, 541512, 541519, 541430, 541611, 541990"],
+      ["SAM.gov registration", "Current"],
       ["Contact", "hello@jasoncookdesign.com"],
     ]);
     expect(screen.getAllByRole("link", { name: "hello@jasoncookdesign.com" })[0].getAttribute("href")).toBe(
