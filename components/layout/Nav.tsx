@@ -45,7 +45,6 @@ export default function Nav() {
       <Link href="/" className="wordmark">
         <JcdMark className="wm-mark" />
         <span className="wm-name">Jason Cook Design</span>
-        <span className="idx" aria-hidden="true">DOC. 01</span>
       </Link>
       <span className="cue" aria-hidden="true">{cue}</span>
 
