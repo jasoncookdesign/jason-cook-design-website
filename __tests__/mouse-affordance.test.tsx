@@ -18,24 +18,32 @@ import Nav from "@/components/layout/Nav";
 import FaqSection from "@/components/home/FaqSection";
 import EngagementsFaq from "@/components/engagements/EngagementsFaq";
 import { Button } from "@/components/ui/button";
+import fs from "fs";
+import path from "path";
+
+// The top bar is styled by the blueprint kit, so its hover feedback is a CSS rule, not a hover: utility class.
+const kitCss =
+  fs.readFileSync(path.join(process.cwd(), "app/blueprint.css"), "utf8") +
+  fs.readFileSync(path.join(process.cwd(), "app/globals.css"), "utf8");
 
 
 // ---------------------------------------------------------------------------
 // Nav — logo link and hamburger button
 // ---------------------------------------------------------------------------
 describe("Nav — mouse affordance", () => {
-  it("logo/brand link has a hover: class for visual feedback", () => {
+  it("logo/brand link is the kit's .wordmark and the kit gives it a hover rule", () => {
     const { container } = render(<Nav />);
-    // The brand link is the first anchor with text "Jason Cook Design"
     const brandLink = container.querySelector('a[href="/"]') as HTMLAnchorElement | null;
     expect(brandLink).not.toBeNull();
-    expect(brandLink!.className).toMatch(/hover:/);
+    expect(brandLink!.classList.contains("wordmark")).toBe(true);
+    expect(kitCss).toMatch(/\.wordmark:hover\s*\{/);
   });
 
-  it("hamburger button has a hover: class for visual feedback", () => {
+  it("menu button is kit-styled and the kit gives it a hover rule", () => {
     render(<Nav />);
     const hamburger = screen.getByRole("button", { name: /Open menu/i });
-    expect(hamburger.className).toMatch(/hover:/);
+    expect(hamburger.classList.contains("menu-btn")).toBe(true);
+    expect(kitCss).toMatch(/\.menu-btn:hover\s*\{/);
   });
 });
 
@@ -64,29 +72,24 @@ describe("EngagementsFaq accordion — mouse affordance", () => {
 // Nav — desktop nav links (already have hover; confirm it isn't broken)
 // ---------------------------------------------------------------------------
 describe("Nav desktop links — mouse affordance (regression)", () => {
-  it("all five desktop nav links retain a hover: class", () => {
+  it("all five desktop nav links are kit-styled and the kit gives them a hover rule", () => {
     const { container } = render(<Nav />);
-    const desktopUl = container.querySelector("ul.hidden");
-    expect(desktopUl).not.toBeNull();
-    const links = desktopUl!.querySelectorAll("a");
-    links.forEach((link) => {
-      expect(link.className).toMatch(/hover:/);
-    });
+    expect(container.querySelectorAll(".nav ul a")).toHaveLength(5);
+    expect(kitCss).toMatch(/\.nav a:hover\s*\{/);
   });
 });
 
 // ---------------------------------------------------------------------------
-// Nav mobile links — check hover is present on mobile panel links
+// Nav mobile links — the panel is kit-styled and its links have a hover rule
 // ---------------------------------------------------------------------------
 describe("Nav mobile links — mouse affordance (regression)", () => {
-  it("mobile nav links retain a hover: class when panel is open", () => {
+  it("mobile nav links are inside the kit's .menu and have a hover rule when the panel is open", () => {
     render(<Nav />);
     fireEvent.click(screen.getByRole("button", { name: /Open menu/i }));
     const mobileNav = screen.getByRole("navigation", { name: /Mobile navigation/i });
-    const links = mobileNav.querySelectorAll("a");
-    links.forEach((link) => {
-      expect(link.className).toMatch(/hover:/);
-    });
+    expect(mobileNav.closest(".menu")).not.toBeNull();
+    expect(mobileNav.querySelectorAll("a").length).toBeGreaterThan(0);
+    expect(kitCss).toMatch(/\.menu nav a:hover\s*\{/);
   });
 });
 

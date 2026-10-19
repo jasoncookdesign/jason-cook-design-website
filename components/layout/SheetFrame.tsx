@@ -7,13 +7,13 @@ import type { ReactNode } from "react";
  */
 export default function SheetFrame({ children }: { children: ReactNode }) {
   return (
-    <div className="sheet-frame">
-      <div data-guides aria-hidden="true" className="sheet-guides">
+    <div className="frame">
+      <div data-guides aria-hidden="true" className="guides">
         {Array.from({ length: 12 }, (_, i) => (
           <i key={i} />
         ))}
       </div>
-      <div data-regs aria-hidden="true" className="sheet-regs">
+      <div data-regs aria-hidden="true" className="regs">
         {Array.from({ length: 4 }, (_, i) => (
           <i key={i} />
         ))}

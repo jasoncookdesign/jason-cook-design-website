@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "./blueprint.css";
+@import "./bp-drawing.css";
+@import "./bp-home.css";
+@import "./bp-engagements.css";
+@import "./bp-content.css";
 
 @theme {
   --font-weight-extralight: 400;
@@ -98,7 +103,7 @@
   --body: #D3DEE8;
   --muted: #A9BDCD;
   --ghost: #2F5775;
-  --guide: #1D3F5C;
+  --guide: #173650;
   --accent: #8FB2CC;
   --decision: #FF9B6B;
   --link: #9CCBFF;
@@ -172,147 +177,95 @@ main section::before {
   }
 }
 
-/*
- * Sheet frame: the page is one bordered drawing sheet. Registration marks sit at the corners and twelve
- * dashed column guides run behind the content (both are inert elements from SheetFrame). Sections span
- * the frame so their ink rules reach the edges; their content keeps the 1200px measure.
- */
-:root {
-  --pad: 1.5rem;
-}
-@media (min-width: 640px) {
-  :root {
-    --pad: 2.5rem;
-  }
-}
-.sheet-frame {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  margin: 24px 24px 44px 44px;
-  border: 1px solid var(--ink);
-}
-@media (min-width: 1384px) {
-  .sheet-frame {
-    width: 100%;
-    max-width: 1280px;
-    margin-inline: auto;
-  }
-}
-@media (max-width: 767px) {
-  .sheet-frame {
-    margin: 10px 10px 36px 30px;
-  }
-}
-.sheet-frame > main,
-.sheet-frame > footer {
-  position: relative;
-}
-.sheet-frame > main,
-.sheet-frame > footer {
-  z-index: 1;
-}
-.sheet-guides {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  pointer-events: none;
-  z-index: 0;
-}
-.sheet-guides i {
-  border-left: 1px dashed var(--guide);
-}
-.sheet-guides i:first-child {
-  border-left: 0;
-}
-@media (max-width: 767px) {
-  .sheet-guides {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .sheet-guides i:nth-child(n + 5) {
-    display: none;
-  }
-}
-.sheet-regs i {
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  pointer-events: none;
-  z-index: 3;
-}
-.sheet-regs i::before,
-.sheet-regs i::after {
-  content: "";
-  position: absolute;
-  background: var(--ink);
-}
-.sheet-regs i::before {
-  left: 0;
-  right: 0;
-  top: 7px;
-  height: 1px;
-}
-.sheet-regs i::after {
-  top: 0;
-  bottom: 0;
-  left: 7px;
-  width: 1px;
-}
-.sheet-regs i:nth-child(1) { left: -8px; top: -8px; }
-.sheet-regs i:nth-child(2) { right: -8px; top: -8px; }
-.sheet-regs i:nth-child(3) { left: -8px; bottom: -8px; }
-.sheet-regs i:nth-child(4) { right: -8px; bottom: -8px; }
-
 /* A section whose root is the 1200px container spans the frame, so its rules reach the edges;
    padding puts the content back on the same measure. */
-.sheet-frame main > section[class*="max-w-[1200px]"] {
+.frame main > section[class*="max-w-[1200px]"] {
   max-width: none;
   padding-inline: max(var(--pad), calc((100% - 1200px) / 2 + var(--pad)));
 }
 
 /* Every section after the first is a new sheet, divided by an ink rule that spans the frame. */
-.sheet-frame main > section:not(:first-child) {
+.frame main > section:not(:first-child) {
   border-top: 1px solid var(--ink);
 }
 
 /* A section that sets only bottom padding (it used to follow the hero) gets the same top padding under its rule. */
-.sheet-frame main > section:not(:first-child)[class*="pb-24"]:not([class*="py-"]):not([class*="pt-"]) {
+.frame main > section:not(:first-child)[class*="pb-24"]:not([class*="py-"]):not([class*="pt-"]) {
   padding-top: 6rem;
 }
 @media (min-width: 640px) {
-  .sheet-frame main > section:not(:first-child)[class*="pb-24"]:not([class*="py-"]):not([class*="pt-"]) {
+  .frame main > section:not(:first-child)[class*="pb-24"]:not([class*="py-"]):not([class*="pt-"]) {
     padding-top: 7rem;
   }
 }
 
-/* Header: the brand carries a document tag, and the desktop links are a numbered index. */
-.brand::after {
-  content: "DOC. 01" / "";
-  margin-left: 4px;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  color: var(--muted);
+/* Header (concept .bar): sticky inside the frame, the lockup is the mark beside the mono wordmark, and the
+   desktop links are a numbered index. Hover rules live here because the bar is styled by the kit. */
+.frame > .bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
-@media (max-width: 1023px) {
-  .brand::after {
-    display: none;
-  }
+.bar .wordmark {
+  align-items: center;
+  gap: 12px;
+  font: 500 12px/1 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
-header nav[aria-label="Main navigation"] ul {
+.bar .wordmark:hover {
+  opacity: 0.8;
+}
+.bar .wm-mark {
+  display: block;
+  height: 22px;
+  width: auto;
+  flex: none;
+}
+.bar .nav ul {
+  display: flex;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
   counter-reset: navi;
 }
-header nav[aria-label="Main navigation"] ul li {
+.bar .nav li {
   counter-increment: navi;
 }
-header nav[aria-label="Main navigation"] ul li a {
+.bar .nav a {
   white-space: nowrap;
 }
-header nav[aria-label="Main navigation"] ul li a::before {
-  content: counter(navi, decimal-leading-zero) " " / "";
-  margin-right: 0.35em;
-  color: var(--muted);
+.bar .nav a::before {
+  content: counter(navi, decimal-leading-zero) / "";
+  color: var(--ink2);
+}
+.bar .btn.sm {
+  margin-left: 0;
+}
+.bar .menu-btn {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  font: 500 12px/1 var(--mono);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.bar .menu-btn:hover {
+  background: var(--paper2);
+}
+.bar .menu nav a:hover {
+  background: var(--paper2);
+}
+.bar .menu nav .menu-cta {
+  margin: 12px var(--pad);
+  justify-content: space-between;
 }
 
 /* Brand logos on dark surfaces (DESIGN.md §5) */

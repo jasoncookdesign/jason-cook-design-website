@@ -16,11 +16,12 @@ const NAV_LINKS = [
 
 const DOCK_AFTER_PX = 120;
 
+// The top bar of the sheet (concept: .bar). One sticky element that compacts after scrolling, so the
+// lockup, the nav, and the primary action stay available. The lockup is the mark beside the mono wordmark.
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [docked, setDocked] = useState(false);
 
-  // One sticky header that compacts after scrolling, so the nav and the primary action stay available.
   useEffect(() => {
     const onScroll = () => setDocked(window.scrollY > DOCK_AFTER_PX);
     onScroll();
@@ -38,108 +39,57 @@ export default function Nav() {
   }, [open]);
 
   return (
-    <header data-docked={docked ? "true" : "false"} className="sticky top-0 z-20 border-b border-ink bg-bg">
-      <nav
-        className={`mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-4 sm:px-6 lg:gap-10 lg:px-10 transition-[padding] duration-200 ${docked ? "py-3" : "py-[22px]"}`}
-        aria-label="Main navigation"
-      >
-        <Link
-          href="/"
-          className="brand flex flex-shrink-0 items-center gap-3 whitespace-nowrap font-mono text-xs font-medium uppercase tracking-[0.14em] text-ink transition-colors hover:opacity-80"
-        >
-          <JcdMark className="h-5 w-auto" />
-          <span className={docked ? "sr-only lg:not-sr-only" : ""}>Jason Cook Design</span>
-        </Link>
+    <header data-docked={docked ? "true" : "false"} className={`bar${docked ? " docked" : ""}`}>
+      <Link href="/" className="wordmark">
+        <JcdMark className="wm-mark" />
+        <span className="wm-name">Jason Cook Design</span>
+        <span className="idx" aria-hidden="true">DOC. 01</span>
+      </Link>
 
-        <ul className="hidden items-center gap-8 md:flex" role="list">
-          <li>
-            <Link href="/" className="font-mono text-xs uppercase tracking-[0.14em] text-ink hover:text-link transition-colors">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="/work" className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-ink transition-colors">
-              Work
-            </Link>
-          </li>
-          <li>
-            <Link href="/engagements" className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-ink transition-colors">
-              Engagements
-            </Link>
-          </li>
-          <li>
-            <Link href="/writing" className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-ink transition-colors">
-              Writing
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-ink transition-colors">
-              About
-            </Link>
-          </li>
+      <nav className="nav" aria-label="Main navigation">
+        <ul role="list">
+          {NAV_LINKS.map(({ href, label }) => (
+            <li key={href}>
+              <Link href={href}>{label}</Link>
+            </li>
+          ))}
         </ul>
-
-        <div className="flex flex-shrink-0 items-center gap-4">
-          <button
-            type="button"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            onClick={() => setOpen((prev) => !prev)}
-            className="flex cursor-pointer items-center justify-center rounded-md p-1.5 text-ink transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:hidden"
-          >
-            {open ? (
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <path d="M4 4L16 16M16 4L4 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-            ) : (
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <path d="M3 5H17M3 10H17M3 15H17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-            )}
-          </button>
-          <a
-            href={CTA_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden items-center rounded-md bg-btn-bg px-[18px] py-[11px] font-mono text-[13px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover lg:inline-flex"
-          >
-            Start a conversation
-          </a>
-        </div>
       </nav>
 
-      {open && (
-        <nav id="mobile-menu" aria-label="Mobile navigation" className="border-b border-border bg-bg md:hidden">
-          <ul
-            role="list"
-            className="mx-auto flex max-w-[1200px] flex-col px-4 py-2 sm:px-6 lg:px-10"
-          >
+      <a href={CTA_URL} target="_blank" rel="noopener noreferrer" className="btn sm">
+        Start a conversation
+      </a>
+
+      <div className="menu">
+        <button
+          type="button"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          onClick={() => setOpen((prev) => !prev)}
+          className="menu-btn cursor-pointer"
+        >
+          {open ? "Close" : "Menu"}
+        </button>
+        {open && (
+          <nav id="mobile-menu" aria-label="Mobile navigation">
             {NAV_LINKS.map(({ href, label }) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  onClick={() => setOpen(false)}
-                  className="block py-3 font-sans text-base text-ink transition-colors hover:text-link focus-visible:outline-none focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-                >
-                  {label}
-                </Link>
-              </li>
+              <Link key={href} href={href} onClick={() => setOpen(false)}>
+                {label}
+              </Link>
             ))}
-          </ul>
-          <div className="mx-auto max-w-[1200px] border-t border-border px-4 py-4 sm:px-6 lg:px-10">
             <a
               href={CTA_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="inline-flex items-center rounded-md bg-btn-bg px-[18px] py-[11px] font-mono text-[13px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              className="btn sm menu-cta"
             >
               Start a conversation
             </a>
-          </div>
-        </nav>
-      )}
+          </nav>
+        )}
+      </div>
     </header>
   );
 }

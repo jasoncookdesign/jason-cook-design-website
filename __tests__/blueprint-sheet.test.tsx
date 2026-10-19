@@ -51,21 +51,20 @@ describe("guide token", () => {
 
 });
 
-describe("numbered mono index nav", () => {
-  it("sets the desktop links in mono caps", () => {
+const kit = fs.readFileSync(path.join(root, "app/blueprint.css"), "utf8");
+
+describe("numbered mono index nav (kit-styled)", () => {
+  it("renders the five desktop links inside the kit's .nav", () => {
     render(<Nav />);
     const desktop = screen.getByRole("navigation", { name: /main navigation/i });
-    const links = desktop.querySelectorAll("ul a");
-    expect(links.length).toBe(5);
-    links.forEach((a) => {
-      expect(a.className).toMatch(/font-mono/);
-      expect(a.className).toMatch(/uppercase/);
-    });
+    expect(desktop.classList.contains("nav")).toBe(true);
+    expect(desktop.querySelectorAll("ul a")).toHaveLength(5);
   });
 
-  it("numbers the desktop links with CSS counters and an empty alternative", () => {
-    expect(css).toMatch(/counter-increment:\s*navi/);
-    expect(css).toMatch(/content:\s*counter\(navi,\s*decimal-leading-zero\)[^;]*\/\s*""/);
+  it("sets the links in mono caps (kit) and numbers them with CSS counters and an empty alternative (globals)", () => {
+    expect(kit).toMatch(/\.nav a\{[^}]*font:500 12px\/1 var\(--mono\)[^}]*text-transform:uppercase/);
+    expect(css).toMatch(/\.bar \.nav li\s*\{[^}]*counter-increment:\s*navi/);
+    expect(css).toMatch(/\.bar \.nav a::before\s*\{[^}]*content:\s*counter\(navi,\s*decimal-leading-zero\)\s*\/\s*""/);
   });
 });
 
@@ -75,7 +74,7 @@ describe("sheet rules and nav", () => {
   });
 
   it("keeps each numbered nav link on one line", () => {
-    expect(css).toMatch(/header nav\[aria-label="Main navigation"\] ul li a\s*\{[^}]*white-space:\s*nowrap/);
+    expect(css).toMatch(/\.bar \.nav a\s*\{[^}]*white-space:\s*nowrap/);
   });
 });
 
@@ -86,16 +85,24 @@ describe("section spacing under a sheet rule", () => {
 });
 
 describe("docked header", () => {
-  it("is not overridden by the frame: the header stays sticky inside the sheet", () => {
-    // `position: relative` on the header would defeat position: sticky and the header would scroll away.
-    expect(css).not.toMatch(/\.sheet-frame > header[^{]*\{[^}]*position:\s*relative/);
+  it("is not overridden by the frame: the bar stays sticky inside the sheet and above the content", () => {
+    expect(css).toMatch(/\.frame > \.bar\s*\{[^}]*position:\s*sticky[^}]*top:\s*0[^}]*z-index:\s*20/);
+    expect(css).not.toMatch(/\.frame > (header|\.bar)[^{]*\{[^}]*position:\s*relative/);
   });
 
-  it("is sticky in the markup and sits above the content", () => {
+  it("is the kit's .bar", () => {
     render(<Nav />);
-    const header = screen.getByRole("banner");
-    expect(header.className).toMatch(/\bsticky\b/);
-    expect(header.className).toMatch(/\btop-0\b/);
-    expect(header.className).toMatch(/\bz-20\b/);
+    expect(screen.getByRole("banner").classList.contains("bar")).toBe(true);
+  });
+});
+
+describe("kit integration", () => {
+  it("defines the padding variable the kit and sections rely on", () => {
+    expect(kit + css).toMatch(/--pad:\s*24px/);
+    expect(kit).toMatch(/--pad:\s*18px/);
+  });
+
+  it("does not ship an unlayered global link color that would defeat utility classes", () => {
+    expect(kit).not.toMatch(/(^|\n)a\{color:inherit\}/);
   });
 });
