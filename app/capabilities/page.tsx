@@ -59,13 +59,15 @@ const outcomes = [
 // DRAFT — Jason to edit. Company data for SAM.gov and procurement readers. UEI, CAGE code, and registration
 // status are from Jason (2026-10-19). The NAICS codes are the six ratified for the retired opportunity
 // engine's search scope; confirm they match the registration's Goods and Services list.
-const companyData: { term: string; detail: string; href?: string }[] = [
+const naicsCodes = ["541511", "541512", "541519", "541430", "541611", "541990"];
+
+const companyData: { term: string; detail: string; href?: string; codes?: string[] }[] = [
   { term: "Legal name", detail: "Jason Cook Design LLC" },
   { term: "Structure", detail: "Single-member limited liability company, Texas" },
   { term: "Formed", detail: "November 15, 2024" },
   { term: "UEI", detail: "QVJFVZEBQAL5" },
   { term: "CAGE code", detail: "22J29" },
-  { term: "NAICS codes", detail: "541511, 541512, 541519, 541430, 541611, 541990" },
+  { term: "NAICS codes", detail: naicsCodes.join(", "), codes: naicsCodes },
   { term: "SAM.gov registration", detail: "Current" },
   { term: "Contact", detail: "hello@jasoncookdesign.com", href: "mailto:hello@jasoncookdesign.com" },
 ];
@@ -136,10 +138,27 @@ export default function CapabilitiesPage() {
           </div>
         </div>
         <dl className="defs">
-          {companyData.map(({ term, detail, href }) => (
+          {companyData.map(({ term, detail, href, codes }) => (
             <div key={term} className="d">
               <dt>{term}</dt>
-              <dd>{href ? <a href={href}>{detail}</a> : detail}</dd>
+              <dd>
+                {codes
+                  ? codes.map((code, i) => (
+                      <span key={code}>
+                        {i > 0 && ", "}
+                        <a
+                          href={`https://www.naics.com/naics-code-description/?code=${code}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {code}
+                        </a>
+                      </span>
+                    ))
+                  : href
+                    ? <a href={href}>{detail}</a>
+                    : detail}
+              </dd>
             </div>
           ))}
         </dl>
