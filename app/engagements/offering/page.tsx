@@ -1,5 +1,6 @@
 // DRAFT — Jason to edit
 import OfferingHero from "@/components/engagements/offering/OfferingHero";
+import OfferingProblem from "@/components/engagements/offering/OfferingProblem";
 import OfferingPhases from "@/components/engagements/offering/OfferingPhases";
 import OfferingPortability from "@/components/engagements/offering/OfferingPortability";
 import OfferingPricing from "@/components/engagements/offering/OfferingPricing";
@@ -15,6 +16,7 @@ export default function OfferingEngagementPage() {
   return (
     <>
       <OfferingHero />
+      <OfferingProblem />
       <OfferingPhases />
       <OfferingPortability />
       <OfferingPricing />

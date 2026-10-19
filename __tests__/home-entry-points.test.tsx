@@ -104,6 +104,7 @@ describe("REQ-11: new source files are marked as drafts", () => {
     "components/home/Hero.tsx",
     "components/home/StartSection.tsx",
     "components/engagements/OperatingProblem.tsx",
+    "components/engagements/offering/OfferingProblem.tsx",
     "components/home/PricingSection.tsx",
     "app/engagements/page.tsx",
     "app/engagements/operating/page.tsx",

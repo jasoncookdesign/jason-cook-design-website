@@ -33,6 +33,32 @@ function phases(container: HTMLElement) {
   return Array.from(lists[0].children).filter((c) => c.tagName === "LI") as HTMLElement[];
 }
 
+describe("Offering Engagement problem section", () => {
+  const LABELS = ["The idea", "The quick build", "The advice", "The split"];
+
+  it("renders four problem cards ahead of the phases", () => {
+    render(<OfferingPage />);
+    for (const label of LABELS) expect(screen.getByText(label)).toBeTruthy();
+    const phase = screen.getByRole("heading", { level: 3, name: "Assess the decision" });
+    expect(
+      screen.getByText("The idea").compareDocumentPosition(phase) & Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
+  });
+
+  it("scopes the section with an eyebrow placed directly before its heading", () => {
+    render(<OfferingPage />);
+    const heading = screen.getByRole("heading", { name: /decision to make/i });
+    const eyebrow = heading.previousElementSibling;
+    expect(eyebrow?.tagName).toBe("P");
+    expect((eyebrow!.textContent ?? "").trim().length).toBeGreaterThan(5);
+  });
+
+  it("shares no card with the operating problem cards", () => {
+    const { container } = render(<OfferingPage />);
+    expect(container.textContent).not.toMatch(/The old way|The internal attempt|The search outside|outgrown the systems/);
+  });
+});
+
 describe("Offering Engagement page", () => {
   it("names itself", () => {
     render(<OfferingPage />);
