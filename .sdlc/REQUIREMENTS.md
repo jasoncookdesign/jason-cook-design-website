@@ -10,10 +10,20 @@ Add JCD's second engagement type to the site and make `/engagements` a chooser b
 
 The work ships as two PRs. PR 1 holds the information architecture, the home entry points, and the type page, and names no client. PR 2 holds one case study and waits on approvals and review windows that are held outside this repo. The two stay in separate commits so PR 1 can ship first.
 
+## Revision 2026-10-19 (owner direction after reading the drafts)
+
+These changes supersede the requirement text below where they conflict. Each is built and tested; the numbered requirements are amended in place and marked "(revised)".
+
+- `/engagements` is no longer a card chooser. It is a layout with a link-based selector over the first type's page (Offering), so each type keeps its own URL. REQ-01 and REQ-13's "same component as the chooser" no longer apply; the home fork is a separate, shorter list of two linked rows.
+- Offering is listed before Operating wherever both appear.
+- No page states an engagement count. REQ-07's numeral and "enterprise engagements" stat are removed; the Hero stats are countries, awards, and patents.
+- REQ-02's "copy unchanged" is relaxed for the Operating page: its hero now shares one structure with the Offering hero (eyebrow = type name, three paragraphs, phase-count metric), and the Operating problem cards moved from the home page onto the Operating page. The home page keeps a type-neutral method section.
+- The registry holds `slug`, `name`, and `situation` only. `fit` and `arcSummary` had no consumer after the chooser cards went away and were removed.
+
 ## Requirements
 
-**REQ-01 — Chooser.** `/engagements` lists two engagement types. Each card has a heading phrased as the visitor's situation, the type's name as a label, one sentence on who it fits, a one-line arc summary, and one link to its page.
-Acceptance: the page renders exactly two type links, each inside its own `h2` section under one `h1`. Both are keyboard-reachable.
+**REQ-01 (revised) — Selector.** `/engagements` and both type pages render a selector with one link per type, each showing the type's name and the visitor's situation, in registry order. The active type carries `aria-current="page"`. `/engagements` shows the first type's page.
+Acceptance: the selector renders exactly two `/engagements/<slug>` links, no `article`, keyboard-reachable with names of three or more characters. The page under it has one `h1` and a valid heading order.
 
 **REQ-02 — Existing type moves; copy unchanged.** The existing (Digital Organization) Engagement page moves to `/engagements/operating` by `git mv`. Its body copy and structure are unchanged. Its page metadata (title and description) is not "copy": it changes to distinct DRAFT values so it no longer duplicates the chooser's.
 Acceptance: the copy assertions in `engagements.test.tsx`, `engagements-faq-e1.test.tsx`, and `faq-link.test.tsx` pass with only their import path changed. `cta-subtext.test.tsx` repoints its Engagements entry to the moved page and adds entries for the chooser and the new page. `metadata-length.test.tsx` lists three static rows: the chooser, the moved page, and the new page.
@@ -30,7 +40,9 @@ Acceptance: `.sdlc/check-no-client-terms.sh` reads terms from the file named by 
 **REQ-06 — Case study without a testimonial.** `testimonial` is optional in the `CaseStudy` type. The renderer omits the block when absent. No placeholder or synthetic testimonial renders. In `__tests__/work.test.tsx`, the "every case study has … testimonial" test asserts testimonial fields only when a testimonial is present, and the slug-count assertion tracks the data (8 in PR 1, 9 in PR 2).
 Acceptance: a case study with no testimonial renders no blockquote and no empty heading. The eight existing studies render theirs unchanged. The type-check in `npm run build` passes with the edited test.
 
-**REQ-07 — Counts follow the data.** `CaseStudy` gains optional `kind?: "assessment"`. The Work page numeral and intro derive from `caseStudies.length` (the intro is reworded as a DRAFT for a mixed set). The Hero stat "enterprise engagements" derives from `caseStudies.filter(c => c.kind !== "assessment").length`. The Capabilities and About sentences describe the eight enterprise programs specifically, so they keep "eight" and are asserted unchanged.
+**REQ-07 (revised) — No counts.** The Work page and the Hero state no engagement count (see the revision above). The original text follows for history.
+
+**REQ-07 (original) — Counts follow the data.** `CaseStudy` gains optional `kind?: "assessment"`. The Work page numeral and intro derive from `caseStudies.length` (the intro is reworded as a DRAFT for a mixed set). The Hero stat "enterprise engagements" derives from `caseStudies.filter(c => c.kind !== "assessment").length`. The Capabilities and About sentences describe the eight enterprise programs specifically, so they keep "eight" and are asserted unchanged.
 Acceptance: with `@/lib/work` mocked to eight enterprise entries the Work numeral reads 08 and the Hero stat reads 8. With nine entries (one `assessment`) the numeral reads 09 and the Hero stat reads 8.
 
 **REQ-08 — Inbound links.** `/engagements` stays valid with the nav label "Engagements". Nav and Footer links resolve to the chooser.

@@ -12,8 +12,8 @@ Requirements are in `REQUIREMENTS.md`. Invariants are in `INVARIANTS.md`. Module
 
 | Layer | Owns | Must not |
 |---|---|---|
-| Data (`lib/engagement-types.ts`, `lib/work.ts`) | What each type is (slug, name, fit, arc summary) and the case-study records | Hold markup, styling, or per-type phase text |
-| Shared component (`components/engagements/EngagementTypeCards.tsx`) | One rendering of the type cards, used by the chooser and the home fork | Hold copy; copy comes from the registry |
+| Data (`lib/engagement-types.ts`, `lib/work.ts`) | What each type is (slug, name, situation) and the case-study records | Hold markup, styling, or per-type phase text |
+| Shared components (`components/engagements/EngagementSelector.tsx`, `EngagementHero.tsx`) | The type selector used by the engagements layout, and one hero structure for both type pages | Hold copy that belongs to a type; type copy comes from the registry or the page wrapper |
 | Routes (`app/engagements/*`, `app/page.tsx`, `app/work/*`) | Composition and page metadata | Duplicate registry data |
 | Docs (`README.md`, `docs/*`) | Route table, token rules, token candidates, cutover checks | Drift from the code in the same change |
 
@@ -35,9 +35,9 @@ M1–M7 and M9 form PR 1. M8 forms PR 2 and depends on M6.
 
 ## Decisions
 
-**Registry (M1).** Entries hold `slug`, `name`, `situation`, `fit`, and `arcSummary`. A card's link is `/engagements/${slug}`, so a link cannot drift from its route. Two consumers (the chooser and the home fork) justify the registry. The second type's phase text lives with its page (M4) and the DOE's stays in `PhaseArc.tsx`, so no information has two homes.
+**Registry (M1).** Entries hold `slug`, `name`, and `situation`. A link is `/engagements/${slug}`, so it cannot drift from its route. Two consumers (the selector and the home fork) justify the registry. The second type's phase text lives with its page (M4) and the DOE's stays in `PhaseArc.tsx`, so no information has two homes.
 
-**Static routes (M3, M4).** The existing type moves with `git mv` to `app/engagements/operating/`. The second type is `app/engagements/offering/`. `/engagements` keeps its URL and nav label. Metadata is per page. The moved DOE page gets DRAFT metadata distinct from the chooser's, and that change is outside the "copy unchanged" rule.
+**Static routes (M3, M4).** The existing type moves with `git mv` to `app/engagements/operating/`. The second type is `app/engagements/offering/`. `/engagements` keeps its URL and nav label, and is a layout with a selector over the first type's page (no redirect rule, canonical to `/engagements/offering`). Metadata is per page. The moved DOE page gets DRAFT metadata distinct from the chooser's, and that change is outside the "copy unchanged" rule.
 
 **Home page (M5): discrete entry points.**
 - A, leave it DOE-led with a pointer: the home page makes universal claims that become false once a second type exists.
@@ -45,9 +45,9 @@ M1–M7 and M9 form PR 1. M8 forms PR 2 and depends on M6.
 - C, entry points chosen by the visitor's situation: a fork under the hero, one story.
 - D, separate landing pages with the home page as a router: splits the surface a one-person practice maintains.
 
-The call is C. In PR 1: the Hero eyebrow becomes type-neutral; an `EngagementFork` section renders the registry cards under the hero; the Problem section gains a scoping eyebrow with text unchanged; the pricing H2 "The first step costs $2,500." and the sentence "Every engagement opens the same way" are removed and a second card carries the `[GAP]` token; the Hero stat derives from the data (see M6).
+The call is C. In PR 1: the Hero eyebrow becomes type-neutral; an `EngagementFork` section renders the registry as two linked rows under the hero; the operating-only Problem section moves to the Operating page and the home keeps a type-neutral method section; the pricing H2 "The first step costs $2,500." and the sentence "Every engagement opens the same way" are removed and a second card carries the `[GAP]` token; the Hero stat derives from the data (see M6).
 
-**Case-study model (M6).** `testimonial` becomes optional and `kind?: "assessment"` is added. `work.test.tsx` is edited in place: testimonial assertions apply when a testimonial exists, and the slug count tracks the data. Work-page numeral and intro derive from the data. The Hero stat counts non-assessment entries. Capabilities and About keep "eight" because they describe the enterprise programs.
+**Case-study model (M6).** `testimonial` becomes optional and `kind?: "assessment"` is added. `work.test.tsx` is edited in place: testimonial assertions apply when a testimonial exists, and the slug count tracks the data. The Work page and Hero state no count. Capabilities and About keep "eight" because they describe the enterprise programs (an open question for Jason).
 
 **Visuals (M8).** Images are pre-composed and use the existing `img` block. The pipeline lives outside the repo in two tiers. Shells hold no client material and any tool may make them. A fixed-brief bake-off across HTML scenes and several generators picks the keepers, which become a reusable shell library with a provenance log. Composites place sanitized client-derived pages into a shell locally, by Jason in a desktop application or by Claude with local scripts. For generated shells, a flat solid-colour screen region lets the corners be found programmatically and the page warped in. Composites go to the client for review, and nothing publishes until that window closes.
 
