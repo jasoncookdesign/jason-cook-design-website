@@ -55,9 +55,13 @@ a.cell:hover { background: var(--paper2); }
   width: 44px; height: 44px; border: 1px solid var(--ink); color: var(--ink);
 }
 a.row:hover { background: var(--paper2); }
-/* Link colour means "act here": the chevron box is outlined in it at rest and fills on hover or focus. */
-a.row .go { border-color: var(--link); color: var(--link); font-size: 24px; line-height: 1; }
-a.row:hover .go, a.row:focus-visible .go { background: var(--link); border-color: var(--link); color: var(--bg); }
+/* Link colour means "act here": the action square is solid link colour at rest, with a field-coloured arrow
+   drawn in CSS from currentColor, and inverts to an outline on hover or focus. */
+.row .go { position: relative; }
+.row .go::before { content: ""; position: absolute; left: 12px; right: 12px; top: 50%; height: 2px; margin-top: -1px; background: currentColor; }
+.row .go::after { content: ""; position: absolute; right: 12px; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-top: 2px solid currentColor; border-right: 2px solid currentColor; transform: rotate(45deg); }
+a.row .go { background: var(--link); border-color: var(--link); color: var(--bg); }
+a.row:hover .go, a.row:focus-visible .go { background: transparent; color: var(--link); }
 .row.hold { grid-template-columns: 120px 1fr; }
 .row .pair { display: grid; grid-template-columns: 120px 1fr; gap: 6px 20px; margin-top: 12px; }
 .row .pair dt { font: 500 12px/1.5 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
@@ -85,17 +89,17 @@ a.row:hover .go, a.row:focus-visible .go { background: var(--link); border-color
 .faq-item { border-bottom: 1px solid var(--rule); }
 .faq-item:last-child { border-bottom: 0; }
 .faq-trigger {
-  display: grid; grid-template-columns: 72px 1fr 24px; align-items: baseline; gap: 12px;
+  display: grid; grid-template-columns: 72px 1fr 28px; align-items: baseline; gap: 12px;
   width: 100%; padding: 20px var(--pad); text-align: left; cursor: pointer;
   background: transparent; color: var(--ink); border: 0;
   font-size: 22px; line-height: 1.35; letter-spacing: -0.008em;
 }
 .faq-trigger:hover { background: var(--paper2); }
 .faq-trigger .k { font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; color: var(--ink2); }
-.faq-trigger .mark { position: relative; width: 14px; height: 14px; justify-self: end; }
+.faq-trigger .mark { position: relative; width: 20px; height: 20px; justify-self: end; }
 .faq-trigger .mark::before, .faq-trigger .mark::after { content: ""; position: absolute; background: var(--link); }
-.faq-trigger .mark::before { left: 0; right: 0; top: 6px; height: 1.5px; }
-.faq-trigger .mark::after { top: 0; bottom: 0; left: 6px; width: 1.5px; transition: transform 0.2s ease; }
+.faq-trigger .mark::before { left: 0; right: 0; top: 9px; height: 2px; }
+.faq-trigger .mark::after { top: 0; bottom: 0; left: 9px; width: 2px; transition: transform 0.2s ease; }
 .faq-trigger[aria-expanded="true"] .mark::after { transform: scaleY(0); }
 .faq-panel { padding: 0 var(--pad) 26px calc(var(--pad) + 84px); font-size: 19px; line-height: 1.6; max-width: 86ch; }
 .faq-panel p { margin: 0; }

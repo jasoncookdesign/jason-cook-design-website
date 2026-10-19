@@ -17,20 +17,45 @@ const rule = (selector: string): string => {
 };
 
 describe("interactive things show it at rest", () => {
-  it("row chevron boxes on links use the link colour for border and glyph", () => {
+  it("row action squares on links are solid link colour with a field-coloured arrow at rest", () => {
     const r = rule("a.row .go");
-    expect(r).toMatch(/border-color:\s*var\(--link\)/);
-    expect(r).toMatch(/color:\s*var\(--link\)/);
-  });
-
-  it("row chevron boxes fill with the link colour when the row is hovered or focused", () => {
-    const r = rule("a.row:hover .go, a.row:focus-visible .go");
     expect(r).toMatch(/background:\s*var\(--link\)/);
+    expect(r).toMatch(/border-color:\s*var\(--link\)/);
     expect(r).toMatch(/color:\s*var\(--bg\)/);
   });
 
-  it("FAQ plus marks use the link colour", () => {
+  it("row action squares invert to an outline when the row is hovered or focused", () => {
+    const r = rule("a.row:hover .go, a.row:focus-visible .go");
+    expect(r).toMatch(/background:\s*transparent/);
+    expect(r).toMatch(/color:\s*var\(--link\)/);
+  });
+
+  it("the arrow is drawn in CSS from currentColor, a 2px shaft and head, so it inverts with the square", () => {
+    const shaft = rule(".row .go::before");
+    const head = rule(".row .go::after");
+    expect(shaft).toMatch(/height:\s*2px/);
+    expect(shaft).toMatch(/background:\s*currentColor/);
+    expect(head).toMatch(/border-top:\s*2px solid currentColor/);
+    expect(head).toMatch(/border-right:\s*2px solid currentColor/);
+  });
+
+  it("FAQ plus marks are 20px with 2px strokes in the link colour", () => {
     expect(rule(".faq-trigger .mark::before, .faq-trigger .mark::after")).toMatch(/background:\s*var\(--link\)/);
+    expect(rule(".faq-trigger .mark")).toMatch(/width:\s*20px[^}]*height:\s*20px/);
+    expect(rule(".faq-trigger .mark::before")).toMatch(/height:\s*2px/);
+    expect(rule(".faq-trigger .mark::after")).toMatch(/width:\s*2px/);
+  });
+
+  it("the link colour is distinct from the ink (at least 1.9:1 against it) and still reads on the field (at least 4.5:1)", () => {
+    const g = fs.readFileSync(path.join(process.cwd(), "app/globals.css"), "utf8");
+    const hex = (n: string) => g.match(new RegExp(`--${n}:\\s*(#[0-9A-Fa-f]{6})`))![1];
+    const lum = (h: string) => {
+      const c = [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)));
+      return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+    };
+    const cr = (a: string, b: string) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
+    expect(cr(hex("link"), hex("ink"))).toBeGreaterThanOrEqual(1.9);
+    expect(cr(hex("link"), hex("bg"))).toBeGreaterThanOrEqual(4.5);
   });
 
   it("unselected booking type buttons use the link colour, and the selected one keeps the accent fill", () => {
