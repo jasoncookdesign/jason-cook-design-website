@@ -59,31 +59,15 @@ describe("Home page", () => {
     expect(screen.getByText(/\[ENTRY-OFFER-NAME\]/)).toBeTruthy();
   });
 
-  it("renders the fit-proof case in place of the placeholder token", () => {
-    const { container } = render(<HomePage />);
-    expect(container.textContent).not.toContain("[FIT-PROOF");
-    expect(
-      screen.getByRole("heading", { name: "Deciding what the cloud is allowed to see" })
-    ).toBeTruthy();
-    expect(container.textContent).toContain(
-      "client notes and identities never reach cloud AI, private strategy stays on local models, and some matters stay out of AI entirely."
-    );
-  });
-
-  it("states that the fit-proof case was an unbilled pilot the owner paused before anything was built", () => {
-    const { container } = render(<HomePage />);
-    expect(container.textContent).toContain(
-      "It was an unbilled pilot, and the owner paused it after initial discovery, before I'd written an architecture or built anything."
-    );
-  });
-
-  it("puts the fit-proof case before the range proof", () => {
+  it("omits the anonymized discovery case until a real testimonial exists", () => {
     const { container } = render(<HomePage />);
     const text = container.textContent ?? "";
-    const fit = text.indexOf("Deciding what the cloud is allowed to see");
-    const range = text.indexOf("Where the method came from");
-    expect(fit).toBeGreaterThan(-1);
-    expect(range).toBeGreaterThan(fit);
+    expect(text).not.toContain("From a discovery engagement");
+    expect(text).not.toContain("Deciding what the cloud is allowed to see");
+    expect(text).not.toContain("unbilled pilot");
+    // The range proof now opens the proof section.
+    expect(screen.getByText("Where the method came from")).toBeTruthy();
+    expect(screen.getByText(/Work I.ve done at enterprise scale/)).toBeTruthy();
   });
 
   it("renders the logo row companies", () => {

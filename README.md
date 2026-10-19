@@ -59,8 +59,6 @@ These placeholder tokens appear in the built pages and must stay literal until t
 
 Copy marked with a `DRAFT — Jason to edit` comment in the source is placeholder prose awaiting the owner's edit.
 
-The home page's fit-proof case in `components/home/ProofSection.tsx` is an anonymized draft. The client has cleared anonymized citation and sees the final text before publication.
-
 ## Docs
 
 - `docs/cutover-plan.md`: the plan for moving jasoncookdesign.com from GitHub Pages to Vercel. Not yet executed.
