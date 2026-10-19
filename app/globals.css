@@ -213,6 +213,7 @@ main section[data-sheet]::before {
 }
 .bar .wordmark {
   align-items: center;
+  min-height: 44px;
   gap: 12px;
   font: 500 12px/1 var(--mono);
   letter-spacing: 0.14em;
@@ -287,7 +288,7 @@ main section[data-sheet]::before {
   background: var(--paper2);
 }
 .bar .menu nav .menu-cta {
-  margin: 12px var(--pad);
+  margin: 12px 0;
   justify-content: space-between;
 }
 
@@ -310,6 +311,9 @@ main section[data-sheet]::before {
   list-style: none;
 }
 .foot-sheet .cell a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   width: fit-content;
   text-decoration: none;
   font-size: 18px;
@@ -336,4 +340,10 @@ main section[data-sheet]::before {
 /* Phone: the lockup, layers button, and menu must fit the bar, so the document index steps aside. */
 @media (max-width: 899px) {
   .bar .idx { display: none; }
+  .bar .wordmark { gap: 10px; font-size: 11px; letter-spacing: 0.04em; }
 }
+
+/* One rule between sheets: when a sheet opens with a block that has its own top rule, the section's rule is the only one. */
+main section > :first-child:is(.intro, .logos, .cells, .rows) { border-top: 0; }
+.foot-sheet > .cells:first-child { border-top: 0; }
+.pl > .sp:last-child { border-bottom: 0; }

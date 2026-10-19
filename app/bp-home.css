@@ -1,7 +1,7 @@
 /* Blueprint area styles: home. Owned by the home builder; uses the kit in blueprint.css and the tokens in globals.css. */
 
 /* ---------- shared bits ---------- */
-.em { color: var(--ink2); font-style: normal; }
+.em { font-style: normal; }
 .intro .t > h2:first-child { margin-top: 0; }
 .strip { margin: 0; }
 
@@ -74,12 +74,12 @@
   .sp .v .btn { padding: 0 16px; font-size: 13px; gap: 8px; }
 }
 
-/* ---------- close: a centred sheet, no fill ---------- */
-.close { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 104px var(--pad) 112px; }
+/* ---------- close: a left-aligned sheet on the grid, no fill ---------- */
+.close { display: flex; flex-direction: column; align-items: flex-start; padding: 104px var(--pad) 112px; }
 .close h2 { margin: 0; max-width: 20ch; font-weight: 400; font-size: 56px; line-height: 1.06; letter-spacing: -0.022em; text-wrap: balance; }
 .close .quote { margin: 26px 0 0; max-width: 40ch; font-size: 25px; line-height: 1.35; text-wrap: pretty; }
 .close .btn { margin-top: 36px; }
-.close .strip { margin-top: 24px; justify-items: center; }
+.close .strip { margin-top: 24px; }
 @media (max-width: 899px) {
   .close { padding: 56px var(--pad) 60px; }
   .close h2 { font-size: 36px; }
