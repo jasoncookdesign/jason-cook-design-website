@@ -6,7 +6,7 @@ function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {
   return (
     <AccordionPrimitive.Root
       data-slot="accordion"
-      className={cn("flex w-full flex-col border-t border-border", className)}
+      className={cn("faq", className)}
       {...props}
     />
   )
@@ -16,34 +16,30 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
-      className={cn("border-b border-border", className)}
+      className={cn("faq-item", className)}
       {...props}
     />
   )
 }
 
-// Single-open FAQ rows (DESIGN.md § 4): no card, 1px rule between rows, a
-// 14px accent plus-mark that rotates 45° to a × on open — never a chevron.
+// Single-open FAQ rows in the blueprint's grammar (the kit's faq-item, faq-trigger, faq-panel): a mono key,
+// the question, and a plus mark that becomes a minus when open. The key is a CSS counter (bp-home.css), so
+// every accordion on the site is numbered without the callers passing an index.
 function AccordionTrigger({
   className,
   children,
   ...props
 }: AccordionPrimitive.Trigger.Props) {
   return (
-    <AccordionPrimitive.Header className="flex">
+    <AccordionPrimitive.Header>
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
-        className={cn(
-          "group/accordion-trigger relative flex flex-1 cursor-pointer items-center justify-between gap-8 py-6 text-left font-sans text-lg leading-snug tracking-[-0.01em] text-ink outline-none transition-colors hover:text-body focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2",
-          className
-        )}
+        className={cn("faq-trigger", className)}
         {...props}
       >
-        {children}
-        <span className="relative h-3.5 w-3.5 flex-shrink-0 transition-transform duration-200 ease-out group-aria-expanded/accordion-trigger:rotate-45">
-          <span className="absolute left-0 top-1/2 h-px w-3.5 -translate-y-1/2 bg-accent" />
-          <span className="absolute left-1/2 top-0 h-3.5 w-px -translate-x-1/2 bg-accent" />
-        </span>
+        <span className="k" aria-hidden="true" />
+        <span>{children}</span>
+        <span className="mark" aria-hidden="true" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   )
@@ -62,7 +58,7 @@ function AccordionContent({
     >
       <div
         className={cn(
-          "flex h-(--accordion-panel-height) max-w-[680px] flex-col gap-3.5 pb-7 pt-0 data-ending-style:h-0 data-starting-style:h-0 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-ink [&_p:not(:last-child)]:mb-0",
+          "faq-panel h-(--accordion-panel-height) data-ending-style:h-0 data-starting-style:h-0 [&_a]:underline [&_a]:underline-offset-4",
           className
         )}
       >

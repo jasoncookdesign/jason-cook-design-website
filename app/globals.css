@@ -332,3 +332,8 @@ main section[data-sheet]::before {
   filter: invert(1) brightness(1.9) contrast(0.9);
 }
 
+
+/* Phone: the lockup, layers button, and menu must fit the bar, so the document index steps aside. */
+@media (max-width: 899px) {
+  .bar .idx { display: none; }
+}

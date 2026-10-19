@@ -29,9 +29,13 @@ describe("Contact page", () => {
   it("renders the decided CTA subtext verbatim", () => {
     render(<ContactPage />);
     // Verbatim, already-approved copy — do not edit
-    expect(
-      screen.getByText(/No commitment\. 20 minutes\. Find out what you need/i)
-    ).toBeTruthy();
+    // The sentence is set as two lines of the strip (mono line, then italic line), so read it across both.
+    const strip = Array.from(document.querySelectorAll("p")).find((p) =>
+      (p.textContent ?? "").startsWith("No commitment.")
+    );
+    expect((strip?.textContent ?? "").replace(/\s+/g, " ")).toMatch(
+      /^No commitment\. 20 minutes\. Find out what you need — and what you don.t\.$/
+    );
   });
 
   it("does not contain invented contact-page copy beyond the decided content", () => {

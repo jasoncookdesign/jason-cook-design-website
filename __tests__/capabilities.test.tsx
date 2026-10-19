@@ -58,7 +58,7 @@ describe("Capabilities page", () => {
   it("gives institutional readers the company data, with unrecorded identifiers left as tokens", () => {
     render(<CapabilitiesPage />);
     const heading = screen.getByRole("heading", { level: 2, name: "Company data" });
-    const list = heading.nextElementSibling!;
+    const list = heading.closest("section")!.querySelector("dl")!;
     expect(list.tagName).toBe("DL");
     const rows = Array.from(list.querySelectorAll("dt")).map((dt) => [
       dt.textContent?.trim(),

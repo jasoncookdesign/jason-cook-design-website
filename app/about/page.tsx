@@ -33,77 +33,59 @@ const background = [
 
 export default function AboutPage() {
   return (
-    <section className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
-      <div className="flex flex-col gap-16 lg:flex-row lg:items-start">
-        <div className="max-w-[720px] flex-1">
-          <p className="mb-10 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-            About
-          </p>
-          <h1 className="text-3xl font-extralight tracking-[-0.035em] text-ink sm:text-[62px] sm:leading-[1.1]">
-            About
-          </h1>
+    <>
+      <section className="hero page g" data-sheet="A-101" data-name="HERO">
+        <div className="main">
+          <p className="eyebrow">About</p>
+          <h1>About</h1>
+          <div>
+            <p className="lead long">{paragraphs[0]}</p>
+          </div>
+        </div>
+      </section>
 
-          <div className="mt-10 flex flex-col gap-5">
-            {paragraphs.map((para, i) => (
-              <p
-                key={i}
-                className={
-                  i === 0
-                    ? "font-sans text-xl font-light leading-relaxed text-body-strong"
-                    : "font-sans text-[17px] leading-[1.7] text-body"
-                }
-              >
-                {para}
-              </p>
+      <section className="pgs" data-sheet="A-102" data-name="PROFILE">
+        <div className="pg">
+          <div className="prose">
+            {paragraphs.slice(1).map((para, i) => (
+              <p key={i}>{para}</p>
             ))}
           </div>
         </div>
-        <dl className="flex flex-col gap-7 border-border pl-0 lg:mt-24 lg:w-[280px] lg:flex-shrink-0 lg:border-l lg:pl-8">
-          <div className="flex flex-col gap-2">
-            <dt className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-              Based in
-            </dt>
-            <dd className="font-sans text-base leading-snug text-ink">
-              Texas, working remotely
-            </dd>
+      </section>
+
+      <section className="pgs" data-sheet="A-103" data-name="FACTS">
+        <dl className="defs">
+          <div className="d">
+            <dt>Based in</dt>
+            <dd>Texas, working remotely</dd>
           </div>
-          <div className="flex flex-col gap-2">
-            <dt className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-              Practice
-            </dt>
-            <dd className="font-sans text-base leading-snug text-ink">
-              Architecture, specification, implementation, handoff
-            </dd>
+          <div className="d">
+            <dt>Practice</dt>
+            <dd>Architecture, specification, implementation, handoff</dd>
           </div>
-          <div className="flex flex-col gap-2">
-            <dt className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-              Background
-            </dt>
-            <dd className="font-sans text-base leading-snug text-ink">
-              <ul className="flex flex-col gap-3">
+          <div className="d">
+            <dt>Background</dt>
+            <dd>
+              <ul>
                 {background.map(({ org, years, role }) => (
                   <li key={org}>
-                    {org}, {years}: <span className="text-body">{role}</span>
+                    {org}, {years}: <span>{role}</span>
                   </li>
                 ))}
               </ul>
             </dd>
           </div>
-          <div className="flex flex-col gap-2">
-            <dt className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-              Contact
-            </dt>
-            <dd className="font-sans text-base leading-snug">
-              <a
-                href="mailto:hello@jasoncookdesign.com"
-                className="text-link transition-colors hover:text-accent"
-              >
+          <div className="d">
+            <dt>Contact</dt>
+            <dd>
+              <a href="mailto:hello@jasoncookdesign.com">
                 hello@jasoncookdesign.com
               </a>
             </dd>
           </div>
         </dl>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

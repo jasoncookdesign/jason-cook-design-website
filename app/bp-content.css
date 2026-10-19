@@ -1,1 +1,91 @@
-/* Blueprint area styles: content. Owned by the content builder; uses the kit in blueprint.css and the tokens in globals.css. */
+/* Blueprint area styles: content (work, case studies, writing, posts, about, capabilities, contact, legal, not-found).
+   Owned by the content builder; uses the kit in blueprint.css, blueprint-patterns.css and the tokens in globals.css. */
+
+/* ---------- hero on content pages: the home grammar without the drawing ---------- */
+.hero.page { padding: 48px 0 52px; }
+.hero.page h1 { margin-top: 22px; }
+.hero.page > .main > h1:first-child { margin-top: 0; }  /* legal: no eyebrow above the title */
+.hero.page .lead { max-width: 46ch; }
+.hero.page .lead.long { font-size: 22px; line-height: 1.45; max-width: 58ch; }
+.hero.page .sub { margin: 20px 0 0; max-width: 58ch; font-size: 20px; line-height: 1.5; text-wrap: pretty; }
+.hero.page .crumb { margin-bottom: 6px; }
+.crumb a { display: inline-flex; align-items: center; min-height: 44px; }
+.hero.page.long h1 { font-size: 56px; line-height: 1.04; }
+.hero.page.post .main { grid-column: 1 / 11; }
+.hero.page.post h1 { font-size: 52px; line-height: 1.06; }
+.hero.page .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+.hero.page.solo { padding: 72px 0 88px; }
+.hero.page .side { text-align: right; }
+.hero.page .side .count { margin: 0; font: 400 92px/1 var(--serif); letter-spacing: -0.03em; color: var(--ink2); }
+
+/* Case studies and posts wrap their sheets in an article, so the shell's section rule does not reach them. */
+article > section:not(:first-child) { border-top: 1px solid var(--ink); }
+
+/* A sheet after the hero already sits under the section's ink rule; its first child needs no second one. */
+.pgs > :first-child { border-top: 0; }
+
+/* ---------- body of a sheet ---------- */
+.pg { padding: 40px var(--pad) 56px; }
+.intro .t > .lead { margin: 16px 0 0; max-width: 40ch; }
+.intro + .pg { padding-top: 12px; }
+
+/* ---------- ledger rows that carry a thumbnail, a date, or a list of tags ---------- */
+ul.rows, ol.rows { list-style: none; margin: 0; padding: 0; }
+.row.thumb { grid-template-columns: 120px 260px 1fr auto; }
+.row .title { display: block; }
+.row .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.row .tags .tag { margin: 0; }
+.rows.out .row p { margin: 0; max-width: none; font-size: 20px; line-height: 1.5; }
+
+/* ---------- plates: a framed figure with a mono FIG. caption, full opacity, 1px rule, no radius ---------- */
+.fig { margin: 0; border: 1px solid var(--ink); background: var(--paper); }
+.fig img { display: block; width: 100%; height: auto; border: 0; opacity: 1; }
+.fig figcaption { margin: 0; padding: 10px 14px; border-top: 1px solid var(--rule); font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
+.fig figcaption .idx { margin-right: 14px; }
+.fig figcaption a { text-decoration: underline; text-underline-offset: 3px; }
+.fig.thumbnail { display: block; position: relative; aspect-ratio: 16 / 9; align-self: start; }
+.fig.thumbnail img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
+.prose > .fig { margin-top: 1.8em; }
+.prose > .fig + * { margin-top: 1.8em; }
+
+/* ---------- case study and post furniture ---------- */
+.note { margin: 0 0 1.4em; padding: 18px 22px; border: 1px dashed var(--ink); font-size: 18px; line-height: 1.55; max-width: 720px; }
+.note + .prose { margin-top: 0; }
+.pg .note { margin-bottom: 28px; }
+.prose strong { font-weight: 500; }
+.fns { margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--rule); max-width: 720px; }
+.fns ol { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; }
+.fns li { display: grid; grid-template-columns: 40px 1fr; gap: 12px; font-size: 16px; line-height: 1.6; color: var(--ink2); }
+.fns li > span:first-child { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; padding-top: 3px; }
+.quotes.one { --n: 1; }
+.quotes.one blockquote { max-width: 40ch; font-size: 28px; }
+
+/* ---------- definition rows: lists, links, and the page-level rhythm ---------- */
+.defs ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.defs li span { color: var(--ink2); }
+.defs a { text-decoration: underline; text-underline-offset: 4px; }
+.defs a:hover { background: var(--paper2); }
+.ph-line { margin: 0; }
+
+/* ---------- phone ---------- */
+@media (max-width: 899px) {
+  .hero.page { padding: 36px 0 40px; }
+  .hero.page .lead.long { font-size: 20px; }
+  .hero.page .sub { font-size: 19px; }
+  .hero.page.long h1 { font-size: 38px; }
+  .hero.page.post h1 { font-size: 34px; }
+  .hero.page.post .main { grid-column: auto; }
+  .hero.page.solo { padding: 44px 0 56px; }
+  .hero.page .side { margin-top: 28px; }
+  .hero.page .side .count { font-size: 64px; }
+  .pg { padding: 28px var(--pad) 44px; }
+  .row.thumb { grid-template-columns: 1fr auto; row-gap: 14px; }
+  .row.thumb .fig { grid-column: 1 / -1; }
+  .quotes.one blockquote { font-size: 22px; }
+  .fns li { grid-template-columns: 32px 1fr; }
+}
+
+/* Tailwind's reset removes list markers; restore them inside prose. */
+.prose ul { list-style: disc; }
+.prose ol { list-style: decimal; }
+.prose li::marker { color: var(--ink2); }

@@ -2,85 +2,46 @@ import Image from "next/image";
 import Link from "next/link";
 import { Post, ContentBlock } from "@/lib/writing";
 
-function renderBlock(block: ContentBlock, idx: number) {
+function renderBlock(block: ContentBlock, idx: number, fig: number) {
   switch (block.type) {
     case "p":
-      return (
-        <p
-          key={idx}
-          className="mb-5 font-sans text-lg leading-[1.75] text-body-strong"
-          dangerouslySetInnerHTML={{ __html: block.html }}
-        />
-      );
+      return <p key={idx} dangerouslySetInnerHTML={{ __html: block.html }} />;
     case "h2":
-      return (
-        <h2
-          key={idx}
-          className="mb-5 mt-12 font-sans text-[32px] font-light leading-tight tracking-[-0.02em] text-ink"
-        >
-          {block.text}
-        </h2>
-      );
+      return <h2 key={idx}>{block.text}</h2>;
     case "blockquote":
       return (
-        <blockquote
-          key={idx}
-          className="my-8 border-l border-accent pl-7"
-        >
-          <p
-            className="font-sans text-2xl font-light leading-relaxed text-ink"
-            dangerouslySetInnerHTML={{ __html: block.html }}
-          />
+        <blockquote key={idx}>
+          <p dangerouslySetInnerHTML={{ __html: block.html }} />
         </blockquote>
       );
     case "ul":
       return (
-        <ul key={idx} className="mb-5 flex flex-col gap-3">
+        <ul key={idx}>
           {block.items.map((item, i) => (
-            <li
-              key={i}
-              className="grid grid-cols-[20px_1fr] gap-3 font-sans text-lg leading-[1.75] text-body-strong"
-            >
-              <span className="text-accent">&mdash;</span>
-              <span dangerouslySetInnerHTML={{ __html: item }} />
-            </li>
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
           ))}
         </ul>
       );
     case "img":
       return (
-        <figure key={idx} className="my-14">
-          <Image
-            src={block.src}
-            alt={block.alt}
-            width={960}
-            height={540}
-            className="h-auto w-full rounded-md border border-border"
-          />
-          {block.credit && (
-            <figcaption
-              className="ml-0.5 mt-3.5 font-sans text-[13px] leading-relaxed text-muted-foreground"
-              dangerouslySetInnerHTML={{ __html: block.credit }}
-            />
-          )}
+        <figure key={idx} className="fig">
+          <Image src={block.src} alt={block.alt} width={960} height={540} />
+          <figcaption>
+            <span className="idx">FIG. {fig}</span>
+            {block.credit && (
+              <span dangerouslySetInnerHTML={{ __html: block.credit }} />
+            )}
+          </figcaption>
         </figure>
       );
     case "footnotes":
       return (
-        <footer key={idx} className="mt-14 border-t border-border pt-6">
-          <p className="mb-3 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-            Footnotes
-          </p>
-          <ol className="flex flex-col gap-2">
+        <footer key={idx} className="fns">
+          <p className="eyebrow">Footnotes</p>
+          <ol>
             {block.items.map((fn) => (
-              <li
-                key={fn.ref}
-                id={`fn-${fn.ref}`}
-                className="grid grid-cols-[32px_1fr] gap-3 font-sans text-sm leading-[1.7] text-muted-foreground"
-              >
-                <span className="font-mono text-muted-foreground">
-                  [{fn.ref}]
-                </span>
+              <li key={fn.ref} id={`fn-${fn.ref}`}>
+                <span>[{fn.ref}]</span>
                 <span dangerouslySetInnerHTML={{ __html: fn.html }} />
               </li>
             ))}
@@ -101,43 +62,51 @@ export default function WritingPostContent({ post }: Props) {
     "en-US",
     { year: "numeric", month: "long", day: "numeric" }
   );
+  // Plates are numbered through the post, FIG. 1 onward.
+  let figCount = 0;
+  const blocks = post.content.map((block) => ({
+    block,
+    fig: block.type === "img" ? ++figCount : 0,
+  }));
 
   return (
-    <article className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
-      <div className="mx-auto max-w-[720px]">
-        <p className="mb-8 font-sans text-[13px] text-muted-foreground">
-          Writing <span className="px-2 text-ghost">/</span> {displayDate}
-        </p>
-        <h1 className="text-3xl font-extralight leading-[1.12] tracking-[-0.035em] text-ink sm:text-[52px]">
-          {post.title}
-        </h1>
-        <p className="mt-6 font-sans text-xl font-light leading-[1.55] text-body sm:text-[22px]">
-          {post.excerpt}
-        </p>
-        <div className="mt-7 flex flex-wrap gap-2">
-          {post.tags.map((tag) => (
-            <span
-              key={tag}
-              className="inline-flex items-center rounded-md border border-border px-[10px] py-[5px] font-mono text-xs text-muted-foreground"
-            >
-              {tag}
-            </span>
-          ))}
+    <article>
+      <section className="hero page post g" data-sheet="A-101" data-name="HERO">
+        <div className="main">
+          <nav className="crumb" aria-label="Breadcrumb">
+            <Link href="/writing">Writing</Link>
+            <span aria-hidden="true">/</span>
+            <span>{displayDate}</span>
+          </nav>
+          <h1>{post.title}</h1>
+          <div>
+            <p className="lead">{post.excerpt}</p>
+          </div>
+          <div className="tags">
+            {post.tags.map((tag) => (
+              <span key={tag} className="tag">
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div className="mx-auto mt-14 max-w-[720px]">
-        {post.content.map((block, idx) => renderBlock(block, idx))}
-      </div>
+      <section className="pgs" data-sheet="A-102" data-name="BODY">
+        <div className="pg">
+          <div className="prose">
+            {blocks.map(({ block, fig }, idx) => renderBlock(block, idx, fig))}
+          </div>
+        </div>
+      </section>
 
-      <div className="mx-auto mt-16 max-w-[720px] border-t border-border pt-8">
-        <Link
-          href="/writing"
-          className="font-sans text-sm text-muted-foreground transition-colors hover:text-ink"
-        >
-          &larr; All writing
-        </Link>
-      </div>
+      <section className="pgs" data-sheet="A-103" data-name="CLOSE">
+        <div className="pg">
+          <Link href="/writing" className="btn ghost">
+            &larr; All writing
+          </Link>
+        </div>
+      </section>
     </article>
   );
 }

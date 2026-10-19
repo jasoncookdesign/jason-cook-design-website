@@ -1,19 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import HomePage from "@/app/page";
 
-describe("Home page responsive layout", () => {
-  it("pricing entry card uses responsive padding sm:p-10, not a flat p-10 that cramps 375px viewports", () => {
+describe("Home page pricing plate", () => {
+  it("shows the entry offer as a spec plate: its name and price in the plate header, not a padded card", () => {
     const { container } = render(<HomePage />);
-    // The pricing card contains the [ENTRY-OFFER-NAME] token and the $2,500 price
     const entryNameEl = screen.getByText(/\[ENTRY-OFFER-NAME\]/);
-    // Walk up to find the card (has border-ink class)
-    let card: Element | null = entryNameEl;
-    while (card && !card.className.includes("border-ink")) {
-      card = card.parentElement;
-    }
-    expect(card).not.toBeNull();
-    // After fix: should have sm:p-10 (responsive), not just p-10 (fixed)
-    expect(card?.className).toMatch(/sm:p-10/);
+    const plate = entryNameEl.closest(".pl");
+    expect(plate).not.toBeNull();
+    const head = entryNameEl.closest(".pl-h");
+    expect(head).not.toBeNull();
+    expect(head?.textContent).toContain("$2,500");
+    expect(plate?.querySelectorAll(".sp").length).toBeGreaterThanOrEqual(2);
     void container;
   });
 });
@@ -79,15 +76,14 @@ describe("Home page", () => {
     expect(screen.getByAltText(/^AWS$/i)).toBeTruthy();
   });
 
-  it("brand logos are sized at h-11 base and lg:h-16 at the largest breakpoint", () => {
-    render(<HomePage />);
-    // Dell is the first logo in the row; its img element must carry the base
-    // height class (h-11) for smaller viewports and the responsive override
-    // (lg:h-16) for the site's largest defined breakpoint (~64px / ~50% larger).
+  it("sets the brand logos in the kit's logo strip, all ten, with no utility sizing classes", () => {
+    const { container } = render(<HomePage />);
+    const logos = container.querySelectorAll(".logos [data-brand]");
+    expect(logos).toHaveLength(10);
+    expect(container.querySelectorAll("[data-brand]")).toHaveLength(10);
     const dell = screen.getByAltText(/^Dell$/i);
-    expect(dell.className).toMatch(/\bh-11\b/);
-    expect(dell.className).not.toMatch(/\bh-7\b/);
-    expect(dell.className).toMatch(/\blg:h-16\b/);
+    expect(dell.closest(".logos")).not.toBeNull();
+    expect(dell.className).not.toMatch(/\b(h-\d+|lg:h-\d+|opacity-\d+)\b/);
   });
 
   it("renders both testimonials", () => {

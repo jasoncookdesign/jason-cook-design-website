@@ -1,1 +1,95 @@
 /* Blueprint area styles: home. Owned by the home builder; uses the kit in blueprint.css and the tokens in globals.css. */
+
+/* ---------- shared bits ---------- */
+.em { color: var(--ink2); font-style: normal; }
+.intro .t > h2:first-child { margin-top: 0; }
+.strip { margin: 0; }
+
+/* ---------- hero: the drawing is the right region (concept .hero, columns 1-7 and 8-12) ---------- */
+.hero { padding-bottom: 0; }
+.hero .main > div:not(.actions) { margin-top: 26px; }
+.hero .scope { grid-column: 1 / -1; margin: 44px 0 0; padding: 18px var(--pad); border-top: 1px solid var(--rule); font-size: 20px; line-height: 1.45; text-wrap: pretty; }
+.hero .lead { margin-top: 0; }
+.hero .side { align-self: center; }
+.hero .side .drawing { width: 100%; }
+.hero .side p.drawing-cap { margin: 14px 0 0; font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; color: var(--ink2); }
+.hero .statrow { grid-column: 1 / -1; margin-top: 0; }
+.hero .statrow .l { max-width: 32ch; }
+@media (min-width: 1200px) {
+  .hero .main { grid-column: 1 / 8; }
+  .hero .side { grid-column: 8 / 13; padding-top: 2px; }
+}
+@media (min-width: 900px) and (max-width: 1199px) {
+  .hero .side { grid-column: 1 / 13; margin-top: 36px; }
+  .hero .side .drawing { max-width: 560px; }
+}
+@media (max-width: 899px) {
+  .hero .main > div:not(.actions) { margin-top: 22px; }
+  .hero .scope { font-size: 19px; margin-top: 36px; }
+  .hero .statrow > div { display: flex; align-items: baseline; gap: 6px 18px; padding: 16px var(--pad); }
+  .hero .statrow .v { flex: none; min-width: 3ch; font-size: 40px; }
+  .hero .statrow .l { margin-top: 0; }
+}
+
+/* ---------- fork rows: the label sits above the situation statement ---------- */
+.rows .row .lbl { margin: 0 0 8px; font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
+.rows .row h3 { font-size: 30px; }
+.cell .lbl { margin: 0; }
+.cell h3 { margin-top: 2px; }
+
+/* ---------- proof: logo strip, headline block, quotes ---------- */
+/* beats the dark-surface brand filter in globals.css, which loads after this file */
+.logos > div > img[data-brand] { display: block; width: auto; height: 40px; max-width: 100%; object-fit: contain; filter: brightness(0) invert(0.92); }
+@media (min-width: 900px) {
+  .logos > *:nth-last-child(-n + 5) { border-bottom: 0; }
+}
+@media (max-width: 899px) {
+  .logos > *:nth-last-child(-n + 2) { border-bottom: 0; }
+  .logos > * { min-height: 80px; }
+}
+.intro .t .sub { margin: 22px 0 0; max-width: 52ch; font-size: 20px; line-height: 1.5; text-wrap: pretty; }
+
+/* ---------- pricing: the spec plate ---------- */
+.plate .t .lede { margin: 26px 0 0; font-size: 20px; line-height: 1.5; text-wrap: pretty; }
+.plate .t .notes { display: grid; gap: 14px; margin-top: 22px; }
+.plate .t .notes p { margin: 0; font-size: 18px; line-height: 1.5; color: var(--ink2); text-wrap: pretty; }
+.plates { grid-column: 1 / 13; display: grid; gap: 56px; padding: 0 var(--pad); }
+.plates .pl { margin: 0; grid-column: auto; }
+.pl-h p { margin: 0; }
+.pl-h .price { font: 400 44px/1 var(--serif); letter-spacing: -0.02em; }
+.sp .v .btn { margin-top: 22px; }
+.plate { padding-top: 88px; padding-bottom: 96px; }
+@media (min-width: 1200px) {
+  .plate .t { grid-column: 1 / 5; padding-right: 8px; }
+  .plates { grid-column: 5 / 13; }
+}
+@media (min-width: 900px) and (max-width: 1199px) {
+  .plate .t { grid-column: 1 / 13; margin-bottom: 36px; }
+}
+@media (max-width: 899px) {
+  .plate { padding-top: 40px; padding-bottom: 44px; }
+  .plates { margin-top: 36px; gap: 40px; padding: 0 var(--pad); }
+  .plates .pl { margin: 0; }
+  .pl-h .price { font-size: 36px; margin-top: 4px; }
+  .sp .v .btn { padding: 0 16px; font-size: 13px; gap: 8px; }
+}
+
+/* ---------- close: a centred sheet, no fill ---------- */
+.close { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 104px var(--pad) 112px; }
+.close h2 { margin: 0; max-width: 20ch; font-weight: 400; font-size: 56px; line-height: 1.06; letter-spacing: -0.022em; text-wrap: balance; }
+.close .quote { margin: 26px 0 0; max-width: 40ch; font-size: 25px; line-height: 1.35; text-wrap: pretty; }
+.close .btn { margin-top: 36px; }
+.close .strip { margin-top: 24px; justify-items: center; }
+@media (max-width: 899px) {
+  .close { padding: 56px var(--pad) 60px; }
+  .close h2 { font-size: 36px; }
+  .close .quote { font-size: 22px; }
+  .close .btn { margin-top: 30px; }
+}
+
+/* ---------- FAQ: keys are a CSS counter, shared by every accordion on the site ---------- */
+.faq { counter-reset: faq; }
+.faq-item { counter-increment: faq; scroll-margin-top: 96px; }
+.faq-trigger .k::before { content: counter(faq, decimal-leading-zero) / ""; }
+.faq-trigger { font-family: inherit; }
+.faq-panel a { text-decoration: underline; text-underline-offset: 4px; }

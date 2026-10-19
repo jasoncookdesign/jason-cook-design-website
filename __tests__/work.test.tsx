@@ -5,14 +5,15 @@ import fs from "fs";
 import path from "path";
 import { caseStudies, type CaseStudy } from "@/lib/work";
 
-describe("Work index responsive layout", () => {
-  it("work card links use md breakpoint grid, not sm, to prevent layout overflow at 640-720px viewport widths", () => {
+describe("Work index layout", () => {
+  it("lists each study as one ruled ledger row (a.row) in a rows block, with no old card-grid utilities", () => {
     const { container } = render(<WorkPage />);
     const links = container.querySelectorAll('a[href*="/work/"]');
-    expect(links.length).toBeGreaterThan(0);
+    expect(links).toHaveLength(caseStudies.length);
     links.forEach((link) => {
-      // sm:grid-cols-[56px_340px would activate at 640px where 1fr collapses to ~0px
-      expect(link.className).not.toMatch(/sm:grid-cols-\[56px/);
+      expect(link.classList.contains("row")).toBe(true);
+      expect(link.parentElement!.classList.contains("rows")).toBe(true);
+      expect(link.className).not.toMatch(/grid-cols|sm:|md:/);
     });
   });
 });

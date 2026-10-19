@@ -11,7 +11,8 @@ import { hasFeeFigure } from "./helpers/prices";
 const root = path.resolve(__dirname, "..");
 
 function cardOf(el: Element) {
-  return el.closest("div.rounded-md, article, li") as HTMLElement | null;
+  // The pricing offers are spec plates; the kit's ruled cells and rows are the other containers.
+  return el.closest(".pl, article, li") as HTMLElement | null;
 }
 
 function offeringCard(container: HTMLElement): HTMLElement {

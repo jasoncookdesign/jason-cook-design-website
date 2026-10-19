@@ -24,35 +24,22 @@ const problemCards = [
 
 export default function OperatingProblem() {
   return (
-  <section className="border-t border-ink">
-    <div className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
-      <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-        If you&apos;re fixing how you run
-      </p>
-      <h2 className="max-w-[720px] text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-[44px] sm:leading-[1.15]">
-        You&apos;ve outgrown the systems you built to get here.
-      </h2>
-      <div className="mt-14 grid gap-6 sm:grid-cols-2">
+    <section data-sheet="A-102" data-name="PROBLEM">
+      <div className="intro g">
+        <div className="t">
+          <p className="eyebrow">If you&apos;re fixing how you run</p>
+          <h2>You&apos;ve outgrown the systems you built to get here.</h2>
+        </div>
+      </div>
+      <div className="cells c2">
         {problemCards.map((card) => (
-          <div
-            key={card.label}
-            className="flex items-start gap-6 rounded-md border border-border p-7"
-          >
-            <span className="flex-shrink-0 font-sans text-4xl font-extralight leading-none tracking-[-0.04em] text-ghost">
-              {card.n}
-            </span>
-            <div>
-              <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
-                {card.label}
-              </p>
-              <p className="mt-3 font-sans text-base leading-relaxed text-body">
-                {card.body}
-              </p>
-            </div>
-          </div>
+          <article key={card.label} className="cell">
+            <span className="idx">{card.n}</span>
+            <h3>{card.label}</h3>
+            <p>{card.body}</p>
+          </article>
         ))}
       </div>
-    </div>
-  </section>
+    </section>
   );
 }

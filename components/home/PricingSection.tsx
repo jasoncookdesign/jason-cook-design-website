@@ -1,91 +1,108 @@
 // DRAFT — Jason to edit
 const CTA_URL = "https://cal.com/jasoncookdesign/engagement-consultation";
 
+function Regs() {
+  return (
+    <span className="regs" aria-hidden="true">
+      <i />
+      <i />
+      <i />
+      <i />
+    </span>
+  );
+}
+
+function Key({ k }: { k: string }) {
+  return (
+    <div className="k">
+      <span className="sq" aria-hidden="true" />
+      <span className="w">
+        <span className="l">{k}</span>
+      </span>
+    </div>
+  );
+}
+
+function Book() {
+  return (
+    <a className="btn" href={CTA_URL} target="_blank" rel="noopener noreferrer">
+      Book your strategy call <span aria-hidden="true">&rarr;</span>
+    </a>
+  );
+}
+
 export default function PricingSection() {
   return (
-    <section className="mx-auto max-w-[1200px] border-t border-ink px-6 py-24 sm:px-10 sm:py-28">
-      <div className="grid gap-20 lg:grid-cols-2 lg:items-start">
-        <div>
-          <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-            What it costs
+    <section className="plate g" data-sheet="A-106" data-name="PRICE">
+      <div className="t">
+        <p className="eyebrow">What it costs</p>
+        <h2>Where you start, and what it costs.</h2>
+        <p className="lede">
+          The Offering Engagement opens with a paid assessment of the decision.
+          The Operating Engagement opens with a diagnosis that concludes
+          before anything is built.
+        </p>
+        <div className="notes">
+          <p>
+            Everything after that gets quoted against what the diagnosis
+            found, one outcome and one fixed price at a time.
           </p>
-          <h2 className="text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-[52px] sm:leading-[1.12]">
-            Where you start, and what it costs.
-          </h2>
-          <p className="mt-6 max-w-[480px] font-sans text-[17px] leading-relaxed text-body">
-            The Offering Engagement opens with a paid assessment of the decision.
-            The Operating Engagement opens with a diagnosis that concludes
-            before anything is built.
+          <p>
+            If you want me around after the build, that&apos;s a separate
+            conversation and a separate decision.
           </p>
-          <div className="mt-10 flex max-w-[480px] flex-col gap-4">
-            <p className="font-sans text-base leading-relaxed text-muted-foreground">
-              Everything after that gets quoted against what the diagnosis
-              found, one outcome and one fixed price at a time.
-            </p>
-            <p className="font-sans text-base leading-relaxed text-muted-foreground">
-              If you want me around after the build, that&apos;s a separate
-              conversation and a separate decision.
-            </p>
+        </div>
+      </div>
+
+      <div className="plates">
+        {/* Offering Engagement entry plate. */}
+        <div className="pl">
+          <Regs />
+          <div className="pl-h">
+            <p>Offering Engagement</p>
+            <p className="price">$2,500</p>
+          </div>
+          <div className="sp">
+            <Key k="A" />
+            <div className="v">
+              <p>
+                For a new product or business line, the first phase is a paid
+                assessment of the decision itself. You leave with a written verdict and the proof
+                behind it.
+              </p>
+              <Book />
+            </div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-6">
-        {/* Offering Engagement entry card. */}
-        <div className="flex flex-col gap-6 rounded-md border border-ink p-6 sm:p-10">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-            <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
-              Offering Engagement
-            </p>
-            <p className="font-sans text-[44px] font-extralight leading-none tracking-[-0.04em] text-ink">
-              $2,500
-            </p>
+        {/* Entry offer plate. [ENTRY-OFFER-NAME] candidates (DRAFT, none chosen): see docs/content-token-candidates.md. */}
+        <div className="pl">
+          <Regs />
+          <div className="pl-h">
+            <p>[ENTRY-OFFER-NAME]</p>
+            <p className="price">$2,500</p>
           </div>
-          <p className="font-sans text-base leading-relaxed text-body">
-            For a new product or business line, the first phase is a paid
-            assessment of the decision itself. You leave with a written verdict and the proof
-            behind it.
-          </p>
-          <a
-            href={CTA_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-2 inline-flex w-fit items-center gap-3 rounded-md bg-btn-bg px-[22px] py-[14px] font-mono text-[15px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
-          >
-            Book your strategy call
-            <span className="block h-[7px] w-[7px] rotate-45 border-r border-t border-accent" />
-          </a>
-        </div>
-
-        {/* Entry offer card. [ENTRY-OFFER-NAME] candidates (DRAFT, none chosen): see docs/content-token-candidates.md. */}
-        <div className="flex flex-col gap-6 rounded-md border border-ink p-6 sm:p-10">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-            <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
-              [ENTRY-OFFER-NAME]
-            </p>
-            <p className="font-sans text-[44px] font-extralight leading-none tracking-[-0.04em] text-ink">
-              $2,500
-            </p>
+          <div className="sp">
+            <Key k="A" />
+            <div className="v">
+              <p>
+                I lead a paid diagnosis personally, looking at what you&apos;re trying
+                to do, how the business runs now, what your customers experience,
+                and where the friction is.
+              </p>
+            </div>
           </div>
-          <p className="font-sans text-base leading-relaxed text-body">
-            I lead a paid diagnosis personally, looking at what you&apos;re trying
-            to do, how the business runs now, what your customers experience,
-            and where the friction is.
-          </p>
-          <p className="font-sans text-base leading-relaxed text-body">
-            You leave with a written recommendation: what the real problem is,
-            what to address first, and what it takes. If the answer is
-            something other than &ldquo;build it,&rdquo; that&apos;s what it says.
-          </p>
-          <a
-            href={CTA_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-2 inline-flex w-fit items-center gap-3 rounded-md bg-btn-bg px-[22px] py-[14px] font-mono text-[15px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
-          >
-            Book your strategy call
-            <span className="block h-[7px] w-[7px] rotate-45 border-r border-t border-accent" />
-          </a>
-        </div>
+          <div className="sp">
+            <Key k="B" />
+            <div className="v">
+              <p>
+                You leave with a written recommendation: what the real problem is,
+                what to address first, and what it takes. If the answer is
+                something other than &ldquo;build it,&rdquo; that&apos;s what it says.
+              </p>
+              <Book />
+            </div>
+          </div>
         </div>
       </div>
     </section>

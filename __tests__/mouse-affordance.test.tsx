@@ -25,6 +25,8 @@ import path from "path";
 const kitCss =
   fs.readFileSync(path.join(process.cwd(), "app/blueprint.css"), "utf8") +
   fs.readFileSync(path.join(process.cwd(), "app/globals.css"), "utf8");
+// The FAQ rows are styled by the kit's pattern sheet.
+const patternsCss = fs.readFileSync(path.join(process.cwd(), "app/blueprint-patterns.css"), "utf8");
 
 
 // ---------------------------------------------------------------------------
@@ -51,20 +53,22 @@ describe("Nav — mouse affordance", () => {
 // AccordionTrigger — both FAQ sections share the same component
 // ---------------------------------------------------------------------------
 describe("FaqSection accordion — mouse affordance", () => {
-  it("accordion trigger buttons have a hover: class for visual feedback", () => {
+  it("accordion trigger buttons are kit FAQ rows and the kit gives them a hover rule", () => {
     const { container } = render(<FaqSection />);
     const trigger = container.querySelector('[data-slot="accordion-trigger"]') as HTMLElement | null;
     expect(trigger).not.toBeNull();
-    expect(trigger!.className).toMatch(/hover:/);
+    expect(trigger!.classList.contains("faq-trigger")).toBe(true);
+    expect(patternsCss).toMatch(/\.faq-trigger:hover\s*\{/);
   });
 });
 
 describe("EngagementsFaq accordion — mouse affordance", () => {
-  it("accordion trigger buttons have a hover: class for visual feedback", () => {
+  it("accordion trigger buttons are kit FAQ rows and the kit gives them a hover rule", () => {
     const { container } = render(<EngagementsFaq />);
     const trigger = container.querySelector('[data-slot="accordion-trigger"]') as HTMLElement | null;
     expect(trigger).not.toBeNull();
-    expect(trigger!.className).toMatch(/hover:/);
+    expect(trigger!.classList.contains("faq-trigger")).toBe(true);
+    expect(patternsCss).toMatch(/\.faq-trigger:hover\s*\{/);
   });
 });
 
@@ -108,20 +112,22 @@ describe("Nav hamburger — cursor-pointer affordance", () => {
 });
 
 describe("FaqSection accordion — cursor-pointer affordance", () => {
-  it("accordion trigger has cursor-pointer class", () => {
+  it("accordion trigger is a kit FAQ row and the kit sets cursor: pointer on it", () => {
     const { container } = render(<FaqSection />);
     const trigger = container.querySelector('[data-slot="accordion-trigger"]') as HTMLElement | null;
     expect(trigger).not.toBeNull();
-    expect(trigger!.className).toContain("cursor-pointer");
+    expect(trigger!.classList.contains("faq-trigger")).toBe(true);
+    expect(patternsCss).toMatch(/\.faq-trigger\s*\{[^}]*cursor:\s*pointer/);
   });
 });
 
 describe("EngagementsFaq accordion — cursor-pointer affordance", () => {
-  it("accordion trigger has cursor-pointer class", () => {
+  it("accordion trigger is a kit FAQ row and the kit sets cursor: pointer on it", () => {
     const { container } = render(<EngagementsFaq />);
     const trigger = container.querySelector('[data-slot="accordion-trigger"]') as HTMLElement | null;
     expect(trigger).not.toBeNull();
-    expect(trigger!.className).toContain("cursor-pointer");
+    expect(trigger!.classList.contains("faq-trigger")).toBe(true);
+    expect(patternsCss).toMatch(/\.faq-trigger\s*\{[^}]*cursor:\s*pointer/);
   });
 });
 

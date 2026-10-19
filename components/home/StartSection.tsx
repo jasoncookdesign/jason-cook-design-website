@@ -19,31 +19,22 @@ const solutionCards = [
 
 export default function StartSection() {
   return (
-      <section className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
-        <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-          Where I start
-        </p>
-        <h2 className="max-w-[720px] text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-[44px] sm:leading-[1.15]">
-          I find the real problem first. Then I build the answer.
-        </h2>
-        <div className="mt-14 grid gap-6 sm:grid-cols-3">
-          {solutionCards.map((card) => (
-            <div
-              key={card.label}
-              className="flex flex-col gap-5 rounded-md border border-border p-8"
-            >
-              <span className="flex h-8 w-8 items-center justify-center rounded-md border border-accent font-mono text-xs font-medium text-link">
-                {card.n}
-              </span>
-              <p className="font-sans text-[22px] font-normal leading-tight tracking-[-0.015em] text-ink">
-                {card.label}
-              </p>
-              <p className="font-sans text-base leading-relaxed text-body">
-                {card.body}
-              </p>
-            </div>
-          ))}
+    <section data-sheet="A-103" data-name="START">
+      <div className="intro g">
+        <div className="t">
+          <p className="eyebrow">Where I start</p>
+          <h2>I find the real problem first. Then I build the answer.</h2>
         </div>
-      </section>
+      </div>
+      <div className="cells c3">
+        {solutionCards.map((card) => (
+          <article key={card.label} className="cell">
+            <span className="idx">{card.n}</span>
+            <h3>{card.label}</h3>
+            <p>{card.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }

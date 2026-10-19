@@ -34,54 +34,45 @@ const testimonials = [
 
 export default function ProofSection() {
   return (
-    <section className="border-t border-ink">
-      <div className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
-        {/* Range proof */}
-        <div className="grid gap-20 lg:grid-cols-2 lg:items-start">
-          <div>
-            <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-              Where the method came from
-            </p>
-            <h2 className="text-[28px] font-extralight leading-[1.15] tracking-[-0.03em] text-ink sm:text-[44px]">
-              These are the programs where I learned which parts of a system a
-              business{" "}
-              <span className="text-muted-foreground font-medium">actually needs.</span>
-            </h2>
-            <p className="mt-6 max-w-[520px] font-sans text-base leading-relaxed text-body">
-              Work I&apos;ve done at enterprise scale. Building at that size is how
-              I know what a business your size does and doesn&apos;t need.
-            </p>
+    <section data-sheet="A-105" data-name="PROOF">
+      <div className="logos c5">
+        {brandLogos.map((brand) => (
+          <div key={brand.name}>
+            <Image
+              data-brand="1"
+              src={brand.file}
+              alt={brand.name}
+              width={brand.width}
+              height={64}
+            />
           </div>
-          <div className="flex flex-wrap items-center gap-9 pt-2">
-            {brandLogos.map((brand) => (
-              <Image
-                key={brand.name}
-                data-brand="1"
-                src={brand.file}
-                alt={brand.name}
-                width={brand.width}
-                height={64}
-                className="h-11 w-auto object-contain opacity-55 lg:h-16"
-              />
-            ))}
-          </div>
-        </div>
+        ))}
+      </div>
 
-        {/* Testimonials */}
-        <div className="mt-20 grid gap-14 border-t border-border pt-14 sm:grid-cols-2">
-          {testimonials.map((t) => (
-            <blockquote key={t.name} className="flex flex-col gap-5">
-              <span className="block h-px w-5 bg-accent" />
-              <p className="font-sans text-[22px] font-light leading-relaxed text-ink">
-                &ldquo;{t.quote}&rdquo;
-              </p>
-              <footer className="font-sans text-sm text-muted-foreground">
-                <strong className="font-medium text-ink">{t.name}</strong>
-                <span> &mdash; {t.role}</span>
-              </footer>
-            </blockquote>
-          ))}
+      <div className="intro g">
+        <div className="t">
+          <p className="eyebrow">Where the method came from</p>
+          <h2>
+            These are the programs where I learned which parts of a system a
+            business <span className="em">actually needs.</span>
+          </h2>
+          <p className="sub">
+            Work I&apos;ve done at enterprise scale. Building at that size is how
+            I know what a business your size does and doesn&apos;t need.
+          </p>
         </div>
+      </div>
+
+      <div className="quotes">
+        {testimonials.map((t) => (
+          <figure key={t.name}>
+            <blockquote>&ldquo;{t.quote}&rdquo;</blockquote>
+            <figcaption>
+              <b>{t.name}</b>
+              {t.role}
+            </figcaption>
+          </figure>
+        ))}
       </div>
     </section>
   );

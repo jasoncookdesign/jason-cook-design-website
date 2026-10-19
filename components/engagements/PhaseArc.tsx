@@ -54,57 +54,33 @@ const phases = [
 
 export default function PhaseArc() {
   return (
-    <section className="border-t border-ink">
-      <div className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
-        <div className="max-w-[760px]">
-          <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-            What each one is for
-          </p>
-          <h2 className="text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-[52px] sm:leading-[1.12]">
-            What each phase changes, and what it leaves behind.
-          </h2>
+    <section data-sheet="A-103" data-name="PHASES">
+      <div className="intro g">
+        <div className="t">
+          <p className="eyebrow">What each one is for</p>
+          <h2>What each phase changes, and what it leaves behind.</h2>
         </div>
-        <ol className="mt-14 flex list-none flex-col border-t border-border p-0">
-          {phases.map((phase, i) => {
-            return (
-              <li
-                key={phase.label}
-                className="grid grid-cols-1 gap-8 border-b border-border py-10 sm:grid-cols-[120px_1fr_320px] sm:gap-14"
-              >
-                <span className="font-sans text-[56px] font-extralight leading-none tracking-[-0.04em] text-ghost">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="flex flex-col gap-4">
-                  <p className="font-sans text-[28px] font-light leading-[1.25] tracking-[-0.02em] text-ink">
-                    {phase.label}
-                  </p>
-                  {phase.changes.map((change, ci) => (
-                    <p
-                      key={ci}
-                      className="max-w-[640px] font-sans text-base leading-[1.7] text-body"
-                    >
-                      {change}
-                    </p>
-                  ))}
-                </div>
-                <div className="flex flex-col gap-3 border-border pl-0 sm:border-l sm:pl-7">
-                  <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-                    What it leaves behind
-                  </p>
-                  {phase.evidence && (
-                    <p className="font-sans text-[15px] leading-relaxed text-ink">
-                      {phase.evidence}
-                    </p>
-                  )}
-                  <p className="font-sans text-[13px] leading-relaxed text-muted-foreground">
-                    {phase.term}
-                  </p>
-                </div>
-              </li>
-            );
-          })}
-        </ol>
       </div>
+      <ol className="rows">
+        {phases.map((phase, i) => (
+          <li key={phase.label} className="row hold">
+            <span className="k">{String(i + 1).padStart(2, "0")}</span>
+            <div>
+              <h3>{phase.label}</h3>
+              {phase.changes.map((change, ci) => (
+                <p key={ci}>{change}</p>
+              ))}
+              <dl className="pair">
+                <dt>What it leaves behind</dt>
+                <dd>
+                  {phase.evidence && <p>{phase.evidence}</p>}
+                  <p className="term">{phase.term}</p>
+                </dd>
+              </dl>
+            </div>
+          </li>
+        ))}
+      </ol>
     </section>
   );
 }

@@ -17,55 +17,44 @@ export const metadata = {
 
 export default function WorkPage() {
   return (
-    <section className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
-      <div className="flex flex-wrap items-end justify-between gap-12 border-b border-ink pb-10">
-        <div className="max-w-[720px]">
-          <div className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-            Work
+    <>
+      <section className="hero page g" data-sheet="A-101" data-name="HERO">
+        <div className="main">
+          <p className="eyebrow">Work</p>
+          <h1>Work</h1>
+          <div>
+            <p className="lead">
+              Each engagement started with a diagnosis of the actual problem
+              before any design work began.
+            </p>
           </div>
-          <h1 className="text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-5xl">
-            Work
-          </h1>
-          <p className="mt-4 font-sans text-xl font-light leading-relaxed text-body">
-            Each engagement started with a diagnosis of the actual problem
-            before any design work began.
-          </p>
         </div>
-      </div>
+      </section>
 
-      <ul className="list-none">
-        {caseStudies.map((cs) => (
-          <li key={cs.slug} className="border-b border-border">
-            <Link
-              href={`/work/${cs.slug}`}
-              className="group grid grid-cols-1 items-center gap-6 py-7 md:grid-cols-[340px_1fr_44px] md:gap-10"
-            >
-              <span className="relative block h-[160px] overflow-hidden rounded-md border border-border md:h-[186px]">
+      <section className="pgs" data-sheet="A-102" data-name="INDEX">
+        <div className="rows">
+          {caseStudies.map((cs) => (
+            <Link key={cs.slug} href={`/work/${cs.slug}`} className="row thumb">
+              <span className="k">{cs.client}</span>
+              <span className="fig thumbnail">
                 <Image
                   src={cs.backgroundImage}
                   alt={cs.client}
                   fill
-                  className="object-cover"
+                  sizes="260px"
                 />
               </span>
-              <span className="block pr-6">
-                <span className="block font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
-                  {cs.client}
-                </span>
-                <span className="mt-3 block font-sans text-2xl font-light leading-tight tracking-[-0.02em] text-ink md:text-[30px]">
-                  {cs.title}
-                </span>
-                <span className="mt-3 block max-w-[560px] font-sans text-base leading-relaxed text-body">
-                  {cs.indexOneLiner}
-                </span>
-              </span>
-              <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-md border border-border transition-colors group-hover:border-ink">
-                <span className="block h-[11px] w-[11px] -translate-x-[1px] rotate-45 border-r border-t border-accent" />
+              <div>
+                <h2 className="title">{cs.title}</h2>
+                <p>{cs.indexOneLiner}</p>
+              </div>
+              <span className="go" aria-hidden="true">
+                &rsaquo;
               </span>
             </Link>
-          </li>
-        ))}
-      </ul>
-    </section>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

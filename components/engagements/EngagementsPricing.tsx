@@ -27,44 +27,47 @@ const terms = [
 
 export default function EngagementsPricing() {
   return (
-    <section className="mx-auto max-w-[1200px] border-t border-ink px-6 py-24 sm:px-10 sm:py-28">
-      <div className="max-w-[800px]">
-        <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-          How it&apos;s priced
-        </p>
-        <h2 className="text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-[52px] sm:leading-[1.12]">
-          Three ways this gets priced, and only{" "}
-          <span className="text-muted-foreground font-medium">one of them is published.</span>
-        </h2>
+    <section data-sheet="A-105" data-name="PRICE">
+      <div className="intro g">
+        <div className="t">
+          <p className="eyebrow">How it&apos;s priced</p>
+          <h2>
+            Three ways this gets priced, and only{" "}
+            <span className="muted">one of them is published.</span>
+          </h2>
+        </div>
       </div>
-      <div className="mt-14 grid gap-6 sm:grid-cols-3">
-        {pricingCards.map((card) => (
-          <div
-            key={card.label}
-            className="flex flex-col gap-4 rounded-md border border-border p-8"
-          >
-            <span className="flex h-8 w-8 items-center justify-center rounded-md border border-accent font-mono text-xs font-medium text-link">
-              {card.n}
-            </span>
-            <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
-              {card.label}
-            </p>
-            <p className="font-sans text-base leading-relaxed text-body">
-              {card.body}
-            </p>
-          </div>
-        ))}
+      <div className="plate eng-plate g">
+        <div className="pl">
+          <span className="regs" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+            <i />
+          </span>
+          {pricingCards.map((card) => (
+            <div key={card.label} className="sp">
+              <div className="k">
+                <span className="sq" />
+                <span className="w">
+                  <span className="l">{card.n}</span>
+                  {card.label}
+                </span>
+              </div>
+              <div className="v">
+                <p>{card.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-      <ul className="mt-14 max-w-[900px] list-none border-t border-border p-0">
+      <ul className="rows">
         {terms.map((term, i) => (
-          <li
-            key={i}
-            className="grid grid-cols-[32px_1fr] gap-5 border-b border-border py-5 font-sans text-base leading-relaxed text-body"
-          >
-            <span className="font-mono text-[13px] text-muted-foreground">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <span>{term}</span>
+          <li key={i} className="row hold">
+            <span className="k">{String(i + 1).padStart(2, "0")}</span>
+            <div>
+              <p>{term}</p>
+            </div>
           </li>
         ))}
       </ul>

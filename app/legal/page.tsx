@@ -17,22 +17,34 @@ const sections = [
 
 export default function LegalPage() {
   return (
-    <div className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
-      <div className="max-w-[800px]">
-        <h1 className="text-3xl font-extralight tracking-[-0.035em] text-ink sm:text-[62px] sm:leading-[1.1]">
-          Legal
-        </h1>
-        {sections.map(({ id, heading }) => (
-          <section key={id} id={id} aria-labelledby={`${id}-heading`} className="mt-16 scroll-mt-24">
-            <h2 id={`${id}-heading`} className="text-2xl font-extralight tracking-[-0.03em] text-ink sm:text-[36px] sm:leading-[1.2]">
-              {heading}
-            </h2>
-            <p className="mt-6 font-mono text-[13px] leading-relaxed text-muted-foreground">
-              [LEGAL: {heading} text pending]
+    <>
+      <section className="hero page g" data-sheet="A-101" data-name="HERO">
+        <div className="main">
+          <h1>Legal</h1>
+        </div>
+      </section>
+      {sections.map(({ id, heading }, i) => (
+        <section
+          key={id}
+          id={id}
+          aria-labelledby={`${id}-heading`}
+          className="pgs"
+          data-sheet={`A-${102 + i}`}
+          data-name={id.toUpperCase()}
+        >
+          <div className="intro g">
+            <div className="t">
+              <p className="eyebrow">{String(i + 1).padStart(2, "0")}</p>
+              <h2 id={`${id}-heading`}>{heading}</h2>
+            </div>
+          </div>
+          <div className="pg">
+            <p className="ph-line">
+              <span className="ph">[LEGAL: {heading} text pending]</span>
             </p>
-          </section>
-        ))}
-      </div>
-    </div>
+          </div>
+        </section>
+      ))}
+    </>
   );
 }

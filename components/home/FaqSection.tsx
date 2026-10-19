@@ -108,31 +108,25 @@ const faqs = [
 
 export default function FaqSection() {
   return (
-    <section className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
-      <div className="grid gap-20 lg:grid-cols-[320px_1fr]">
-        <div className="lg:sticky lg:top-24 lg:self-start">
-          <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-            Questions
-          </p>
-          <h2 className="text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-[44px] sm:leading-[1.15]">
-            Twelve of them, answered plainly.
-          </h2>
+    <section data-sheet="A-108" data-name="FAQ">
+      <div className="intro g">
+        <div className="t">
+          <p className="eyebrow">Questions</p>
+          <h2>Twelve of them, answered plainly.</h2>
         </div>
-        <Accordion multiple={false}>
-          {faqs.map((faq) => (
-            <AccordionItem key={faq.id} id={faq.id} value={faq.id} className="scroll-mt-24">
-              <AccordionTrigger>{faq.question}</AccordionTrigger>
-              <AccordionContent>
-                {faq.answer.map((para, i) => (
-                  <p key={i} className="font-sans text-base leading-relaxed text-body">
-                    {para}
-                  </p>
-                ))}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
       </div>
+      <Accordion multiple={false}>
+        {faqs.map((faq) => (
+          <AccordionItem key={faq.id} id={faq.id} value={faq.id}>
+            <AccordionTrigger>{faq.question}</AccordionTrigger>
+            <AccordionContent>
+              {faq.answer.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
     </section>
   );
 }
