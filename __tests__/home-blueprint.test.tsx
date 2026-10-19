@@ -247,7 +247,7 @@ describe("Home close and FAQ", () => {
 });
 
 describe("Home START: the schedule figure from the concept", () => {
-  it("keeps FIG. 1 between the heading and the three cells, with the concept's placeholders verbatim", () => {
+  it("keeps FIG. 1 between the heading and the three cells, with final stage copy and no placeholder text", () => {
     const { container } = render(<HomePage />);
     const start = bySheet(container, "START");
     const order = Array.from(start.children).map((c) => c.tagName + "." + c.className.split(" ")[0]);
@@ -255,21 +255,30 @@ describe("Home START: the schedule figure from the concept", () => {
     const fig = start.querySelector("figure.sheet")!;
     expect(fig.querySelector(".sheet-top .idx")?.textContent).toBe("FIG. 1");
     expect(fig.querySelector(".sheet-top b")?.textContent).toBe("Find the real problem");
-    expect(fig.textContent).toContain("[SAMPLE: scale and bar positions are placeholders]");
-    expect(fig.textContent).toContain("[SAMPLE: stage 4, written recommendation]");
-    expect(fig.textContent).toContain("[SAMPLE: decision point, build or stop]");
+    expect(fig.textContent).not.toMatch(/SAMPLE/);
+    expect(fig.querySelector(".ph")).toBeNull();
+    // an abstract Gantt: no scale label, no column numbers, no day ranges
+    expect(fig.querySelector(".sheet-top")?.textContent).toBe("FIG. 1Find the real problem");
+    expect(fig.querySelector(".rw.hd .lab")?.textContent).toBe("");
+    expect(fig.querySelector(".rw.hd .cols")?.textContent).toBe("");
+    expect(fig.textContent).not.toMatch(/Days \d|working days/i);
+    expect(Array.from(fig.querySelectorAll(".rw:not(.hd) .lab")).map((e) => e.textContent)).toEqual([
+      "01Interview with the owner",
+      "02How the business runs now",
+      "03What customers experience",
+      "04Written recommendation",
+      "05Decision: build or stop",
+    ]);
   });
 
-  it("draws four stage bars and a decision line on a 12-column track, with text alternatives for the bars", () => {
+  it("draws four stage bars and a decision line on a 12-column track, with the bars hidden from assistive tech", () => {
     const { container } = render(<HomePage />);
     const fig = bySheet(container, "START").querySelector("figure.sheet")!;
     expect(fig.querySelectorAll(".rw")).toHaveLength(6); // scale header, four stages, decision
     expect(fig.querySelectorAll(".bx:not(.dash)")).toHaveLength(4);
     expect(fig.querySelectorAll(".dec").length).toBeGreaterThanOrEqual(5);
     expect(fig.querySelectorAll(".trk .cols i")).toHaveLength(6 * 12);
-    expect(Array.from(fig.querySelectorAll(".bx .sr")).map((e) => e.textContent)).toEqual([
-      "[SAMPLE: days 1 to 2]", "[SAMPLE: days 2 to 5]", "[SAMPLE: days 5 to 7]", "[SAMPLE: days 7 to 9]",
-    ]);
+    expect(fig.querySelectorAll(".bx .sr")).toHaveLength(0);
     // decoration is hidden from assistive tech
     fig.querySelectorAll(".dec, .cols, .mk").forEach((e) => {
       expect(e.getAttribute("aria-hidden") === "true" || e.closest("[aria-hidden='true']")).toBeTruthy();
