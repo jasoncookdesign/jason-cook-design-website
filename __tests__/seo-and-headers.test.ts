@@ -42,6 +42,8 @@ describe("security headers", () => {
     expect(h["X-Frame-Options"]).toBe("DENY");
     expect(h["Referrer-Policy"]).toBe("strict-origin-when-cross-origin");
     expect(h["Strict-Transport-Security"]).toMatch(/max-age=\d{8,}/);
+    // Host-only: includeSubDomains would pin every subdomain to HTTPS for two years, and nothing here needs that.
+    expect(h["Strict-Transport-Security"]).not.toContain("includeSubDomains");
     expect(h["Permissions-Policy"]).toContain("camera=()");
   });
 });
