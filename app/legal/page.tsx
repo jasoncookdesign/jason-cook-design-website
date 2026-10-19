@@ -10,10 +10,11 @@ export const metadata = withSocial({
 
 // One page for all legal text; the footer links to each section by anchor.
 // The [LEGAL: …] tokens stay literal until the owner supplies the text.
+// DRAFT — Jason to edit. The eyebrow says what each section describes.
 const sections = [
-  { id: "privacy", heading: "Privacy Policy" },
-  { id: "accessibility", heading: "Accessibility Statement" },
-  { id: "terms", heading: "Terms" },
+  { id: "privacy", heading: "Privacy Policy", eyebrow: "What this site collects and why" },
+  { id: "accessibility", heading: "Accessibility Statement", eyebrow: "How this site works for every visitor" },
+  { id: "terms", heading: "Terms", eyebrow: "The ground rules for using this site" },
 ];
 
 export default function LegalPage() {
@@ -24,7 +25,7 @@ export default function LegalPage() {
           <h1>Legal</h1>
         </div>
       </section>
-      {sections.map(({ id, heading }, i) => (
+      {sections.map(({ id, heading, eyebrow }, i) => (
         <section
           key={id}
           id={id}
@@ -35,7 +36,7 @@ export default function LegalPage() {
         >
           <div className="intro g">
             <div className="t">
-              <p className="eyebrow">{String(i + 1).padStart(2, "0")}</p>
+              <p className="eyebrow">{eyebrow}</p>
               <h2 id={`${id}-heading`}>{heading}</h2>
             </div>
           </div>
