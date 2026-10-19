@@ -96,3 +96,15 @@ describe("blueprint shape and scale", () => {
     expect(offenders).toEqual([]);
   });
 });
+
+describe("sheet grammar", () => {
+  it("numbers each section with a CSS counter and hides the label from assistive technology", () => {
+    expect(css).toMatch(/main\s*\{[^}]*counter-reset:\s*sheet/);
+    expect(css).toMatch(/main section\s*\{[^}]*counter-increment:\s*sheet/);
+    expect(css).toMatch(/main section::before\s*\{[^}]*content:\s*"A-1"\s*counter\(sheet,\s*decimal-leading-zero\)\s*\/\s*""/);
+  });
+
+  it("draws the binding margin only on wide screens and never intercepts pointer events", () => {
+    expect(css).toMatch(/@media \(min-width: 1280px\)\s*\{\s*body::before[^}]*pointer-events:\s*none/);
+  });
+});
