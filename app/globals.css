@@ -205,7 +205,6 @@ main section::before {
     margin: 10px 10px 36px 30px;
   }
 }
-.sheet-frame > header,
 .sheet-frame > main,
 .sheet-frame > footer {
   position: relative;

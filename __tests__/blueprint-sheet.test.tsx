@@ -84,3 +84,18 @@ describe("section spacing under a sheet rule", () => {
     expect(css).toMatch(/main > section:not\(:first-child\)\[class\*="pb-24"\]:not\(\[class\*="py-"\]\):not\(\[class\*="pt-"\]\)\s*\{[^}]*padding-top:\s*6rem/);
   });
 });
+
+describe("docked header", () => {
+  it("is not overridden by the frame: the header stays sticky inside the sheet", () => {
+    // `position: relative` on the header would defeat position: sticky and the header would scroll away.
+    expect(css).not.toMatch(/\.sheet-frame > header[^{]*\{[^}]*position:\s*relative/);
+  });
+
+  it("is sticky in the markup and sits above the content", () => {
+    render(<Nav />);
+    const header = screen.getByRole("banner");
+    expect(header.className).toMatch(/\bsticky\b/);
+    expect(header.className).toMatch(/\btop-0\b/);
+    expect(header.className).toMatch(/\bz-20\b/);
+  });
+});
