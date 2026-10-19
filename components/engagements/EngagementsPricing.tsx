@@ -27,7 +27,7 @@ const terms = [
 
 export default function EngagementsPricing() {
   return (
-    <section className="mx-auto max-w-[1200px] border-t border-border px-6 py-24 sm:px-10 sm:py-28">
+    <section className="mx-auto max-w-[1200px] border-t border-ink px-6 py-24 sm:px-10 sm:py-28">
       <div className="max-w-[800px]">
         <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
           How it&apos;s priced

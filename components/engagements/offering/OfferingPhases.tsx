@@ -56,7 +56,7 @@ const dlClass = "mt-5 grid gap-x-6 gap-y-3 sm:grid-cols-[120px_1fr]";
 
 export default function OfferingPhases() {
   return (
-    <section className="border-t border-border bg-surface">
+    <section className="border-t border-ink">
       <div className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
         <h2 className="max-w-[720px] text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-[44px] sm:leading-[1.15]">
           Six phases. Each one is a place you can stop.

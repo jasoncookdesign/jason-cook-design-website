@@ -38,14 +38,14 @@ export default function Nav() {
   }, [open]);
 
   return (
-    <header data-docked={docked ? "true" : "false"} className="sticky top-0 z-20 border-b border-border bg-bg">
+    <header data-docked={docked ? "true" : "false"} className="sticky top-0 z-20 border-b border-ink bg-bg">
       <nav
         className={`mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-4 sm:px-6 lg:gap-10 lg:px-10 transition-[padding] duration-200 ${docked ? "py-3" : "py-[22px]"}`}
         aria-label="Main navigation"
       >
         <Link
           href="/"
-          className="flex flex-shrink-0 items-center gap-3 whitespace-nowrap font-mono text-xs font-medium uppercase tracking-[0.14em] text-ink transition-colors hover:opacity-80"
+          className="brand flex flex-shrink-0 items-center gap-3 whitespace-nowrap font-mono text-xs font-medium uppercase tracking-[0.14em] text-ink transition-colors hover:opacity-80"
         >
           <JcdMark className="h-5 w-auto" />
           <span className={docked ? "sr-only lg:not-sr-only" : ""}>Jason Cook Design</span>
@@ -53,27 +53,27 @@ export default function Nav() {
 
         <ul className="hidden items-center gap-8 md:flex" role="list">
           <li>
-            <Link href="/" className="font-sans text-sm text-ink hover:text-link transition-colors">
+            <Link href="/" className="font-mono text-xs uppercase tracking-[0.14em] text-ink hover:text-link transition-colors">
               Home
             </Link>
           </li>
           <li>
-            <Link href="/work" className="font-sans text-sm text-muted-foreground hover:text-ink transition-colors">
+            <Link href="/work" className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-ink transition-colors">
               Work
             </Link>
           </li>
           <li>
-            <Link href="/engagements" className="font-sans text-sm text-muted-foreground hover:text-ink transition-colors">
+            <Link href="/engagements" className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-ink transition-colors">
               Engagements
             </Link>
           </li>
           <li>
-            <Link href="/writing" className="font-sans text-sm text-muted-foreground hover:text-ink transition-colors">
+            <Link href="/writing" className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-ink transition-colors">
               Writing
             </Link>
           </li>
           <li>
-            <Link href="/about" className="font-sans text-sm text-muted-foreground hover:text-ink transition-colors">
+            <Link href="/about" className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-ink transition-colors">
               About
             </Link>
           </li>
@@ -102,7 +102,7 @@ export default function Nav() {
             href={CTA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center rounded-md bg-btn-bg px-[18px] py-[11px] font-sans text-sm font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover lg:inline-flex"
+            className="hidden items-center rounded-md bg-btn-bg px-[18px] py-[11px] font-mono text-[13px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover lg:inline-flex"
           >
             Start a conversation
           </a>
@@ -133,7 +133,7 @@ export default function Nav() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="inline-flex items-center rounded-md bg-btn-bg px-[18px] py-[11px] font-sans text-sm font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              className="inline-flex items-center rounded-md bg-btn-bg px-[18px] py-[11px] font-mono text-[13px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             >
               Start a conversation
             </a>

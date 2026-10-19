@@ -3,7 +3,7 @@ const CTA_URL = "https://cal.com/jasoncookdesign/engagement-consultation";
 
 export default function PricingSection() {
   return (
-    <section className="mx-auto max-w-[1200px] border-t border-border px-6 py-24 sm:px-10 sm:py-28">
+    <section className="mx-auto max-w-[1200px] border-t border-ink px-6 py-24 sm:px-10 sm:py-28">
       <div className="grid gap-20 lg:grid-cols-2 lg:items-start">
         <div>
           <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
@@ -49,7 +49,7 @@ export default function PricingSection() {
             href={CTA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 inline-flex w-fit items-center gap-3 rounded-md bg-btn-bg px-[22px] py-[14px] font-sans text-[15px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
+            className="mt-2 inline-flex w-fit items-center gap-3 rounded-md bg-btn-bg px-[22px] py-[14px] font-mono text-[15px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
           >
             Book your strategy call
             <span className="block h-[7px] w-[7px] rotate-45 border-r border-t border-accent" />
@@ -80,7 +80,7 @@ export default function PricingSection() {
             href={CTA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 inline-flex w-fit items-center gap-3 rounded-md bg-btn-bg px-[22px] py-[14px] font-sans text-[15px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
+            className="mt-2 inline-flex w-fit items-center gap-3 rounded-md bg-btn-bg px-[22px] py-[14px] font-mono text-[15px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
           >
             Book your strategy call
             <span className="block h-[7px] w-[7px] rotate-45 border-r border-t border-accent" />

@@ -34,7 +34,7 @@ const testimonials = [
 
 export default function ProofSection() {
   return (
-    <section className="border-t border-border bg-surface">
+    <section className="border-t border-ink">
       <div className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
         {/* Range proof */}
         <div className="grid gap-20 lg:grid-cols-2 lg:items-start">

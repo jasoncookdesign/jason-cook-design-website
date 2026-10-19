@@ -25,7 +25,7 @@ export default function ContactPage() {
         <div className="mt-12 flex flex-wrap items-center gap-6">
           <Link
             href="https://cal.com/jasoncookdesign/engagement-consultation"
-            className="inline-flex items-center gap-3 rounded-md bg-btn-bg px-[26px] py-4 font-sans text-base font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
+            className="inline-flex items-center gap-3 rounded-md bg-btn-bg px-[26px] py-4 font-mono text-base font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
           >
             Book your strategy call
             <span className="block h-[7px] w-[7px] rotate-45 border-r border-t border-accent" />

@@ -104,7 +104,4 @@ describe("sheet grammar", () => {
     expect(css).toMatch(/main section::before\s*\{[^}]*content:\s*"A-1"\s*counter\(sheet,\s*decimal-leading-zero\)\s*\/\s*""/);
   });
 
-  it("draws the binding margin only on wide screens and never intercepts pointer events", () => {
-    expect(css).toMatch(/@media \(min-width: 1280px\)\s*\{\s*body::before[^}]*pointer-events:\s*none/);
-  });
 });

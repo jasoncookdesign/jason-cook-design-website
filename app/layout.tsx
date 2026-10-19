@@ -3,6 +3,7 @@ import { Newsreader, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
+import SheetFrame from "@/components/layout/SheetFrame";
 
 const newsreader = Newsreader({
   // The serif carries the site's body and display roles; globals.css aliases font-sans to this variable.
@@ -45,9 +46,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${newsreader.variable} ${ibmPlexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <Nav />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SheetFrame>
+          <Nav />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </SheetFrame>
       </body>
     </html>
   );

@@ -85,7 +85,7 @@ export default function WorkCaseStudyContent({ cs: study }: Props) {
     <article>
       {/* Hero — light, text-led. Case-study screenshots appear at full
           opacity in the body; the hero itself carries no dimmed photo. */}
-      <div className="border-b border-border bg-surface">
+      <div className="border-b border-ink">
         <div className="mx-auto max-w-[1200px] px-6 pb-16 pt-24 sm:px-10 sm:pb-20 sm:pt-28">
           <p className="mb-10 font-sans text-[13px] text-muted-foreground">
             Work <span className="px-2 text-ghost">/</span> {study.client}

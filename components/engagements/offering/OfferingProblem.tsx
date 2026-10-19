@@ -24,7 +24,7 @@ const problemCards = [
 
 export default function OfferingProblem() {
   return (
-  <section className="border-t border-border bg-surface">
+  <section className="border-t border-ink">
     <div className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
       <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
         If you&apos;re launching something new

@@ -1,7 +1,7 @@
 // DRAFT — Jason to edit
 export default function OfferingPricing() {
   return (
-    <section className="mx-auto max-w-[1200px] border-t border-border px-6 py-24 sm:px-10 sm:py-28">
+    <section className="mx-auto max-w-[1200px] border-t border-ink px-6 py-24 sm:px-10 sm:py-28">
       <h2 className="max-w-[720px] text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-[44px] sm:leading-[1.15]">
         What it costs
       </h2>
