@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import SheetFrame from "@/components/layout/SheetFrame";
 import RevealOnScroll from "@/components/layout/RevealOnScroll";
 import PrivacyBanner from "@/components/layout/PrivacyBanner";
+import Analytics from "@/components/layout/Analytics";
 import { LAYER_BOOT_SCRIPT } from "@/lib/layer-view-boot";
 
 const newsreader = Newsreader({
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Footer />
         </SheetFrame>
         <PrivacyBanner />
+        <Analytics />
       </body>
     </html>
   );
