@@ -91,10 +91,8 @@
   .close .btn { margin-top: 30px; }
 }
 
-/* ---------- FAQ: keys are a CSS counter, shared by every accordion on the site ---------- */
-.faq { counter-reset: faq; }
-.faq-item { counter-increment: faq; scroll-margin-top: 96px; }
-.faq-trigger .k::before { content: counter(faq, decimal-leading-zero) / ""; }
+/* ---------- FAQ ---------- */
+.faq-item { scroll-margin-top: 96px; }
 .faq-trigger { font-family: inherit; }
 .faq-panel a { text-decoration: underline; text-underline-offset: 4px; }
 

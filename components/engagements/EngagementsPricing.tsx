@@ -1,17 +1,14 @@
 // [ENTRY-OFFER-NAME] candidates (DRAFT, none chosen): see docs/content-token-candidates.md.
 const pricingCards = [
   {
-    n: "01",
     label: "Set in advance",
     body: "The [ENTRY-OFFER-NAME] is the only part with a price I can publish: $2,500. It’s the same number for everyone.",
   },
   {
-    n: "02",
     label: "Quoted per phase",
     body: "The four phases after it are quoted one at a time, each at a fixed price for that phase. You’re buying an outcome, not hours.",
   },
   {
-    n: "03",
     label: "Monthly, if you want it",
     body: "The last one is a subscription. What it buys is defined availability, response expectations, and where my responsibility stops.",
   },
@@ -50,7 +47,6 @@ export default function EngagementsPricing() {
               <div className="k">
                 <span className="sq" />
                 <span className="w">
-                  <span className="l">{card.n}</span>
                   {card.label}
                 </span>
               </div>
@@ -63,8 +59,7 @@ export default function EngagementsPricing() {
       </div>
       <ul className="rows">
         {terms.map((term, i) => (
-          <li key={i} className="row hold">
-            <span className="k">{String(i + 1).padStart(2, "0")}</span>
+          <li key={i} className="row hold plain">
             <div>
               <p>{term}</p>
             </div>

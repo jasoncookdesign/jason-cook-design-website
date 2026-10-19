@@ -11,9 +11,8 @@ export default function EngagementFork() {
         </div>
       </div>
       <div className="rows">
-        {engagementTypes.map((t, i) => (
-          <Link key={t.slug} href={`/engagements/${t.slug}`} className="row">
-            <span className="k">{String(i + 1).padStart(2, "0")}</span>
+        {engagementTypes.map((t) => (
+          <Link key={t.slug} href={`/engagements/${t.slug}`} className="row plain">
             <div>
               <p className="lbl">{t.name}</p>
               <h3>{t.situation}</h3>

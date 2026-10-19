@@ -135,12 +135,12 @@ describe("Home hero", () => {
 });
 
 describe("Home fork, start, and delivery", () => {
-  it("lists the two engagement types as rows: one link each, mono key, situation heading, arrow", () => {
+  it("lists the two engagement types as rows: one link each, situation heading, arrow, and no number key", () => {
     const { container } = render(<HomePage />);
     const rows = Array.from(bySheet(container, "FORK").querySelectorAll(".rows > a.row"));
     expect(rows.map((r) => r.getAttribute("href"))).toEqual(engagementTypes.map((t) => `/engagements/${t.slug}`));
     engagementTypes.forEach((t, i) => {
-      expect(rows[i].querySelector(".k")?.textContent).toBe(`0${i + 1}`);
+      expect(rows[i].querySelector(".k")).toBeNull();
       expect(rows[i].querySelector("h3")?.textContent).toBe(t.situation);
       expect(rows[i].textContent).toContain(t.name);
       expect(rows[i].querySelector(".go")?.getAttribute("aria-hidden")).toBe("true");
@@ -225,7 +225,7 @@ describe("Home close and FAQ", () => {
     expect(close.querySelector(".book#book .cal-inline")).not.toBeNull();
   });
 
-  it("sets the FAQ as kit rows with a key and a mark, keeping the item ids", () => {
+  it("sets the FAQ as kit rows with a mark and no number key, keeping the item ids", () => {
     const { container } = render(<HomePage />);
     const faq = bySheet(container, "FAQ");
     expect(faq.querySelector(".faq")).not.toBeNull();
@@ -233,17 +233,16 @@ describe("Home close and FAQ", () => {
     expect(items).toHaveLength(12);
     expect(items[0].id).toBe("faq-01");
     const trigger = items[0].querySelector("button.faq-trigger")!;
-    expect(trigger.querySelector(".k")).not.toBeNull();
+    expect(trigger.querySelector(".k")).toBeNull();
     expect(trigger.querySelector(".mark")).not.toBeNull();
     expect(trigger.textContent).toBe("What do I get for $2,500?");
     expect(screen.getAllByRole("button").length).toBe(12);
   });
 
-  it("numbers the FAQ keys with a CSS counter so the shared accordion needs no key prop", () => {
+  it("does not number the FAQ rows: no CSS counter for them", () => {
     const css = fs.readFileSync(path.join(process.cwd(), "app/bp-home.css"), "utf8");
-    expect(css).toMatch(/counter-reset:\s*faq/);
-    expect(css).toMatch(/counter-increment:\s*faq/);
-    expect(css).toMatch(/\.faq-trigger \.k::before/);
+    expect(css).not.toMatch(/counter-reset:\s*faq/);
+    expect(css).not.toMatch(/counter-increment:\s*faq/);
   });
 });
 

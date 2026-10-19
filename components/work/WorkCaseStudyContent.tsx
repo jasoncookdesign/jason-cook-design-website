@@ -88,7 +88,6 @@ export default function WorkCaseStudyContent({ cs: study }: Props) {
         >
           <div className="intro g">
             <div className="t">
-              <p className="eyebrow">{String(sIdx + 1).padStart(2, "0")}</p>
               <h2>{section.heading}</h2>
             </div>
           </div>
