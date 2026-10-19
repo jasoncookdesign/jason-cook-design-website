@@ -45,7 +45,8 @@ describe("Home page", () => {
     const { container } = render(<HomePage />);
     expect(screen.getByRole("heading", { name: /find the real problem first/i })).toBeTruthy();
     for (const label of ["Find the real problem", "Design and build", "Hand it over"]) {
-      expect(screen.getByText(label)).toBeTruthy();
+      // the first step also titles FIG. 1, so look for the step headings, not any text
+      expect(screen.getByRole("heading", { level: 3, name: label })).toBeTruthy();
     }
     expect(container.textContent).not.toMatch(/The old way|The internal attempt|The search outside|outgrown the systems you built/);
   });

@@ -208,7 +208,7 @@ describe("Home proof and pricing", () => {
 
   it("uses no orange: no decision marker on the plate", () => {
     const { container } = render(<HomePage />);
-    expect(container.querySelector(".acc")).toBeNull();
+    expect(bySheet(container, "PRICE").querySelector(".acc")).toBeNull();
   });
 });
 
@@ -241,5 +241,44 @@ describe("Home close and FAQ", () => {
     expect(css).toMatch(/counter-reset:\s*faq/);
     expect(css).toMatch(/counter-increment:\s*faq/);
     expect(css).toMatch(/\.faq-trigger \.k::before/);
+  });
+});
+
+describe("Home START: the schedule figure from the concept", () => {
+  it("keeps FIG. 1 between the heading and the three cells, with the concept's placeholders verbatim", () => {
+    const { container } = render(<HomePage />);
+    const start = bySheet(container, "START");
+    const order = Array.from(start.children).map((c) => c.tagName + "." + c.className.split(" ")[0]);
+    expect(order).toEqual(["DIV.intro", "FIGURE.sheet", "DIV.cells"]);
+    const fig = start.querySelector("figure.sheet")!;
+    expect(fig.querySelector(".sheet-top .idx")?.textContent).toBe("FIG. 1");
+    expect(fig.querySelector(".sheet-top b")?.textContent).toBe("Find the real problem");
+    expect(fig.textContent).toContain("[SAMPLE: scale and bar positions are placeholders]");
+    expect(fig.textContent).toContain("[SAMPLE: stage 4, written recommendation]");
+    expect(fig.textContent).toContain("[SAMPLE: decision point, build or stop]");
+  });
+
+  it("draws four stage bars and a decision line on a 12-column track, with text alternatives for the bars", () => {
+    const { container } = render(<HomePage />);
+    const fig = bySheet(container, "START").querySelector("figure.sheet")!;
+    expect(fig.querySelectorAll(".rw")).toHaveLength(6); // scale header, four stages, decision
+    expect(fig.querySelectorAll(".bx:not(.dash)")).toHaveLength(4);
+    expect(fig.querySelectorAll(".dec").length).toBeGreaterThanOrEqual(5);
+    expect(fig.querySelectorAll(".trk .cols i")).toHaveLength(6 * 12);
+    expect(Array.from(fig.querySelectorAll(".bx .sr")).map((e) => e.textContent)).toEqual([
+      "[SAMPLE: days 1 to 2]", "[SAMPLE: days 2 to 5]", "[SAMPLE: days 5 to 7]", "[SAMPLE: days 7 to 9]",
+    ]);
+    // decoration is hidden from assistive tech
+    fig.querySelectorAll(".dec, .cols, .mk").forEach((e) => {
+      expect(e.getAttribute("aria-hidden") === "true" || e.closest("[aria-hidden='true']")).toBeTruthy();
+    });
+  });
+
+  it("is labelled by its title and keeps the caption under it", () => {
+    const { container } = render(<HomePage />);
+    const fig = bySheet(container, "START").querySelector("figure.sheet")!;
+    const id = fig.getAttribute("aria-labelledby")!;
+    expect(fig.querySelector("#" + id)?.textContent).toBe("Find the real problem");
+    expect(fig.querySelector("figcaption .cap p")?.textContent).toMatch(/^It starts with a paid diagnosis/);
   });
 });
