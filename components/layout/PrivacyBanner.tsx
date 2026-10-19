@@ -23,8 +23,8 @@ export default function PrivacyBanner() {
     <div className="privacy" role="region" aria-label="Privacy notice">
       <p>
         <span className="tag">Privacy</span>
-        Booking runs through an embedded Cal.com calendar, which may set cookies. Decline and it stays off; the
-        booking link still works.{" "}
+        Booking runs through an embedded Cal.com calendar, which may set cookies, and accepting also turns on
+        analytics through Google Tag Manager. Decline and both stay off; the booking link still works.{" "}
         <Link href="/legal#privacy">Privacy policy</Link>.
       </p>
       <div className="privacy-actions">

@@ -31,7 +31,7 @@ Gathered with `dig`, `whois`, `curl -I`, and `gh api repos/jasoncookdesign/jason
 
 **Old URLs still served today** that this site doesn't redirect: `/resume.pdf`, `/resume_designproduction.pdf`, `/archive/portfolio-old-mobile.pdf`, and `/blog/feed.xml` (all return 200 now). The feed is meant to 404 after cutover (ruled 2026-10-07). The three PDFs need a decision.
 
-**Analytics:** the old site loads a Google Analytics 4 tag. This site has none, so traffic measurement stops at cutover unless one is added.
+**Analytics:** the old site loads a Google Analytics 4 tag. This site loads Google Tag Manager instead (see `NEXT_PUBLIC_GTM_ID` in the README), on `jasoncookdesign.com` only and after the visitor accepts the privacy notice. Until the container id is set in the Vercel project, the site has no analytics, so traffic measurement stops at cutover.
 
 **Mail note, separate from the cutover:** the SPF record names only Mailgun while MX points at Google Workspace. Mail sent through Workspace may fail SPF. Fix it on its own day, never in the same change as the cutover, so a mail problem can't be confused with a web one.
 
@@ -41,7 +41,7 @@ Gathered with `dig`, `whois`, `curl -I`, and `gh api repos/jasoncookdesign/jason
 2. Placeholder tokens are resolved, or Jason has accepted each one going live: `[ENTRY-OFFER-NAME]`, `[PRACTICE-NAME]`, the `[LEGAL: …]` sections, and the Capabilities company-data tokens (`[UEI]`, `[CAGE-CODE]`, `[NAICS-CODES]`, `[SAM-STATUS]`). Check the preview with a search for `[` followed by capitals, and confirm the new routes `/engagements`, `/engagements/operating`, and `/engagements/offering` load.
 3. No page cites a case without the client's consent.
 4. A decision on the three old PDFs: redirect them (for example to `/about`), copy them into `public/`, or let them 404.
-5. A decision on analytics: add a tag before cutover, or accept a gap.
+5. Analytics: `NEXT_PUBLIC_GTM_ID` is set for production in the Vercel project, the container is published, and the GA4 stream is the one the old site reports to, so history continues.
 6. The Vercel project exists, builds `main` as production, and passes on the preview: `npm test`, `npm run build`, and the redirect spot checks below.
 7. Recommended: verify `jasoncookdesign.com` in the GitHub account's Pages settings (adds a `_github-pages-challenge-…` TXT record). Once the old repo's custom domain is removed, any DNS record still pointing at GitHub (for example during a late rollback) could let another account's Pages site claim the domain; verification blocks that.
 8. Access confirmed: Jason can log in to the DNS dashboard and to Vercel, and has a copy of the current record table above.

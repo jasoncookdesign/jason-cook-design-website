@@ -35,6 +35,10 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+## Configuration
+
+- `NEXT_PUBLIC_GTM_ID`: the Google Tag Manager container id (`GTM-XXXXXXX`). Optional. Analytics load only when it is set, the page is served from `jasoncookdesign.com`, and the visitor has accepted the privacy notice, so previews and local runs never send data. Events go through the data layer: `generate_lead` with `method` set to `email` (a `mailto:` link was clicked) or `booking` (a Cal.com booking finished). Tags and triggers live in the container, not in this repo.
+
 ## Running tests
 
 ```bash
