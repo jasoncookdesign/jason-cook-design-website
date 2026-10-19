@@ -1,4 +1,5 @@
 import { withSocial } from "@/lib/metadata";
+import { legalSections, CONTACT_EMAIL } from "@/lib/legal";
 export const metadata = withSocial({
   title: "Legal | Jason Cook Design",
   description: "Privacy policy, accessibility statement, and terms for Jason Cook Design.",
@@ -8,14 +9,16 @@ export const metadata = withSocial({
   },
 });
 
-// One page for all legal text; the footer links to each section by anchor.
-// The [LEGAL: …] tokens stay literal until the owner supplies the text.
-// DRAFT — Jason to edit. The eyebrow says what each section describes.
-const sections = [
-  { id: "privacy", heading: "Privacy Policy", eyebrow: "What this site collects and why" },
-  { id: "accessibility", heading: "Accessibility Statement", eyebrow: "How this site works for every visitor" },
-  { id: "terms", heading: "Terms", eyebrow: "The ground rules for using this site" },
-];
+// One page for all legal text; the footer links to each section by anchor. The copy lives in lib/legal.ts.
+
+// Turns each mention of the contact address into a mailto link.
+function withEmailLink(detail: string) {
+  return detail.split(CONTACT_EMAIL).flatMap((part, i, all) =>
+    i < all.length - 1
+      ? [part, <a key={i} href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>]
+      : [part]
+  );
+}
 
 export default function LegalPage() {
   return (
@@ -25,7 +28,7 @@ export default function LegalPage() {
           <h1>Legal</h1>
         </div>
       </section>
-      {sections.map(({ id, heading, eyebrow }, i) => (
+      {legalSections.map(({ id, heading, eyebrow, entries }, i) => (
         <section
           key={id}
           id={id}
@@ -40,11 +43,14 @@ export default function LegalPage() {
               <h2 id={`${id}-heading`}>{heading}</h2>
             </div>
           </div>
-          <div className="pg">
-            <p className="ph-line">
-              <span className="ph">[LEGAL: {heading} text pending]</span>
-            </p>
-          </div>
+          <dl className="defs">
+            {entries.map(({ term, detail }) => (
+              <div key={term} className="d">
+                <dt>{term}</dt>
+                <dd>{withEmailLink(detail)}</dd>
+              </div>
+            ))}
+          </dl>
         </section>
       ))}
     </>

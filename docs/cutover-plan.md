@@ -38,7 +38,7 @@ Gathered with `dig`, `whois`, `curl -I`, and `gh api repos/jasoncookdesign/jason
 ## What must be true before Jason's go
 
 1. Jason has done his content and polish pass and reviewed a Vercel preview deployment of `main`.
-2. Placeholder tokens are resolved, or Jason has accepted each one going live: `[ENTRY-OFFER-NAME]`, `[PRACTICE-NAME]`, the `[LEGAL: …]` sections, and the Capabilities company-data tokens (`[UEI]`, `[CAGE-CODE]`, `[NAICS-CODES]`, `[SAM-STATUS]`). Check the preview with a search for `[` followed by capitals, and confirm the new routes `/engagements`, `/engagements/operating`, and `/engagements/offering` load.
+2. Placeholder tokens are resolved, or Jason has accepted each one going live: `[ENTRY-OFFER-NAME]`, `[PRACTICE-NAME]`, and the Capabilities company-data tokens (`[UEI]`, `[CAGE-CODE]`, `[NAICS-CODES]`, `[SAM-STATUS]`). The `/legal` text is a draft: confirm the facts listed at the top of `lib/legal.ts` (hosting provider, email use) and have the privacy and terms text reviewed. Check the preview with a search for `[` followed by capitals, and confirm the new routes `/engagements`, `/engagements/operating`, and `/engagements/offering` load.
 3. No page cites a case without the client's consent.
 4. A decision on the three old PDFs: redirect them (for example to `/about`), copy them into `public/`, or let them 404.
 5. Analytics: `NEXT_PUBLIC_GTM_ID` is set for production in the Vercel project and production is redeployed (Next inlines it at build time), the container is published, and the GA4 stream is the one the old site reports to, so history continues.

@@ -200,10 +200,12 @@ describe("about, capabilities, contact, legal", () => {
     expect(container.querySelector("a.btn")!.getAttribute("href")).toBe("#book");
   });
 
-  it("legal gives each section a mono key, its headline, and the pending token", () => {
+  it("legal gives each section an eyebrow, its headline, and its copy as mono-keyed definition rows", () => {
     const { container } = render(<LegalPage />);
     expect(container.querySelectorAll("section .intro h2")).toHaveLength(3);
-    expect(container.querySelectorAll(".ph")).toHaveLength(3);
+    expect(container.querySelectorAll("section .intro .eyebrow")).toHaveLength(3);
+    expect(container.querySelectorAll("section dl.defs .d").length).toBeGreaterThanOrEqual(9);
+    expect(container.querySelectorAll(".ph")).toHaveLength(0);
   });
 
   it("not found offers a primary button home", () => {

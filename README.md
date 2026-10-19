@@ -58,10 +58,9 @@ These placeholder tokens appear in the built pages and must stay literal until t
 - `[ENTRY-OFFER-NAME]`: the named entry offer. Replace by search once decided. Draft candidates: `docs/content-token-candidates.md`.
 - `[PRACTICE-NAME]`: the name of the practice discipline (Capabilities page). Replace by search once decided. Draft candidates: `docs/content-token-candidates.md`.
 - `[UEI]`, `[CAGE-CODE]`, `[NAICS-CODES]`, `[SAM-STATUS]`: the company's SAM.gov identifiers and registration status (Capabilities page, company data). Filled from SAM.gov by the owner and never guessed.
-- `[LEGAL: <section> text pending]`: legal text for each `/legal` section. Supplied by the owner and never drafted.
 - Any other `[GAP: ...]`: an open content question. These should not render. Tests guard the pages that had them.
 
-Copy marked with a `DRAFT — Jason to edit` comment in the source is placeholder prose awaiting the owner's edit.
+Copy marked with a `DRAFT — Jason to edit` comment in the source is placeholder prose awaiting the owner's edit. The `/legal` text (`lib/legal.ts`) is a draft written from what the site does; the privacy and terms text needs legal review before launch.
 
 ## Docs
 
