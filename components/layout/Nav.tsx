@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { BOOKING_PATH } from "@/lib/booking";
 import JcdMark from "@/components/brand/JcdMark";
 import LayerView from "@/components/layout/LayerView";
 
-const CTA_URL = "https://cal.com/jasoncookdesign/engagement-consultation";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -59,9 +59,9 @@ export default function Nav() {
         </ul>
       </nav>
 
-      <a href={CTA_URL} target="_blank" rel="noopener noreferrer" className="btn sm">
+      <Link href={BOOKING_PATH} className="btn sm">
         Start a conversation
-      </a>
+      </Link>
 
       <LayerView cue={cue} onCue={setCue} />
 
@@ -83,15 +83,13 @@ export default function Nav() {
                 {label}
               </Link>
             ))}
-            <a
-              href={CTA_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={BOOKING_PATH}
               onClick={() => setOpen(false)}
               className="btn sm menu-cta"
             >
               Start a conversation
-            </a>
+            </Link>
           </nav>
         )}
       </div>

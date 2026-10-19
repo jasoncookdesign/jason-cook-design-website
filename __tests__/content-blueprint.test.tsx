@@ -195,7 +195,7 @@ describe("about, capabilities, contact, legal", () => {
 
   it("contact makes the action a primary button", () => {
     const { container } = render(<ContactPage />);
-    expect(container.querySelector("a.btn")!.getAttribute("href")).toMatch(/cal\.com/);
+    expect(container.querySelector("a.btn")!.getAttribute("href")).toBe("#book");
   });
 
   it("legal gives each section a mono key, its headline, and the pending token", () => {

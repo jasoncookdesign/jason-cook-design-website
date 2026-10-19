@@ -1,6 +1,7 @@
+import Link from "next/link";
+import { BOOKING_PATH } from "@/lib/booking";
 import ConstructionDrawing from "@/components/brand/ConstructionDrawing";
 
-const CTA_URL = "https://cal.com/jasoncookdesign/engagement-consultation";
 
 // DRAFT — Jason to edit
 const stats = [
@@ -27,9 +28,9 @@ export default function Hero() {
           </p>
         </div>
         <div className="actions">
-          <a className="btn" href={CTA_URL} target="_blank" rel="noopener noreferrer">
+          <Link className="btn" href={BOOKING_PATH}>
             Book your strategy call <span aria-hidden="true">&rarr;</span>
-          </a>
+          </Link>
           <p className="strip">
             <span className="a">No commitment. 20 minutes.</span>{" "}
             <span className="b">Find out what you need &mdash; and what you don&apos;t.</span>

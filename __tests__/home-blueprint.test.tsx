@@ -7,6 +7,7 @@ import { join } from "path";
 import fs from "fs";
 import path from "path";
 import { render, screen } from "@testing-library/react";
+jest.mock("@/lib/cal-embed", () => ({ mountCalEmbed: jest.fn() }));
 import HomePage from "@/app/page";
 import { engagementTypes } from "@/lib/engagement-types";
 
@@ -213,13 +214,15 @@ describe("Home proof and pricing", () => {
 });
 
 describe("Home close and FAQ", () => {
-  it("closes with a centred sheet: headline, the quote line, the button, and the full strip", () => {
+  it("closes with the pitch on the left (headline, quote, button, strip) and the booking embed on the right", () => {
     const { container } = render(<HomePage />);
     const close = bySheet(container, "CLOSE");
     expect(close.querySelector("h2")?.textContent).toBe("When you're done guessing how to fix it");
     expect(close.querySelector("p.quote")?.textContent).toBe("“Build the right thing” comes before “build the thing right.”");
-    expect(close.querySelector("a.btn")?.getAttribute("href")).toBe("https://cal.com/jasoncookdesign/engagement-consultation");
+    expect(close.querySelector("a.btn")?.getAttribute("href")).toBe("#book");
     expect(close.querySelector("p.strip .a")?.textContent).toBe("No commitment. 20 minutes.");
+    expect(Array.from(close.children).map((c) => c.className.split(" ")[0])).toEqual(["pitch", "book"]);
+    expect(close.querySelector(".book#book .cal-inline")).not.toBeNull();
   });
 
   it("sets the FAQ as kit rows with a key and a mark, keeping the item ids", () => {

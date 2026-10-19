@@ -178,7 +178,7 @@ describe("portability and close sheets", () => {
     const secs = sections(container);
     const close = secs.find((s) => s.getAttribute("data-name") === "CLOSE") as HTMLElement;
     const btn = close.querySelector("a.btn") as HTMLAnchorElement;
-    expect(btn.getAttribute("href")).toBe("https://cal.com/jasoncookdesign/engagement-consultation");
+    expect(btn.getAttribute("href")).toBe("/contact");
     expect(btn.textContent).toContain("Book your strategy call");
     expect(close.querySelector("h2")).not.toBeNull();
   });

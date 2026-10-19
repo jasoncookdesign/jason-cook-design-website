@@ -77,13 +77,15 @@
 }
 
 /* ---------- close: a left-aligned sheet on the grid, no fill ---------- */
-.close { display: flex; flex-direction: column; align-items: flex-start; padding: 104px var(--pad) 112px; }
+.close { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: start; padding: 104px var(--pad) 112px; }
+.close .pitch { display: flex; flex-direction: column; align-items: flex-start; }
+.close .book { min-width: 0; }
 .close h2 { margin: 0; max-width: 20ch; font-weight: 400; font-size: 56px; line-height: 1.06; letter-spacing: -0.022em; text-wrap: balance; }
 .close .quote { margin: 26px 0 0; max-width: 40ch; font-size: 25px; line-height: 1.35; text-wrap: pretty; }
 .close .btn { margin-top: 36px; }
 .close .strip { margin-top: 24px; }
 @media (max-width: 899px) {
-  .close { padding: 56px var(--pad) 60px; }
+  .close { grid-template-columns: minmax(0, 1fr); gap: 36px; padding: 56px var(--pad) 60px; }
   .close h2 { font-size: 36px; }
   .close .quote { font-size: 22px; }
   .close .btn { margin-top: 30px; }

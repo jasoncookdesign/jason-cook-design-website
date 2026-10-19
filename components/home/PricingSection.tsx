@@ -1,5 +1,6 @@
+import Link from "next/link";
+import { BOOKING_PATH } from "@/lib/booking";
 // DRAFT — Jason to edit
-const CTA_URL = "https://cal.com/jasoncookdesign/engagement-consultation";
 
 function Regs() {
   return (
@@ -25,9 +26,9 @@ function Key({ k }: { k: string }) {
 
 function Book() {
   return (
-    <a className="btn" href={CTA_URL} target="_blank" rel="noopener noreferrer">
+    <Link className="btn" href={BOOKING_PATH}>
       Book your strategy call <span aria-hidden="true">&rarr;</span>
-    </a>
+    </Link>
   );
 }
 

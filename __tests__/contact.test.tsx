@@ -18,12 +18,10 @@ describe("Contact page", () => {
     expect(screen.getByRole("link", { name: /Book your strategy call/i })).toBeTruthy();
   });
 
-  it("CTA links to the cal.com booking URL", () => {
+  it("CTA scrolls to the booking embed on this page", () => {
     render(<ContactPage />);
     const link = screen.getByRole("link", { name: /Book your strategy call/i });
-    expect(link.getAttribute("href")).toMatch(
-      /cal\.com\/jasoncookdesign\/engagement-consultation/
-    );
+    expect(link.getAttribute("href")).toBe("#book");
   });
 
   it("renders the decided CTA subtext verbatim", () => {

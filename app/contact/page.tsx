@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BookingEmbed from "@/components/booking/BookingEmbed";
 
 export const metadata = {
   title: "Contact | Jason Cook Design",
@@ -11,18 +12,15 @@ export const metadata = {
   },
 };
 
-// Booking URL: cal.com/jasoncookdesign/engagement-consultation
 export default function ContactPage() {
   return (
+    <>
     <section className="hero page solo g" data-sheet="A-101" data-name="HERO">
       <div className="main">
         <p className="eyebrow">Contact</p>
         <h1>Contact</h1>
         <div className="actions">
-          <Link
-            href="https://cal.com/jasoncookdesign/engagement-consultation"
-            className="btn"
-          >
+          <Link href="#book" className="btn">
             Book your strategy call <span aria-hidden="true">&rarr;</span>
           </Link>
           <p className="strip">
@@ -34,5 +32,10 @@ export default function ContactPage() {
         </div>
       </div>
     </section>
+
+    <section className="book-sheet" data-sheet="A-102" data-name="BOOK">
+      <BookingEmbed />
+    </section>
+    </>
   );
 }
