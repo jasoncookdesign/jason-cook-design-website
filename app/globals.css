@@ -272,6 +272,8 @@ main section[data-sheet]::before {
 .bar .lv .lv-icon { display: block; width: 22px; height: 22px; }
 .bar .btn.sm {
   margin-left: 0;
+  white-space: nowrap;
+  flex: none;
 }
 .bar .menu-btn {
   list-style: none;
@@ -363,4 +365,16 @@ main section > :first-child:is(.intro, .logos, .cells, .rows) { border-top: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   :root { --t: 0s; }
+}
+
+/* The docked sheet cue needs room: below 1360px the bar keeps the lockup, the links, the action, and the toggle. */
+.bar.docked > .cue { display: none; }
+@media (min-width: 1360px) {
+  .bar.docked > .cue { display: inline; }
+}
+
+/* Narrowest desktop widths: tighter gaps so the toggle never leaves the frame. */
+@media (min-width: 1200px) and (max-width: 1279px) {
+  .bar .nav ul { gap: 18px; }
+  .bar { gap: 20px; }
 }

@@ -45,3 +45,18 @@ describe("bar with the desktop links hidden", () => {
     expect(g).toMatch(/@media \(max-width: 1199px\)\s*\{[^@]*\.bar \.menu\s*\{\s*margin-left:\s*0/);
   });
 });
+
+describe("bar just above the desktop breakpoint", () => {
+  it("shows the docked sheet cue only where the full bar has room (1360px and up), and never wraps or shrinks the action", () => {
+    const g = read("app/globals.css") + read("app/blueprint-motion.css");
+    expect(g).toMatch(/\.bar\.docked > \.cue\s*\{\s*display:\s*none/);
+    expect(g).toMatch(/@media \(min-width: 1360px\)\s*\{\s*\.bar\.docked > \.cue\s*\{\s*display:\s*inline/);
+    expect(g).toMatch(/\.bar \.btn\.sm\s*\{[^}]*white-space:\s*nowrap[^}]*flex:\s*none/);
+  });
+});
+
+describe("bar at the narrowest desktop widths", () => {
+  it("tightens the link and bar gaps between 1200 and 1279px so the layers toggle stays inside the frame", () => {
+    expect(read("app/globals.css")).toMatch(/@media \(min-width: 1200px\) and \(max-width: 1279px\)\s*\{[^@]*\.bar \.nav ul\s*\{\s*gap:\s*18px[^@]*\.bar\s*\{\s*gap:\s*20px/);
+  });
+});
