@@ -349,3 +349,10 @@ main section[data-sheet]::before {
 main section > :first-child:is(.intro, .logos, .cells, .rows) { border-top: 0; }
 .foot-sheet > .cells:first-child { border-top: 0; }
 .pl > .sp:last-child { border-bottom: 0; }
+
+/* Below 1200px the desktop links are hidden: the wordmark takes the free space so the button, layers toggle, and
+   menu stay together in the right corner instead of trailing the wordmark. */
+@media (max-width: 1199px) {
+  .bar > .wordmark { margin-right: auto; }
+  .bar .menu { margin-left: 0; }
+}

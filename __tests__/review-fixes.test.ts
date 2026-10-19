@@ -37,3 +37,11 @@ describe("fidelity review fixes", () => {
     expect(g).toMatch(/\.foot-sheet \.cell a\s*\{[^}]*min-height:\s*44px/);
   });
 });
+
+describe("bar with the desktop links hidden", () => {
+  it("pins the trailing controls (button, layers, menu) to the right corner by pushing the wordmark's free space, not by auto-margining the menu", () => {
+    const g = read("app/globals.css");
+    expect(g).toMatch(/@media \(max-width: 1199px\)\s*\{[^@]*\.bar > \.wordmark\s*\{\s*margin-right:\s*auto/);
+    expect(g).toMatch(/@media \(max-width: 1199px\)\s*\{[^@]*\.bar \.menu\s*\{\s*margin-left:\s*0/);
+  });
+});
