@@ -4,9 +4,10 @@
  * narration is updated. Testimonials are reproduced verbatim as attributed third-party speech.
  */
 
+// An img block with `loop` is an animation: `src` is its poster still, and a WebM and MP4 of the same name sit beside it.
 export type Block =
   | { type: "p"; html: string }
-  | { type: "img"; src: string; alt: string }
+  | { type: "img"; src: string; alt: string; loop?: { width: number; height: number } }
   | { type: "ul"; items: string[] }
   | { type: "ol"; items: string[] }
   | { type: "ul-strong"; items: Array<{ label: string; rest: string }> };
@@ -563,8 +564,9 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             type: "img",
-            src: "/images/cs05_06.gif",
+            src: "/images/loops/cs05_06.jpg",
             alt: "ConvoBar wireframes",
+            loop: { width: 1000, height: 712 },
           },
         ],
       },
@@ -611,8 +613,9 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             type: "img",
-            src: "/images/cs05_04.gif",
+            src: "/images/loops/cs05_04.jpg",
             alt: "ConvoBar live",
+            loop: { width: 700, height: 504 },
           },
         ],
       },
@@ -625,8 +628,9 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             type: "img",
-            src: "/images/cs05_10.gif",
+            src: "/images/loops/cs05_10.jpg",
             alt: "manager screen",
+            loop: { width: 700, height: 634 },
           },
           { type: "img", src: "/images/cs05_01.jpg", alt: "awards" },
         ],
@@ -704,8 +708,9 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             type: "img",
-            src: "/images/cs06_07.gif",
+            src: "/images/loops/cs06_07.jpg",
             alt: "Microsoft Enterprise Engagement Center",
+            loop: { width: 512, height: 384 },
           },
         ],
       },
@@ -718,8 +723,9 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             type: "img",
-            src: "/images/cs06_04.gif",
+            src: "/images/loops/cs06_04.jpg",
             alt: "object recognition",
+            loop: { width: 638, height: 358 },
           },
           {
             type: "p",
@@ -741,8 +747,9 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             type: "img",
-            src: "/images/cs06_06.gif",
+            src: "/images/loops/cs06_06.jpg",
             alt: "MobileConnect in action",
+            loop: { width: 478, height: 360 },
           },
         ],
       },

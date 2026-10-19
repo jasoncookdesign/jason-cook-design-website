@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CaseStudy, Block } from "@/lib/work";
+import LoopVideo from "./LoopVideo";
 
 function renderBlock(block: Block, idx: number, fig: number) {
   switch (block.type) {
@@ -9,7 +10,11 @@ function renderBlock(block: Block, idx: number, fig: number) {
     case "img":
       return (
         <figure key={idx} className="fig">
-          <Image src={block.src} alt={block.alt} width={900} height={600} />
+          {block.loop ? (
+            <LoopVideo src={block.src} alt={block.alt} width={block.loop.width} height={block.loop.height} />
+          ) : (
+            <Image src={block.src} alt={block.alt} width={900} height={600} />
+          )}
           <figcaption>FIG. {fig}</figcaption>
         </figure>
       );
