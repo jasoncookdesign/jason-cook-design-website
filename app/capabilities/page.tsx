@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { withSocial } from "@/lib/metadata";
 
-export const metadata = {
+export const metadata = withSocial({
   title: "Capabilities | Jason Cook Design",
   description:
     "Architecture, specification, implementation, and handoff — the range of work Jason Cook Design takes on.",
@@ -9,7 +10,7 @@ export const metadata = {
     description:
       "Architecture, specification, implementation, and handoff — the range of work Jason Cook Design takes on.",
   },
-};
+});
 
 // DRAFT — Jason to edit. Case-study register for procurement and institutional readers, ported from the
 // 2026-09-10 placeholder draft. Tokens stay literal until named; candidates sit beside them below.

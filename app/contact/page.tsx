@@ -1,7 +1,8 @@
 import Link from "next/link";
 import BookingEmbed from "@/components/booking/BookingEmbed";
+import { withSocial } from "@/lib/metadata";
 
-export const metadata = {
+export const metadata = withSocial({
   title: "Contact | Jason Cook Design",
   description:
     "Book a strategy call with Jason Cook Design. No commitment, 20 minutes.",
@@ -10,7 +11,7 @@ export const metadata = {
     description:
       "Book a strategy call with Jason Cook Design. No commitment, 20 minutes.",
   },
-};
+});
 
 export default function ContactPage() {
   return (

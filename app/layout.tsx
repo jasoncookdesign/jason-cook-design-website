@@ -26,15 +26,19 @@ export const metadata: Metadata = {
   title: "Jason Cook Design",
   description:
     "Jason Cook Design assesses, designs, and builds the products and systems a business needs, and each phase leaves you something you can use.",
+  metadataBase: new URL("https://jasoncookdesign.com"),
   manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
+    siteName: "Jason Cook Design",
+    url: "/",
+    locale: "en_US",
     title: "Jason Cook Design",
     description:
       "Jason Cook Design assesses, designs, and builds the products and systems a business needs, and each phase leaves you something you can use.",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Jason Cook Design",
     description:
       "Jason Cook Design assesses, designs, and builds the products and systems a business needs, and each phase leaves you something you can use.",

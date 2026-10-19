@@ -1,6 +1,7 @@
 import Image from "next/image";
+import { withSocial } from "@/lib/metadata";
 
-export const metadata = {
+export const metadata = withSocial({
   title: "About | Jason Cook Design",
   description:
     "Enterprise-scale experience, sized for smaller businesses: strategy, design, research, and implementation in one practice, starting with a paid diagnosis.",
@@ -9,7 +10,7 @@ export const metadata = {
     description:
       "Enterprise-scale experience, sized for smaller businesses: strategy, design, research, and implementation in one practice, starting with a paid diagnosis.",
   },
-};
+});
 
 // DRAFT — Jason to edit. First-person practice copy, ported from the 2026-09-10 placeholder draft.
 // [ENTRY-OFFER-NAME] stays literal until the offer is named.

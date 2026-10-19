@@ -1,10 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { caseStudies } from "@/lib/work";
+import { withSocial } from "@/lib/metadata";
 
 // DRAFT — Jason to edit
 
-export const metadata = {
+export const metadata = withSocial({
   title: "Work | Jason Cook Design",
   description:
     "Case studies from Jason Cook Design's enterprise and institutional work across software, consumer platforms, and regulated industries.",
@@ -13,7 +14,7 @@ export const metadata = {
     description:
       "Case studies from Jason Cook Design's enterprise and institutional work across software, consumer platforms, and regulated industries.",
   },
-};
+});
 
 export default function WorkPage() {
   return (

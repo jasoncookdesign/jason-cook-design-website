@@ -1,11 +1,12 @@
-export const metadata = {
+import { withSocial } from "@/lib/metadata";
+export const metadata = withSocial({
   title: "Legal | Jason Cook Design",
   description: "Privacy policy, accessibility statement, and terms for Jason Cook Design.",
   openGraph: {
     title: "Legal | Jason Cook Design",
     description: "Privacy policy, accessibility statement, and terms for Jason Cook Design.",
   },
-};
+});
 
 // One page for all legal text; the footer links to each section by anchor.
 // The [LEGAL: …] tokens stay literal until the owner supplies the text.

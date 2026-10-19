@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { posts } from "@/lib/writing";
+import { withSocial } from "@/lib/metadata";
 
-export const metadata = {
+export const metadata = withSocial({
   title: "Writing | Jason Cook Design",
   description:
     "Notes from the seam between design and engineering, by Jason Cook.",
@@ -10,7 +11,7 @@ export const metadata = {
     description:
       "Notes from the seam between design and engineering, by Jason Cook.",
   },
-};
+});
 
 export default function WritingPage() {
   return (
