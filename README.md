@@ -15,7 +15,7 @@ Marketing website for Jason Cook Design (JCD), a practice that assesses, designs
 |---|---|
 | `/` | Home |
 | `/engagements` | Engagement selector over the first type's page (canonical: `/engagements/offering`) |
-| `/engagements/offering` | Offering Engagement: six phases from the decision to launch; price pending |
+| `/engagements/offering` | Offering Engagement: six phases from the decision to launch |
 | `/engagements/operating` | Operating Engagement: model, phases, and pricing |
 | `/work`, `/work/[slug]` | Case studies |
 | `/writing`, `/writing/[slug]` | Writing |
@@ -55,7 +55,6 @@ These placeholder tokens appear in the built pages and must stay literal until t
 - `[PRACTICE-NAME]`: the name of the practice discipline (Capabilities page). Replace by search once decided. Draft candidates: `docs/content-token-candidates.md`.
 - `[UEI]`, `[CAGE-CODE]`, `[NAICS-CODES]`, `[SAM-STATUS]`: the company's SAM.gov identifiers and registration status (Capabilities page, company data). Filled from SAM.gov by the owner and never guessed.
 - `[LEGAL: <section> text pending]`: legal text for each `/legal` section. Supplied by the owner and never drafted.
-- `[GAP: Phase 0 price pending]`: the Offering Engagement's first-phase price (home page pricing card and `/engagements/offering`). It renders by design until the price decision, then is replaced by the figure.
 - Any other `[GAP: ...]`: an open content question. These should not render. Tests guard the pages that had them.
 
 Copy marked with a `DRAFT — Jason to edit` comment in the source is placeholder prose awaiting the owner's edit.

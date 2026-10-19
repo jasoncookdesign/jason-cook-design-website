@@ -27,7 +27,7 @@ Rules: body unchanged. Metadata replaced with distinct DRAFT values that contain
 ## M4 — Second type page
 
 Owns: `app/engagements/offering/page.tsx` and `components/engagements/offering/*`, including the phase data.
-Rules: six phases, each with `holds` and `closes`. Statements on no whole-engagement contract and on portability. The `[GAP]` token and the type's name. The fixed CTA subtext. No `$` and digit. The sixth phase is optional and names two forms of availability.
+Rules: six phases, each with `holds` and `closes`. Statements on no whole-engagement contract and on portability. The Phase 0 price `$2,500` and the type's name. The fixed CTA subtext. No other `$` and digit. The sixth phase is optional and names two forms of availability.
 
 ## M5 — Home entry points
 
@@ -41,7 +41,7 @@ Rules: the eight existing entries are unchanged. The Capabilities and About word
 
 ## M7 — Docs and tokens
 
-Owns: `README.md` (route table; token section carries the `[GAP]` exception), `docs/content-token-candidates.md` (a table per type), `docs/cutover-plan.md` (placeholder check lists the three tokens and the new routes).
+Owns: `README.md` (route table; no `[GAP]` price token), `docs/content-token-candidates.md` (a table per type), `docs/cutover-plan.md` (placeholder check lists the remaining tokens and the new routes).
 
 ## M8 — Case study and visuals (PR 2)
 
@@ -59,7 +59,7 @@ Rules: shell and `grep` only. It never prints the terms it matched; it prints th
 - Selector: a `nav` labelled "Engagement type" holding exactly two links beginning `/engagements/`, one per slug in registry order, each containing the type's name and situation, visible, in the tab order, with an accessible name of at least three characters. No `article`. Exactly one link carries `aria-current="page"`.
 - Home fork: two links in registry order, each containing the situation and not inside an `article`, in document order before "Where I start". Each problem section's eyebrow is the `p` immediately before its `h2`.
 - Type heroes: the first `section` of each type page shares one tag-and-class skeleton: a first `p` equal to the type name, one `h1`, three body paragraphs, and a metric whose value equals the number of phases the page lists.
-- Home pricing: each entry is a `div` with class `rounded-[6px]`. The second entry holds `[GAP: Phase 0 price pending]` and no `$` followed by a digit. The first keeps `[ENTRY-OFFER-NAME]` and `$2,500`.
+- Home pricing: each entry is a `div` with class `rounded-[6px]`. The second entry holds `$2,500` and no other fee figure. The first keeps `[ENTRY-OFFER-NAME]` and `$2,500`.
 - Offering page: exactly one `ol`, six direct `li`. Each `li` has an `h3` label and one `dl` with exactly two `dt`/`dd` pairs; the two `dt` texts differ and each `dd` is longer than ten characters. The sixth `li` holds a `ul` of at least two distinct entries and a phrase marking it optional (`optional`, `if you want`, `only if`, or `your choice`) and an explicit opt-out (for example `no obligation`, `decline`, `skip`, `stop here`). Phase labels, "holds" statements, and "closes" statements are distinct across the six phases, and the same two `dt` labels appear in every phase. Every source file of the page carries `DRAFT — Jason to edit`, and `components/engagements/offering/` holds at least one `.tsx`.
 - Counts: the Work page and the Hero state no engagement count (no numeral, count word, or row index).
 - Client-term check: scans `git ls-files` plus everything under `.sdlc/` (tracked or not), matches case-insensitively as fixed strings, skips blank and `#` lines, fails on an unset variable, an unreadable file, or a file with no terms, and prints file and line but never the term.

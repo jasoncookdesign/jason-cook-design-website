@@ -31,7 +31,7 @@ Acceptance: the copy assertions in `engagements.test.tsx`, `engagements-faq-e1.t
 **REQ-03 — Second type page.** `/engagements/offering` (a static route) presents six phases. Each shows what the client holds if they stop there and the decision that closes it. The page states that no contract covers the whole engagement and states portability at the seams, in the site's voice, without copying DOE sentences. It has no FAQ in PR 1.
 Acceptance: six phase labels render. Each of the six has a "what you hold" line and a closing decision. A test fails if any phase lacks either.
 
-**REQ-04 — No price.** No page shows a fee figure for the second type. Its price slot is the literal token `[GAP: Phase 0 price pending]`.
+**REQ-04 (revised 2026-10-19) — One price.** The second type's first phase is paid and priced at $2,500, shown on the home Offering card and in the Offering pricing section. No other fee figure appears for the second type: not in the registry, the selector, the home fork, or any later phase. Original: no figure, with the literal token `[GAP: Phase 0 price pending]`.
 Acceptance: a shared fee-figure matcher (`$ 12,000`, `12,000`, `USD 12000`, `5,000 dollars`, `2.5k`, a bare `USD`) finds nothing in the second type's page, its registry entry, its card on the chooser, and its card on the home page. The token appears at least once.
 
 **REQ-05 — No client, no deal terms.** PR 1 and every file in `.sdlc/` name no client, no client's individuals, no client venture or product, and no terms of any client agreement. Approvals and licence terms are tracked outside this repo.
@@ -48,8 +48,8 @@ Acceptance: with `@/lib/work` mocked to eight enterprise entries the Work numera
 **REQ-08 — Inbound links.** `/engagements` stays valid with the nav label "Engagements". Nav and Footer links resolve to the chooser.
 Acceptance: `redirects.test.ts` asserts `resolve("/engagements")` and both new routes return null (no redirect rule). The README route table lists the chooser and both type routes.
 
-**REQ-09 — Names and the `[GAP]` token.** The chooser and each type page use the names "Operating Engagement" and "Offering Engagement". `docs/content-token-candidates.md` records the chosen names and the alternatives not taken. The README's placeholder-token section states that `[GAP: Phase 0 price pending]` renders by design until the price decision (the README rule "none should render" gets this exception). `docs/cutover-plan.md`'s placeholder check lists the `[GAP]` token and the new routes.
-Acceptance: a test finds both names on the chooser and the `[GAP]` token on the offering page. The three docs entries exist.
+**REQ-09 (revised) — Names; the `[GAP]` token is retired.** The chooser and each type page use the names "Operating Engagement" and "Offering Engagement". `docs/content-token-candidates.md` records the chosen names and the alternatives not taken. The price was decided on 2026-10-19 (REQ-04), so the README and the cutover plan no longer list `[GAP: Phase 0 price pending]`. `docs/cutover-plan.md`'s placeholder check lists the new routes.
+Acceptance: a test finds both names in the selector, and the token appears nowhere in the README or the cutover plan.
 
 **REQ-10 — Quality bars.** New routes follow existing tokens and components. Heading order is valid, interactive elements are keyboard-operable, links have discernible names, layout holds at phone width, and titles and descriptions stay within the existing length limits.
 Acceptance: `metadata-length.test.tsx` covers the new routes, and page metadata (titles and descriptions) never contains a placeholder token, because that test rejects any `[CAPITALS` pattern; tokens render in page bodies only. `npm test` and `npm run build` are green.

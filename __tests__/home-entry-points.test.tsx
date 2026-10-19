@@ -14,6 +14,14 @@ function cardOf(el: Element) {
   return el.closest("div.rounded-\\[6px\\], article, li") as HTMLElement | null;
 }
 
+function offeringCard(container: HTMLElement): HTMLElement {
+  const label = Array.from(container.querySelectorAll("p")).find(
+    (p) => p.textContent === "Offering Engagement" && cardOf(p)?.textContent?.includes("$")
+  );
+  expect(label).toBeDefined();
+  return cardOf(label!)!;
+}
+
 describe("Home page entry points (REQ-13)", () => {
   it("has a valid heading order with a single h1", () => {
     const { container } = render(<HomePage />);
@@ -27,16 +35,13 @@ describe("Home page entry points (REQ-13)", () => {
     expect(card!.textContent).toContain("$2,500");
   });
 
-  it("adds a second entry card that carries the price-pending token and no fee figure in any form", () => {
-    render(<HomePage />);
-    const tokens = screen.getAllByText(/\[GAP: Phase 0 price pending\]/);
-    expect(tokens.length).toBeGreaterThan(0);
-    for (const t of tokens) {
-      const card = cardOf(t);
-      expect(card).not.toBeNull();
-      expect(hasFeeFigure(card!.textContent ?? "")).toBe(false);
-      expect(card!.textContent).not.toContain("[ENTRY-OFFER-NAME]");
-    }
+  it("gives the Offering entry card the $2,500 Phase 0 price, with no other fee figure and no price-pending token", () => {
+    const { container } = render(<HomePage />);
+    const card = offeringCard(container);
+    expect(card.textContent).toContain("$2,500");
+    expect(hasFeeFigure((card.textContent ?? "").replace("$2,500", ""))).toBe(false);
+    expect(container.textContent).not.toContain("[GAP: Phase 0 price pending]");
+    expect(card.textContent).not.toContain("[ENTRY-OFFER-NAME]");
   });
 
   it("lists the offering entry card before the operating one, in the pricing intro and the cards", () => {
@@ -45,10 +50,9 @@ describe("Home page entry points (REQ-13)", () => {
     const intro = text.indexOf("The Offering Engagement opens");
     expect(intro).toBeGreaterThan(-1);
     expect(intro).toBeLessThan(text.indexOf("The Operating Engagement opens"));
-    const offeringCard = cardOf(screen.getAllByText(/\[GAP: Phase 0 price pending\]/)[0])!;
     const operatingCard = cardOf(screen.getByText(/\[ENTRY-OFFER-NAME\]/))!;
     expect(
-      offeringCard.compareDocumentPosition(operatingCard) & Node.DOCUMENT_POSITION_FOLLOWING
+      offeringCard(container).compareDocumentPosition(operatingCard) & Node.DOCUMENT_POSITION_FOLLOWING
     ).toBeTruthy();
   });
 

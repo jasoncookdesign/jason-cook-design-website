@@ -10,7 +10,7 @@ export default function OfferingPricing() {
           Assess the decision
         </p>
         <p className="font-sans text-2xl font-extralight tracking-[-0.02em] text-ink">
-          [GAP: Phase 0 price pending]
+          $2,500
         </p>
         <p className="font-sans text-base leading-relaxed text-body">
           The first phase is paid. It concludes before anything is designed or

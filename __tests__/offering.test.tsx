@@ -61,10 +61,12 @@ describe("Offering Engagement problem section", () => {
 });
 
 describe("Offering Engagement opens with a paid first phase", () => {
-  it("says on the offering page that the first phase is paid, and still shows no fee figure", () => {
+  it("says on the offering page that the first phase is paid and prices it at $2,500, with no other fee figure", () => {
     const { container } = render(<OfferingPage />);
-    expect(container.textContent).toMatch(/first phase is paid/i);
-    expect(hasFeeFigure(container.textContent ?? "")).toBe(false);
+    const text = container.textContent ?? "";
+    expect(text).toMatch(/first phase is paid/i);
+    expect(text).toContain("$2,500");
+    expect(hasFeeFigure(text.replaceAll("$2,500", ""))).toBe(false);
   });
 
   it("says on the home page that the Offering Engagement opens with a paid assessment", () => {
@@ -147,10 +149,12 @@ describe("Offering Engagement page", () => {
     expect(text).toMatch(/(another provider|your own team|someone else)/i);
   });
 
-  it("shows no fee figure in any form, and carries the price-pending token", () => {
+  it("prices only the first phase: $2,500 appears with that phase, and the token is gone", () => {
     const { container } = render(<OfferingPage />);
-    expect(hasFeeFigure(container.textContent ?? "")).toBe(false);
-    expect(screen.getAllByText(/\[GAP: Phase 0 price pending\]/).length).toBeGreaterThan(0);
+    expect(screen.queryByText(/\[GAP: Phase 0 price pending\]/)).toBeNull();
+    const card = screen.getByText("$2,500").closest("div")!;
+    expect(card.textContent).toContain("Assess the decision");
+    expect(container.textContent).toMatch(/Every later phase is quoted on its own/);
   });
 
   it("makes none of the universal claims the operating page used to make", () => {

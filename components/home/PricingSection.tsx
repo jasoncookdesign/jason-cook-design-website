@@ -30,14 +30,14 @@ export default function PricingSection() {
         </div>
 
         <div className="flex flex-col gap-6">
-        {/* Offering Engagement entry card. Price pending: the token renders by design until the price decision. */}
+        {/* Offering Engagement entry card. */}
         <div className="flex flex-col gap-6 rounded-[6px] border border-ink p-6 sm:p-10">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
             <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
               Offering Engagement
             </p>
-            <p className="font-sans text-xl font-extralight leading-snug tracking-[-0.02em] text-ink">
-              [GAP: Phase 0 price pending]
+            <p className="font-sans text-[44px] font-extralight leading-none tracking-[-0.04em] text-ink">
+              $2,500
             </p>
           </div>
           <p className="font-sans text-base leading-relaxed text-body">
