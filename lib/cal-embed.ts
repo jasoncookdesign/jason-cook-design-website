@@ -6,8 +6,8 @@ type CalFn = ((...args: unknown[]) => void) & { loaded?: boolean; q?: unknown[];
  * Loads Cal.com's embed script (once) and renders the booking picker inline in `el`, themed by calUiConfig().
  * This is Cal.com's documented inline-embed loader. Nothing here runs on the server.
  */
-export function mountCalEmbed(el: HTMLElement): void {
-  const w = window as unknown as { Cal?: CalFn };
+export function mountCalEmbed(el: HTMLElement, calLink: string = CAL_LINK): void {
+  const w = window as unknown as { Cal?: CalFn; calInitialised?: boolean };
   if (!w.Cal) {
     const p = (a: { q?: unknown[] }, ar: unknown) => {
       (a.q = a.q || []).push(ar);
@@ -27,8 +27,14 @@ export function mountCalEmbed(el: HTMLElement): void {
     w.Cal = cal;
   }
   const Cal = w.Cal as CalFn;
-  if (el.childElementCount > 0) return; // already rendered (React strict-mode double mount)
-  Cal("init", { origin: "https://app.cal.com" });
-  Cal("inline", { elementOrSelector: el, calLink: CAL_LINK, layout: "month_view", config: { theme: "dark", layout: "month_view" } });
+  // Already showing this event (React strict-mode double mount): nothing to do. A different event replaces the picker.
+  if (el.dataset.calLink === calLink && el.childElementCount > 0) return;
+  el.replaceChildren();
+  el.dataset.calLink = calLink;
+  if (!w.calInitialised) {
+    Cal("init", { origin: "https://app.cal.com" });
+    w.calInitialised = true;
+  }
+  Cal("inline", { elementOrSelector: el, calLink, layout: "month_view", config: { theme: "dark", layout: "month_view" } });
   Cal("ui", calUiConfig());
 }

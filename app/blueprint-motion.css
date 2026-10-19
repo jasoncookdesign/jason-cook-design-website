@@ -51,3 +51,11 @@ html.js:not(.rm):not(.layers) .rv.in, .rv.in { opacity: 1; transform: none; }
 .privacy .btn { min-height: 44px; }
 @media (max-width: 899px) { .privacy { padding: 12px var(--pad); } .privacy-actions { width: 100%; } .privacy-actions .btn { flex: 1; justify-content: center; } }
 .book-off { margin: 0; padding: 20px; border: 1px solid var(--rule); font: 400 14px/1.5 var(--mono); color: var(--ink2); }
+
+/* ---------- booking: the meeting-type chooser above the picker (same grammar as the segmented control) ---------- */
+.cal-typebar { display: flex; flex-wrap: wrap; border: 1px solid var(--ink); margin-bottom: 16px; }
+.cal-typebar button { flex: 1 1 0; min-height: 44px; padding: 0 18px; background: transparent; color: var(--ink); border: 0; border-left: 1px solid var(--ink); font: 500 12px/1 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; cursor: pointer; transition: background-color var(--t) var(--ease), color var(--t) var(--ease); }
+.cal-typebar button:first-child { border-left: 0; }
+.cal-typebar button:hover { background: var(--paper2); }
+.cal-typebar button[aria-pressed="true"] { background: var(--accent); color: var(--bg); }
+@media (max-width: 899px) { .cal-typebar button { flex: 1 1 33%; border-top: 1px solid var(--ink); } .cal-typebar button:nth-child(-n+3) { border-top: 0; } .cal-typebar button:nth-child(3n+1) { border-left: 0; } }

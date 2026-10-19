@@ -91,7 +91,7 @@ ul.rows, ol.rows { list-style: none; margin: 0; padding: 0; }
 .prose li::marker { color: var(--ink2); }
 
 /* ---------- booking: the Cal.com picker, embedded (contact page and the home close sheet) ---------- */
-.book-sheet { padding: 0 var(--pad); }
+.book-sheet { padding: 44px var(--pad) 0; }
 .book .cal-inline { width: 100%; min-height: 640px; border: 1px solid var(--rule); background: var(--paper); overflow: hidden; }
 .book-fallback { margin: 0; padding: 12px 0 0; font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; }
 .book-fallback a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink2); }

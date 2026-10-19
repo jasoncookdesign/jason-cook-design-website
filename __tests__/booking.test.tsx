@@ -1,7 +1,7 @@
 import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
-import { render, screen } from "@testing-library/react";
-import { BOOKING_PATH, BOOKING_URL, CAL_LINK, calUiConfig } from "@/lib/booking";
+import { render, screen, fireEvent, within } from "@testing-library/react";
+import { BOOKING_PATH, BOOKING_URL, BOOKING_TYPES, CAL_LINK, calLinkFor, calUiConfig } from "@/lib/booking";
 import BookingEmbed from "@/components/booking/BookingEmbed";
 import ContactPage from "@/app/contact/page";
 
@@ -52,12 +52,51 @@ describe("booking module", () => {
   });
 });
 
+describe("meeting types", () => {
+  it("lists the strategy call first, then the old site's meeting, coffee, breakfast, lunch, and dinner", () => {
+    expect(BOOKING_TYPES.map((t) => t.slug)).toEqual(["engagement-consultation", "meeting", "coffee", "breakfast", "lunch", "dinner"]);
+    expect(BOOKING_TYPES.map((t) => t.label)).toEqual(["Strategy call", "Meeting", "Coffee", "Breakfast", "Lunch", "Dinner"]);
+    expect(calLinkFor("coffee")).toBe("jasoncookdesign/coffee");
+    expect(BOOKING_TYPES[0].slug).toBe(CAL_LINK.split("/")[1]);
+  });
+});
+
+describe("BookingEmbed with a meeting-type chooser", () => {
+  it("shows one pressed button per type, the strategy call first, and loads the first event", () => {
+    const { container } = render(<BookingEmbed types={BOOKING_TYPES} />);
+    const group = screen.getByRole("group", { name: /choose a meeting type/i });
+    const buttons = within(group).getAllByRole("button");
+    expect(buttons.map((b) => b.textContent)).toEqual(["Strategy call", "Meeting", "Coffee", "Breakfast", "Lunch", "Dinner"]);
+    expect(buttons.map((b) => b.getAttribute("aria-pressed"))).toEqual(["true", "false", "false", "false", "false", "false"]);
+    expect(mountCalEmbed).toHaveBeenCalledWith(container.querySelector(".cal-inline"), CAL_LINK);
+  });
+
+  it("switching type moves the pressed state, reloads the picker for that event, and updates the fallback link", () => {
+    const { container } = render(<BookingEmbed types={BOOKING_TYPES} />);
+    fireEvent.click(screen.getByRole("button", { name: "Coffee" }));
+    expect(screen.getByRole("button", { name: "Coffee" }).getAttribute("aria-pressed")).toBe("true");
+    expect(screen.getByRole("button", { name: "Strategy call" }).getAttribute("aria-pressed")).toBe("false");
+    expect(mountCalEmbed).toHaveBeenLastCalledWith(container.querySelector(".cal-inline"), "jasoncookdesign/coffee");
+    expect(screen.getByRole("link", { name: /open the booking page in cal\.com/i }).getAttribute("href")).toBe("https://cal.com/jasoncookdesign/coffee");
+  });
+
+  it("has no chooser unless asked (the home close sheet keeps the strategy call only)", () => {
+    render(<BookingEmbed />);
+    expect(screen.queryByRole("group", { name: /choose a meeting type/i })).toBeNull();
+  });
+
+  it("the contact page asks for it", () => {
+    render(<ContactPage />);
+    expect(screen.getByRole("group", { name: /choose a meeting type/i })).toBeTruthy();
+  });
+});
+
 describe("BookingEmbed", () => {
   it("renders a labelled container, mounts the widget into it, and keeps a plain Cal.com link as fallback", () => {
     const { container } = render(<BookingEmbed />);
     const box = container.querySelector("#book .cal-inline")!;
     expect(box).not.toBeNull();
-    expect(mountCalEmbed).toHaveBeenCalledWith(box);
+    expect(mountCalEmbed).toHaveBeenCalledWith(box, CAL_LINK);
     expect(screen.getByRole("link", { name: /open the booking page in cal\.com/i }).getAttribute("href")).toBe(BOOKING_URL);
     expect(container.querySelector("#book")!.getAttribute("aria-label")).toBe("Book a strategy call with Jason Cook Design");
   });
@@ -78,5 +117,13 @@ describe("no component carries its own Cal.com URL", () => {
     );
   it.each(["components", "app"])("%s", (d) => {
     expect(walk(d).filter((f) => /cal\.com/.test(readFileSync(join(process.cwd(), f), "utf8")))).toEqual([]);
+  });
+});
+
+describe("meeting-type chooser layout", () => {
+  const css = readFileSync(join(process.cwd(), "app/blueprint-motion.css"), "utf8") + readFileSync(join(process.cwd(), "app/bp-content.css"), "utf8");
+  it("gives every type an equal share of the row, and clears the sheet tag above the row", () => {
+    expect(css).toMatch(/\.cal-typebar button\s*\{[^}]*flex:\s*1 1 0/);
+    expect(css).toMatch(/\.book-sheet\s*\{[^}]*padding:\s*44px var\(--pad\) 0/);
   });
 });
