@@ -215,3 +215,56 @@ describe("Work case study content component", () => {
     expect(document.body.textContent).toMatch(/Jason has an exceptional ability/);
   });
 });
+
+describe("Work looping animations", () => {
+  const pub = (p: string) => path.join(process.cwd(), "public", p);
+  const loops = caseStudies.flatMap((cs) =>
+    cs.sections.flatMap((s) => s.blocks.flatMap((b) => (b.type === "img" && b.loop ? [{ slug: cs.slug, block: b }] : []))),
+  );
+
+  it("no case study ships a GIF; animations are video loops with a poster still", () => {
+    for (const cs of caseStudies) {
+      for (const s of cs.sections) {
+        for (const b of s.blocks) if (b.type === "img") expect(b.src).not.toMatch(/\.gif$/i);
+      }
+    }
+    expect(loops.map((l) => l.slug).sort()).toEqual([
+      "microsoft-surface", "microsoft-surface", "microsoft-surface",
+      "millennium-meevo", "millennium-meevo", "millennium-meevo",
+    ]);
+  });
+
+  it("every loop has its poster, WebM, and MP4 on disk, with dimensions matching the MP4", () => {
+    for (const { block } of loops) {
+      expect(block.type === "img" && block.src).toMatch(/^\/images\/loops\/[\w-]+\.jpg$/);
+      if (block.type !== "img" || !block.loop) continue;
+      const base = block.src.replace(/\.jpg$/, "");
+      for (const ext of [".jpg", ".webm", ".mp4"]) expect(fs.existsSync(pub(base + ext))).toBe(true);
+      expect(block.loop.width).toBeGreaterThan(0);
+      expect(block.loop.height).toBeGreaterThan(0);
+    }
+  });
+
+  it("each video a visitor downloads stays under 1 MB (the GIFs they replaced ran up to 3.3 MB)", () => {
+    for (const { block } of loops) {
+      if (block.type !== "img") continue;
+      const base = block.src.replace(/\.jpg$/, "");
+      for (const ext of [".webm", ".mp4"]) expect(fs.statSync(pub(base + ext)).size).toBeLessThan(1024 * 1024);
+    }
+  });
+
+  it("a loop renders as a video with a pause button and still takes its FIG number", () => {
+    const study = {
+      slug: "t", client: "C", title: "T", subtitle: "S", indexOneLiner: "x", backgroundImage: "/x.jpg",
+      sections: [{ heading: "H", blocks: [
+        { type: "img", src: "/images/a.jpg", alt: "still" },
+        { type: "img", src: "/images/loops/cs05_06.jpg", alt: "moving", loop: { width: 1000, height: 712 } },
+      ] }],
+    } as unknown as CaseStudy;
+    const { container } = render(<WorkCaseStudyContent cs={study} />);
+    expect(container.querySelectorAll("video")).toHaveLength(1);
+    expect(container.querySelectorAll("figure.fig img")).toHaveLength(1);
+    expect(screen.getAllByText(/^FIG\. \d+$/).map((n) => n.textContent)).toEqual(["FIG. 1", "FIG. 2"]);
+    expect(screen.getByRole("button", { name: /animation/i })).toBeTruthy();
+  });
+});

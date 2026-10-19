@@ -28,6 +28,8 @@ URLs from the previous site (`/cs01.html`–`/cs08.html`, `/blog/...`, `/calenda
 
 `/robots.txt` and `/sitemap.xml` are generated from `app/robots.ts` and `app/sitemap.ts`; the sitemap reads the case-study and post registries, so a new entry is listed automatically, but a new fixed page must be added to the `pages` array in `app/sitemap.ts`. Baseline security headers (nosniff, frame denial, referrer policy, HSTS, permissions policy) are set in `next.config.ts`. HSTS is host-only on purpose: `includeSubDomains` would pin every subdomain to HTTPS for two years. There is no content security policy yet; add one after testing the Cal.com embed and Google Tag Manager on a Vercel preview.
 
+Case-study animations are video loops, not GIFs. An `img` block in `lib/work.ts` with a `loop: { width, height }` field renders as `LoopVideo`: `src` is the poster still (`/images/loops/<name>.jpg`), and `<name>.webm` and `<name>.mp4` sit beside it. Loops play only while on screen, show the poster to visitors who prefer reduced motion, and have one pause/play button (WCAG 2.2.2). To make one from a GIF: `ffmpeg -i in.gif -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2,hqdn3d=2:1.5:3:3,format=yuv420p" -c:v libx264 -crf 25 -preset veryslow -movflags +faststart -an -fps_mode vfr out.mp4`, the same filter with `-c:v libvpx-vp9 -crf 34 -b:v 0 -row-mt 1` for the WebM, and `-frames:v 1 -q:v 3` for the poster.
+
 ## Getting started
 
 ```bash
