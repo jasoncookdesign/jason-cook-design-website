@@ -18,9 +18,7 @@ export default function EngagementFork() {
               <p className="lbl">{t.name}</p>
               <h3>{t.situation}</h3>
             </div>
-            <span className="go" aria-hidden="true">
-              &rsaquo;
-            </span>
+            <span className="go" aria-hidden="true" />
           </Link>
         ))}
       </div>

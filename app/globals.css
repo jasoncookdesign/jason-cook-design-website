@@ -114,7 +114,7 @@
   /* motion: one curve, one duration; the duration is zero under reduced motion */
   --ease: cubic-bezier(.2, .7, .2, 1);
   --t: .25s;
-  --link: #9CCBFF;
+  --link: #5CB0FF;
 
   --btn-bg: #E8EFF5;
   --btn-ink: #0D2438;

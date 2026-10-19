@@ -59,9 +59,7 @@ export default function WritingPage() {
                     ))}
                   </div>
                 </div>
-                <span className="go" aria-hidden="true">
-                  &rsaquo;
-                </span>
+                <span className="go" aria-hidden="true" />
               </Link>
             );
           })}
