@@ -2,35 +2,41 @@ import Link from "next/link";
 import Image from "next/image";
 import { caseStudies } from "@/lib/work";
 
+// DRAFT — Jason to edit
+
 export const metadata = {
   title: "Work | Jason Cook Design",
   description:
-    "Case studies from Jason Cook Design's enterprise and institutional work — eight engagements across software, consumer platforms, and regulated industries.",
+    "Case studies from Jason Cook Design's enterprise and institutional work across software, consumer platforms, and regulated industries.",
   openGraph: {
     title: "Work | Jason Cook Design",
     description:
-      "Case studies from Jason Cook Design's enterprise and institutional work — eight engagements across software, consumer platforms, and regulated industries.",
+      "Case studies from Jason Cook Design's enterprise and institutional work across software, consumer platforms, and regulated industries.",
   },
 };
 
+const NUMBER_WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"];
+
 export default function WorkPage() {
+  const count = caseStudies.length;
+  const countWord = NUMBER_WORDS[count] ?? String(count);
   return (
     <section className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
       <div className="flex flex-wrap items-end justify-between gap-12 border-b border-ink pb-10">
         <div className="max-w-[720px]">
-          <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+          <div className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
             Work
-          </p>
+          </div>
           <h1 className="text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-5xl">
             Work
           </h1>
           <p className="mt-4 font-sans text-xl font-light leading-relaxed text-body">
-            Eight enterprise engagements — each starting with a diagnosis of
-            the actual problem before any design work began.
+            {countWord} engagements — each starting with a diagnosis of the
+            actual problem before any design work began.
           </p>
         </div>
         <p className="whitespace-nowrap font-sans text-[80px] font-extralight leading-[0.8] tracking-[-0.05em] text-ghost sm:text-[100px]">
-          08
+          {String(count).padStart(2, "0")}
         </p>
       </div>
 

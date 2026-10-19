@@ -38,7 +38,7 @@ Gathered with `dig`, `whois`, `curl -I`, and `gh api repos/jasoncookdesign/jason
 ## What must be true before Jason's go
 
 1. Jason has done his content and polish pass and reviewed a Vercel preview deployment of `main`.
-2. Placeholder tokens are resolved, or Jason has accepted each one going live: `[ENTRY-OFFER-NAME]`, `[PRACTICE-NAME]`, the `[LEGAL: …]` sections, and the Capabilities company-data tokens (`[UEI]`, `[CAGE-CODE]`, `[NAICS-CODES]`, `[SAM-STATUS]`). Check the preview with a search for `[` followed by capitals.
+2. Placeholder tokens are resolved, or Jason has accepted each one going live: `[ENTRY-OFFER-NAME]`, `[PRACTICE-NAME]`, `[GAP: Phase 0 price pending]` (renders by design on the home page and `/engagements/offering` until the price decision), the `[LEGAL: …]` sections, and the Capabilities company-data tokens (`[UEI]`, `[CAGE-CODE]`, `[NAICS-CODES]`, `[SAM-STATUS]`). Check the preview with a search for `[` followed by capitals, and confirm the new routes `/engagements`, `/engagements/operating`, and `/engagements/offering` load.
 3. No page cites a case without the client's consent. The client has approved the final text of the home page's anonymized fit-proof case.
 4. A decision on the three old PDFs: redirect them (for example to `/about`), copy them into `public/`, or let them 404.
 5. A decision on analytics: add a tag before cutover, or accept a gap.

@@ -5,10 +5,11 @@ import EngagementsPricing from "@/components/engagements/EngagementsPricing";
 import EngagementsClose from "@/components/engagements/EngagementsClose";
 import EngagementsFaq from "@/components/engagements/EngagementsFaq";
 
+// DRAFT — Jason to edit
 export const metadata = {
-  title: "Engagements | Jason Cook Design",
+  title: "Operating Engagement | Jason Cook Design",
   description:
-    "Every phase leaves you something you can use. How the work is structured, priced, and handed over.",
+    "For a business that has outgrown its systems. Five phases, each priced and decided on its own, each leaving you something you can use.",
 };
 
 export default function EngagementsPage() {

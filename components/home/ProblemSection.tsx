@@ -1,3 +1,4 @@
+// DRAFT — Jason to edit
 const problemCards = [
   {
     n: "01",
@@ -45,6 +46,9 @@ export default function ProblemSection() {
       {/* Problem */}
       <section className="border-t border-border bg-surface">
         <div className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
+          <p className="mb-7 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+            If you&apos;re fixing how you run
+          </p>
           <h2 className="max-w-[720px] text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-[44px] sm:leading-[1.15]">
             You&apos;ve outgrown the systems you built to get here.
           </h2>

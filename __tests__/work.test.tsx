@@ -1,7 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import WorkPage from "@/app/work/page";
 import WorkCaseStudyContent from "@/components/work/WorkCaseStudyContent";
-import { caseStudies } from "@/lib/work";
+import fs from "fs";
+import path from "path";
+import { caseStudies, type CaseStudy } from "@/lib/work";
 
 describe("Work index responsive layout", () => {
   it("work card links use md breakpoint grid, not sm, to prevent layout overflow at 640-720px viewport widths", () => {
@@ -85,9 +87,60 @@ describe("Work case study data", () => {
       expect(cs.subtitle).toBeTruthy();
       expect(cs.client).toBeTruthy();
       expect(cs.indexOneLiner).toBeTruthy();
-      expect(cs.testimonial).toBeTruthy();
-      expect(cs.testimonial.quote).toBeTruthy();
-      expect(cs.testimonial.name).toBeTruthy();
+      // The testimonial is optional (an assessment has none yet); when present it is complete.
+      if (cs.testimonial) {
+        expect(cs.testimonial.quote).toBeTruthy();
+        expect(cs.testimonial.name).toBeTruthy();
+      }
+    }
+  });
+
+  it("keeps a complete testimonial on each of the eight enterprise studies", () => {
+    const enterprise = caseStudies.filter((c) => c.kind !== "assessment");
+    expect(enterprise).toHaveLength(8);
+    for (const cs of enterprise) {
+      expect(cs.testimonial?.quote).toBeTruthy();
+      expect(cs.testimonial?.name).toBeTruthy();
+    }
+  });
+
+  it("renders no blockquote and does not throw when a study has no testimonial", () => {
+    const study: CaseStudy = {
+      slug: "no-testimonial",
+      client: "Client",
+      title: "A title long enough to render",
+      subtitle: "A subtitle",
+      indexOneLiner: "One liner",
+      backgroundImage: "/images/background_cs01.jpg",
+      sections: [],
+      kind: "assessment",
+    };
+    const { container } = render(<WorkCaseStudyContent cs={study} />);
+    expect(container.querySelector("blockquote")).toBeNull();
+    expect(container.querySelector("h1")).not.toBeNull();
+  });
+
+  it("still renders the testimonial when a study has one", () => {
+    const { container } = render(<WorkCaseStudyContent cs={caseStudies[0]} />);
+    expect(container.querySelector("blockquote")).not.toBeNull();
+  });
+
+  it("gives every assessment study alt text on each image and keeps its image files under 400 KB", () => {
+    const assessments = caseStudies.filter((c) => c.kind === "assessment");
+    for (const cs of assessments) {
+      const srcs = [cs.backgroundImage];
+      for (const section of cs.sections) {
+        for (const block of section.blocks) {
+          if (block.type === "img") {
+            expect(block.alt.trim()).not.toBe("");
+            srcs.push(block.src);
+          }
+        }
+      }
+      for (const src of srcs) {
+        const file = path.join(__dirname, "..", "public", src);
+        expect(fs.statSync(file).size).toBeLessThan(400 * 1024);
+      }
     }
   });
 });

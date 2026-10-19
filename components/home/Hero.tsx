@@ -1,18 +1,27 @@
+import { caseStudies } from "@/lib/work";
+
 const CTA_URL = "https://cal.com/jasoncookdesign/engagement-consultation";
 
-const stats = [
-  { value: "8", label: "enterprise engagements" },
-  { value: "143", label: "countries unified in one system" },
-  { value: "40", plus: true, label: "industry awards for shipped work" },
-];
+// DRAFT — Jason to edit
+function getStats() {
+  return [
+    {
+      value: String(caseStudies.filter((c) => c.kind !== "assessment").length),
+      label: "enterprise engagements",
+    },
+    { value: "143", label: "countries unified in one system" },
+    { value: "40", plus: true, label: "industry awards for shipped work" },
+  ];
+}
 
 export default function Hero() {
+  const stats = getStats();
   return (
     <section className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-32">
       <div className="flex flex-col items-start gap-16 lg:flex-row">
         <div className="max-w-[900px] flex-1">
           <p className="mb-10 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-            For startups and midmarket operators outgrowing their systems
+            For businesses with a system to fix or a new offering to launch
           </p>
           <h1 className="text-[42px] font-extralight leading-[1.1] tracking-[-0.035em] text-ink sm:text-[62px] lg:text-[76px] lg:leading-[1.08]">
             Get a working system that solves the problem you{" "}
