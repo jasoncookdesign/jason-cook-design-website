@@ -8,6 +8,22 @@ const sections = [
   { id: "terms", heading: "Terms" },
 ];
 
+// Each section's eyebrow says what the section describes, like eyebrows elsewhere on the site. No numbers.
+const eyebrows: Record<string, string> = {
+  privacy: "What this site collects and why",
+  accessibility: "How this site works for every visitor",
+  terms: "The ground rules for using this site",
+};
+
+describe("Legal page eyebrows", () => {
+  it.each(sections)("$heading carries a statement of what it describes, not a number", ({ id }) => {
+    const { container } = render(<LegalPage />);
+    const eyebrow = container.querySelector(`section#${id} .eyebrow`);
+    expect(eyebrow?.textContent).toBe(eyebrows[id]);
+    expect(eyebrow?.textContent).not.toMatch(/\d/);
+  });
+});
+
 describe("Legal page", () => {
   it("is one page headed Legal", () => {
     render(<LegalPage />);
