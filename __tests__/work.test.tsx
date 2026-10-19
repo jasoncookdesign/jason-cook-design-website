@@ -300,17 +300,25 @@ describe("Case study text-and-figure pairing", () => {
     expect(beats(c)[0].querySelectorAll(".beat-text > ul")).toHaveLength(1);
   });
 
-  it("leaves a figure with no text before it, and text with no figure after it, outside any beat", () => {
+  it("gives a figure with no text before it its own beat, with no text column, so every figure shares the figure column", () => {
     const c = html([img(1), p("tail")]);
-    expect(beats(c)).toHaveLength(0);
-    expect(c.querySelectorAll(".prose > figure.fig")).toHaveLength(1);
+    expect(beats(c)).toHaveLength(1);
+    expect(beats(c)[0].querySelector(".beat-text")).toBeNull();
+    expect(beats(c)[0].querySelectorAll(":scope > figure.fig")).toHaveLength(1);
+    expect(c.querySelectorAll(".prose > figure.fig")).toHaveLength(0);
+  });
+
+  it("leaves text with no figure after it outside any beat", () => {
+    const c = html([p("a"), img(1), p("tail")]);
+    expect(beats(c)).toHaveLength(1);
     expect(c.querySelectorAll(".prose > p")).toHaveLength(1);
   });
 
-  it("pairs the first of two consecutive figures with the text and leaves the second on its own", () => {
-    const c = html([p("a"), img(1), img(2)]);
-    expect(beats(c)).toHaveLength(1);
-    expect(c.querySelectorAll(".prose > figure.fig")).toHaveLength(1);
+  it("pairs the first of consecutive figures with the text and gives each later one its own beat", () => {
+    const c = html([p("a"), img(1), img(2), img(3)]);
+    expect(beats(c)).toHaveLength(3);
+    expect(beats(c).map((b) => b.querySelector(".beat-text") !== null)).toEqual([true, false, false]);
+    expect(c.querySelectorAll(".prose > figure.fig")).toHaveLength(0);
   });
 
   it("keeps document order and FIG numbering through the pairing", () => {
@@ -333,6 +341,8 @@ describe("Case study wide layout CSS", () => {
     expect(wide![1]).toMatch(/\.prose\.beats \.beat\s*\{[^}]*display:\s*grid/);
     expect(wide![1]).toMatch(/grid-template-columns:\s*minmax\(0,\s*5fr\)\s*minmax\(0,\s*6fr\)/);
     expect(css.replace(wide![0], "")).not.toMatch(/\.beat\s*\{[^}]*display:\s*grid/);
+    // A figure with no text beside it still sits in the figure column.
+    expect(wide![1]).toMatch(/\.prose\.beats \.beat > \.fig:only-child\s*\{[^}]*grid-column:\s*2/);
     // The measure stays at 720px however wide the screen gets.
     expect(wide![1]).toMatch(/\.prose\.beats \.beat-text\s*\{[^}]*max-width:\s*720px/);
   });
