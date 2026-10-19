@@ -2,6 +2,8 @@
 
 /* ---------- shared bits ---------- */
 .em { font-style: normal; }
+/* The hero headline dims its emphasis word, as the engagements hero does. */
+.hero h1 .em { color: var(--ink2); }
 .intro .t > h2:first-child { margin-top: 0; }
 .strip { margin: 0; }
 

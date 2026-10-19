@@ -13,8 +13,11 @@ describe("fidelity review fixes", () => {
     expect(all).toMatch(/\.pl > \.sp:last-child\s*\{\s*border-bottom:\s*0/);
   });
 
-  it("keeps display headlines in ink: no dimmed emphasis span", () => {
-    expect(read("app/bp-home.css")).not.toMatch(/\.em\s*\{[^}]*color:\s*var\(--ink2\)/);
+  it("dims emphasis only in the hero headline, in the same ink2 as the engagements hero; other headlines stay ink", () => {
+    const home = read("app/bp-home.css");
+    expect(home).not.toMatch(/(^|\n)\.em\s*\{[^}]*color:/);
+    expect(home).toMatch(/\.hero h1 \.em\s*\{[^}]*color:\s*var\(--ink2\)/);
+    expect(read("app/bp-engagements.css")).toMatch(/\.eng-hero h1 span\s*\{[^}]*color:\s*var\(--ink2\)/);
   });
 
   it("left-aligns the home close sheet on the grid", () => {
