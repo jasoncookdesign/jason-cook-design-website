@@ -291,6 +291,42 @@ main section[data-sheet]::before {
   justify-content: space-between;
 }
 
+/* Footer plate (concept .colo below ruled cells) */
+.foot-sheet {
+  border-top: 1px solid var(--ink);
+}
+.foot-sheet .foot-mark {
+  display: block;
+  height: 48px;
+  width: auto;
+  align-self: flex-start;
+}
+.foot-sheet ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.foot-sheet .cell a {
+  width: fit-content;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 1.4;
+}
+.foot-sheet .cell a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.foot-sheet .foot-mail {
+  font-size: 22px;
+}
+.foot-sheet .colo a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 /* Brand logos on dark surfaces (DESIGN.md §5) */
 [data-theme="dark"] img[data-brand] {
   filter: invert(1) brightness(1.9) contrast(0.9);

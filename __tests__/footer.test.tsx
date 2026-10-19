@@ -1,14 +1,32 @@
 import { render, screen } from "@testing-library/react";
 import Footer from "@/components/layout/Footer";
 
-describe("Footer responsive layout", () => {
-  it("footer inner wrapper uses responsive horizontal padding (px-6 sm:px-10) to match other sections", () => {
+describe("Footer as a plate", () => {
+  it("is a sheet: three ruled cells (mark, site navigation, contact) over the colophon row", () => {
     const { container } = render(<Footer />);
-    const inner = container.querySelector("footer > div");
-    expect(inner).not.toBeNull();
-    // After fix: should have sm:px-10 to match every other section's responsive padding pattern
-    expect(inner?.className).toMatch(/sm:px-10/);
-    expect(inner?.className).toMatch(/px-6/);
+    const footer = container.querySelector("footer")!;
+    expect(footer.getAttribute("data-sheet")).toBe("Z-001");
+    expect(footer.getAttribute("data-name")).toBe("COLOPHON");
+    const cells = footer.querySelectorAll(".cells.c3 > .cell");
+    expect(cells).toHaveLength(3);
+    expect(cells[0].querySelector("svg")).not.toBeNull();
+    expect(cells[1].tagName).toBe("NAV");
+    expect(footer.querySelector(".colo")).not.toBeNull();
+  });
+
+  it("keeps the legal links and the copyright in the colophon row", () => {
+    const { container } = render(<Footer />);
+    const colo = container.querySelector(".colo")!;
+    expect(colo.textContent).toMatch(/Privacy Policy/);
+    expect(colo.textContent).toMatch(/Accessibility Statement/);
+    expect(colo.textContent).toMatch(/Terms/);
+    expect(colo.textContent).toMatch(/Jason Cook Design LLC/);
+  });
+
+  it("uses no tinted fill, radius, or shadow classes", () => {
+    const { container } = render(<Footer />);
+    const html = container.innerHTML;
+    expect(html).not.toMatch(/bg-(surface|band|muted)|rounded|shadow/);
   });
 });
 
