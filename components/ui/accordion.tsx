@@ -22,9 +22,8 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
   )
 }
 
-// Single-open FAQ rows in the blueprint's grammar (the kit's faq-item, faq-trigger, faq-panel): a mono key,
-// the question, and a plus mark that becomes a minus when open. The key is a CSS counter (bp-home.css), so
-// every accordion on the site is numbered without the callers passing an index.
+// Single-open FAQ rows in the blueprint's grammar (the kit's faq-item, faq-trigger, faq-panel): the question
+// and a plus mark that becomes a minus when open.
 function AccordionTrigger({
   className,
   children,
@@ -37,7 +36,6 @@ function AccordionTrigger({
         className={cn("faq-trigger", className)}
         {...props}
       >
-        <span className="k" aria-hidden="true" />
         <span>{children}</span>
         <span className="mark" aria-hidden="true" />
       </AccordionPrimitive.Trigger>

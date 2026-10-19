@@ -1,22 +1,18 @@
 // DRAFT — Jason to edit
 const problemCards = [
   {
-    n: "01",
     label: "The idea",
     body: "You have a product or business line in mind, and the people around you like it. Their enthusiasm tells you little about whether customers will pay, or what it takes to deliver.",
   },
   {
-    n: "02",
     label: "The quick build",
     body: "The fastest path looks like building something and seeing what happens. A prototype gets made and money gets spent. By the time the answer arrives, it is expensive to act on.",
   },
   {
-    n: "03",
     label: "The advice",
     body: "You asked around: a strategy consultant, an agency, a technical person who might join. Each saw the part of it they sell, and none of them owned the whole decision.",
   },
   {
-    n: "04",
     label: "One owner",
     body: "By now you can describe what you need: one capable expert who tests the decision, defines the product, and builds it, with nothing lost between those steps.",
   },
@@ -34,7 +30,6 @@ export default function OfferingProblem() {
       <div className="cells c2">
         {problemCards.map((card) => (
           <article key={card.label} className="cell">
-            <span className="idx">{card.n}</span>
             <h3>{card.label}</h3>
             <p>{card.body}</p>
           </article>

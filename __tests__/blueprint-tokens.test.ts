@@ -98,16 +98,10 @@ describe("blueprint shape and scale", () => {
 });
 
 describe("sheet grammar", () => {
-  it("numbers each section with a CSS counter and hides the label from assistive technology", () => {
-    expect(css).toMatch(/main\s*\{[^}]*counter-reset:\s*sheet/);
-    expect(css).toMatch(/main section\s*\{[^}]*counter-increment:\s*sheet/);
-    expect(css).toMatch(/main section::before\s*\{[^}]*content:\s*"A-1"\s*counter\(sheet,\s*decimal-leading-zero\)\s*\/\s*""/);
-  });
-
-});
-
-describe("sheet tags from the data attribute", () => {
-  it("shows a section's data-sheet as its tag when present, with an empty alternative", () => {
-    expect(css).toMatch(/main section\[data-sheet\]::before\s*\{[^}]*content:\s*attr\(data-sheet\)\s*\/\s*""/);
+  it("keeps sections as sheets without printing a sheet code in each corner: no counter and no generated label", () => {
+    expect(css).not.toMatch(/counter-reset:\s*sheet/);
+    expect(css).not.toMatch(/counter-increment:\s*sheet/);
+    expect(css).not.toMatch(/main section(\[data-sheet\])?::before\s*\{[^}]*content:/);
+    expect(css).toMatch(/main section\s*\{[^}]*position:\s*relative/);
   });
 });

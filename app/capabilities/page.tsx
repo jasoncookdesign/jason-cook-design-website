@@ -92,7 +92,7 @@ export default function CapabilitiesPage() {
       <section className="pgs" data-sheet="A-102" data-name="SCOPE">
         <div className="intro g">
           <div className="t">
-            <p className="eyebrow">01</p>
+            <p className="eyebrow">What the work covers</p>
             <p className="lead">
               The work on these programs has spanned the full arc a complex problem requires.
             </p>
@@ -111,14 +111,13 @@ export default function CapabilitiesPage() {
       <section className="pgs" data-sheet="A-103" data-name="PROOF">
         <div className="intro g">
           <div className="t">
-            <p className="eyebrow">02</p>
+            <p className="eyebrow">What the programs produced</p>
             <h2>Outcomes on the record</h2>
           </div>
         </div>
         <ul className="rows out">
-          {outcomes.map((line, i) => (
-            <li key={line} className="row hold">
-              <span className="k">{String(i + 1).padStart(2, "0")}</span>
+          {outcomes.map((line) => (
+            <li key={line} className="row hold plain">
               <p>{line}</p>
             </li>
           ))}
@@ -133,7 +132,7 @@ export default function CapabilitiesPage() {
       <section className="pgs" data-sheet="A-104" data-name="PRACTICE">
         <div className="intro g">
           <div className="t">
-            <p className="eyebrow">03</p>
+            <p className="eyebrow">The discipline behind the work</p>
             <h2>[PRACTICE-NAME]</h2>
           </div>
         </div>
@@ -156,7 +155,7 @@ export default function CapabilitiesPage() {
       <section className="pgs" data-sheet="A-105" data-name="COMPANY">
         <div className="intro g">
           <div className="t">
-            <p className="eyebrow">04</p>
+            <p className="eyebrow">For registration and procurement</p>
             <h2>Company data</h2>
           </div>
         </div>

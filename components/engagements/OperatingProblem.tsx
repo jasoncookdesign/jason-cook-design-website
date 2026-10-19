@@ -1,22 +1,18 @@
 // DRAFT — Jason to edit
 const problemCards = [
   {
-    n: "01",
     label: "The old way",
     body: "The spreadsheet, the manual step, the tool you picked when the company was half this size. It still works. It just takes more of you every month.",
   },
   {
-    n: "02",
     label: "The internal attempt",
     body: "You put someone on it. Between their real job and the parts nobody owned, it stalled and nobody can say exactly when.",
   },
   {
-    n: "03",
     label: "The search outside",
     body: "Then you went looking outside. The question you couldn’t get answered was whether any of it is sized for a business like yours.",
   },
   {
-    n: "04",
     label: "The split",
     body: "By now you can describe what you need: the diagnosis and the build held by one capable expert. That’s the requirement you keep having to explain.",
   },
@@ -34,7 +30,6 @@ export default function OperatingProblem() {
       <div className="cells c2">
         {problemCards.map((card) => (
           <article key={card.label} className="cell">
-            <span className="idx">{card.n}</span>
             <h3>{card.label}</h3>
             <p>{card.body}</p>
           </article>

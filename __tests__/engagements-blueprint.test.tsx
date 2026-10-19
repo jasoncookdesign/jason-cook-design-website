@@ -85,17 +85,17 @@ describe.each([
 });
 
 describe.each([
-  ["operating", () => <OperatingPage />, ["01", "02", "03", "04"]],
-  ["offering", () => <OfferingPage />, ["01", "02", "03", "04"]],
-])("%s problem sheet", (_n, ui, keys) => {
-  it("is an intro block over four ruled cells with a mono key, a title, and a paragraph", () => {
+  ["operating", () => <OperatingPage />],
+  ["offering", () => <OfferingPage />],
+])("%s problem sheet", (_n, ui) => {
+  it("is an intro block over four ruled cells with a title and a paragraph, and no number key", () => {
     const { container } = render(ui());
     const sheet = sections(container)[1];
     expect(sheet.querySelector(":scope > .intro.g > .t > p.eyebrow + h2")).not.toBeNull();
     const cells = Array.from(sheet.querySelectorAll(":scope > .cells > .cell"));
     expect(cells).toHaveLength(4);
     expect(sheet.querySelector(".cells")!.classList.contains("c2")).toBe(true);
-    expect(cells.map((c) => c.querySelector(".idx")?.textContent)).toEqual(keys);
+    cells.forEach((c) => expect(c.querySelector(".idx")).toBeNull());
     for (const c of cells) {
       expect(c.querySelector("h3")!.textContent!.length).toBeGreaterThan(3);
       expect(c.querySelector("p")!.textContent!.length).toBeGreaterThan(40);
@@ -165,7 +165,7 @@ describe("pricing sheets use the spec plate", () => {
     ]);
     const terms = Array.from(sheet.querySelectorAll("ul.rows > li.row"));
     expect(terms).toHaveLength(5);
-    expect(terms.map((t) => t.querySelector(".k")?.textContent)).toEqual(["01", "02", "03", "04", "05"]);
+    terms.forEach((t) => expect(t.querySelector(".k")).toBeNull());
   });
 });
 

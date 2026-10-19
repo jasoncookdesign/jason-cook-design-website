@@ -156,36 +156,11 @@
 }
 
 /*
- * Sheet grammar (decorative, CSS only, no DOM changes). Each section on a page is a numbered
- * sheet (A-101, A-102, ...), and a binding-margin rule runs down the left edge on wide screens.
- * The generated text carries an empty alternative so assistive technology skips it.
+ * Sheet grammar: each section is a sheet (data-sheet carries its code for the layers view and the bar's cue).
+ * The codes are not printed in each section's corner.
  */
-main {
-  counter-reset: sheet;
-}
 main section {
   position: relative;
-  counter-increment: sheet;
-}
-main section::before {
-  content: "A-1" counter(sheet, decimal-leading-zero) / "";
-  position: absolute;
-  top: 14px;
-  right: var(--pad);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  color: var(--muted);
-  opacity: 0.7;
-  pointer-events: none;
-}
-main section[data-sheet]::before {
-  content: attr(data-sheet) / "";
-}
-@media (max-width: 639px) {
-  main section::before {
-    display: none;
-  }
 }
 
 /* A section whose root is the 1200px container spans the frame, so its rules reach the edges;

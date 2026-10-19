@@ -1,12 +1,10 @@
 const options = [
   {
-    n: "01",
     label: "End-to-end delivery",
     headline: "I build it, you run it",
     body: "You get a written architecture, a technical specification, implementation, and training to operate it.",
   },
   {
-    n: "02",
     label: "Specification and build-out guide",
     headline: "I design it, your people build it, then you run it",
     body: "If you’d rather have your team or a partner build it, I’ll ensure they have what they need to get the job done right.",
@@ -25,7 +23,6 @@ export default function DeliveryOptionsSection() {
       <div className="cells c2">
         {options.map((opt) => (
           <article key={opt.label} className="cell">
-            <span className="idx">{opt.n}</span>
             <p className="lbl">{opt.label}</p>
             <h3>{opt.headline}</h3>
             <p>{opt.body}</p>

@@ -55,9 +55,10 @@ describe.each(pages)("%s page is a stack of sheets", (_name, make, hasEyebrow) =
     if (hasEyebrow) expect(hero.querySelector("p")!.classList.contains("eyebrow")).toBe(true);
   });
 
-  it("puts each sheet headline under an eyebrow", () => {
+  it("puts each sheet headline under an eyebrow (case-study body sections are headed by their own content, with none)", () => {
     const { container } = render(make());
     container.querySelectorAll(".intro h2").forEach((h2) => {
+      if (h2.closest('section[data-name="BODY"]')) return;
       expect(h2.previousElementSibling?.classList.contains("eyebrow")).toBe(true);
     });
   });
@@ -101,12 +102,11 @@ describe("case study", () => {
     expect(hero.querySelector("h1 ~ div > p")!.textContent).toBe(dell.subtitle);
   });
 
-  it("gives each body section a mono key, the heading, and prose", () => {
+  it("gives each body section its heading and prose, with no number key", () => {
     const { container } = render(<WorkCaseStudyContent cs={dell} />);
     const heads = Array.from(container.querySelectorAll(".intro h2")).map((h) => h.textContent);
     expect(heads).toEqual(dell.sections.map((s) => s.heading));
-    const keys = Array.from(container.querySelectorAll(".intro .eyebrow")).map((p) => p.textContent);
-    expect(keys[0]).toBe("01");
+    expect(container.querySelectorAll(".intro .eyebrow")).toHaveLength(0);
     expect(container.querySelectorAll(".pg .prose").length).toBe(dell.sections.length);
   });
 
