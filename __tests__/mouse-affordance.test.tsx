@@ -15,31 +15,10 @@
 
 import { render, screen, fireEvent } from "@testing-library/react";
 import Nav from "@/components/layout/Nav";
-import ThemeToggle from "@/components/layout/ThemeToggle";
 import FaqSection from "@/components/home/FaqSection";
 import EngagementsFaq from "@/components/engagements/EngagementsFaq";
 import { Button } from "@/components/ui/button";
 
-// ---------------------------------------------------------------------------
-// ThemeToggle — both buttons need a visible hover state
-// ---------------------------------------------------------------------------
-describe("ThemeToggle — mouse affordance", () => {
-  beforeEach(() => {
-    document.documentElement.setAttribute("data-theme", "light");
-  });
-
-  it("Light button has a hover: class for visual feedback", () => {
-    render(<ThemeToggle />);
-    const btn = screen.getByRole("button", { name: /Light theme/i });
-    expect(btn.className).toMatch(/hover:/);
-  });
-
-  it("Dark button has a hover: class for visual feedback", () => {
-    render(<ThemeToggle />);
-    const btn = screen.getByRole("button", { name: /Dark theme/i });
-    expect(btn.className).toMatch(/hover:/);
-  });
-});
 
 // ---------------------------------------------------------------------------
 // Nav — logo link and hamburger button
@@ -116,23 +95,6 @@ describe("Nav mobile links — mouse affordance (regression)", () => {
 // <button> elements; every interactive button needs an explicit cursor-pointer
 // class.  <a>/<Link> elements are excluded (browser default already pointer).
 // ---------------------------------------------------------------------------
-describe("ThemeToggle — cursor-pointer affordance", () => {
-  beforeEach(() => {
-    document.documentElement.setAttribute("data-theme", "light");
-  });
-
-  it("Light button has cursor-pointer class", () => {
-    render(<ThemeToggle />);
-    const btn = screen.getByRole("button", { name: /Light theme/i });
-    expect(btn.className).toContain("cursor-pointer");
-  });
-
-  it("Dark button has cursor-pointer class", () => {
-    render(<ThemeToggle />);
-    const btn = screen.getByRole("button", { name: /Dark theme/i });
-    expect(btn.className).toContain("cursor-pointer");
-  });
-});
 
 describe("Nav hamburger — cursor-pointer affordance", () => {
   it("hamburger button has cursor-pointer class", () => {

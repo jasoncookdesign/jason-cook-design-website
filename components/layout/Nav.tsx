@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import ThemeToggle from "@/components/layout/ThemeToggle";
 
 const CTA_URL = "https://cal.com/jasoncookdesign/engagement-consultation";
 
@@ -68,7 +67,6 @@ export default function Nav() {
         </ul>
 
         <div className="flex flex-shrink-0 items-center gap-4">
-          <ThemeToggle />
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
