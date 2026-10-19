@@ -26,6 +26,8 @@ export interface Testimonial {
   quote: string;
   name: string;
   role: string;
+  /** Optional portrait, shown beside the name and role. */
+  photo?: string;
 }
 
 export interface CaseStudy {
@@ -198,6 +200,7 @@ export const caseStudies: CaseStudy[] = [
         "Jason has an exceptional ability to quickly digest complex and abstract problems and offer creative solutions. I learned tons about great user experience from him. As did our team. Jason not only is a talented designer, he is also a great teacher.",
       name: "Chris Coen",
       role: "Engineering Department Lead",
+      photo: "/images/people/chris-coen.jpg",
     },
   },
 
@@ -255,6 +258,7 @@ export const caseStudies: CaseStudy[] = [
         "Jason is an incredible UXer. He has an extraordinary ability to make the most complex work simple and clear. He taught me new ways of thinking about my role and acted as a mentor, ensuring we remained on track.",
       name: "Alex Crockett",
       role: "Senior UX Architect",
+      photo: "/images/people/alex-crockett.jpg",
     },
   },
 
@@ -323,6 +327,7 @@ export const caseStudies: CaseStudy[] = [
         "The amount of dissatisfaction and frustration in restaurants was stronger than we thought. This interface is so easy to use it makes training a breeze. The staff picked it up very quickly. It didn't make them feel dumb. I see people smiling when they use it.",
       name: "Brett Guidry",
       role: "Vice President of Customer Experience",
+      photo: "/images/people/brett-guidry.jpg",
     },
   },
 
@@ -505,6 +510,7 @@ export const caseStudies: CaseStudy[] = [
         "Jason has a unique blend of being a developer, UX architect, and designer — a rare breed. From his mad dev skills, beautifully written documentation (architecture, requirements, workflows, etc), overall understanding of the user experience, then he'll turn around and produce design assets. Beyond awesome, he really sets the bar.",
       name: "Issa Johnson",
       role: "Senior Producer",
+      photo: "/images/people/issa-johnson.jpg",
     },
   },
 
@@ -641,6 +647,7 @@ export const caseStudies: CaseStudy[] = [
         "Jason was one of the few of my staff that I felt comfortable filling in for me during new client engagements due to his technical knowledge, User Experience and design capabilities and ability to present ideas and opinions in thoughtful and insightful ways. I was continuously impressed with his ability to bring a high level of professional creativity and personal passion to every engagement.",
       name: "Jonah Sterling",
       role: "General Manager of Design",
+      photo: "/images/people/jonah-sterling.jpg",
     },
   },
 
@@ -768,6 +775,7 @@ export const caseStudies: CaseStudy[] = [
         "Jason is unquestionably one of the rarest people in the industry. Not only can he develop well structured solutions, but he has astounding ability in analysis and design. That, combined with his deep graphical design background, makes him near perfect for UX projects.",
       name: "Andrew Whiddett",
       role: "Chief Technology Officer",
+      photo: "/images/people/andrew-whiddett.jpg",
     },
   },
 
@@ -886,6 +894,7 @@ export const caseStudies: CaseStudy[] = [
         "Jason's understanding, insight and knowledge is profound. With clarity, elegance and joy he demonstrates how UX is both art and science. Jason cares deeply about the people and the projects he works with, always bringing his insight, diligence and skill to everything he touches. He makes the practice of UX fun, intriguing and beautiful.",
       name: "Alex Crockett",
       role: "Senior UX Architect",
+      photo: "/images/people/alex-crockett.jpg",
     },
   },
 
@@ -1009,6 +1018,7 @@ export const caseStudies: CaseStudy[] = [
         "Jason is a standout professional, thought leader, and exceptional experience designer. He consistently impressed with his strategic thinking and customer-focused approach. Jason excels at turning complex challenges into actionable strategies.",
       name: "Kimberly Smith",
       role: "Global Customer Experience Executive",
+      photo: "/images/people/kimberly-smith.jpg",
     },
   },
 ];
