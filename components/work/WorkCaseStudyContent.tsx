@@ -54,7 +54,8 @@ function renderBlock(block: Block, idx: number, fig: number) {
 type Placed = { block: Block; fig: number };
 
 // Groups each figure with the run of text just before it, so a wide screen can set them side by side. A figure with
-// no text before it, and text with no figure after it, stay as plain siblings.
+// no text before it is a beat of its own, so every figure lands in the same column. Text with no figure after it
+// stays a plain sibling.
 function renderBeats(blocks: Placed[]) {
   const out: ReactNode[] = [];
   let run: Placed[] = [];
@@ -74,7 +75,11 @@ function renderBeats(blocks: Placed[]) {
       );
       run = [];
     } else {
-      out.push(renderBlock(block, i, fig));
+      out.push(
+        <div key={`beat-${i}`} className="beat">
+          {renderBlock(block, i, fig)}
+        </div>,
+      );
     }
   });
   flush();
