@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import EngagementsPage from "@/app/engagements/page";
+import EngagementsPage from "@/app/engagements/operating/page";
 
 describe("Engagements page", () => {
   it("renders the hero H1", () => {

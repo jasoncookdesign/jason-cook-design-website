@@ -3,7 +3,7 @@ import { metadata as layout } from "@/app/layout";
 import { metadata as about } from "@/app/about/page";
 import { metadata as capabilities } from "@/app/capabilities/page";
 import { metadata as contact } from "@/app/contact/page";
-import { metadata as engagements } from "@/app/engagements/page";
+import { metadata as engagements } from "@/app/engagements/operating/page";
 import { metadata as legal } from "@/app/legal/page";
 import { metadata as work } from "@/app/work/page";
 import { metadata as writing } from "@/app/writing/page";

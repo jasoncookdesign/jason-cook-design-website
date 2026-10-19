@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import HomePage from "@/app/page";
-import EngagementsPage from "@/app/engagements/page";
+import EngagementsPage from "@/app/engagements/operating/page";
 import ContactPage from "@/app/contact/page";
 
 // The CTA subtext is a fixed string: every instance carries all of it.
