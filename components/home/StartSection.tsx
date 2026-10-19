@@ -34,13 +34,12 @@ function Track({ children }: { children?: React.ReactNode }) {
   );
 }
 
-// The schedule figure from the concept. The scale, stage labels, and bar positions are placeholders until
-// Jason resolves them, so the [SAMPLE: ...] text stays verbatim.
+// The schedule figure from the concept: the typical shape of the paid first phase, in working days.
 const stages = [
-  { n: "01", label: "[SAMPLE: stage 1, interview with owner]", s: "0%", w: "16.667%", d: ".1s", days: "[SAMPLE: days 1 to 2]", mark: "A" },
-  { n: "02", label: "[SAMPLE: stage 2, how the business runs now]", s: "8.333%", w: "33.333%", d: ".2s", days: "[SAMPLE: days 2 to 5]" },
-  { n: "03", label: "[SAMPLE: stage 3, what customers experience]", s: "33.333%", w: "25%", d: ".3s", days: "[SAMPLE: days 5 to 7]" },
-  { n: "04", label: "[SAMPLE: stage 4, written recommendation]", s: "50%", w: "25%", d: ".4s", days: "[SAMPLE: days 7 to 9]" },
+  { n: "01", label: "Interview with the owner", s: "0%", w: "16.667%", d: ".1s", days: "Days 1 to 2", mark: "A" },
+  { n: "02", label: "How the business runs now", s: "8.333%", w: "33.333%", d: ".2s", days: "Days 2 to 5" },
+  { n: "03", label: "What customers experience", s: "33.333%", w: "25%", d: ".3s", days: "Days 5 to 7" },
+  { n: "04", label: "Written recommendation", s: "50%", w: "25%", d: ".4s", days: "Days 7 to 9" },
 ];
 
 function ScheduleFigure() {
@@ -51,12 +50,12 @@ function ScheduleFigure() {
           <span className="idx">FIG. 1</span>
           <b id="fig1">Find the real problem</b>
         </div>
-        <span className="ph">[SAMPLE: scale and bar positions are placeholders]</span>
+        <span className="note">Typical shape, in working days</span>
       </div>
 
       <div className="rw hd">
         <div className="lab">
-          <span className="ph">[SAMPLE: scale, working days]</span>
+          <span>Working days</span>
         </div>
         <div className="trk" aria-hidden="true">
           <div className="cols">
@@ -77,7 +76,7 @@ function ScheduleFigure() {
         <div className="rw" key={st.n}>
           <div className="lab">
             <span className="idx">{st.n}</span>
-            <span className="ph">{st.label}</span>
+            <span>{st.label}</span>
           </div>
           <Track>
             <span className="bx" style={{ "--s": st.s, "--w": st.w, "--d": st.d } as React.CSSProperties}>
@@ -95,7 +94,7 @@ function ScheduleFigure() {
       <div className="rw last">
         <div className="lab">
           <span className="idx">05</span>
-          <span className="ph">[SAMPLE: decision point, build or stop]</span>
+          <span>Decision: build or stop</span>
         </div>
         <Track>
           <span className="mk acc l" style={{ left: "calc(75% - 5px)" }} aria-hidden="true">
