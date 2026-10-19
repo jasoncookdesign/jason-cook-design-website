@@ -16,7 +16,7 @@
   --gl: 44px;
 }
 html { scroll-padding-top: 92px; }
-a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var(--signal);outline-offset:3px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* ---------- the sheet frame, grid, registration marks ---------- */
@@ -46,12 +46,12 @@ a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var
 .nav{display:flex;gap:28px;margin-left:auto}
 .nav a{display:flex;gap:8px;align-items:baseline;min-height:44px;align-items:center;text-decoration:none;font:500 12px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase}
 .nav a span{color:var(--ink2)}
-.nav a:hover{text-decoration:underline;text-underline-offset:5px}
+.nav a:hover{text-decoration:underline;text-decoration-color:var(--signal);text-underline-offset:5px}
 .menu{display:none}
 
 /* ---------- button ---------- */
-.btn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 24px;background:var(--signal);color:var(--bg);border:1.5px solid var(--signal);text-decoration:none;font:500 15px/1.2 var(--mono);letter-spacing:.01em;transition:background-color .15s,color .15s}
-.btn:hover{background:var(--bg);color:var(--signal)}
+.btn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 24px;background:var(--ink);color:var(--paper);border:1.5px solid var(--ink);text-decoration:none;font:500 15px/1.2 var(--mono);letter-spacing:.01em;transition:background-color .15s,color .15s}
+.btn:hover{background:var(--paper);color:var(--ink)}
 .btn.sm{min-height:44px;padding:0 18px;font-size:13px}
 
 /* ---------- hero ---------- */

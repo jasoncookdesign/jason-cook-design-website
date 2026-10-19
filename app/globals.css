@@ -108,10 +108,8 @@
   --guide: #173650;
   --accent: #8FB2CC;
   --decision: #FF9B6B;
-  /* secondary colours from the approved lockups: signal on the primary action, warm over cool on the hero mark */
+  /* the lockups' orange: a fine accent in small places (never a fill) */
   --signal: #E8723C;
-  --warm: #FFB48A;
-  --cool: #5E9BD6;
   --link: #9CCBFF;
 
   --btn-bg: #E8EFF5;
@@ -266,7 +264,7 @@ main section[data-sheet]::before {
 }
 .bar .lv[hidden] { display: none; }
 .bar .lv:hover { border-color: var(--ink); color: var(--ink); }
-.bar .lv[aria-pressed="true"] { background: var(--paper2); border-color: var(--ink); color: var(--ink); }
+.bar .lv[aria-pressed="true"] { background: var(--paper2); border-color: var(--ink); color: var(--signal); }
 .bar .lv .lv-icon { display: block; width: 22px; height: 22px; }
 .bar .btn.sm {
   margin-left: 0;
