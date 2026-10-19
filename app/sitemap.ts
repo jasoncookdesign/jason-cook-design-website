@@ -1,0 +1,16 @@
+import type { MetadataRoute } from "next";
+import { caseStudies } from "@/lib/work";
+import { posts } from "@/lib/writing";
+
+const SITE = "https://jasoncookdesign.com";
+
+// Fixed pages; case studies and posts come from their registries so a new entry is listed without a second edit.
+const pages = ["", "/about", "/capabilities", "/contact", "/engagements", "/engagements/offering", "/engagements/operating", "/legal", "/work", "/writing"];
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    ...pages.map((p) => `${SITE}${p}`),
+    ...caseStudies.map((cs) => `${SITE}/work/${cs.slug}`),
+    ...posts.map((p) => `${SITE}/writing/${p.slug}`),
+  ].map((url) => ({ url }));
+}

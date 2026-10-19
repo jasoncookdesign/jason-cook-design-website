@@ -173,7 +173,7 @@ export const posts: Post[] = [
           },
           {
             ref: "2",
-            html: 'ChatForest, "RTX Spark: NVIDIA\'s Local AI Superchip Is Official — What Builders Need to Know," June 2026. <a href="https://chatforest.com/builders-log/nvidia-rtx-spark-computex-2026-local-ai-builder-guide/" target="_blank" rel="noopener noreferrer" class="underline">chatforest.com</a>',
+            html: 'ChatForest, "RTX Spark: NVIDIA\'s Local AI Superchip Is Official — What Builders Need to Know," June 2026.',
           },
           {
             ref: "3",
