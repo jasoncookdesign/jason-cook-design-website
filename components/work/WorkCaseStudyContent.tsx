@@ -143,9 +143,14 @@ export default function WorkCaseStudyContent({ cs: study }: Props) {
               <blockquote>
                 &ldquo;{study.testimonial.quote}&rdquo;
               </blockquote>
-              <figcaption>
-                <b>{study.testimonial.name}</b>
-                {study.testimonial.role}
+              <figcaption className={study.testimonial.photo ? "byline" : undefined}>
+                {study.testimonial.photo && (
+                  <Image src={study.testimonial.photo} alt="" width={60} height={60} />
+                )}
+                <span>
+                  <b>{study.testimonial.name}</b>
+                  {study.testimonial.role}
+                </span>
               </figcaption>
             </figure>
           </div>

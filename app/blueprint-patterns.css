@@ -114,6 +114,9 @@ a.row:hover .go, a.row:focus-visible .go { background: transparent; color: var(-
 .quotes blockquote { margin: 0; font-size: 24px; line-height: 1.4; text-wrap: pretty; }
 .quotes figcaption { font: 500 12px/1.5 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
 .quotes figcaption b { display: block; font-weight: 500; color: var(--ink); }
+/* A portrait beside the name: a ruled square, greyscale like the About portrait. */
+.quotes figcaption.byline { display: flex; align-items: center; gap: 16px; }
+.quotes figcaption.byline img { flex: none; width: 60px; height: 60px; object-fit: cover; border: 1px solid var(--ink); filter: grayscale(1) contrast(1.06) brightness(0.96); }
 
 /* ---------- logo strip: client marks in ruled cells ---------- */
 .logos { display: grid; grid-template-columns: repeat(var(--n, 4), 1fr); border-top: 1px solid var(--ink); }

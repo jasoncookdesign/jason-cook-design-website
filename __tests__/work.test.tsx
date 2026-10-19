@@ -337,3 +337,35 @@ describe("Case study wide layout CSS", () => {
     expect(wide![1]).toMatch(/\.prose\.beats \.beat-text\s*\{[^}]*max-width:\s*720px/);
   });
 });
+
+describe("Testimonial photos", () => {
+  const withTestimonial = caseStudies.filter((cs) => cs.testimonial);
+
+  it("every case-study testimonial has a photo on disk under images/people", () => {
+    expect(withTestimonial).toHaveLength(8);
+    for (const cs of withTestimonial) {
+      const photo = cs.testimonial!.photo;
+      expect(photo).toMatch(/^\/images\/people\/[a-z-]+\.jpg$/);
+      expect(fs.existsSync(path.join(process.cwd(), "public", photo!))).toBe(true);
+    }
+  });
+
+  it("shows the photo beside the name and role, with empty alt because the name is next to it", () => {
+    const cs = caseStudies.find((c) => c.slug === "ford")!;
+    const { container } = render(<WorkCaseStudyContent cs={cs} />);
+    const cap = container.querySelector(".quotes figure figcaption")!;
+    const img = cap.querySelector("img")!;
+    expect(decodeURIComponent(img.getAttribute("src")!)).toContain(cs.testimonial!.photo);
+    expect(img.getAttribute("alt")).toBe("");
+    expect(cap.querySelector("b")!.textContent).toBe(cs.testimonial!.name);
+    expect(cap.textContent).toContain(cs.testimonial!.role);
+  });
+
+  it("renders no photo when a testimonial has none", () => {
+    const base = caseStudies.find((c) => c.slug === "ford")!;
+    const cs = { ...base, testimonial: { ...base.testimonial!, photo: undefined } };
+    const { container } = render(<WorkCaseStudyContent cs={cs} />);
+    expect(container.querySelector(".quotes figcaption img")).toBeNull();
+    expect(container.querySelector(".quotes figcaption b")!.textContent).toBe(cs.testimonial.name);
+  });
+});
