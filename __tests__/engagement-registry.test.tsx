@@ -95,7 +95,7 @@ describe("INV-01: registry, routes, selector, and fork agree", () => {
       expect(links[i].textContent).not.toContain(t.fit);
       expect(links[i].textContent).not.toContain(t.arcSummary);
     });
-    const problem = screen.getAllByText("The old way")[0];
+    const problem = screen.getByText("Where I start");
     expect(links[1].compareDocumentPosition(problem) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 });

@@ -1,4 +1,5 @@
 import EngagementsHero from "@/components/engagements/EngagementsHero";
+import OperatingProblem from "@/components/engagements/OperatingProblem";
 import PhaseArc from "@/components/engagements/PhaseArc";
 import PortabilitySection from "@/components/engagements/PortabilitySection";
 import EngagementsPricing from "@/components/engagements/EngagementsPricing";
@@ -16,6 +17,7 @@ export default function EngagementsPage() {
   return (
     <>
       <EngagementsHero />
+      <OperatingProblem />
       <PhaseArc />
       <PortabilitySection />
       <EngagementsPricing />

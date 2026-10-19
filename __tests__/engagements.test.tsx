@@ -17,6 +17,16 @@ describe("Engagements page", () => {
     expect(screen.getByText("After the first step")).toBeTruthy();
   });
 
+  it("renders the four problem cards ahead of the phases", () => {
+    render(<EngagementsPage />);
+    for (const label of ["The old way", "The internal attempt", "The search outside", "The split"]) {
+      expect(screen.getByText(label)).toBeTruthy();
+    }
+    const phase = screen.getByText(/One — understand it, then decide the shape/i);
+    const card = screen.getByText("The old way");
+    expect(card.compareDocumentPosition(phase) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
   it("renders all five phase labels", () => {
     render(<EngagementsPage />);
     expect(screen.getByText(/One — understand it, then decide the shape/i)).toBeTruthy();

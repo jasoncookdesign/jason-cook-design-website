@@ -31,7 +31,7 @@ Rules: six phases, each with `holds` and `closes`. Statements on no whole-engage
 
 ## M5 — Home entry points
 
-Owns: `components/home/EngagementFork.tsx`, and edits to `Hero.tsx` (eyebrow; the stat derives from data), `ProblemSection.tsx` (scoping eyebrow), `PricingSection.tsx` (two cards, no universal claim, no universal H2), and `app/page.tsx` (insert the fork).
+Owns: `components/home/EngagementFork.tsx`, and edits to `Hero.tsx` (eyebrow; the stat derives from data), `StartSection.tsx` (the shared method; the operating problem cards moved to `OperatingProblem.tsx`), `PricingSection.tsx` (two cards, no universal claim, no universal H2), and `app/page.tsx` (insert the fork).
 Rules: Hero H1 and both CTAs stay. The fork renders cards through M2's component. `home.test.tsx` changes the eyebrow assertion and adds fork and pricing assertions.
 
 ## M6 — Case-study model and Work page

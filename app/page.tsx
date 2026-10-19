@@ -1,6 +1,6 @@
 import Hero from "@/components/home/Hero";
 import EngagementFork from "@/components/home/EngagementFork";
-import ProblemSection from "@/components/home/ProblemSection";
+import StartSection from "@/components/home/StartSection";
 import DeliveryOptionsSection from "@/components/home/DeliveryOptionsSection";
 import ProofSection from "@/components/home/ProofSection";
 import PricingSection from "@/components/home/PricingSection";
@@ -12,7 +12,7 @@ export default function HomePage() {
     <>
       <Hero />
       <EngagementFork />
-      <ProblemSection />
+      <StartSection />
       <DeliveryOptionsSection />
       <ProofSection />
       <PricingSection />

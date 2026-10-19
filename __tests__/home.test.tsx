@@ -44,12 +44,13 @@ describe("Home page", () => {
     expect(ctaLinks.length).toBeGreaterThan(0);
   });
 
-  it("renders the four problem cards", () => {
-    render(<HomePage />);
-    expect(screen.getByText(/The old way/i)).toBeTruthy();
-    expect(screen.getByText(/The internal attempt/i)).toBeTruthy();
-    expect(screen.getByText(/The search outside/i)).toBeTruthy();
-    expect(screen.getByText(/The split/i)).toBeTruthy();
+  it("renders the shared method in three steps, without the operating-only problem cards", () => {
+    const { container } = render(<HomePage />);
+    expect(screen.getByRole("heading", { name: /find the real problem first/i })).toBeTruthy();
+    for (const label of ["Find the real problem", "Design and build", "Hand it over"]) {
+      expect(screen.getByText(label)).toBeTruthy();
+    }
+    expect(container.textContent).not.toMatch(/The old way|The internal attempt|The search outside|outgrown the systems you built/);
   });
 
   it("renders the [ENTRY-OFFER-NAME] token literally", () => {

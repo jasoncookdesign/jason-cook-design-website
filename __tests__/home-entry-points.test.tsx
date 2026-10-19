@@ -60,10 +60,19 @@ describe("Home page entry points (REQ-13)", () => {
     expect(screen.getAllByRole("link", { name: /Book your strategy call/i }).length).toBeGreaterThanOrEqual(2);
   });
 
-  it("scopes the problem section with an eyebrow placed directly before its heading", () => {
+  it("scopes the method section with an eyebrow placed directly before its heading", () => {
     render(<HomePage />);
-    const problemHeading = screen.getByRole("heading", { name: /outgrown the systems you built/i });
-    const eyebrow = problemHeading.previousElementSibling;
+    const heading = screen.getByRole("heading", { name: /find the real problem first/i });
+    const eyebrow = heading.previousElementSibling;
+    expect(eyebrow).not.toBeNull();
+    expect(eyebrow!.tagName).toBe("P");
+    expect((eyebrow!.textContent ?? "").trim().length).toBeGreaterThan(5);
+  });
+
+  it("scopes the operating problem section with an eyebrow placed directly before its heading", () => {
+    render(<OperatingPage />);
+    const heading = screen.getByRole("heading", { name: /outgrown the systems you built/i });
+    const eyebrow = heading.previousElementSibling;
     expect(eyebrow).not.toBeNull();
     expect(eyebrow!.tagName).toBe("P");
     expect((eyebrow!.textContent ?? "").trim().length).toBeGreaterThan(5);
@@ -93,7 +102,8 @@ describe("REQ-11: new source files are marked as drafts", () => {
     "app/engagements/layout.tsx",
     "components/home/EngagementFork.tsx",
     "components/home/Hero.tsx",
-    "components/home/ProblemSection.tsx",
+    "components/home/StartSection.tsx",
+    "components/engagements/OperatingProblem.tsx",
     "components/home/PricingSection.tsx",
     "app/engagements/page.tsx",
     "app/engagements/operating/page.tsx",
