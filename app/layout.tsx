@@ -5,6 +5,7 @@ import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import SheetFrame from "@/components/layout/SheetFrame";
 import RevealOnScroll from "@/components/layout/RevealOnScroll";
+import PrivacyBanner from "@/components/layout/PrivacyBanner";
 import { LAYER_BOOT_SCRIPT } from "@/lib/layer-view-boot";
 
 const newsreader = Newsreader({
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <main className="flex-1">{children}</main>
           <Footer />
         </SheetFrame>
+        <PrivacyBanner />
       </body>
     </html>
   );

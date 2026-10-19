@@ -41,3 +41,13 @@ a:focus-visible, summary:focus-visible, button:focus-visible { transition: outli
    hidden only when JavaScript ran, motion is allowed, and the layer view is off. */
 html.js:not(.rm):not(.layers) .rv { opacity: 0; transform: translateY(12px); transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); }
 html.js:not(.rm):not(.layers) .rv.in, .rv.in { opacity: 1; transform: none; }
+
+/* ---------- privacy notice: a fixed bar along the foot of the viewport ---------- */
+.privacy { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; padding: 14px var(--pad); background: var(--paper); border-top: 1px solid var(--ink); animation: menu-in var(--t) var(--ease) both; }
+.privacy p { margin: 0; max-width: 72ch; font: 400 14px/1.5 var(--mono); letter-spacing: 0.02em; color: var(--ink2); }
+.privacy .tag { margin-right: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); }
+.privacy a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--signal); }
+.privacy-actions { display: flex; gap: 10px; flex: none; }
+.privacy .btn { min-height: 44px; }
+@media (max-width: 899px) { .privacy { padding: 12px var(--pad); } .privacy-actions { width: 100%; } .privacy-actions .btn { flex: 1; justify-content: center; } }
+.book-off { margin: 0; padding: 20px; border: 1px solid var(--rule); font: 400 14px/1.5 var(--mono); color: var(--ink2); }
