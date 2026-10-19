@@ -42,7 +42,7 @@ ul.rows, ol.rows { list-style: none; margin: 0; padding: 0; }
 .fig img { display: block; width: 100%; height: auto; border: 0; opacity: 1; }
 .fig figcaption { margin: 0; padding: 10px 14px; border-top: 1px solid var(--rule); font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
 .fig figcaption .idx { margin-right: 14px; }
-.fig figcaption a { text-decoration: underline; text-underline-offset: 3px; }
+.fig figcaption a { text-decoration: underline; text-underline-offset: 4px; }
 .fig.thumbnail { display: block; position: relative; aspect-ratio: 16 / 9; align-self: start; }
 .fig.thumbnail img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
 .prose > .fig { margin-top: 1.8em; }
