@@ -22,7 +22,9 @@
 #let cover(title: "", subtitle: "", client: "", date: "", version: "", status: "") = page(
   margin: 0pt, fill: ink, header: none, footer: none,
   {
-    place(top + left, dx: 0.9in, dy: 0.9in, text(font: "IBM Plex Mono", size: 8pt, tracking: 0.1em, fill: band-muted, upper("Jason Cook Design")))
+    place(top + left, dx: 0.9in, dy: 0.9in, grid(columns: (auto, auto), column-gutter: 0.14in, align: horizon,
+      image("assets/jcd-mark-stripe-ivory.svg", width: 0.62in, alt: "Jason Cook Design mark"),
+      text(font: "IBM Plex Mono", size: 8pt, tracking: 0.1em, fill: band-muted, upper("Jason Cook Design"))))
     place(top + left, dx: 0.9in, dy: 3.6in, block(width: 5.4in, {
       rect(width: 0.6in, height: 4pt, fill: accent, radius: 0pt)
       v(0.25in)
