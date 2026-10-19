@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import SheetFrame from "@/components/layout/SheetFrame";
+import { LAYER_BOOT_SCRIPT } from "@/lib/layer-view-boot";
 
 const newsreader = Newsreader({
   // The serif carries the site's body and display roles; globals.css aliases font-sans to this variable.
@@ -44,7 +45,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       data-theme="dark"
       className={`${newsreader.variable} ${ibmPlexMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: LAYER_BOOT_SCRIPT }} />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <SheetFrame>
           <Nav />

@@ -3,6 +3,7 @@
 @import "shadcn/tailwind.css";
 @import "./blueprint.css";
 @import "./blueprint-patterns.css";
+@import "./blueprint-layers.css";
 @import "./bp-drawing.css";
 @import "./bp-home.css";
 @import "./bp-engagements.css";
@@ -244,6 +245,24 @@ main section[data-sheet]::before {
   content: counter(navi, decimal-leading-zero) / "";
   color: var(--ink2);
 }
+/* The layer toggle is an understated 44px icon button beside the primary action. */
+.bar .lv {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 44px;
+  min-height: 44px;
+  padding: 0;
+  gap: 0;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink2);
+}
+.bar .lv[hidden] { display: none; }
+.bar .lv:hover { border-color: var(--ink); color: var(--ink); }
+.bar .lv[aria-pressed="true"] { background: var(--paper2); border-color: var(--ink); color: var(--ink); }
+.bar .lv .lv-icon { display: block; width: 22px; height: 22px; }
 .bar .btn.sm {
   margin-left: 0;
 }

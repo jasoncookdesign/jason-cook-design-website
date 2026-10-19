@@ -112,7 +112,13 @@ a.row:hover { background: var(--paper2); }
   display: flex; align-items: center; justify-content: center; min-height: 96px; padding: 20px;
   border-left: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
 }
-.logos > *:nth-child(var(--n, 4)n + 1) { border-left: 0; }
+.logos > *:nth-child(4n + 1) { border-left: 0; }
+.logos.c3 { --n: 3; }
+.logos.c3 > *:nth-child(4n + 1) { border-left: 1px solid var(--rule); }
+.logos.c3 > *:nth-child(3n + 1) { border-left: 0; }
+.logos.c5 { --n: 5; }
+.logos.c5 > *:nth-child(4n + 1) { border-left: 1px solid var(--rule); }
+.logos.c5 > *:nth-child(5n + 1) { border-left: 0; }
 
 /* ---------- stat row: figures in ruled cells ---------- */
 .statrow { display: grid; grid-template-columns: repeat(var(--n, 3), 1fr); border-top: 1px solid var(--ink); }

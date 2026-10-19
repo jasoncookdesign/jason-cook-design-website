@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import JcdMark from "@/components/brand/JcdMark";
+import LayerView from "@/components/layout/LayerView";
 
 const CTA_URL = "https://cal.com/jasoncookdesign/engagement-consultation";
 
@@ -21,6 +22,7 @@ const DOCK_AFTER_PX = 120;
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [docked, setDocked] = useState(false);
+  const [cue, setCue] = useState("");
 
   useEffect(() => {
     const onScroll = () => setDocked(window.scrollY > DOCK_AFTER_PX);
@@ -39,12 +41,13 @@ export default function Nav() {
   }, [open]);
 
   return (
-    <header data-docked={docked ? "true" : "false"} className={`bar${docked ? " docked" : ""}`}>
+    <header data-docked={docked ? "true" : "false"} data-sheet="G-001" data-name="TITLE BAR" data-flat className={`bar${docked ? " docked" : ""}`}>
       <Link href="/" className="wordmark">
         <JcdMark className="wm-mark" />
         <span className="wm-name">Jason Cook Design</span>
         <span className="idx" aria-hidden="true">DOC. 01</span>
       </Link>
+      <span className="cue" aria-hidden="true">{cue}</span>
 
       <nav className="nav" aria-label="Main navigation">
         <ul role="list">
@@ -59,6 +62,8 @@ export default function Nav() {
       <a href={CTA_URL} target="_blank" rel="noopener noreferrer" className="btn sm">
         Start a conversation
       </a>
+
+      <LayerView cue={cue} onCue={setCue} />
 
       <div className="menu">
         <button

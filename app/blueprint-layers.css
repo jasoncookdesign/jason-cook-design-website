@@ -1,0 +1,84 @@
+/*
+ * Layer view: the concept's layer machinery. A toggle exposes the page's structure: each [data-sheet] plate can
+ * tilt a few degrees over a sketch layer drawn from measured layout values (padding, gaps, size, column guides).
+ * Scripted in lib/layer-view.ts. Off by default. Under reduced motion it is a flat overlay unless the viewer
+ * opts in to the still tilt. Hidden in print; forced-colors uses system colors.
+ */
+:root{--k:1;--rx:calc(2.4deg * var(--k));--ry:calc(-3.4deg * var(--k));--tz:36px;--dz:72px;--persp:2000px}
+.cue{display:none;font:500 12px/1 var(--mono);letter-spacing:.09em;color:var(--ink2);white-space:nowrap}
+@media (min-width:1200px){.bar.docked>.cue{display:inline}}
+.lvstrip{display:none;position:absolute;left:-1px;right:-1px;top:100%;height:24px;align-items:center;justify-content:space-between;gap:12px;padding:0 var(--pad);background:var(--paper);border-bottom:1px solid var(--rule);font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);white-space:nowrap}
+html.layers .lvstrip{display:flex}
+.lvstrip .lft{display:flex;align-items:center;gap:12px}
+.lvstrip .cue{display:inline;font-size:11px}
+@media (min-width:1200px){.lvstrip .cue{display:none}}
+.lvstrip.long .cue{display:none}
+.stb{min-height:24px;padding:0 8px;background:transparent;color:var(--ink);border:1px solid var(--ink2);border-radius:0;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer}
+.stb:hover{background:var(--paper2)}
+.stb[hidden]{display:none}
+/* ---------- layer view ---------- */
+[data-sheet]{position:relative;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transform-origin:50% var(--oy,50%);transition:transform 420ms cubic-bezier(.22,.7,.2,1)}
+.lv{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 14px;background:transparent;color:var(--ink);border:1.5px solid var(--ink);border-radius:0;font:500 12px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;cursor:pointer;-webkit-appearance:none;appearance:none}
+.lv[hidden]{display:none}
+.lv:hover{background:var(--paper2)}
+.lv .sq{flex:none;width:10px;height:10px;border:1.5px solid var(--ink);background:var(--paper)}
+.lv[aria-pressed="true"]{background:var(--paper2)}
+.lv[aria-pressed="true"] .sq{background:var(--ink)}
+
+/* Tilt on (html.t3d = layers on, and motion allowed or the still-tilt opt-in taken). Each plate tilts with its own
+   perspective, but the vanishing point is the viewport centre (--oy is set from the scroll position), so all plates
+   share one camera. The content box of a plate is opaque, so the sketch behind it never prints through text; the
+   sketch shows in the padding bands and the gutter. The plate lifts and tilts further on the way in, then settles. */
+html.t3d [data-sheet]:not([data-flat]){
+  transform:perspective(var(--persp)) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(var(--tz));
+  background:var(--paper);background-clip:content-box;
+  animation:posein 900ms cubic-bezier(.3,.7,.25,1) backwards}
+@keyframes posein{0%{transform:none}45%{transform:perspective(var(--persp)) rotateX(calc(var(--rx) * 1.5)) rotateY(calc(var(--ry) * 1.5)) translateZ(calc(var(--tz) * 1.6))}}
+.ly{position:absolute;overflow:visible;pointer-events:none;opacity:0;-webkit-user-select:none;user-select:none;transition:opacity 420ms ease,transform 420ms cubic-bezier(.22,.7,.2,1)}
+.sk{z-index:0;transform:translateZ(0)}
+.an{z-index:2}
+.dl{position:absolute;display:block;width:2px;height:var(--dz);background:var(--ink2);pointer-events:none;opacity:0;transform-origin:0 0;transform:rotateX(-90deg);transition:opacity 420ms ease}
+.bar .dl{display:none}
+html.layers .ly,html.t3d .dl{opacity:1}
+html:not(.t3d) .dl{display:none}
+html.t3d .sk{transform:translateZ(calc(-1 * var(--dz)));animation:skin 900ms cubic-bezier(.3,.7,.25,1) backwards}
+@keyframes skin{0%{transform:translateZ(0)}45%{transform:translateZ(calc(var(--dz) * -1.7))}}
+html.t3d .dl{animation:dlin 900ms cubic-bezier(.3,.7,.25,1) backwards}
+@keyframes dlin{0%{height:0}45%{height:calc(var(--dz) * 1.7)}}
+/* flat (reduced motion, no opt-in): the same markups in the page plane, above the content, only in empty regions */
+html.layers:not(.t3d) .sk{z-index:1}
+.ly text{font-family:var(--mono);font-weight:500;fill:var(--ink2);white-space:pre;letter-spacing:0}
+.ly .chip{fill:var(--paper);stroke:var(--rule);stroke-width:1}
+.ly .out{fill:none;stroke:var(--ink2);stroke-width:1.5}
+.ly .corner{fill:none;stroke:var(--ink);stroke-width:3}
+.ly .ln{fill:none;stroke:var(--ink2);stroke-width:1}
+.ly .tk{stroke:var(--ink2);stroke-width:1.5}
+.ly .hl{stroke:var(--rule);stroke-width:1}
+.ly .gl{stroke:var(--rule);stroke-width:1;stroke-dasharray:1 4}
+.ly .sw{stroke:var(--rule);stroke-width:1}
+html.boot *,html.boot *::before,html.boot *::after,html.rm *,html.rm *::before,html.rm *::after{transition:none!important;animation:none!important}
+
+@media (forced-colors: active){
+  .ly .out,.ly .corner,.ly .ln,.ly .tk,.ly .hl,.ly .gl,.ly .sw{stroke:CanvasText}
+  .ly text{fill:CanvasText}
+  .ly .chip{fill:Canvas;stroke:CanvasText}
+  .dl{background:CanvasText}
+  .lv[aria-pressed="true"] .sq{background:CanvasText}
+}
+@media print{
+  .lv,.ly,.dl,.lvstrip,.cue{display:none!important}
+  .bar[data-sheet]{position:static}
+  html.layers [data-sheet]{transform:none!important;animation:none!important;background:none!important}
+}
+
+
+@media (max-width: 899px){
+  .lv{margin-left:auto;padding:0 10px;gap:8px;font-size:11px;letter-spacing:.06em}
+  .lv:not([hidden])~.menu{margin-left:0}
+  :root{--rx:calc(1.4deg * var(--k));--ry:calc(-2deg * var(--k));--tz:18px;--dz:40px}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+.still *,.still *::before,.still *::after{animation:none!important;transition:none!important}
