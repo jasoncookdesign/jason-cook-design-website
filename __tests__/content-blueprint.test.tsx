@@ -1,3 +1,5 @@
+import { existsSync, readFileSync } from "fs";
+import { join } from "path";
 /**
  * The content pages (work, case studies, writing, posts, about, capabilities, contact, legal, not-found)
  * are rebuilt from the blueprint kit: sheets divided by rules, ruled rows and cells, no cards, no tint,
@@ -207,5 +209,27 @@ describe("about, capabilities, contact, legal", () => {
   it("not found offers a primary button home", () => {
     const { container } = render(<NotFound />);
     expect(container.querySelector('a.btn[href="/"]')).not.toBeNull();
+  });
+});
+
+describe("about portrait", () => {
+  it("shows the profile photo in the hero's side column, with a text alternative and a caption", () => {
+    const { container } = render(<AboutPage />);
+    const fig = container.querySelector(".hero > .side figure.fig.portrait")!;
+    expect(fig).not.toBeNull();
+    const img = fig.querySelector("img")!;
+    expect(img.getAttribute("alt")).toBe("Portrait of Jason Cook");
+    expect(img.getAttribute("src")).toMatch(/jason-cook/);
+    expect(fig.querySelector("figcaption")?.textContent).toBe("Jason Cook");
+  });
+
+  it("is desaturated and tinted into the sheet's palette by CSS, so the file stays the original", () => {
+    const css = readFileSync(join(process.cwd(), "app/bp-content.css"), "utf8");
+    expect(css).toMatch(/\.fig\.portrait img\s*\{[^}]*filter:\s*grayscale\(1\)/);
+    expect(css).toMatch(/\.fig\.portrait::after\s*\{[^}]*mix-blend-mode:/);
+  });
+
+  it("ships the photo from the old site, as a file in public/images", () => {
+    expect(existsSync(join(process.cwd(), "public/images/jason-cook.jpg"))).toBe(true);
   });
 });
