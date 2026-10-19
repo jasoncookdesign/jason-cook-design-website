@@ -24,6 +24,13 @@ describe("privacy copy matches what the site does", () => {
     expect(t).toMatch(/decline/i);
   });
 
+  it("says the booking widget loads unless the visitor declines (not only after accepting), and that loading third parties sends the IP address", () => {
+    const t = text("privacy");
+    expect(t).toMatch(/unless you decline/i);
+    expect(t).toMatch(/IP address/);
+    expect(t).toMatch(/browser storage/i);
+  });
+
   it("names what is stored on the visitor's device and how to reset the choice", () => {
     const t = text("privacy");
     expect(t).toMatch(/local storage/i);
@@ -53,6 +60,12 @@ describe("accessibility copy", () => {
     expect(t).toMatch(/Level AA/);
     expect(t).toMatch(/hasn't been audited|haven't had the site audited|not been audited/i);
     expect(t).toMatch(/hello@jasoncookdesign\.com/);
+  });
+
+  it("says informative graphics have text alternatives, and describes contrast as a design target", () => {
+    const t = text("accessibility");
+    expect(t).toMatch(/text alternative/i);
+    expect(t).toMatch(/designed to meet/i);
   });
 });
 

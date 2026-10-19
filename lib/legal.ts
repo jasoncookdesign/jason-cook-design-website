@@ -2,7 +2,7 @@
 // Drafted only from what the site does today: the third parties it loads (Cal.com, and Google Tag Manager after
 // consent), what it stores in the browser (the privacy choice, the layers-view preferences), and the one contact
 // address. Verified against the analytics property on 2026-10-19: data retention is 14 months and Google signals
-// is off. Facts to confirm before the cutover: the hosting provider (written as Vercel, which the cutover plan
+// is off. A fresh-context audit checked each claim against the code on 2026-10-19. Facts to confirm before the cutover: the hosting provider (written as Vercel, which the cutover plan
 // names), and that email addresses are used only to reply.
 export const CONTACT_EMAIL = "hello@jasoncookdesign.com";
 const UPDATED = "Last updated: October 19, 2026.";
@@ -24,12 +24,12 @@ export const legalSections: LegalSection[] = [
       {
         term: "Booking",
         detail:
-          "The booking calendar is an embedded Cal.com widget. When it loads, Cal.com receives your browser's request and may set cookies. If you book a call, Cal.com collects the name, email address, and notes you enter and passes them to me. Cal.com's own privacy policy covers what it does with that data. If you decline the privacy notice, the widget stays off, and the booking link still takes you to Cal.com's page, where the same applies.",
+          "The booking calendar is an embedded Cal.com widget. It loads unless you decline the privacy notice, so it also loads while you haven't chosen yet. Loading it sends your IP address and browser details to Cal.com, which may set cookies or use other browser storage. If you book a call, Cal.com collects the name, email address, and notes you enter and passes them to me. Cal.com's own privacy policy covers what it does with that data. If you decline, the widget stays off, and the booking link still takes you to Cal.com's page, where the same applies.",
       },
       {
         term: "Analytics",
         detail:
-          "If you accept the privacy notice, the site loads Google Tag Manager and Google Analytics. They record which pages you visit, roughly where you are, what device and browser you use, and whether you click the email link or finish a booking. Google sets cookies for this. I haven't turned on Google's advertising features, such as Google signals. If you decline or ignore the notice, none of it loads.",
+          "If you accept the privacy notice, the site loads Google Tag Manager and Google Analytics. They record which pages you visit, roughly where you are, what device and browser you use, and whether you click the email link or finish a booking. Loading them sends your IP address to Google, which sets cookies for this. I haven't turned on Google's advertising features, such as Google signals. If you decline or ignore the notice, none of it loads.",
       },
       {
         term: "Retention",
@@ -56,7 +56,7 @@ export const legalSections: LegalSection[] = [
       },
       {
         term: "Your choices",
-        detail: `To change your answer on analytics, clear this site's data in your browser and the notice returns. To ask what I hold about you, or to have it deleted, write to ${CONTACT_EMAIL}.`,
+        detail: `To change your answer on analytics, clear this site's data in your browser and the notice returns. Analytics then stay off from your next page load until you choose again. To ask what I hold about you, or to have it deleted, write to ${CONTACT_EMAIL}.`,
       },
       { term: "Changes", detail: `If this policy changes, the date below changes with it. ${UPDATED}` },
     ],
@@ -74,7 +74,7 @@ export const legalSections: LegalSection[] = [
       {
         term: "Target",
         detail:
-          "The target is the Web Content Accessibility Guidelines (WCAG) 2.1, Level AA. In practice, text and controls meet the contrast minimums, every control can be reached and used from a keyboard with a visible focus ring, pages have a logical heading structure, decorative graphics are hidden from assistive technology, and animation stops when your system asks for reduced motion.",
+          "The target is the Web Content Accessibility Guidelines (WCAG) 2.1, Level AA. In practice, text and controls are designed to meet the contrast minimums, every control I built can be reached and used from a keyboard with a visible focus ring, pages have a logical heading structure, decorative graphics are hidden from assistive technology, informative graphics have a text alternative, and animation is turned off when your system asks for reduced motion.",
       },
       {
         term: "Limits",
