@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import JcdMark from "@/components/brand/JcdMark";
 
 const CTA_URL = "https://cal.com/jasoncookdesign/engagement-consultation";
 
@@ -13,8 +14,19 @@ const NAV_LINKS = [
   { href: "/about", label: "About" },
 ] as const;
 
+const DOCK_AFTER_PX = 120;
+
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [docked, setDocked] = useState(false);
+
+  // One sticky header that compacts after scrolling, so the nav and the primary action stay available.
+  useEffect(() => {
+    const onScroll = () => setDocked(window.scrollY > DOCK_AFTER_PX);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -26,16 +38,17 @@ export default function Nav() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-20 border-b border-border bg-bg">
+    <header data-docked={docked ? "true" : "false"} className="sticky top-0 z-20 border-b border-border bg-bg">
       <nav
-        className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-4 py-[22px] sm:px-6 lg:gap-10 lg:px-10"
+        className={`mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-4 sm:px-6 lg:gap-10 lg:px-10 transition-[padding] duration-200 ${docked ? "py-3" : "py-[22px]"}`}
         aria-label="Main navigation"
       >
         <Link
           href="/"
-          className="flex-shrink-0 whitespace-nowrap font-sans text-[15px] font-medium tracking-[-0.01em] text-ink transition-colors hover:opacity-80"
+          className="flex flex-shrink-0 items-center gap-3 whitespace-nowrap font-mono text-xs font-medium uppercase tracking-[0.14em] text-ink transition-colors hover:opacity-80"
         >
-          Jason Cook Design
+          <JcdMark variant="solid" className="h-5 w-auto" />
+          <span className={docked ? "sr-only lg:not-sr-only" : ""}>Jason Cook Design</span>
         </Link>
 
         <ul className="hidden items-center gap-8 md:flex" role="list">
