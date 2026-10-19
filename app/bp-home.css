@@ -94,5 +94,5 @@
 .faq-trigger { font-family: inherit; }
 .faq-panel a { text-decoration: underline; text-underline-offset: 4px; }
 
-/* Fine accent: a small signal marker leads the hero eyebrow. */
-.hero .eyebrow::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: var(--signal); }
+/* Fine accent: a small signal marker leads the hero eyebrow and each eyebrow that introduces an h2, so the page rhythm is easy to scan. */
+.hero .eyebrow::before, .eyebrow:has(+ h2)::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: var(--signal); }

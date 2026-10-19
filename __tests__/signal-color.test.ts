@@ -2,7 +2,7 @@ import { readFileSync } from "fs";
 import { join } from "path";
 
 // The signal orange (#E8723C, from the approved lockups) is a fine accent, never a fill: the primary button and
-// the hero mark stay monochrome. It appears only in small places: a marker on the hero eyebrow, the underline
+// the hero mark stay monochrome. It appears only in small places: a marker on the hero eyebrow and on every eyebrow that leads an h2, the underline
 // on nav hover, the keyboard focus ring, and the pressed layers icon.
 const read = (f: string) => readFileSync(join(process.cwd(), f), "utf8");
 const css = read("app/globals.css");
@@ -34,7 +34,8 @@ describe("signal accent", () => {
   });
 
   it("uses the signal in small places only", () => {
-    expect(all).toMatch(/\.hero \.eyebrow::before\s*\{[^}]*background:\s*var\(--signal\)/);
+    expect(all).toMatch(/\.hero \.eyebrow::before,[^{]*\{[^}]*background:\s*var\(--signal\)/);
+    expect(all).toMatch(/\.eyebrow:has\(\+ h2\)::before\s*\{[^}]*background:\s*var\(--signal\)/);
     expect(all).toMatch(/\.nav a:hover\s*\{[^}]*text-decoration-color:\s*var\(--signal\)/);
     expect(all).toMatch(/:focus-visible\s*\{[^}]*outline:\s*3px solid var\(--signal\)/);
     expect(all).toMatch(/\.bar \.lv\[aria-pressed="true"\]\s*\{[^}]*color:\s*var\(--signal\)/);
