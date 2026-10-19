@@ -85,7 +85,6 @@ a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var
 .rw.last{box-shadow:none}
 .lab{display:flex;flex-direction:column;justify-content:center;gap:8px;padding:12px var(--pad);border-right:1px solid var(--ink)}
 .lab > span:not(.idx){font-size:15px;line-height:1.35}
-.sheet-top .note{font:500 12px/1.4 var(--mono);letter-spacing:.06em;color:var(--ink2)}
 .trk{position:relative}
 .cols{position:absolute;inset:0;display:grid;grid-template-columns:repeat(12,1fr)}
 .cols i{border-left:1px solid var(--rule);font:400 12px/1 var(--mono);font-style:normal;color:var(--ink2);padding:8px 0 0 7px}

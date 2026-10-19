@@ -34,12 +34,13 @@ function Track({ children }: { children?: React.ReactNode }) {
   );
 }
 
-// The schedule figure from the concept: the typical shape of the paid first phase, in working days.
+// The schedule figure from the concept: an abstract Gantt of the paid first phase. No scale, column numbers, or day
+// ranges, so it reads as the shape of the work, not a plan.
 const stages = [
-  { n: "01", label: "Interview with the owner", s: "0%", w: "16.667%", d: ".1s", days: "Days 1 to 2", mark: "A" },
-  { n: "02", label: "How the business runs now", s: "8.333%", w: "33.333%", d: ".2s", days: "Days 2 to 5" },
-  { n: "03", label: "What customers experience", s: "33.333%", w: "25%", d: ".3s", days: "Days 5 to 7" },
-  { n: "04", label: "Written recommendation", s: "50%", w: "25%", d: ".4s", days: "Days 7 to 9" },
+  { n: "01", label: "Interview with the owner", s: "0%", w: "16.667%", d: ".1s", mark: "A" },
+  { n: "02", label: "How the business runs now", s: "8.333%", w: "33.333%", d: ".2s" },
+  { n: "03", label: "What customers experience", s: "33.333%", w: "25%", d: ".3s" },
+  { n: "04", label: "Written recommendation", s: "50%", w: "25%", d: ".4s" },
 ];
 
 function ScheduleFigure() {
@@ -50,19 +51,14 @@ function ScheduleFigure() {
           <span className="idx">FIG. 1</span>
           <b id="fig1">Find the real problem</b>
         </div>
-        <span className="note">Typical shape, in working days</span>
       </div>
 
       <div className="rw hd">
-        <div className="lab">
-          <span>Working days</span>
-        </div>
+        <div className="lab" />
         <div className="trk" aria-hidden="true">
           <div className="cols">
             {COLS.map((i) => (
-              <i key={i} className={i >= 9 ? "z" : undefined}>
-                {i < 9 ? i + 1 : null}
-              </i>
+              <i key={i} className={i >= 9 ? "z" : undefined} />
             ))}
           </div>
           <span className="dec" />
@@ -79,9 +75,7 @@ function ScheduleFigure() {
             <span>{st.label}</span>
           </div>
           <Track>
-            <span className="bx" style={{ "--s": st.s, "--w": st.w, "--d": st.d } as React.CSSProperties}>
-              <span className="sr">{st.days}</span>
-            </span>
+            <span className="bx" style={{ "--s": st.s, "--w": st.w, "--d": st.d } as React.CSSProperties} aria-hidden="true" />
             {st.mark ? (
               <span className="mk" style={{ left: "calc(16.667% + 14px)" }} aria-hidden="true">
                 <b>[{st.mark}]</b>
