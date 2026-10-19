@@ -1,17 +1,19 @@
 import Link from "next/link";
+import JcdMark from "@/components/brand/JcdMark";
 
 export default function Footer() {
   return (
-    <footer className="mt-auto border-t border-band-border bg-band-bg text-band-ink">
+    <footer className="mt-auto border-t border-ink bg-bg text-ink">
       <div className="mx-auto max-w-[1200px] px-6 sm:px-10 pb-10 pt-20">
-        <div className="grid gap-14 border-b border-band-border pb-14 sm:grid-cols-3">
-          <div>
-            <p className="font-sans text-[28px] font-light leading-[1.25] tracking-[-0.02em] text-band-ink">
+        <div className="grid divide-y divide-border border border-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          <div className="flex flex-col gap-5 p-6">
+            <JcdMark variant="scanline" className="h-12 w-auto self-start text-ink" />
+            <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-band-ink">
               Jason Cook Design
             </p>
           </div>
 
-          <nav aria-label="Footer navigation">
+          <nav aria-label="Footer navigation" className="p-6">
             <p className="mb-5 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-band-muted">
               Site
             </p>
@@ -44,7 +46,7 @@ export default function Footer() {
             </ul>
           </nav>
 
-          <div>
+          <div className="p-6">
             <p className="mb-5 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-band-muted">
               Contact
             </p>
