@@ -285,3 +285,10 @@ describe("Home START: the schedule figure from the concept", () => {
     expect(fig.querySelector("figcaption .cap p")?.textContent).toMatch(/^It starts with a paid diagnosis/);
   });
 });
+
+describe("Home close sheet spacing", () => {
+  it("gives the pitch a column as wide as its headline and the embed the rest, so the gap between them is one gutter and the widget keeps its three-pane layout", () => {
+    const css = fs.readFileSync(path.join(process.cwd(), "app/bp-home.css"), "utf8");
+    expect(css).toMatch(/\.close\s*\{[^}]*grid-template-columns:\s*minmax\(0, 4fr\) minmax\(0, 8fr\)[^}]*gap:\s*48px/);
+  });
+});
