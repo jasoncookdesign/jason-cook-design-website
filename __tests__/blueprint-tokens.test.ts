@@ -105,3 +105,9 @@ describe("sheet grammar", () => {
   });
 
 });
+
+describe("sheet tags from the data attribute", () => {
+  it("shows a section's data-sheet as its tag when present, with an empty alternative", () => {
+    expect(css).toMatch(/main section\[data-sheet\]::before\s*\{[^}]*content:\s*attr\(data-sheet\)\s*\/\s*""/);
+  });
+});

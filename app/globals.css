@@ -172,6 +172,9 @@ main section::before {
   opacity: 0.7;
   pointer-events: none;
 }
+main section[data-sheet]::before {
+  content: attr(data-sheet) / "";
+}
 @media (max-width: 639px) {
   main section::before {
     display: none;
