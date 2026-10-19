@@ -67,4 +67,20 @@ describe("Analytics", () => {
     fireEvent.click(container.querySelector("a")!);
     expect(w.dataLayer).toBeUndefined();
   });
+
+  it("stops sending once a visitor who accepted later declines", () => {
+    localStorage.setItem("jcd_privacy_consent", "accepted");
+    const { container } = render(
+      <div>
+        <Analytics />
+        <a href="mailto:hello@jasoncookdesign.com">Email</a>
+      </div>
+    );
+    const mail = container.querySelector("a")!;
+    fireEvent.click(mail);
+    expect((w.dataLayer ?? []).filter((e) => (e as { event?: string }).event === "generate_lead")).toHaveLength(1);
+    act(() => setConsent("declined"));
+    fireEvent.click(mail);
+    expect((w.dataLayer ?? []).filter((e) => (e as { event?: string }).event === "generate_lead")).toHaveLength(1);
+  });
 });

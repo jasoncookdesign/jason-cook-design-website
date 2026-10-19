@@ -10,6 +10,7 @@ type Win = Window & { Cal?: unknown; calInitialised?: boolean; dataLayer?: unkno
 const w = window as Win;
 
 beforeEach(() => {
+  localStorage.clear();
   document.head.innerHTML = "";
   document.body.innerHTML = "";
   delete w.Cal;
@@ -19,12 +20,13 @@ beforeEach(() => {
 });
 
 describe("booking lead event", () => {
-  it("registers a bookingSuccessful handler that sends generate_lead with method booking", () => {
+  it("registers a bookingSuccessfulV2 handler that sends generate_lead with method booking", () => {
     mountCalEmbed(document.body.appendChild(document.createElement("div")));
     const q = (w.Cal as { q: unknown[][] }).q;
     const on = q.find((call) => call[0] === "on") as [string, { action: string; callback: () => void }] | undefined;
     expect(on).toBeDefined();
-    expect(on![1].action).toBe("bookingSuccessful");
+    expect(on![1].action).toBe("bookingSuccessfulV2");
+    localStorage.setItem("jcd_privacy_consent", "accepted");
     loadGtm("GTM-TEST123");
     on![1].callback();
     expect(w.dataLayer).toContainEqual({ event: "generate_lead", method: "booking" });
@@ -41,6 +43,6 @@ describe("layout and notice", () => {
   });
 
   it("tells visitors in the privacy notice that analytics run only if they accept", () => {
-    expect(read("components/layout/PrivacyBanner.tsx")).toMatch(/analytics/i);
+    expect(read("components/layout/PrivacyBanner.tsx")).toMatch(/analytics through Google Tag Manager/i);
   });
 });

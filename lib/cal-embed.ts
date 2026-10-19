@@ -35,7 +35,7 @@ export function mountCalEmbed(el: HTMLElement, calLink: string = CAL_LINK): void
   if (!w.calInitialised) {
     Cal("init", { origin: "https://app.cal.com" });
     // A finished booking is a lead; track() does nothing unless the visitor accepted analytics.
-    Cal("on", { action: "bookingSuccessful", callback: () => track("generate_lead", { method: "booking" }) });
+    Cal("on", { action: "bookingSuccessfulV2", callback: () => track("generate_lead", { method: "booking" }) });
     w.calInitialised = true;
   }
   Cal("inline", { elementOrSelector: el, calLink, layout: "month_view", config: { theme: "dark", layout: "month_view" } });

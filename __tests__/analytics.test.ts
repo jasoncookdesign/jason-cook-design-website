@@ -2,12 +2,13 @@ import { shouldLoadGtm, loadGtm, track, GTM_HOSTS } from "@/lib/analytics";
 
 // Analytics load through Google Tag Manager, on the production hostname only and only after the visitor accepts
 // the privacy notice. Previews, localhost, and declined or undecided visitors never load the container, so they
-// never reach the GA4 property (audit JCD-3 and JCD-4).
+// never reach the GA4 property.
 
 type Win = Window & { dataLayer?: unknown[] };
 const w = window as Win;
 
 beforeEach(() => {
+  localStorage.clear();
   document.head.innerHTML = "";
   delete w.dataLayer;
   delete (w as { __gtmLoaded?: boolean }).__gtmLoaded;
@@ -59,7 +60,8 @@ describe("track", () => {
     expect(w.dataLayer).toBeUndefined();
   });
 
-  it("pushes the event with its parameters once the container has loaded", () => {
+  it("pushes the event with its parameters once the container has loaded and the visitor has accepted", () => {
+    localStorage.setItem("jcd_privacy_consent", "accepted");
     loadGtm("GTM-TEST123");
     track("generate_lead", { method: "email" });
     expect(w.dataLayer).toContainEqual({ event: "generate_lead", method: "email" });
