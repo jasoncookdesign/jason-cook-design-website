@@ -75,7 +75,7 @@ components:
 # Blueprint — design spec (dark only)
 
 ## Overview
-The page is a drawing sheet. A permanent left binding margin (the annotation gutter, 44px, 30px on phones) and a registration mark frame the sheet; content sits in ruled cells on a 12-column grid with faint column guides. Sections are numbered sheets with tags such as `A-101 / HERO`. Figures are numbered (`FIG. 0`, `FIG. 1`). The footer is a title block. The brand mark is the JCD scanline mark (see `design/logo/final/mark.py`).
+The page is a drawing sheet. A permanent left binding margin (the annotation gutter, 44px, 30px on phones) and a registration mark frame the sheet; content sits in ruled cells on a 12-column grid with faint column guides. Sections are numbered sheets with tags such as `A-101 / HERO`. Figures are numbered (`FIG. 0`, `FIG. 1`). The footer is a title block. The brand mark is the JCD scanline mark (see `design/logo/mark.py`).
 
 ## Colors
 Field `#0D2438`. Ink `#E8EFF5` for statements, `#A9BDCD` for secondary text and labels, rule `#5E7E96` (3.69:1 on the field, passes as a mark) for lines that carry meaning. `guide` `#173650` and `guide-sketch` `#2F5775` are decorative only; never carry information. Orange `#FF9B6B` is reserved for the single decision point of a sheet; it is never small text. `color-scheme: dark` is set; the light theme does not exist.
