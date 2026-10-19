@@ -4,6 +4,8 @@ import { metadata as about } from "@/app/about/page";
 import { metadata as capabilities } from "@/app/capabilities/page";
 import { metadata as contact } from "@/app/contact/page";
 import { metadata as engagements } from "@/app/engagements/page";
+import { metadata as operating } from "@/app/engagements/operating/page";
+import { metadata as offering } from "@/app/engagements/offering/page";
 import { metadata as legal } from "@/app/legal/page";
 import { metadata as work } from "@/app/work/page";
 import { metadata as writing } from "@/app/writing/page";
@@ -27,6 +29,8 @@ const staticPages: Array<[string, Meta]> = [
   ["/capabilities", capabilities],
   ["/contact", contact],
   ["/engagements", engagements],
+  ["/engagements/operating", operating],
+  ["/engagements/offering", offering],
   ["/legal", legal],
   ["/work", work],
   ["/writing", writing],
@@ -104,11 +108,58 @@ describe("page metadata lengths", () => {
     }
   });
 
+  it("gives the chooser and both type pages their own non-empty title and description", () => {
+    const metas = [engagements, operating, offering] as Meta[];
+    for (const m of metas) {
+      expect(String(m.title ?? "").trim().length).toBeGreaterThan(5);
+      expect(String(m.description ?? "").trim().length).toBeGreaterThan(20);
+    }
+    expect(new Set(metas.map((m) => String(m.title))).size).toBe(3);
+    expect(new Set(metas.map((m) => String(m.description))).size).toBe(3);
+  });
+
+  it("keeps placeholder tokens out of the new pages' titles as well as descriptions", () => {
+    for (const m of [engagements, operating, offering] as Meta[]) {
+      expect(String(m.title ?? "")).toMatch(/\S/);
+      expect(String(m.title ?? "")).not.toMatch(/\[[A-Z-]+[\]:]/);
+    }
+  });
+
   it("keeps placeholder tokens out of descriptions", async () => {
     for (const [, m] of await allPages()) {
       for (const [name, value] of fields(m)) {
         if (name.endsWith("description")) expect(value).not.toMatch(/\[[A-Z-]+[\]:]/);
       }
+    }
+  });
+});
+
+describe("engagement routes carry their own social card and canonical", () => {
+  const routes: Array<[string, Meta & { alternates?: { canonical?: string } }]> = [
+    ["/engagements", engagements as never],
+    ["/engagements/operating", operating as never],
+    ["/engagements/offering", offering as never],
+  ];
+
+  it.each(routes)("%s sets openGraph and twitter to its own title and description", (_r, m) => {
+    expect(m.openGraph?.title).toBe(m.title);
+    expect(m.openGraph?.description).toBe(m.description);
+    expect(m.twitter?.title).toBe(m.title);
+    expect(m.twitter?.description).toBe(m.description);
+  });
+
+  it("/engagements names the offering page as canonical, since it renders that page", () => {
+    expect(routes[0][1].alternates?.canonical).toBe("/engagements/offering");
+  });
+});
+
+describe("site-wide defaults name no single engagement type", () => {
+  const ENGAGEMENT_SPECIFIC = /outgrow|startup|midmarket|new product|business line|diagnos|existing tools/i;
+
+  it("keeps the default description, openGraph, and twitter text type-neutral", () => {
+    for (const text of [layout.description, layout.openGraph?.description, layout.twitter?.description]) {
+      expect(String(text ?? "").length).toBeGreaterThan(20);
+      expect(String(text)).not.toMatch(ENGAGEMENT_SPECIFIC);
     }
   });
 });

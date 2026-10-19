@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import EngagementsPage from "@/app/engagements/page";
+import EngagementsPage from "@/app/engagements/operating/page";
 
 describe("Engagements page", () => {
   it("renders the hero H1", () => {
@@ -11,10 +11,19 @@ describe("Engagements page", () => {
     ).toBeTruthy();
   });
 
-  it("renders the hero eyebrow", () => {
+  it("renders the hero eyebrow as the type name", () => {
+    const { container } = render(<EngagementsPage />);
+    expect(container.querySelector("section p")!.textContent).toBe("Operating Engagement");
+  });
+
+  it("renders the four problem cards ahead of the phases", () => {
     render(<EngagementsPage />);
-    // Exact match to avoid collision with "Scoped after the first step." in pricing terms
-    expect(screen.getByText("After the first step")).toBeTruthy();
+    for (const label of ["The old way", "The internal attempt", "The search outside", "The split"]) {
+      expect(screen.getByText(label)).toBeTruthy();
+    }
+    const phase = screen.getByText(/One — understand it, then decide the shape/i);
+    const card = screen.getByText("The old way");
+    expect(card.compareDocumentPosition(phase) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
   it("renders all five phase labels", () => {

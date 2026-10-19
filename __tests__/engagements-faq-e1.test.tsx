@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import EngagementsPage from "@/app/engagements/page";
+import EngagementsPage from "@/app/engagements/operating/page";
 
 function openOwnTeamAnswer() {
   const view = render(<EngagementsPage />);

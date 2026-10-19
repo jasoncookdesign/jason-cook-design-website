@@ -25,3 +25,12 @@ Two names were already ruled out: "Audit" (reads as a commodity) and "Clarity Di
 | Organizational Architecture | The trialled name without "Solution"; reads as a discipline beside enterprise, information, and business architecture. |
 
 Source: the placeholder candidates drafted on 2026-09-10, carried over unchanged in substance.
+
+## Engagement type names
+
+**DRAFT — Jason to edit.** Chosen: Operating Engagement (the existing type, one builds how the client runs) and Offering Engagement (the second type, one builds what the client sells).
+
+| Type | Chosen | Alternatives not taken |
+|---|---|---|
+| Operating | Operating Engagement | Systems Build, Business Systems, Digital Organization |
+| Offering | Offering Engagement | Product Engagement, New Offering, Concept to Operation, Launch Path |

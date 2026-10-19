@@ -1,6 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import HomePage from "@/app/page";
-import EngagementsPage from "@/app/engagements/page";
+import EngagementsPage from "@/app/engagements/operating/page";
 
 describe("Engagements portability links to the home FAQ on what the client keeps", () => {
   it("home FAQ exposes an anchor for the keep-it question", () => {

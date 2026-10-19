@@ -1,25 +1,22 @@
-import EngagementsHero from "@/components/engagements/EngagementsHero";
-import PhaseArc from "@/components/engagements/PhaseArc";
-import PortabilitySection from "@/components/engagements/PortabilitySection";
-import EngagementsPricing from "@/components/engagements/EngagementsPricing";
-import EngagementsClose from "@/components/engagements/EngagementsClose";
-import EngagementsFaq from "@/components/engagements/EngagementsFaq";
+// DRAFT — Jason to edit
+import OfferingEngagementPage from "./offering/page";
 
 export const metadata = {
   title: "Engagements | Jason Cook Design",
   description:
-    "Every phase leaves you something you can use. How the work is structured, priced, and handed over.",
+    "Two kinds of engagement, for a new product or business line and for a business that has outgrown its systems. Start from your situation.",
+  openGraph: {
+    title: "Engagements | Jason Cook Design",
+    description:
+      "Two kinds of engagement, for a new product or business line and for a business that has outgrown its systems. Start from your situation.",
+  },
+  twitter: {
+    title: "Engagements | Jason Cook Design",
+    description:
+      "Two kinds of engagement, for a new product or business line and for a business that has outgrown its systems. Start from your situation.",
+  },
+  alternates: { canonical: "/engagements/offering" },
 };
 
-export default function EngagementsPage() {
-  return (
-    <>
-      <EngagementsHero />
-      <PhaseArc />
-      <PortabilitySection />
-      <EngagementsPricing />
-      <EngagementsClose />
-      <EngagementsFaq />
-    </>
-  );
-}
+// The selector in the layout lists every type. This route shows the first one.
+export default OfferingEngagementPage;

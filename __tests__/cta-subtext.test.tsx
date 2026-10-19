@@ -1,6 +1,8 @@
 import { render } from "@testing-library/react";
 import HomePage from "@/app/page";
 import EngagementsPage from "@/app/engagements/page";
+import OperatingPage from "@/app/engagements/operating/page";
+import OfferingPage from "@/app/engagements/offering/page";
 import ContactPage from "@/app/contact/page";
 
 // The CTA subtext is a fixed string: every instance carries all of it.
@@ -21,7 +23,9 @@ function ctaSubtexts(container: HTMLElement) {
 
 describe.each([
   ["Home", HomePage],
-  ["Engagements", EngagementsPage],
+  ["Engagements chooser", EngagementsPage],
+  ["Operating Engagement", OperatingPage],
+  ["Offering Engagement", OfferingPage],
   ["Contact", ContactPage],
 ])("%s page CTA subtext", (_name, Page) => {
   it("renders the full fixed subtext on every instance", () => {

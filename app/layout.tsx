@@ -20,19 +20,19 @@ const ibmPlexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "Jason Cook Design",
   description:
-    "Working systems for startups and midmarket operators outgrowing their existing tools.",
+    "Jason Cook Design assesses, designs, and builds the products and systems a business needs, and each phase leaves you something you can use.",
   manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
     title: "Jason Cook Design",
     description:
-      "Working systems for startups and midmarket operators outgrowing their existing tools.",
+      "Jason Cook Design assesses, designs, and builds the products and systems a business needs, and each phase leaves you something you can use.",
   },
   twitter: {
     card: "summary",
     title: "Jason Cook Design",
     description:
-      "Working systems for startups and midmarket operators outgrowing their existing tools.",
+      "Jason Cook Design assesses, designs, and builds the products and systems a business needs, and each phase leaves you something you can use.",
   },
 };
 

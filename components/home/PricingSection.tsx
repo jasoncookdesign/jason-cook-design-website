@@ -1,3 +1,4 @@
+// DRAFT — Jason to edit
 const CTA_URL = "https://cal.com/jasoncookdesign/engagement-consultation";
 
 export default function PricingSection() {
@@ -9,11 +10,12 @@ export default function PricingSection() {
             What it costs
           </p>
           <h2 className="text-3xl font-extralight tracking-[-0.03em] text-ink sm:text-[52px] sm:leading-[1.12]">
-            The first step costs <span className="whitespace-nowrap">$2,500.</span>
+            Where you start, and what it costs.
           </h2>
           <p className="mt-6 max-w-[480px] font-sans text-[17px] leading-relaxed text-body">
-            Every engagement opens the same way. You buy a diagnosis, not a
-            project, and it concludes before anything is built.
+            The Offering Engagement opens with a paid assessment of the decision.
+            The Operating Engagement opens with a diagnosis that concludes
+            before anything is built.
           </p>
           <div className="mt-10 flex max-w-[480px] flex-col gap-4">
             <p className="font-sans text-base leading-relaxed text-muted-foreground">
@@ -25,6 +27,33 @@ export default function PricingSection() {
               conversation and a separate decision.
             </p>
           </div>
+        </div>
+
+        <div className="flex flex-col gap-6">
+        {/* Offering Engagement entry card. */}
+        <div className="flex flex-col gap-6 rounded-[6px] border border-ink p-6 sm:p-10">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+            <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
+              Offering Engagement
+            </p>
+            <p className="font-sans text-[44px] font-extralight leading-none tracking-[-0.04em] text-ink">
+              $2,500
+            </p>
+          </div>
+          <p className="font-sans text-base leading-relaxed text-body">
+            For a new product or business line, the first phase is a paid
+            assessment of the decision itself. You leave with a written verdict and the proof
+            behind it.
+          </p>
+          <a
+            href={CTA_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex w-fit items-center gap-3 rounded-[6px] bg-btn-bg px-[22px] py-[14px] font-sans text-[15px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
+          >
+            Book your strategy call
+            <span className="block h-[7px] w-[7px] rotate-45 border-r border-t border-accent" />
+          </a>
         </div>
 
         {/* Entry offer card. [ENTRY-OFFER-NAME] candidates (DRAFT, none chosen): see docs/content-token-candidates.md. */}
@@ -56,6 +85,7 @@ export default function PricingSection() {
             Book your strategy call
             <span className="block h-[7px] w-[7px] rotate-45 border-r border-t border-accent" />
           </a>
+        </div>
         </div>
       </div>
     </section>

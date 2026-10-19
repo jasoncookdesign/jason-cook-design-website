@@ -38,7 +38,10 @@ export interface CaseStudy {
   indexOneLiner: string;
   backgroundImage: string;
   sections: CaseStudySection[];
-  testimonial: Testimonial;
+  /** Optional: an assessment may have no testimonial. The renderer omits the block when absent. */
+  testimonial?: Testimonial;
+  /** Marks an assessment, which is listed on /work but not counted as an enterprise engagement. */
+  kind?: "assessment";
 }
 
 export const caseStudies: CaseStudy[] = [

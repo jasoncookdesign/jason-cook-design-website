@@ -1,6 +1,6 @@
 # Jason Cook Design — Website
 
-Marketing website for Jason Cook Design (JCD), a systems architecture and implementation practice for startups and midmarket operators.
+Marketing website for Jason Cook Design (JCD), a practice that assesses, designs, and builds the products and systems a business needs.
 
 ## Stack
 
@@ -14,8 +14,10 @@ Marketing website for Jason Cook Design (JCD), a systems architecture and implem
 | Route | Content |
 |---|---|
 | `/` | Home |
-| `/engagements` | Engagement model, phases, and pricing |
-| `/work`, `/work/[slug]` | Eight case studies |
+| `/engagements` | Engagement selector over the first type's page (canonical: `/engagements/offering`) |
+| `/engagements/offering` | Offering Engagement: six phases from the decision to launch |
+| `/engagements/operating` | Operating Engagement: model, phases, and pricing |
+| `/work`, `/work/[slug]` | Case studies |
 | `/writing`, `/writing/[slug]` | Writing |
 | `/about` | About the practice |
 | `/capabilities` | Capabilities and institutional work (reached from the footer only) |
@@ -53,7 +55,7 @@ These placeholder tokens appear in the built pages and must stay literal until t
 - `[PRACTICE-NAME]`: the name of the practice discipline (Capabilities page). Replace by search once decided. Draft candidates: `docs/content-token-candidates.md`.
 - `[UEI]`, `[CAGE-CODE]`, `[NAICS-CODES]`, `[SAM-STATUS]`: the company's SAM.gov identifiers and registration status (Capabilities page, company data). Filled from SAM.gov by the owner and never guessed.
 - `[LEGAL: <section> text pending]`: legal text for each `/legal` section. Supplied by the owner and never drafted.
-- `[GAP: ...]`: open content questions. None should render. Tests guard the pages that had them.
+- Any other `[GAP: ...]`: an open content question. These should not render. Tests guard the pages that had them.
 
 Copy marked with a `DRAFT — Jason to edit` comment in the source is placeholder prose awaiting the owner's edit.
 

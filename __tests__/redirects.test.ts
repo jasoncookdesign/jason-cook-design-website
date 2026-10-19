@@ -62,7 +62,7 @@ describe("legacy jasoncookdesign.github.io URLs keep working", () => {
   });
 
   it("leaves current routes and the retired feed alone", async () => {
-    for (const path of ["/", "/work", "/writing/the-quality-gate", "/engagements", "/blog/feed.xml"]) {
+    for (const path of ["/", "/work", "/writing/the-quality-gate", "/engagements", "/engagements/operating", "/engagements/offering", "/blog/feed.xml"]) {
       expect(await resolve(path)).toBeNull();
     }
   });

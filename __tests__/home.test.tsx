@@ -28,11 +28,13 @@ describe("Home page", () => {
     ).toBeTruthy();
   });
 
-  it("renders the hero eyebrow", () => {
-    render(<HomePage />);
+  it("renders a type-neutral hero eyebrow in place of the operating-only one", () => {
+    const { container } = render(<HomePage />);
     expect(
-      screen.getByText(/For startups and midmarket operators outgrowing their systems/i)
-    ).toBeTruthy();
+      screen.queryByText(/For startups and midmarket operators outgrowing their systems/i)
+    ).toBeNull();
+    const eyebrow = container.querySelector("section p");
+    expect((eyebrow?.textContent ?? "").trim().length).toBeGreaterThan(10);
   });
 
   it("renders the hero CTA button", () => {
@@ -42,12 +44,13 @@ describe("Home page", () => {
     expect(ctaLinks.length).toBeGreaterThan(0);
   });
 
-  it("renders the four problem cards", () => {
-    render(<HomePage />);
-    expect(screen.getByText(/The old way/i)).toBeTruthy();
-    expect(screen.getByText(/The internal attempt/i)).toBeTruthy();
-    expect(screen.getByText(/The search outside/i)).toBeTruthy();
-    expect(screen.getByText(/The split/i)).toBeTruthy();
+  it("renders the shared method in three steps, without the operating-only problem cards", () => {
+    const { container } = render(<HomePage />);
+    expect(screen.getByRole("heading", { name: /find the real problem first/i })).toBeTruthy();
+    for (const label of ["Find the real problem", "Design and build", "Hand it over"]) {
+      expect(screen.getByText(label)).toBeTruthy();
+    }
+    expect(container.textContent).not.toMatch(/The old way|The internal attempt|The search outside|outgrown the systems you built/);
   });
 
   it("renders the [ENTRY-OFFER-NAME] token literally", () => {

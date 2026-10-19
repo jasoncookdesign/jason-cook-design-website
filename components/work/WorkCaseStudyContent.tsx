@@ -119,6 +119,7 @@ export default function WorkCaseStudyContent({ cs: study }: Props) {
         ))}
 
         {/* Testimonial */}
+        {study.testimonial && (
         <blockquote className="my-14 flex flex-col gap-5">
           <span className="block h-px w-5 bg-accent" />
           <p className="font-sans text-2xl font-light leading-relaxed text-ink">
@@ -132,6 +133,7 @@ export default function WorkCaseStudyContent({ cs: study }: Props) {
             {study.testimonial.role}
           </footer>
         </blockquote>
+        )}
 
         <div className="mt-16 border-t border-border pt-8">
           <Link
