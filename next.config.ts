@@ -34,7 +34,20 @@ const calendar: Record<string, string> = {
   studio: `${CAL}/studio`,
 };
 
+// Baseline response headers. A content security policy is left out on purpose: the Cal.com embed and
+// Google Tag Manager need a tested allow-list, so add one after checking it on a Vercel preview.
+const securityHeaders = [
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+];
+
 const nextConfig: NextConfig = {
+  async headers() {
+    return [{ source: "/:path*", headers: securityHeaders }];
+  },
   async redirects() {
     return [
       { source: "/index.html", destination: "/", permanent: true },

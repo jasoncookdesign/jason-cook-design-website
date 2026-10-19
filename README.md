@@ -26,6 +26,8 @@ Marketing website for Jason Cook Design (JCD), a practice that assesses, designs
 
 URLs from the previous site (`/cs01.html`–`/cs08.html`, `/blog/...`, `/calendar/...`) redirect to their new homes; see `redirects()` in `next.config.ts`. Redirects need a server host (e.g. Vercel). A static export would drop them.
 
+`/robots.txt` and `/sitemap.xml` are generated from `app/robots.ts` and `app/sitemap.ts`; the sitemap reads the case-study and post registries, so a new entry is listed automatically, but a new fixed page must be added to the `pages` array in `app/sitemap.ts`. Baseline security headers (nosniff, frame denial, referrer policy, HSTS, permissions policy) are set in `next.config.ts`. There is no content security policy yet; add one after testing the Cal.com embed and Google Tag Manager on a Vercel preview.
+
 ## Getting started
 
 ```bash
