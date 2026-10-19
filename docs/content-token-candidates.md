@@ -1,8 +1,6 @@
 # Content token candidates
 
-**DRAFT — Jason to edit. Nothing here is chosen.** These are candidates for two placeholder tokens, kept beside the code so they're easy to compare. The tokens stay literal in the pages until Jason picks a name; then replace by search (see "Content tokens" in the README).
-
-Two names were already ruled out: "Audit" (reads as a commodity) and "Clarity Diagnostic" (trialled and shelved) for the entry offer, and "Organizational Solution Architecture" (trialled, judged weak) for the practice.
+**Retired 2026-10-19.** `[ENTRY-OFFER-NAME]` and `[PRACTICE-NAME]` were replaced with plain wording once the site had two engagement types with different first steps. The candidates below are kept as a record and are not rendered anywhere.
 
 ## `[ENTRY-OFFER-NAME]` — the paid first step
 

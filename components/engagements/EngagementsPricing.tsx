@@ -1,8 +1,7 @@
-// [ENTRY-OFFER-NAME] candidates (DRAFT, none chosen): see docs/content-token-candidates.md.
 const pricingCards = [
   {
     label: "Set in advance",
-    body: "The [ENTRY-OFFER-NAME] is the only part with a price I can publish: $2,500. It’s the same number for everyone.",
+    body: "The paid diagnosis is the only part with a price I can publish: $2,500. It’s the same number for everyone.",
   },
   {
     label: "Quoted per phase",

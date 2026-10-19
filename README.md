@@ -57,16 +57,11 @@ npm run build
 
 ## Content tokens
 
-These placeholder tokens appear in the built pages and must stay literal until the content owner resolves them:
-
-- `[ENTRY-OFFER-NAME]`: the named entry offer. Replace by search once decided. Draft candidates: `docs/content-token-candidates.md`.
-- `[PRACTICE-NAME]`: the name of the practice discipline (Capabilities page). Replace by search once decided. Draft candidates: `docs/content-token-candidates.md`.
-- `[UEI]`, `[CAGE-CODE]`, `[NAICS-CODES]`, `[SAM-STATUS]`: the company's SAM.gov identifiers and registration status (Capabilities page, company data). Filled from SAM.gov by the owner and never guessed.
-- Any other `[GAP: ...]`: an open content question. These should not render. Tests guard the pages that had them.
+No placeholder tokens are open. `[ENTRY-OFFER-NAME]` and `[PRACTICE-NAME]` were retired in favor of plain wording ("the paid first step", "the paid diagnosis"). Any `[GAP: ...]` marker is an open content question and must not render; tests guard the pages that had them. The SAM.gov identifiers (UEI, CAGE code, NAICS codes, registration status) are left off the Capabilities page until the owner supplies them from SAM.gov; they are never guessed.
 
 Copy marked with a `DRAFT — Jason to edit` comment in the source is placeholder prose awaiting the owner's edit. The `/legal` text (`lib/legal.ts`) is a draft written from what the site does; the privacy and terms text needs legal review before launch.
 
 ## Docs
 
 - `docs/cutover-plan.md`: the plan for moving jasoncookdesign.com from GitHub Pages to Vercel. Not yet executed.
-- `docs/content-token-candidates.md`: draft name candidates for the open content tokens.
+- `docs/content-token-candidates.md`: retired name candidates for the entry offer and practice, and the chosen engagement type names.

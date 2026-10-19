@@ -23,6 +23,12 @@ function offeringCard(container: HTMLElement): HTMLElement {
   return cardOf(label!)!;
 }
 
+function operatingPlateName(): HTMLElement {
+  const el = Array.from(document.querySelectorAll<HTMLElement>(".pl-h p")).find((p) => p.textContent === "Operating Engagement");
+  if (!el) throw new Error("Operating plate heading not found");
+  return el;
+}
+
 describe("Home page entry points (REQ-13)", () => {
   it("has a valid heading order with a single h1", () => {
     const { container } = render(<HomePage />);
@@ -31,7 +37,7 @@ describe("Home page entry points (REQ-13)", () => {
 
   it("keeps the operating entry card with its $2,500 price", () => {
     render(<HomePage />);
-    const card = cardOf(screen.getByText(/\[ENTRY-OFFER-NAME\]/));
+    const card = cardOf(operatingPlateName());
     expect(card).not.toBeNull();
     expect(card!.textContent).toContain("$2,500");
   });
@@ -51,7 +57,7 @@ describe("Home page entry points (REQ-13)", () => {
     const intro = text.indexOf("The Offering Engagement opens");
     expect(intro).toBeGreaterThan(-1);
     expect(intro).toBeLessThan(text.indexOf("The Operating Engagement opens"));
-    const operatingCard = cardOf(screen.getByText(/\[ENTRY-OFFER-NAME\]/))!;
+    const operatingCard = cardOf(operatingPlateName())!;
     expect(
       offeringCard(container).compareDocumentPosition(operatingCard) & Node.DOCUMENT_POSITION_FOLLOWING
     ).toBeTruthy();

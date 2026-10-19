@@ -28,10 +28,12 @@ describe("About page", () => {
     expect(text()).toContain("Eight of those programs are documented on the Work page");
   });
 
-  it("keeps the entry-offer token literal until it is named", () => {
+  it("describes the paid first step for both engagement types, in plain wording", () => {
     render(<AboutPage />);
-    expect(text()).toContain("That first step is [ENTRY-OFFER-NAME].");
-    expect(text()).toContain("[ENTRY-OFFER-NAME] is where it starts.");
+    expect(text()).toContain("I start every engagement with a paid first step.");
+    expect(text()).toContain("For an existing business that step is a diagnosis; for a new product or business line it is an assessment of the decision itself.");
+    expect(text()).toContain("the paid first step is where it starts.");
+    expect(text()).not.toContain("[ENTRY-OFFER-NAME]");
   });
 
   it("drops the retired third-person firm framing, the placeholder, and the optional internal-systems paragraph", () => {
@@ -69,7 +71,7 @@ describe("About page", () => {
       "Integrated Architecture", "Organizational Architecture"]) {
       expect(text()).not.toContain(name);
     }
-    expect(text()).toContain("[ENTRY-OFFER-NAME]");
+    expect(text()).not.toMatch(/\[[A-Z-]{3,}\]/);
   });
 
   it("does not render generic marketing filler", () => {
@@ -85,7 +87,7 @@ describe("About page metadata", () => {
   it("has a search snippet that fits in results and drops the retired firm framing", async () => {
     const { metadata } = await import("@/app/about/page");
     const expected =
-      "Enterprise-scale experience, sized for smaller businesses: strategy, design, research, and implementation in one practice, starting with a paid diagnosis.";
+      "Enterprise-scale experience, sized for smaller businesses: strategy, design, research, and implementation in one practice, starting with a paid first step.";
     expect(metadata.description).toBe(expected);
     expect(metadata.openGraph?.description).toBe(expected);
     expect(metadata.description?.length).toBeLessThanOrEqual(155);

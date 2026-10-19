@@ -13,10 +13,10 @@ export const metadata = withSocial({
 });
 
 // DRAFT — Jason to edit. Case-study register for procurement and institutional readers, ported from the
-// 2026-09-10 placeholder draft. Tokens stay literal until named; candidates sit beside them below.
+// 2026-09-10 placeholder draft.
 const intro = [
-  "Eight case studies. Each one documents a program across enterprise software, financial services, global consumer products, and regulated industries — the client's situation, what the work found, what was built, and what the outcome was.",
-  "What they have in common isn't the industry or the client type. Each program began with a diagnostic phase — the situation mapped, the constraints identified, the real problem named — before any design or build decision was made. The architectural approach runs the same way across all eight contexts. The deliverables differ.",
+  "Each case study documents a program across enterprise software, financial services, global consumer products, and regulated industries — the client's situation, what the work found, what was built, and what the outcome was.",
+  "What they have in common isn't the industry or the client type. Each program began with a diagnostic phase — the situation mapped, the constraints identified, the real problem named — before any design or build decision was made. The architectural approach runs the same way across every context. The deliverables differ. For a new product or business line, the first phase assesses the decision itself.",
 ];
 
 // DRAFT — Jason to edit.
@@ -57,16 +57,12 @@ const outcomes = [
 ];
 
 // DRAFT — Jason to edit. Company data for SAM.gov and procurement readers. Entity facts are from Jason's
-// own business records. Those records don't hold the identifiers or the registration's current status,
-// so those stay as tokens for Jason to fill from SAM.gov.
+// own business records. Those records don't hold the SAM.gov identifiers (UEI, CAGE code, NAICS codes) or
+// the registration's current status, so those rows are left out until Jason supplies them.
 const companyData: { term: string; detail: string; href?: string }[] = [
   { term: "Legal name", detail: "Jason Cook Design LLC" },
   { term: "Structure", detail: "Single-member limited liability company, Texas" },
   { term: "Formed", detail: "November 15, 2024" },
-  { term: "UEI", detail: "[UEI]" },
-  { term: "CAGE code", detail: "[CAGE-CODE]" },
-  { term: "NAICS codes", detail: "[NAICS-CODES]" },
-  { term: "SAM.gov registration", detail: "[SAM-STATUS]" },
   { term: "Contact", detail: "hello@jasoncookdesign.com", href: "mailto:hello@jasoncookdesign.com" },
 ];
 
@@ -124,39 +120,15 @@ export default function CapabilitiesPage() {
         </ul>
       </section>
 
-      {/* DRAFT — Jason to edit. Practice-name candidates (DRAFT, none chosen; rationale in
-          docs/content-token-candidates.md): Operating Architecture · Systems Architecture ·
-          Structural Architecture · Integrated Architecture · Organizational Architecture.
-          Entry-offer candidates: System Diagnostic · Architecture Diagnostic · Situational Diagnosis ·
-          Problem Definition · Organizational Diagnosis. */}
-      <section className="pgs" data-sheet="A-104" data-name="PRACTICE">
-        <div className="intro g">
-          <div className="t">
-            <p className="eyebrow">The discipline behind the work</p>
-            <h2>[PRACTICE-NAME]</h2>
-          </div>
-        </div>
-        <div className="pg">
-          <div className="prose">
-            <p>
-              The discipline behind all eight programs is [PRACTICE-NAME]: the organizational architecture that spans
-              people, process, information, AI, software, infrastructure, and client experience — diagnosed before
-              it&apos;s designed, designed before it&apos;s built, held in one practice from the first step through
-              handoff.
-            </p>
-            <p>
-              The Work page has the full case studies. For institutional or government procurement inquiries,
-              [ENTRY-OFFER-NAME] is the paid first step: a written recommendation before any design or build begins.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="pgs" data-sheet="A-105" data-name="COMPANY">
+      <section className="pgs" data-sheet="A-104" data-name="COMPANY">
         <div className="intro g">
           <div className="t">
             <p className="eyebrow">For registration and procurement</p>
             <h2>Company data</h2>
+            <p className="lead">
+              For institutional or government procurement inquiries, every engagement opens with a paid first step: a
+              written recommendation before any design or build begins.
+            </p>
           </div>
         </div>
         <dl className="defs">

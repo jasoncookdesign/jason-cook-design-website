@@ -49,10 +49,10 @@ describe("Engagements page", () => {
     expect(screen.getByText(/Monthly, if you want it/i)).toBeTruthy();
   });
 
-  it("renders the [ENTRY-OFFER-NAME] token literally in pricing card", () => {
+  it("names the paid diagnosis in plain wording in the pricing card", () => {
     render(<EngagementsPage />);
-    // Should appear at least once — S3-CARD-1 and possibly elsewhere
-    expect(screen.getAllByText(/\[ENTRY-OFFER-NAME\]/).length).toBeGreaterThan(0);
+    expect(screen.getByText(/The paid diagnosis is the only part with a price I can publish/)).toBeTruthy();
+    expect(screen.queryByText(/\[ENTRY-OFFER-NAME\]/)).toBeNull();
   });
 
   it("renders $2,500 in the pricing card", () => {
