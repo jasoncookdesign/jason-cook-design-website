@@ -39,6 +39,19 @@ describe("Home page entry points (REQ-13)", () => {
     }
   });
 
+  it("lists the offering entry card before the operating one, in the pricing intro and the cards", () => {
+    const { container } = render(<HomePage />);
+    const text = container.textContent ?? "";
+    const intro = text.indexOf("The Offering Engagement opens");
+    expect(intro).toBeGreaterThan(-1);
+    expect(intro).toBeLessThan(text.indexOf("The Operating Engagement opens"));
+    const offeringCard = cardOf(screen.getAllByText(/\[GAP: Phase 0 price pending\]/)[0])!;
+    const operatingCard = cardOf(screen.getByText(/\[ENTRY-OFFER-NAME\]/))!;
+    expect(
+      offeringCard.compareDocumentPosition(operatingCard) & Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
+  });
+
   it("keeps the hero H1 and both strategy-call CTAs", () => {
     render(<HomePage />);
     expect(
@@ -76,7 +89,8 @@ describe("INV-03: no page makes a universal first-step claim", () => {
 describe("REQ-11: new source files are marked as drafts", () => {
   const files = [
     "lib/engagement-types.ts",
-    "components/engagements/EngagementTypeCards.tsx",
+    "components/engagements/EngagementSelector.tsx",
+    "app/engagements/layout.tsx",
     "components/home/EngagementFork.tsx",
     "components/home/Hero.tsx",
     "components/home/ProblemSection.tsx",

@@ -13,9 +13,9 @@ export default function PricingSection() {
             Where you start, and what it costs.
           </h2>
           <p className="mt-6 max-w-[480px] font-sans text-[17px] leading-relaxed text-body">
-            The Operating Engagement opens with a diagnosis that concludes before
-            anything is built. The Offering Engagement opens with an
-            assessment of the decision.
+            The Offering Engagement opens with an assessment of the decision.
+            The Operating Engagement opens with a diagnosis that concludes
+            before anything is built.
           </p>
           <div className="mt-10 flex max-w-[480px] flex-col gap-4">
             <p className="font-sans text-base leading-relaxed text-muted-foreground">
@@ -30,7 +30,33 @@ export default function PricingSection() {
         </div>
 
         <div className="flex flex-col gap-6">
-          {/* Entry offer card. [ENTRY-OFFER-NAME] candidates (DRAFT, none chosen): see docs/content-token-candidates.md. */}
+        {/* Offering Engagement entry card. Price pending: the token renders by design until the price decision. */}
+        <div className="flex flex-col gap-6 rounded-[6px] border border-ink p-6 sm:p-10">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+            <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
+              Offering Engagement
+            </p>
+            <p className="font-sans text-xl font-extralight leading-snug tracking-[-0.02em] text-ink">
+              [GAP: Phase 0 price pending]
+            </p>
+          </div>
+          <p className="font-sans text-base leading-relaxed text-body">
+            For a new product or business line, the first phase assesses the
+            decision itself. You leave with a written verdict and the proof
+            behind it.
+          </p>
+          <a
+            href={CTA_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex w-fit items-center gap-3 rounded-[6px] bg-btn-bg px-[22px] py-[14px] font-sans text-[15px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
+          >
+            Book your strategy call
+            <span className="block h-[7px] w-[7px] rotate-45 border-r border-t border-accent" />
+          </a>
+        </div>
+
+        {/* Entry offer card. [ENTRY-OFFER-NAME] candidates (DRAFT, none chosen): see docs/content-token-candidates.md. */}
         <div className="flex flex-col gap-6 rounded-[6px] border border-ink p-6 sm:p-10">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
             <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
@@ -49,32 +75,6 @@ export default function PricingSection() {
             You leave with a written recommendation: what the real problem is,
             what to address first, and what it takes. If the answer is
             something other than &ldquo;build it,&rdquo; that&apos;s what it says.
-          </p>
-          <a
-            href={CTA_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-2 inline-flex w-fit items-center gap-3 rounded-[6px] bg-btn-bg px-[22px] py-[14px] font-sans text-[15px] font-medium text-btn-ink transition-colors hover:bg-btn-bg-hover"
-          >
-            Book your strategy call
-            <span className="block h-[7px] w-[7px] rotate-45 border-r border-t border-accent" />
-          </a>
-        </div>
-
-        {/* Offering Engagement entry card. Price pending: the token renders by design until the price decision. */}
-        <div className="flex flex-col gap-6 rounded-[6px] border border-ink p-6 sm:p-10">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-            <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
-              Offering Engagement
-            </p>
-            <p className="font-sans text-xl font-extralight leading-snug tracking-[-0.02em] text-ink">
-              [GAP: Phase 0 price pending]
-            </p>
-          </div>
-          <p className="font-sans text-base leading-relaxed text-body">
-            For a new product or business line, the first phase assesses the
-            decision itself. You leave with a written verdict and the proof
-            behind it.
           </p>
           <a
             href={CTA_URL}

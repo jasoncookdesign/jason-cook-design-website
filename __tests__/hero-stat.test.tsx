@@ -1,37 +1,32 @@
 import { render, screen } from "@testing-library/react";
 import Hero from "@/components/home/Hero";
 
-let mockStudies: unknown[] = [];
-jest.mock("@/lib/work", () => ({
-  get caseStudies() {
-    return mockStudies;
-  },
-}));
-
-const enterprise = (n: number) => Array.from({ length: n }, (_, i) => ({ slug: `e${i}` }));
-const assessment = (n: number) => Array.from({ length: n }, (_, i) => ({ slug: `a${i}`, kind: "assessment" }));
-
-function statValue() {
-  const label = screen.getByText("enterprise engagements");
-  return (label.previousElementSibling?.textContent ?? "").trim();
+function stat(label: string) {
+  const el = screen.getByText(label);
+  return (el.previousElementSibling?.textContent ?? "").trim();
 }
 
-describe("Hero stat counts enterprise programs only (INV-04)", () => {
-  it("reads 8 for eight enterprise studies", () => {
-    mockStudies = enterprise(8);
+describe("Hero stats", () => {
+  it("shows countries, awards, and patents with the figures Jason supplied", () => {
     render(<Hero />);
-    expect(statValue()).toBe("8");
+    expect(stat("countries unified in one system")).toBe("143");
+    expect(stat("industry awards for shipped work")).toBe("15");
+    expect(stat("patents written or contributed")).toBe("4");
   });
 
-  it("still reads 8 when an assessment is added", () => {
-    mockStudies = [...enterprise(8), ...assessment(1)];
-    render(<Hero />);
-    expect(statValue()).toBe("8");
+  it("no longer shows an engagement count", () => {
+    const { container } = render(<Hero />);
+    expect(container.textContent).not.toMatch(/enterprise engagements/i);
   });
 
-  it("follows the data: nine enterprise studies and one assessment read 9", () => {
-    mockStudies = [...enterprise(9), ...assessment(1)];
+  it("no longer claims 40 awards", () => {
+    const { container } = render(<Hero />);
+    expect(container.textContent).not.toMatch(/\b40\b/);
+  });
+
+  it("names the offering before the operating work in the eyebrow", () => {
     render(<Hero />);
-    expect(statValue()).toBe("9");
+    const eyebrow = screen.getByText(/new offering to launch/i).textContent ?? "";
+    expect(eyebrow.indexOf("offering")).toBeLessThan(eyebrow.indexOf("system"));
   });
 });

@@ -3,8 +3,8 @@ import { hasFeeFigure } from "./helpers/prices";
 
 describe("engagement-type registry", () => {
   it("holds exactly the two types, in order, with their public names", () => {
-    expect(engagementTypes.map((t) => t.slug)).toEqual(["operating", "offering"]);
-    expect(engagementTypes.map((t) => t.name)).toEqual(["Operating Engagement", "Offering Engagement"]);
+    expect(engagementTypes.map((t) => t.slug)).toEqual(["offering", "operating"]);
+    expect(engagementTypes.map((t) => t.name)).toEqual(["Offering Engagement", "Operating Engagement"]);
   });
 
   it("has a real sentence in every descriptive field", () => {

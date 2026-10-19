@@ -15,11 +15,7 @@ export const metadata = {
   },
 };
 
-const NUMBER_WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"];
-
 export default function WorkPage() {
-  const count = caseStudies.length;
-  const countWord = NUMBER_WORDS[count] ?? String(count);
   return (
     <section className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-28">
       <div className="flex flex-wrap items-end justify-between gap-12 border-b border-ink pb-10">
@@ -31,25 +27,19 @@ export default function WorkPage() {
             Work
           </h1>
           <p className="mt-4 font-sans text-xl font-light leading-relaxed text-body">
-            {countWord} engagements — each starting with a diagnosis of the
-            actual problem before any design work began.
+            Each engagement started with a diagnosis of the actual problem
+            before any design work began.
           </p>
         </div>
-        <p className="whitespace-nowrap font-sans text-[80px] font-extralight leading-[0.8] tracking-[-0.05em] text-ghost sm:text-[100px]">
-          {String(count).padStart(2, "0")}
-        </p>
       </div>
 
       <ul className="list-none">
-        {caseStudies.map((cs, i) => (
+        {caseStudies.map((cs) => (
           <li key={cs.slug} className="border-b border-border">
             <Link
               href={`/work/${cs.slug}`}
-              className="group grid grid-cols-1 items-center gap-6 py-7 md:grid-cols-[56px_340px_1fr_44px] md:gap-10"
+              className="group grid grid-cols-1 items-center gap-6 py-7 md:grid-cols-[340px_1fr_44px] md:gap-10"
             >
-              <span className="pl-2 font-mono text-[13px] text-muted-foreground">
-                {String(i + 1).padStart(2, "0")}
-              </span>
               <span className="relative block h-[160px] overflow-hidden rounded-[6px] border border-border md:h-[186px]">
                 <Image
                   src={cs.backgroundImage}

@@ -14,10 +14,10 @@ Marketing website for Jason Cook Design (JCD), a systems architecture and implem
 | Route | Content |
 |---|---|
 | `/` | Home |
-| `/engagements` | Chooser between the two engagement types |
-| `/engagements/operating` | Operating Engagement: model, phases, and pricing |
+| `/engagements` | Engagement selector over the first type's page (canonical: `/engagements/offering`) |
 | `/engagements/offering` | Offering Engagement: six phases from the decision to launch; price pending |
-| `/work`, `/work/[slug]` | Eight case studies |
+| `/engagements/operating` | Operating Engagement: model, phases, and pricing |
+| `/work`, `/work/[slug]` | Case studies |
 | `/writing`, `/writing/[slug]` | Writing |
 | `/about` | About the practice |
 | `/capabilities` | Capabilities and institutional work (reached from the footer only) |

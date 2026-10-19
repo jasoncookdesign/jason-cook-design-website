@@ -1,27 +1,19 @@
-import { caseStudies } from "@/lib/work";
-
 const CTA_URL = "https://cal.com/jasoncookdesign/engagement-consultation";
 
 // DRAFT — Jason to edit
-function getStats() {
-  return [
-    {
-      value: String(caseStudies.filter((c) => c.kind !== "assessment").length),
-      label: "enterprise engagements",
-    },
-    { value: "143", label: "countries unified in one system" },
-    { value: "40", plus: true, label: "industry awards for shipped work" },
-  ];
-}
+const stats = [
+  { value: "143", label: "countries unified in one system" },
+  { value: "15", label: "industry awards for shipped work" },
+  { value: "4", label: "patents written or contributed" },
+];
 
 export default function Hero() {
-  const stats = getStats();
   return (
     <section className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-32">
       <div className="flex flex-col items-start gap-16 lg:flex-row">
         <div className="max-w-[900px] flex-1">
           <p className="mb-10 font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-            For businesses with a system to fix or a new offering to launch
+            For businesses with a new offering to launch or a system to fix
           </p>
           <h1 className="text-[42px] font-extralight leading-[1.1] tracking-[-0.035em] text-ink sm:text-[62px] lg:text-[76px] lg:leading-[1.08]">
             Get a working system that solves the problem you{" "}
@@ -61,7 +53,6 @@ export default function Hero() {
             <div key={stat.label}>
               <p className="font-sans text-[60px] font-extralight leading-none tracking-[-0.04em] text-ink">
                 {stat.value}
-                {stat.plus && <span className="text-accent">+</span>}
               </p>
               <p className="mt-2 font-sans text-[13px] leading-relaxed text-muted-foreground">
                 {stat.label}
