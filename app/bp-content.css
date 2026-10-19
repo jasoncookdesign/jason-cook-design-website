@@ -57,6 +57,21 @@ ul.rows, ol.rows { list-style: none; margin: 0; padding: 0; }
 .prose > .fig { margin-top: 1.8em; }
 .prose > .fig + * { margin-top: 1.8em; }
 
+/* Case studies: a figure and the text before it form a beat. Stacked on narrow screens, side by side from 1200px. */
+.prose.beats > .beat { margin-top: 1.8em; }
+.prose.beats > .beat:first-child { margin-top: 0; }
+.prose.beats > .beat + * { margin-top: 1.8em; }
+.prose.beats .beat-text > * { margin: 0; }
+.prose.beats .beat-text > * + * { margin-top: 1.1em; }
+.prose.beats .beat > .fig { margin-top: 1.8em; }
+@media (min-width: 1200px) {
+  .prose.beats { max-width: none; }
+  .prose.beats > :not(.beat) { max-width: 720px; }
+  .prose.beats .beat { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 56px; align-items: start; }
+  .prose.beats .beat-text { max-width: 720px; }
+  .prose.beats .beat > .fig { margin-top: 0; position: sticky; top: 96px; }
+}
+
 /* ---------- case study and post furniture ---------- */
 .note { margin: 0 0 1.4em; padding: 18px 22px; border: 1px dashed var(--ink); font-size: 18px; line-height: 1.55; max-width: 720px; }
 .note + .prose { margin-top: 0; }

@@ -268,3 +268,72 @@ describe("Work looping animations", () => {
     expect(screen.getByRole("button", { name: /animation/i })).toBeTruthy();
   });
 });
+
+describe("Case study text-and-figure pairing", () => {
+  const study = (blocks: unknown[]) =>
+    ({
+      slug: "t", client: "C", title: "T", subtitle: "S", indexOneLiner: "x", backgroundImage: "/x.jpg",
+      sections: [{ heading: "H", blocks }],
+    }) as unknown as CaseStudy;
+  const p = (t: string) => ({ type: "p", html: t });
+  const img = (n: number) => ({ type: "img", src: `/images/f${n}.jpg`, alt: `fig ${n}` });
+  const html = (blocks: unknown[]) => render(<WorkCaseStudyContent cs={study(blocks)} />).container;
+  const beats = (c: HTMLElement) => Array.from(c.querySelectorAll(".prose > .beat"));
+
+  it("wraps the text run before a figure, and the figure, in one beat", () => {
+    const c = html([p("one"), p("two"), img(1)]);
+    const [beat] = beats(c);
+    expect(beats(c)).toHaveLength(1);
+    expect(beat.querySelectorAll(":scope > .beat-text > p")).toHaveLength(2);
+    expect(beat.querySelectorAll(":scope > figure.fig")).toHaveLength(1);
+    expect(beat.firstElementChild!.classList.contains("beat-text")).toBe(true);
+  });
+
+  it("makes one beat per text-then-figure pair when they alternate", () => {
+    const c = html([p("a"), img(1), p("b"), img(2)]);
+    expect(beats(c)).toHaveLength(2);
+    expect(c.querySelectorAll(".prose > .beat figure")).toHaveLength(2);
+  });
+
+  it("keeps lists in the text column of their beat", () => {
+    const c = html([p("a"), { type: "ul", items: ["x", "y"] }, img(1)]);
+    expect(beats(c)[0].querySelectorAll(".beat-text > ul")).toHaveLength(1);
+  });
+
+  it("leaves a figure with no text before it, and text with no figure after it, outside any beat", () => {
+    const c = html([img(1), p("tail")]);
+    expect(beats(c)).toHaveLength(0);
+    expect(c.querySelectorAll(".prose > figure.fig")).toHaveLength(1);
+    expect(c.querySelectorAll(".prose > p")).toHaveLength(1);
+  });
+
+  it("pairs the first of two consecutive figures with the text and leaves the second on its own", () => {
+    const c = html([p("a"), img(1), img(2)]);
+    expect(beats(c)).toHaveLength(1);
+    expect(c.querySelectorAll(".prose > figure.fig")).toHaveLength(1);
+  });
+
+  it("keeps document order and FIG numbering through the pairing", () => {
+    const c = html([p("a"), img(1), p("b"), img(2), img(3)]);
+    expect(Array.from(c.querySelectorAll("figcaption")).map((n) => n.textContent)).toEqual(["FIG. 1", "FIG. 2", "FIG. 3"]);
+    expect(Array.from(c.querySelectorAll(".prose p, .prose img")).map((n) => n.textContent || n.getAttribute("alt"))).toEqual(["a", "fig 1", "b", "fig 2", "fig 3"]);
+  });
+
+  it("marks the case-study prose so the two-column layout stays off other pages", () => {
+    expect(html([p("a")]).querySelector(".prose.beats")).toBeTruthy();
+  });
+});
+
+describe("Case study wide layout CSS", () => {
+  const css = fs.readFileSync(path.join(process.cwd(), "app", "bp-content.css"), "utf8");
+
+  it("puts a beat's text and figure side by side from 1200px up, and nowhere narrower", () => {
+    const wide = css.match(/@media \(min-width: 1200px\) \{([\s\S]*?)\n\}/);
+    expect(wide).toBeTruthy();
+    expect(wide![1]).toMatch(/\.prose\.beats \.beat\s*\{[^}]*display:\s*grid/);
+    expect(wide![1]).toMatch(/grid-template-columns:\s*minmax\(0,\s*5fr\)\s*minmax\(0,\s*6fr\)/);
+    expect(css.replace(wide![0], "")).not.toMatch(/\.beat\s*\{[^}]*display:\s*grid/);
+    // The measure stays at 720px however wide the screen gets.
+    expect(wide![1]).toMatch(/\.prose\.beats \.beat-text\s*\{[^}]*max-width:\s*720px/);
+  });
+});
