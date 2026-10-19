@@ -175,10 +175,10 @@ describe("Work case study content component", () => {
     expect(document.body.textContent).toMatch(/100% enterprise client retention/);
   });
 
-  it("renders the Meevo 15 industry awards", () => {
+  it("renders the Meevo over-40 industry awards", () => {
     const cs = caseStudies.find((c) => c.slug === "millennium-meevo")!;
     render(<WorkCaseStudyContent cs={cs} />);
-    expect(document.body.textContent).toMatch(/\b15 industry awards/i);
+    expect(document.body.textContent).toMatch(/over 40 industry awards/i);
     // Company is Millennium Systems International, product is Meevo
     expect(document.body.textContent).toMatch(/Millennium Systems International/);
   });

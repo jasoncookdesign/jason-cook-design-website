@@ -10,7 +10,7 @@ describe("Hero stats", () => {
   it("shows countries, awards, and patents with the figures Jason supplied", () => {
     render(<Hero />);
     expect(stat("countries unified in one system")).toBe("143");
-    expect(stat("industry awards for shipped work")).toBe("15");
+    expect(stat("industry awards for shipped work")).toBe("50+");
     expect(stat("patents written or contributed")).toBe("4");
   });
 

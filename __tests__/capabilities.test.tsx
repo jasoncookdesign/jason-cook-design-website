@@ -42,7 +42,7 @@ describe("Capabilities page", () => {
     expect(screen.getByRole("heading", { level: 2, name: "Outcomes on the record" })).toBeTruthy();
     for (const line of [
       "At Dell, a unified contact-center redesign produced a 20% reduction in chat pollution and a 300 basis-point improvement in customer satisfaction.",
-      "At Millennium Systems International, the platform has earned 15 industry awards.",
+      "At Millennium Systems International, the platform has earned 40 industry awards.",
       "At Banco Azteca, the constraint wasn't staffing",
     ]) expect(text()).toContain(line);
     expect(text()).not.toContain("[GAP");

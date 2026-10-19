@@ -3,7 +3,7 @@ const CTA_URL = "https://cal.com/jasoncookdesign/engagement-consultation";
 // DRAFT — Jason to edit
 const stats = [
   { value: "143", label: "countries unified in one system" },
-  { value: "15", label: "industry awards for shipped work" },
+  { value: "50+", label: "industry awards for shipped work" },
   { value: "4", label: "patents written or contributed" },
 ];
 

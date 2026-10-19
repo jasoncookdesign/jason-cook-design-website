@@ -515,7 +515,7 @@ export const caseStudies: CaseStudy[] = [
     subtitle:
       "Designing the beauty industry's most award-winning business management platform",
     indexOneLiner:
-      "Redesigned Millennium Systems International's Meevo platform from a dead-language legacy to a system that's earned 15 industry awards since launch.",
+      "Redesigned Millennium Systems International's Meevo platform from a dead-language legacy to a system that's earned over 40 industry awards since launch.",
     backgroundImage: "/images/background_cs05.jpg",
     sections: [
       {
@@ -621,7 +621,7 @@ export const caseStudies: CaseStudy[] = [
         blocks: [
           {
             type: "p",
-            html: "The redesigned product was a resounding success, <strong>earning 15 industry awards since launch</strong>, including American Spa Magazine's highest honor eight years in a row: the Professional's Choice Award for Best Software. Since launch, MSI has expanded the platform to a new technology stack to deploy to a wider range of devices, while maintaining the same user experience that propelled them to the forefront of the industry.",
+            html: "The redesigned product was a resounding success, <strong>earning over 40 industry awards since launch</strong>, including American Spa Magazine's highest honor eight years in a row: the Professional's Choice Award for Best Software. Since launch, MSI has expanded the platform to a new technology stack to deploy to a wider range of devices, while maintaining the same user experience that propelled them to the forefront of the industry.",
           },
           {
             type: "img",
