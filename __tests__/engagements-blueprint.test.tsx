@@ -208,3 +208,28 @@ describe("operating FAQ sheet", () => {
     expect(sheet.querySelectorAll('[data-slot="accordion-trigger"]')).toHaveLength(6);
   });
 });
+
+describe("selector reads as interactive", () => {
+  const { readFileSync } = jest.requireActual("fs") as typeof import("fs");
+  const { join } = jest.requireActual("path") as typeof import("path");
+  const patterns = readFileSync(join(process.cwd(), "app/blueprint-patterns.css"), "utf8");
+  const globals = readFileSync(join(process.cwd(), "app/globals.css"), "utf8");
+  const tok = (n: string) => globals.match(new RegExp(`--${n}:\\s*(#[0-9A-Fa-f]{6})`))![1];
+  const lum = (h: string) => {
+    const c = [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)));
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  };
+
+  it("fills the selected option with the secondary (steel blue) accent and keeps text readable on it", () => {
+    expect(patterns).toMatch(/\.seg > \[aria-current\][^{]*\{[^}]*background:\s*var\(--accent\)/);
+    expect(patterns).toMatch(/\.seg > \[aria-current\][^{]*\{[^}]*color:\s*var\(--bg\)/);
+    const [a, b] = [lum(tok("accent")), lum(tok("bg"))].sort((x, y) => y - x);
+    expect((a + 0.05) / (b + 0.05)).toBeGreaterThanOrEqual(4.5);
+  });
+
+  it("gives every option a radio-style indicator and the unselected ones a hover response", () => {
+    expect(patterns).toMatch(/\.seg > \*::before/);
+    expect(patterns).toMatch(/\.seg > \[aria-current\]::before/);
+    expect(patterns).toMatch(/\.seg > \*:hover/);
+  });
+});

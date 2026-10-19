@@ -5,7 +5,7 @@
 /* The shell already rules each sheet off from the one above; the intro's own rule would double it. */
 main:has(.eng-select) section > .intro:first-child { border-top: 0; }
 .eng-select .seg .sit { font-size: 22px; line-height: 1.25; letter-spacing: -0.01em; text-wrap: balance; }
-.seg > [aria-current] .sit { color: var(--ink); }
+.seg > [aria-current] .sit { color: var(--bg); }
 
 /* ---------- hero: the home grammar without the drawing; the metric is a one-cell stat row ---------- */
 .eng-hero { padding: 40px 0 48px; }

@@ -134,10 +134,20 @@ a.row:hover { background: var(--paper2); }
   border-left: 1px solid var(--ink);
 }
 .seg > *:first-child { border-left: 0; }
+.seg > * { position: relative; padding-left: calc(var(--pad) + 28px); cursor: pointer; }
+/* radio-style indicator: an empty square on the options you can choose, filled on the chosen one */
+.seg > *::before {
+  content: ""; position: absolute; left: var(--pad); top: 20px; width: 14px; height: 14px;
+  border: 1px solid var(--ink2); background: transparent;
+}
 .seg > *:hover { background: var(--paper2); }
-.seg > [aria-current="page"], .seg > [aria-current="true"] { background: var(--paper2); box-shadow: inset 0 -1px 0 var(--rule); }
+.seg > *:hover::before { border-color: var(--ink); }
+/* the chosen option is filled with the secondary accent (steel blue); orange stays reserved for decisions */
+.seg > [aria-current="page"], .seg > [aria-current="true"] { background: var(--accent); color: var(--bg); }
+.seg > [aria-current]::before { border-color: var(--bg); background: var(--bg); }
+.seg > [aria-current]:hover { background: var(--accent); }
 .seg .lbl { font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
-.seg > [aria-current] .lbl { color: var(--ink); }
+.seg > [aria-current] .lbl { color: var(--bg); }
 
 /* ---------- breadcrumb, tags, ghost button, prose ---------- */
 .crumb { display: flex; flex-wrap: wrap; gap: 6px 10px; font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
