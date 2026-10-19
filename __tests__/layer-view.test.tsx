@@ -148,8 +148,8 @@ describe("LayerView icon button", () => {
 });
 
 describe("bar on a phone", () => {
-  it("drops the DOC. index so the lockup, layers button, and menu fit in the bar", () => {
+  it("tightens the lockup so it, the layers button, and the menu fit in the bar", () => {
     const css = readFileSync(join(process.cwd(), "app/globals.css"), "utf8") as string;
-    expect(css).toMatch(/@media \(max-width: 899px\)\s*\{[^@]*\.bar \.idx\s*\{\s*display:\s*none/);
+    expect(css).toMatch(/@media \(max-width: 899px\)\s*\{[^@]*\.bar \.wordmark\s*\{[^}]*font-size:\s*11px/);
   });
 });
