@@ -12,6 +12,10 @@ export default function OfferingPricing() {
         <p className="font-sans text-2xl font-extralight tracking-[-0.02em] text-ink">
           [GAP: Phase 0 price pending]
         </p>
+        <p className="font-sans text-base leading-relaxed text-body">
+          The first phase is paid. It concludes before anything is designed or
+          built.
+        </p>
         <p className="font-sans text-base leading-relaxed text-muted-foreground">
           Every later phase is quoted on its own, once the one before it has
           closed.

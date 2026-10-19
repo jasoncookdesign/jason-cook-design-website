@@ -13,7 +13,7 @@ export default function PricingSection() {
             Where you start, and what it costs.
           </h2>
           <p className="mt-6 max-w-[480px] font-sans text-[17px] leading-relaxed text-body">
-            The Offering Engagement opens with an assessment of the decision.
+            The Offering Engagement opens with a paid assessment of the decision.
             The Operating Engagement opens with a diagnosis that concludes
             before anything is built.
           </p>
@@ -41,8 +41,8 @@ export default function PricingSection() {
             </p>
           </div>
           <p className="font-sans text-base leading-relaxed text-body">
-            For a new product or business line, the first phase assesses the
-            decision itself. You leave with a written verdict and the proof
+            For a new product or business line, the first phase is a paid
+            assessment of the decision itself. You leave with a written verdict and the proof
             behind it.
           </p>
           <a

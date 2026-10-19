@@ -152,3 +152,14 @@ describe("engagement routes carry their own social card and canonical", () => {
     expect(routes[0][1].alternates?.canonical).toBe("/engagements/offering");
   });
 });
+
+describe("site-wide defaults name no single engagement type", () => {
+  const ENGAGEMENT_SPECIFIC = /outgrow|startup|midmarket|new product|business line|diagnos|existing tools/i;
+
+  it("keeps the default description, openGraph, and twitter text type-neutral", () => {
+    for (const text of [layout.description, layout.openGraph?.description, layout.twitter?.description]) {
+      expect(String(text ?? "").length).toBeGreaterThan(20);
+      expect(String(text)).not.toMatch(ENGAGEMENT_SPECIFIC);
+    }
+  });
+});

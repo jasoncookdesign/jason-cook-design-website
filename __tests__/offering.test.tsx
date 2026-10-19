@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { render, screen } from "@testing-library/react";
+import HomePage from "@/app/page";
 import OfferingPage from "@/app/engagements/offering/page";
 import { expectValidHeadingOrder } from "./helpers/headings";
 import { hasFeeFigure } from "./helpers/prices";
@@ -56,6 +57,20 @@ describe("Offering Engagement problem section", () => {
   it("shares no card with the operating problem cards", () => {
     const { container } = render(<OfferingPage />);
     expect(container.textContent).not.toMatch(/The old way|The internal attempt|The search outside|outgrown the systems/);
+  });
+});
+
+describe("Offering Engagement opens with a paid first phase", () => {
+  it("says on the offering page that the first phase is paid, and still shows no fee figure", () => {
+    const { container } = render(<OfferingPage />);
+    expect(container.textContent).toMatch(/first phase is paid/i);
+    expect(hasFeeFigure(container.textContent ?? "")).toBe(false);
+  });
+
+  it("says on the home page that the Offering Engagement opens with a paid assessment", () => {
+    const { container } = render(<HomePage />);
+    expect(container.textContent).toMatch(/Offering Engagement opens with a paid assessment of the decision/);
+    expect(container.textContent).toMatch(/the first phase is a paid assessment of the decision itself/);
   });
 });
 

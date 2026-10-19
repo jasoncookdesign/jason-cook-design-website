@@ -1,6 +1,6 @@
 # Jason Cook Design — Website
 
-Marketing website for Jason Cook Design (JCD), a systems architecture and implementation practice for startups and midmarket operators.
+Marketing website for Jason Cook Design (JCD), a practice that assesses, designs, and builds the products and systems a business needs.
 
 ## Stack
 
