@@ -240,17 +240,9 @@ main section[data-sheet]::before {
   margin: 0;
   padding: 0;
   list-style: none;
-  counter-reset: navi;
-}
-.bar .nav li {
-  counter-increment: navi;
 }
 .bar .nav a {
   white-space: nowrap;
-}
-.bar .nav a::before {
-  content: counter(navi, decimal-leading-zero) / "";
-  color: var(--ink2);
 }
 /* The layer toggle is an understated 44px icon button beside the primary action. */
 .bar .lv {
