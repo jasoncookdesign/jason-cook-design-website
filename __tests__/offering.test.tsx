@@ -34,7 +34,7 @@ function phases(container: HTMLElement) {
 }
 
 describe("Offering Engagement problem section", () => {
-  const LABELS = ["The idea", "The quick build", "The advice", "The split"];
+  const LABELS = ["The idea", "The quick build", "The advice", "One owner"];
 
   it("renders four problem cards ahead of the phases", () => {
     render(<OfferingPage />);

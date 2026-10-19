@@ -52,9 +52,16 @@ describe("engagement heroes are structurally parallel", () => {
     expect(a).toBe(b);
   });
 
-  it("the metric counts the phases each page actually lists", () => {
-    const offering = render(<OfferingPage />);
-    const n = Number(offering.container.querySelector("[data-hero-metric-value]")!.textContent);
-    expect(offering.container.querySelectorAll("ol > li")).toHaveLength(n);
+  const PHASE_WORDS = /^(One|Two|Three|Four|Five|Six|Seven) — /;
+  const listedPhases: Array<[string, () => React.JSX.Element, (c: HTMLElement) => number]> = [
+    ["operating", () => <OperatingPage />, (c) => Array.from(c.querySelectorAll("*")).filter((e) => e.children.length === 0 && PHASE_WORDS.test((e.textContent ?? "").trim())).length],
+    ["offering", () => <OfferingPage />, (c) => c.querySelectorAll("ol > li").length],
+  ];
+
+  it.each(listedPhases)("%s: the metric counts the phases the page actually lists", (_slug, ui, count) => {
+    const { container } = render(ui());
+    const n = Number(container.querySelector("[data-hero-metric-value]")!.textContent);
+    expect(count(container)).toBeGreaterThan(0);
+    expect(count(container)).toBe(n);
   });
 });

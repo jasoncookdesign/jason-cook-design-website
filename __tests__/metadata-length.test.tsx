@@ -133,3 +133,22 @@ describe("page metadata lengths", () => {
     }
   });
 });
+
+describe("engagement routes carry their own social card and canonical", () => {
+  const routes: Array<[string, Meta & { alternates?: { canonical?: string } }]> = [
+    ["/engagements", engagements as never],
+    ["/engagements/operating", operating as never],
+    ["/engagements/offering", offering as never],
+  ];
+
+  it.each(routes)("%s sets openGraph and twitter to its own title and description", (_r, m) => {
+    expect(m.openGraph?.title).toBe(m.title);
+    expect(m.openGraph?.description).toBe(m.description);
+    expect(m.twitter?.title).toBe(m.title);
+    expect(m.twitter?.description).toBe(m.description);
+  });
+
+  it("/engagements names the offering page as canonical, since it renders that page", () => {
+    expect(routes[0][1].alternates?.canonical).toBe("/engagements/offering");
+  });
+});

@@ -36,7 +36,8 @@ describe("Work page does not put a number on the engagements", () => {
 
   it("states no count in words or digits", () => {
     const { container } = render(<WorkPage />);
-    const intro = container.querySelector("h1")!.parentElement!.querySelector("p")!.textContent ?? "";
+    const header = container.querySelector("h1")!.parentElement!.textContent ?? "";
+    const intro = header;
     expect(intro).not.toMatch(/\b(zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|\d+)\b/i);
     expect(intro).not.toMatch(/engagements/i);
   });

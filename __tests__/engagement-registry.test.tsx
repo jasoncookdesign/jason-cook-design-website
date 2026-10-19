@@ -91,9 +91,6 @@ describe("INV-01: registry, routes, selector, and fork agree", () => {
       expect(isExposed(links[i])).toBe(true);
       expect(links[i].textContent).toContain(t.situation);
       expect(links[i].closest("article")).toBeNull();
-      // The home fork stays short: the fit and arc sentences live on the engagements page.
-      expect(links[i].textContent).not.toContain(t.fit);
-      expect(links[i].textContent).not.toContain(t.arcSummary);
     });
     const problem = screen.getByText("Where I start");
     expect(links[1].compareDocumentPosition(problem) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();

@@ -10,6 +10,16 @@ export const metadata = {
   title: "Offering Engagement | Jason Cook Design",
   description:
     "For a new product or business line. Six phases from the decision to launch, bought one at a time, each leaving you something you can use.",
+  openGraph: {
+    title: "Offering Engagement | Jason Cook Design",
+    description:
+      "For a new product or business line. Six phases from the decision to launch, bought one at a time, each leaving you something you can use.",
+  },
+  twitter: {
+    title: "Offering Engagement | Jason Cook Design",
+    description:
+      "For a new product or business line. Six phases from the decision to launch, bought one at a time, each leaving you something you can use.",
+  },
 };
 
 export default function OfferingEngagementPage() {

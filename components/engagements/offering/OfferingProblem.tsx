@@ -17,7 +17,7 @@ const problemCards = [
   },
   {
     n: "04",
-    label: "The split",
+    label: "One owner",
     body: "By now you can describe what you need: one capable expert who tests the decision, defines the product, and builds it, with nothing lost between those steps.",
   },
 ];

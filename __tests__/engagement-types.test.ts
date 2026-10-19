@@ -10,9 +10,7 @@ describe("engagement-type registry", () => {
   it("has a real sentence in every descriptive field", () => {
     expect(engagementTypes).toHaveLength(2);
     for (const t of engagementTypes) {
-      for (const key of ["situation", "fit", "arcSummary"] as const) {
-        expect(t[key].trim().split(/\s+/).length).toBeGreaterThanOrEqual(5);
-      }
+      expect(t.situation.trim().split(/\s+/).length).toBeGreaterThanOrEqual(5);
     }
   });
 
@@ -24,14 +22,12 @@ describe("engagement-type registry", () => {
   it("shows no fee figure on either entry, in any form", () => {
     expect(engagementTypes).toHaveLength(2);
     for (const t of engagementTypes) {
-      expect(hasFeeFigure([t.name, t.situation, t.fit, t.arcSummary].join(" "))).toBe(false);
+      expect(hasFeeFigure([t.name, t.situation].join(" "))).toBe(false);
     }
   });
 
-  it("keeps situation, fit, and arc summary different between the two types", () => {
+  it("keeps the situation different between the two types", () => {
     expect(engagementTypes).toHaveLength(2);
-    for (const key of ["situation", "fit", "arcSummary"] as const) {
-      expect(engagementTypes[0][key]).not.toBe(engagementTypes[1][key]);
-    }
+    expect(engagementTypes[0].situation).not.toBe(engagementTypes[1].situation);
   });
 });

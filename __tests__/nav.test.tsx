@@ -17,6 +17,11 @@ describe("Nav", () => {
     expect(within(desktopNav).getByRole("link", { name: /About/i })).toBeTruthy();
   });
 
+  it("labels the main navigation landmark", () => {
+    render(<Nav />);
+    expect(screen.getByRole("navigation", { name: /Main navigation/i })).toBeTruthy();
+  });
+
   it("renders the CTA button linking to cal.com", () => {
     render(<Nav />);
     // The desktop CTA is always in the DOM; getAllByRole handles the case

@@ -11,6 +11,16 @@ export const metadata = {
   title: "Operating Engagement | Jason Cook Design",
   description:
     "For a business that has outgrown its systems. Five phases, each priced and decided on its own, each leaving you something you can use.",
+  openGraph: {
+    title: "Operating Engagement | Jason Cook Design",
+    description:
+      "For a business that has outgrown its systems. Five phases, each priced and decided on its own, each leaving you something you can use.",
+  },
+  twitter: {
+    title: "Operating Engagement | Jason Cook Design",
+    description:
+      "For a business that has outgrown its systems. Five phases, each priced and decided on its own, each leaving you something you can use.",
+  },
 };
 
 export default function EngagementsPage() {
