@@ -80,6 +80,16 @@ describe("Capabilities page", () => {
     );
   });
 
+  it("links each NAICS code to its naics.com listing in a new window", () => {
+    render(<CapabilitiesPage />);
+    for (const code of ["541511", "541512", "541519", "541430", "541611", "541990"]) {
+      const link = screen.getByRole("link", { name: code });
+      expect(link.getAttribute("href")).toBe(`https://www.naics.com/naics-code-description/?code=${code}`);
+      expect(link.getAttribute("target")).toBe("_blank");
+      expect(link.getAttribute("rel")).toContain("noopener");
+    }
+  });
+
   it("drops the coming-soon placeholder and still links to the Work page", () => {
     render(<CapabilitiesPage />);
     expect(text()).not.toMatch(/coming soon/i);
