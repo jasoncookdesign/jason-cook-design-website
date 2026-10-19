@@ -36,4 +36,9 @@ describe("docs track the new routes and tokens (INV-08)", () => {
       expect(section).toContain(name);
     }
   });
+
+  it("README and cutover plan no longer describe an anonymized home-page case", () => {
+    expect(read("README.md")).not.toMatch(/fit-proof/i);
+    expect(read("docs/cutover-plan.md")).not.toMatch(/fit-proof/i);
+  });
 });
