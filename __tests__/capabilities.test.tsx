@@ -12,8 +12,10 @@ describe("Capabilities page", () => {
 
   it("opens with the institutional intro", () => {
     render(<CapabilitiesPage />);
-    expect(text()).toContain("Eight case studies. Each one documents a program across enterprise software, financial services, global consumer products, and regulated industries");
-    expect(text()).toContain("The architectural approach runs the same way across all eight contexts. The deliverables differ.");
+    expect(text()).toContain("Each case study documents a program across enterprise software, financial services, global consumer products, and regulated industries");
+    expect(text()).toContain("The architectural approach runs the same way across every context. The deliverables differ.");
+    expect(text()).toContain("For a new product or business line, the first phase assesses the decision itself.");
+    expect(text()).not.toMatch(/eight/i);
   });
 
   it("lists the five disciplines, in order, as a definition list", () => {
@@ -48,14 +50,13 @@ describe("Capabilities page", () => {
     expect(text()).not.toContain("[GAP");
   });
 
-  it("keeps the practice-name and entry-offer tokens literal", () => {
+  it("carries no practice-name sheet and states the paid first step in plain wording", () => {
     render(<CapabilitiesPage />);
-    expect(screen.getByRole("heading", { level: 2, name: "[PRACTICE-NAME]" })).toBeTruthy();
-    expect(text()).toContain("The discipline behind all eight programs is [PRACTICE-NAME]");
-    expect(text()).toContain("[ENTRY-OFFER-NAME] is the paid first step");
+    expect(screen.queryByText("The discipline behind the work")).toBeNull();
+    expect(text()).toContain("For institutional or government procurement inquiries, every engagement opens with a paid first step: a written recommendation before any design or build begins.");
   });
 
-  it("gives institutional readers the company data, with unrecorded identifiers left as tokens", () => {
+  it("gives institutional readers the company data, without unrecorded SAM.gov identifiers", () => {
     render(<CapabilitiesPage />);
     const heading = screen.getByRole("heading", { level: 2, name: "Company data" });
     const list = heading.closest("section")!.querySelector("dl")!;
@@ -68,10 +69,6 @@ describe("Capabilities page", () => {
       ["Legal name", "Jason Cook Design LLC"],
       ["Structure", "Single-member limited liability company, Texas"],
       ["Formed", "November 15, 2024"],
-      ["UEI", "[UEI]"],
-      ["CAGE code", "[CAGE-CODE]"],
-      ["NAICS codes", "[NAICS-CODES]"],
-      ["SAM.gov registration", "[SAM-STATUS]"],
       ["Contact", "hello@jasoncookdesign.com"],
     ]);
     expect(screen.getAllByRole("link", { name: "hello@jasoncookdesign.com" })[0].getAttribute("href")).toBe(
@@ -93,7 +90,7 @@ describe("Capabilities page", () => {
       "Integrated Architecture", "Organizational Architecture"]) {
       expect(text()).not.toContain(name);
     }
-    expect(text()).toContain("[ENTRY-OFFER-NAME]");
+    expect(text()).not.toMatch(/\[[A-Z-]{3,}\]/);
   });
 
   it("does not render generic marketing filler", () => {

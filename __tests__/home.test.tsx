@@ -1,10 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import HomePage from "@/app/page";
 
+function operatingPlateName(): HTMLElement {
+  const el = Array.from(document.querySelectorAll<HTMLElement>(".pl-h p")).find((p) => p.textContent === "Operating Engagement");
+  if (!el) throw new Error("Operating plate heading not found");
+  return el;
+}
+
 describe("Home page pricing plate", () => {
   it("shows the entry offer as a spec plate: its name and price in the plate header, not a padded card", () => {
     const { container } = render(<HomePage />);
-    const entryNameEl = screen.getByText(/\[ENTRY-OFFER-NAME\]/);
+    const entryNameEl = operatingPlateName();
     const plate = entryNameEl.closest(".pl");
     expect(plate).not.toBeNull();
     const head = entryNameEl.closest(".pl-h");
@@ -51,10 +57,9 @@ describe("Home page", () => {
     expect(container.textContent).not.toMatch(/The old way|The internal attempt|The search outside|outgrown the systems you built/);
   });
 
-  it("renders the [ENTRY-OFFER-NAME] token literally", () => {
+  it("carries no [ENTRY-OFFER-NAME] token", () => {
     render(<HomePage />);
-    // The token must appear verbatim — not substituted
-    expect(screen.getByText(/\[ENTRY-OFFER-NAME\]/)).toBeTruthy();
+    expect(screen.queryByText(/\[ENTRY-OFFER-NAME\]/)).toBeNull();
   });
 
   it("omits the anonymized discovery case until a real testimonial exists", () => {

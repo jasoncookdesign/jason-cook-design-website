@@ -4,26 +4,23 @@ import { withSocial } from "@/lib/metadata";
 export const metadata = withSocial({
   title: "About | Jason Cook Design",
   description:
-    "Enterprise-scale experience, sized for smaller businesses: strategy, design, research, and implementation in one practice, starting with a paid diagnosis.",
+    "Enterprise-scale experience, sized for smaller businesses: strategy, design, research, and implementation in one practice, starting with a paid first step.",
   openGraph: {
     title: "About | Jason Cook Design",
     description:
-      "Enterprise-scale experience, sized for smaller businesses: strategy, design, research, and implementation in one practice, starting with a paid diagnosis.",
+      "Enterprise-scale experience, sized for smaller businesses: strategy, design, research, and implementation in one practice, starting with a paid first step.",
   },
 });
 
 // DRAFT — Jason to edit. First-person practice copy, ported from the 2026-09-10 placeholder draft.
-// [ENTRY-OFFER-NAME] stays literal until the offer is named.
-// Entry-offer name candidates (DRAFT, none chosen; rationale in docs/content-token-candidates.md):
-//   System Diagnostic · Architecture Diagnostic · Situational Diagnosis · Problem Definition · Organizational Diagnosis
 const paragraphs = [
   "Most operators who end up working with me describe the same progression. They've named a problem — a product that needed updating, a process that needed replacing, a system that had outgrown its original design — and somewhere in the effort to address it, they found the named problem wasn't the real one. The real one was structural: something in how the organization, the technology, and the customer experience related to each other.",
   "I recognize that pattern because I've spent years leading programs at enterprise scale where the presenting problem and the underlying one were rarely the same thing. Eight of those programs are documented on the Work page — at OSIsoft, Ford, Dovetail Systems, Banco Azteca, Millennium Systems International, Microsoft, Leading Hotels of the World, and Dell. The contexts differ. The diagnostic structure doesn't.",
   "What working at that scale teaches you is what a smaller business doesn't need. An enterprise runs a more complex version of the same systems a smaller operation uses — layered with redundancy that's built for scale, tooling assembled over years, governance designed for regulatory surfaces the smaller business doesn't have. The architecture of the problem is the same. The footprint isn't. Someone who has built the enterprise version has the calibration to help size a smaller one correctly — and to recognize what it can safely leave out.",
   "That judgment is what Jason Cook Design is built on. The practice combines strategy, design, research, and implementation — not as a fixed service menu, but applied in whatever proportions the problem requires, held in one practice rather than handed across seams. I bring in specialists when the work needs one; the diagnosis and the recommendation stay mine.",
-  "I start every engagement with a paid diagnosis. Nothing gets designed or built until there's a shared, written definition of what the problem actually is. That first step is [ENTRY-OFFER-NAME]. What it produces is a written recommendation: what the real problem is, what to address first, and what addressing it takes. If the right answer is that you shouldn't build — or that what you're looking for is outside what this practice does — that's what it says.",
+  "I start every engagement with a paid first step. Nothing gets designed or built until there's a shared, written definition of what the problem actually is. For an existing business that step is a diagnosis; for a new product or business line it is an assessment of the decision itself. What it produces is a written recommendation: what the real problem is, what to address first, and what addressing it takes. If the right answer is that you shouldn't build — or that what you're looking for is outside what this practice does — that's what it says.",
   "AI is part of this work when it creates real leverage. It isn't the identity of the practice. The question the diagnosis answers is whether any given technology — AI included — is the right fit for the specific problem.",
-  "The recommendation you can trust is the one that's built to say no. If that kind of rigor is what you're looking for, [ENTRY-OFFER-NAME] is where it starts.",
+  "The recommendation you can trust is the one that's built to say no. If that kind of rigor is what you're looking for, the paid first step is where it starts.",
 ];
 
 // DRAFT — Jason to edit. Career facts from Jason's own records; titles as recorded there.

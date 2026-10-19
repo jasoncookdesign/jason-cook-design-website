@@ -197,7 +197,7 @@ describe("Home proof and pricing", () => {
     const plates = price.querySelectorAll(".pl");
     expect(plates).toHaveLength(2);
     expect(plates[0].querySelector(".pl-h")?.textContent).toContain("Offering Engagement");
-    expect(plates[1].querySelector(".pl-h")?.textContent).toContain("[ENTRY-OFFER-NAME]");
+    expect(plates[1].querySelector(".pl-h")?.textContent).toContain("Operating Engagement");
     for (const p of Array.from(plates)) {
       expect(p.querySelector(".pl-h")?.textContent).toContain("$2,500");
       expect(p.querySelectorAll(".regs i")).toHaveLength(4);

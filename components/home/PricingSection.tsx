@@ -76,11 +76,11 @@ export default function PricingSection() {
           </div>
         </div>
 
-        {/* Entry offer plate. [ENTRY-OFFER-NAME] candidates (DRAFT, none chosen): see docs/content-token-candidates.md. */}
+        {/* Operating Engagement entry plate. */}
         <div className="pl">
           <Regs />
           <div className="pl-h">
-            <p>[ENTRY-OFFER-NAME]</p>
+            <p>Operating Engagement</p>
             <p className="price">$2,500</p>
           </div>
           <div className="sp">

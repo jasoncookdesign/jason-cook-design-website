@@ -23,7 +23,7 @@ describe("docs track the new routes and tokens (INV-08)", () => {
   it("cutover plan's placeholder check (pre-go step 2) no longer waits on the price-pending token", () => {
     const line = read("docs/cutover-plan.md")
       .split("\n")
-      .find((l) => /^2\. Placeholder tokens/.test(l));
+      .find((l) => /^2\. No placeholder tokens/.test(l));
     expect(line).toBeDefined();
     expect(line).not.toContain(GAP);
   });
