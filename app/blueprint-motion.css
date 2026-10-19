@@ -1,0 +1,43 @@
+/*
+ * Motion polish. Loaded last, so these rules refine the kit's own states.
+ * Principles: one easing curve and one duration (--ease, --t in globals.css, zero under reduced motion); only
+ * interactive things respond; state changes ease instead of snapping; blocks fade and rise once as they scroll in.
+ * html.rm (reduced motion) and html.boot (restoring the layer view) already cancel every transition and animation
+ * in blueprint-layers.css, and the reveal below is gated the same way.
+ */
+
+/* ---------- state transitions ---------- */
+a { transition: color var(--t) var(--ease), background-color var(--t) var(--ease), border-color var(--t) var(--ease), opacity var(--t) var(--ease), text-decoration-color var(--t) var(--ease); }
+.btn { transition: background-color var(--t) var(--ease), color var(--t) var(--ease), border-color var(--t) var(--ease), transform var(--t) var(--ease); }
+.btn span[aria-hidden] { display: inline-block; transition: transform var(--t) var(--ease); }
+.btn:hover span[aria-hidden] { transform: translateX(4px); }
+.btn:active { transform: translateY(1px); }
+
+.bar { transition: min-height var(--t) var(--ease), margin-bottom var(--t) var(--ease), border-color var(--t) var(--ease); }
+.bar .menu-btn { transition: background-color var(--t) var(--ease), color var(--t) var(--ease), border-color var(--t) var(--ease); }
+.bar .lv { transition: background-color var(--t) var(--ease), color var(--t) var(--ease), border-color var(--t) var(--ease); }
+.bar .lv .lv-icon { transition: transform var(--t) var(--ease); }
+.bar .lv:hover .lv-icon { transform: translateY(-1px); }
+.bar .menu nav a { transition: background-color var(--t) var(--ease), color var(--t) var(--ease); }
+@keyframes menu-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+.bar .menu nav { animation: menu-in var(--t) var(--ease) both; }
+
+a.row, a.cell { transition: background-color var(--t) var(--ease); }
+.row .go { transition: transform var(--t) var(--ease), background-color var(--t) var(--ease), color var(--t) var(--ease), border-color var(--t) var(--ease); }
+a.row:hover .go { transform: translateX(4px); }
+.faq-trigger { transition: background-color var(--t) var(--ease); }
+.faq-trigger .mark::after { transition: transform var(--t) var(--ease); }
+.faq-panel { animation: menu-in var(--t) var(--ease) both; }
+
+.seg > * { transition: background-color var(--t) var(--ease), color var(--t) var(--ease); }
+.seg > *::before { transition: border-color var(--t) var(--ease), background-color var(--t) var(--ease); }
+.book-fallback a { transition: color var(--t) var(--ease); }
+
+/* keyboard focus eases in */
+a:focus-visible, summary:focus-visible, button:focus-visible { transition: outline-offset 0.15s var(--ease); }
+
+/* ---------- reveal on scroll ----------
+   RevealOnScroll marks the blocks below the fold with .rv and adds .in as each enters the viewport. Content is
+   hidden only when JavaScript ran, motion is allowed, and the layer view is off. */
+html.js:not(.rm):not(.layers) .rv { opacity: 0; transform: translateY(12px); transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); }
+html.js:not(.rm):not(.layers) .rv.in, .rv.in { opacity: 1; transform: none; }

@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import SheetFrame from "@/components/layout/SheetFrame";
+import RevealOnScroll from "@/components/layout/RevealOnScroll";
 import { LAYER_BOOT_SCRIPT } from "@/lib/layer-view-boot";
 
 const newsreader = Newsreader({
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: LAYER_BOOT_SCRIPT }} />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <RevealOnScroll />
         <SheetFrame>
           <Nav />
           <main className="flex-1">{children}</main>

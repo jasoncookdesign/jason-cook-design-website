@@ -8,6 +8,7 @@
 @import "./bp-home.css";
 @import "./bp-engagements.css";
 @import "./bp-content.css";
+@import "./blueprint-motion.css";
 
 @theme {
   --font-weight-extralight: 400;
@@ -110,6 +111,9 @@
   --decision: #FF9B6B;
   /* the lockups' orange: a fine accent in small places (never a fill) */
   --signal: #E8723C;
+  /* motion: one curve, one duration; the duration is zero under reduced motion */
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --t: .25s;
   --link: #9CCBFF;
 
   --btn-bg: #E8EFF5;
@@ -355,4 +359,8 @@ main section > :first-child:is(.intro, .logos, .cells, .rows) { border-top: 0; }
 @media (max-width: 1199px) {
   .bar > .wordmark { margin-right: auto; }
   .bar .menu { margin-left: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --t: 0s; }
 }
