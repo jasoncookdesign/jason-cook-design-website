@@ -1,13 +1,16 @@
 /**
  * JCD brand mark geometry: three monospace letters (J, C, D), each in an 84 x 100 cell
  * with a 100-unit advance. Corner arcs are circles with two radii: 6 (outer and counter
- * corners) and 26 (the D's bowl). Seven scanline bands (10 tall, 5 apart) have edges on
- * the bar edges (25 and 75) and the beak ends (40 and 60), so the top and bottom rows
- * and every rounded corner stay intact. Coordinates are in a 284 x 100 box.
+ * corners) and 26 (the D's bowl). One full-width stripe, centered on the counter midline,
+ * cuts the letters; its thickness equals the J's inner notch (the J's stem left edge minus
+ * the right edge of the beak that hangs from its top flag), so the stripe takes its
+ * width from the letter's own spacing. Coordinates are in a 284 x 100 box.
  */
 export const JCD_MARK = {
   width: 284,
   height: 100,
   d: "M34.00,6.00 C34.00,2.69 36.69,0.00 40.00,0.00 L78.00,0.00 C81.31,0.00 84.00,2.69 84.00,6.00 L84.00,94.00 C84.00,97.31 81.31,100.00 78.00,100.00 L6.00,100.00 C2.69,100.00 0.00,97.31 0.00,94.00 L0.00,66.00 C0.00,62.69 2.69,60.00 6.00,60.00 L15.00,60.00 C18.31,60.00 21.00,62.69 21.00,66.00 L21.00,75.00 L63.00,75.00 L63.00,25.00 L55.00,25.00 L55.00,34.00 C55.00,37.31 52.31,40.00 49.00,40.00 L40.00,40.00 C36.69,40.00 34.00,37.31 34.00,34.00 Z M100.00,6.00 C100.00,2.69 102.69,0.00 106.00,0.00 L178.00,0.00 C181.31,0.00 184.00,2.69 184.00,6.00 L184.00,34.00 C184.00,37.31 181.31,40.00 178.00,40.00 L169.00,40.00 C165.69,40.00 163.00,37.31 163.00,34.00 L163.00,25.00 L121.00,25.00 L121.00,75.00 L163.00,75.00 L163.00,66.00 C163.00,62.69 165.69,60.00 169.00,60.00 L178.00,60.00 C181.31,60.00 184.00,62.69 184.00,66.00 L184.00,94.00 C184.00,97.31 181.31,100.00 178.00,100.00 L106.00,100.00 C102.69,100.00 100.00,97.31 100.00,94.00 Z M200.00,6.00 C200.00,2.69 202.69,0.00 206.00,0.00 L258.00,0.00 C272.36,0.00 284.00,11.64 284.00,26.00 L284.00,74.00 C284.00,88.36 272.36,100.00 258.00,100.00 L206.00,100.00 C202.69,100.00 200.00,97.31 200.00,94.00 Z M221.00,25.00 L257.00,25.00 C260.31,25.00 263.00,27.69 263.00,31.00 L263.00,69.00 C263.00,72.31 260.31,75.00 257.00,75.00 L221.00,75.00 Z",
-  bands: [[0, 10],[15, 25],[30, 40],[45, 55],[60, 70],[75, 85],[90, 100]] as ReadonlyArray<readonly [number, number]>,
+  notch: 8,
+  stripe: { y0: 46, y1: 54, height: 8 },
+  bands: [[0, 46],[54, 100]] as ReadonlyArray<readonly [number, number]>,
 } as const;

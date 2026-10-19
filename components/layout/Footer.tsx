@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="mx-auto max-w-[1200px] px-6 sm:px-10 pb-10 pt-20">
         <div className="grid divide-y divide-border border border-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
           <div className="flex flex-col gap-5 p-6">
-            <JcdMark variant="solid" className="h-12 w-auto self-start text-ink" />
+            <JcdMark className="h-12 w-auto self-start text-ink" />
             <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-band-ink">
               Jason Cook Design
             </p>

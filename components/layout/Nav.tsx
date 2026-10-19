@@ -47,7 +47,7 @@ export default function Nav() {
           href="/"
           className="flex flex-shrink-0 items-center gap-3 whitespace-nowrap font-mono text-xs font-medium uppercase tracking-[0.14em] text-ink transition-colors hover:opacity-80"
         >
-          <JcdMark variant="solid" className="h-5 w-auto" />
+          <JcdMark className="h-5 w-auto" />
           <span className={docked ? "sr-only lg:not-sr-only" : ""}>Jason Cook Design</span>
         </Link>
 

@@ -2,14 +2,14 @@ import { useId } from "react";
 import { JCD_MARK } from "@/lib/jcd-mark";
 
 type Props = {
-  /** "scanline" cuts the letters with seven aligned bands; "solid" fills them. */
-  variant?: "solid" | "scanline";
+  /** "stripe" cuts the letters with one full-width stripe; "solid" fills them. */
+  variant?: "solid" | "stripe";
   /** When set, the mark is exposed as an image with this label. Otherwise it is decorative. */
   label?: string;
   className?: string;
 };
 
-export default function JcdMark({ variant = "scanline", label, className }: Props) {
+export default function JcdMark({ variant = "stripe", label, className }: Props) {
   const clipId = `jcd-mark-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
   const { width, height, d, bands } = JCD_MARK;
   const labelled = typeof label === "string" && label.length > 0;
@@ -28,7 +28,7 @@ export default function JcdMark({ variant = "scanline", label, className }: Prop
         </clipPath>
       </defs>
       <g clipPath={`url(#${clipId})`}>
-        {variant === "scanline" ? (
+        {variant === "stripe" ? (
           bands.map(([y0, y1]) => (
             <rect key={y0} x={-1} y={y0} width={width + 2} height={y1 - y0} />
           ))
