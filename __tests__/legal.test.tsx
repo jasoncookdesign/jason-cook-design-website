@@ -30,12 +30,13 @@ describe("Legal page", () => {
     expect(screen.getByRole("heading", { level: 1, name: "Legal" })).toBeTruthy();
   });
 
-  it.each(sections)("has an anchored $heading section holding its placeholder until text is supplied", ({ id, heading }) => {
+  it.each(sections)("has an anchored $heading section with its copy as terms and details, and no pending placeholder", ({ id, heading }) => {
     const { container } = render(<LegalPage />);
     const section = container.querySelector(`section#${id}`) as HTMLElement;
     expect(section).not.toBeNull();
     expect(section.querySelector("h2")?.textContent).toBe(heading);
-    expect(section.textContent).toContain(`[LEGAL: ${heading} text pending]`);
+    expect(section.querySelectorAll("dl.defs .d dt").length).toBeGreaterThanOrEqual(3);
+    expect(section.textContent).not.toMatch(/\[LEGAL|\[GAP|text pending/);
   });
 
   it.each(sections)("exposes $heading as a named region landmark", ({ heading }) => {
