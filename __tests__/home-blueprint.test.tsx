@@ -218,8 +218,12 @@ describe("Home proof and pricing", () => {
       expect(p.querySelectorAll(".regs i")).toHaveLength(4);
       expect(p.querySelector("a.btn")?.textContent).toContain("Book your strategy call");
     }
-    expect(plates[0].querySelectorAll(".sp")).toHaveLength(1);
-    expect(plates[1].querySelectorAll(".sp")).toHaveLength(2);
+    for (const p of Array.from(plates)) {
+      const steps = Array.from(p.querySelectorAll(".sp"));
+      expect(steps.map((s) => s.querySelector(".k .l")?.textContent)).toEqual(["A", "B"]);
+      expect(steps[0].querySelector("a.btn")).toBeNull();
+      expect(steps[1].querySelector("a.btn")).not.toBeNull();
+    }
   });
 
   it("uses no orange: no decision marker on the plate", () => {

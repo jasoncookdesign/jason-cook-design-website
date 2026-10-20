@@ -68,8 +68,15 @@ export default function PricingSection() {
             <div className="v">
               <p>
                 For a new product or business line, the first phase is a paid
-                assessment of the decision itself. You leave with a written verdict and the proof
-                behind it.
+                assessment of the decision itself.
+              </p>
+            </div>
+          </div>
+          <div className="sp">
+            <Key k="B" />
+            <div className="v">
+              <p>
+                You leave with a written verdict and the proof behind it.
               </p>
               <Book />
             </div>
