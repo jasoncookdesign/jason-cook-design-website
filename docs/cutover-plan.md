@@ -1,6 +1,16 @@
 # DNS cutover plan: GitHub Pages to Vercel
 
-**Status: plan only. Nothing in this document has been executed.** The cutover needs Jason's explicit go, and every step that changes DNS, Vercel, or the old Pages repo is his to run or approve.
+**Status: executed 2026-10-19.** The domains were added to the Vercel project and the Squarespace records were swapped the same day, skipping the T−1 TTL lowering (records stayed at 1 hour; propagation was complete within minutes). Still open: retire the old Pages custom domain at T+2 days (2026-10-21 or later). The T+1 week TTL step is moot because TTLs were never lowered.
+
+What was applied, for rollback and audit:
+- Apex A records `185.199.108.153`, `.109.153`, `.110.153`, `.111.153` (GitHub) became `216.198.79.1` and `64.29.17.1` (the values Vercel displayed for this project).
+- `www` CNAME `jasoncookdesign.github.io.` became `fca9bb2a0ee02daa.vercel-dns-017.com.`
+- `www` redirects to the apex with a 308, set through Vercel's project-domain setting.
+- The certificate was not issued automatically after the DNS switch; `vercel certs issue jasoncookdesign.com www.jasoncookdesign.com` fixed the browser's "not secure" warning within a minute.
+- MX, SPF, DKIM, the Google verification records, the two Squarespace presets, and the nameservers and DNSSEC were not touched.
+- The Vercel project lives in the `jason-os` team on the Hobby plan, which is limited to non-commercial use; move it to a paid plan.
+
+The original plan follows.
 
 Moves jasoncookdesign.com from the old static site (repo `jasoncookdesign/jasoncookdesign.github.io`, served by GitHub Pages) to this Next.js site on Vercel. Email and search verification records stay untouched.
 
