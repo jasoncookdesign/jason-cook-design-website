@@ -48,9 +48,10 @@ def build(hero=False):
     dims.append(line((cx+18,cy-18),(cx+34,cy-34),ACC,.6)+text(cx+37,cy-35,"R 26",ACC))
     foot=Y(M.H)+16
     dims.append(text(X(1,0),foot,"beak 15  thick 25",RULE)); dims.append(text(X(0,0),foot,"corners: circles R 6",RULE)); dims.append(text(X(2,0),foot,"stripe 8 = notch 8",RULE))
-    d=M.word_d(OX,OY); i=next(M.uid)
+    i=next(M.uid)
     rects="".join(f'<rect x="{OX-2}" y="{OY+b0}" width="{M.WORD_W+4}" height="{b1-b0}" fill="{INK}"/>' for b0,b1 in M.BANDS)
-    markg=f'<clipPath id="k{i}"><path d="{d}" clip-rule="evenodd"/></clipPath><path class="mark-ghost" d="{d}" fill="#16324a" fill-rule="evenodd"/><g class="mark" clip-path="url(#k{i})">{rects}</g>'
+    # One clip, outline, and ink group per letter (J, C, D in order), so the draw-in can stagger them.
+    markg="".join(f'<clipPath id="k{i}{l}"><path d="{M.letter_d(n,OX,OY)}" clip-rule="evenodd"/></clipPath><path class="mark-ghost mark-{l}" pathLength="1" d="{M.letter_d(n,OX,OY)}" fill="#16324a" fill-rule="evenodd"/><g class="mark mark-{l}" clip-path="url(#k{i}{l})">{rects}</g>' for n,l in enumerate("jcd"))
     VW=OX*2+M.WORD_W+(24 if hero else 40); VH=OY+M.H+(34 if hero else 64)
     extra=""
     if not hero:
