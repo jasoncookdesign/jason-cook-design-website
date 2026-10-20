@@ -63,5 +63,5 @@ Copy marked with a `DRAFT — Jason to edit` comment in the source is placeholde
 
 ## Docs
 
-- `docs/cutover-plan.md`: the plan for moving jasoncookdesign.com from GitHub Pages to Vercel. Not yet executed.
+- `docs/cutover-plan.md`: the plan for moving jasoncookdesign.com from GitHub Pages to Vercel. Executed 2026-10-19.
 - `docs/content-token-candidates.md`: retired name candidates for the entry offer and practice, and the chosen engagement type names.
