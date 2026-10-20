@@ -10,7 +10,7 @@ Next.js 16 site that will replace jasoncookdesign.github.io as jasoncookdesign.c
 - Public repo: keep internal ticket IDs and machine names out of commits, code and docs.
 
 ## TDD exception (recorded ruling)
-None. Copy and components are test-first, and the tests assert copy verbatim. Pure styling changes with no behavior to assert are exempt; say so in the PR.
+None. Copy and components are test-first, and the tests assert copy verbatim. Pure styling changes with no behavior to assert are exempt; say so in the PR. Blog post copy edits (post bodies in `lib/writing.ts`) are also exempt and get no verbatim test; say so in the PR.
 
 <!-- BEGIN agentic-sdlc disciplines @6ea2915 -->
 
