@@ -112,7 +112,7 @@ a.row:hover .go, a.row:focus-visible .go { background: transparent; color: var(-
 .quotes figure { margin: 0; padding: 28px var(--pad) 32px; border-left: 1px solid var(--rule); display: flex; flex-direction: column; gap: 18px; }
 .quotes figure:first-child { border-left: 0; }
 .quotes blockquote { margin: 0; font-size: 24px; line-height: 1.4; text-wrap: pretty; }
-.quotes figcaption { font: 500 12px/1.5 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
+.quotes figcaption { margin-top: auto; font: 500 12px/1.5 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
 .quotes figcaption b { display: block; font-weight: 500; color: var(--ink); }
 /* A portrait beside the name: a ruled square, greyscale like the About portrait. */
 .quotes figcaption.byline { display: flex; align-items: center; gap: 16px; }

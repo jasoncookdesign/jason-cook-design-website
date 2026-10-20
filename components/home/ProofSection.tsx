@@ -23,12 +23,14 @@ const testimonials = [
       "From explanation of the user's challenge, to inception of design, through prototyping, refining, some pretty challenging feedback and countless customer interactions, Jason was there to guide us, teach us and learn from us.",
     name: "Chris Coen",
     role: "Engineering Department Lead",
+    photo: "/images/people/chris-coen.jpg",
   },
   {
     quote:
       "Jason's ability to understand complex scenarios and be able to perceive the problem and empathize with the user is unparalleled.",
     name: "Rajesh Balaraman",
     role: "Software Engineering Manager",
+    photo: "/images/people/rajesh-balaraman.jpg",
   },
 ];
 
@@ -67,9 +69,12 @@ export default function ProofSection() {
         {testimonials.map((t) => (
           <figure key={t.name}>
             <blockquote>&ldquo;{t.quote}&rdquo;</blockquote>
-            <figcaption>
-              <b>{t.name}</b>
-              {t.role}
+            <figcaption className="byline">
+              <Image src={t.photo} alt="" width={60} height={60} />
+              <span>
+                <b>{t.name}</b>
+                {t.role}
+              </span>
             </figcaption>
           </figure>
         ))}
