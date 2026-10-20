@@ -180,6 +180,21 @@ describe("Home proof and pricing", () => {
     expect(logos.classList.contains("c5")).toBe(true);
   });
 
+  it("shows a portrait beside each testimonial name, like the case-study quotes, from files that exist", () => {
+    const { container } = render(<HomePage />);
+    const figs = bySheet(container, "PROOF").querySelectorAll(".quotes > figure");
+    const photos = Array.from(figs).map((f) => {
+      const cap = f.querySelector("figcaption")!;
+      const img = cap.querySelector("img");
+      expect(cap.classList.contains("byline")).toBe(true);
+      expect(img?.getAttribute("alt")).toBe("");
+      return decodeURIComponent((img?.getAttribute("src") ?? "").replace(/^.*?url=/, "").replace(/&.*$/, "")) || img?.getAttribute("src");
+    });
+    expect(photos).toEqual(["/images/people/chris-coen.jpg", "/images/people/rajesh-balaraman.jpg"]);
+    photos.forEach((src) => expect(fs.existsSync(path.join(process.cwd(), "public", src!))).toBe(true));
+    expect(figs[0].querySelector("figcaption b")?.textContent).toBe("Chris Coen");
+  });
+
   it("sets each testimonial as a figure with blockquote and a mono caption naming the person and role", () => {
     const { container } = render(<HomePage />);
     const figs = bySheet(container, "PROOF").querySelectorAll(".quotes > figure");
