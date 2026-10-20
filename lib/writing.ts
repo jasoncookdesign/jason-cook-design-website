@@ -239,11 +239,11 @@ export const posts: Post[] = [
       },
       {
         type: "p",
-        html: "This site has no CMS and no server. Posts are plain Markdown in a Git repository, rendered to static HTML by a small generator I own end to end, and served as flat files. You can <code>view-source</code> on this page and read exactly what shipped — nothing is hidden behind a build I can't inspect.",
+        html: "This site has no CMS. Posts live in a Git repository, the pages are built ahead of time, and Vercel serves the result. It runs on Next.js, but nothing sits between the repo and what you're reading except a build I can run on my own machine.",
       },
       {
         type: "p",
-        html: "That's not nostalgia. It's the same instinct as everything above: own the mechanism, keep it legible, and don't reach for a platform when a tool will do.",
+        html: "That's not nostalgia. Same instinct as everything above: keep the mechanism legible, and don't add a moving part the problem doesn't need.",
       },
       {
         type: "p",
