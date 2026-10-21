@@ -9,6 +9,7 @@
 .hero.page .lead.long { font-size: 22px; line-height: 1.45; max-width: 58ch; }
 .hero.page .sub { margin: 20px 0 0; max-width: 58ch; font-size: 20px; line-height: 1.5; text-wrap: pretty; }
 .hero.page .crumb { margin-bottom: 6px; }
+.crumb { align-items: center; }  /* the links are 44px tap targets; center the separator and current page on them */
 .crumb a { display: inline-flex; align-items: center; min-height: 44px; }
 .hero.page.long h1 { font-size: 56px; line-height: 1.04; }
 .hero.page.post .main { grid-column: 1 / 11; }
