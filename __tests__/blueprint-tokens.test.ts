@@ -37,9 +37,11 @@ describe("blueprint tokens", () => {
     expect(token("ink")).toBe("#E8EFF5");
   });
 
-  it("keeps the decision accent as its own token, separate from the mark accent", () => {
-    expect(token("decision")).toBe("#FF9B6B");
-    expect(token("link")).not.toBe(token("decision"));
+  it("has one orange: the decision token is the signal orange, the lockups' #E8723C, and stays apart from the link blue", () => {
+    expect(css).toMatch(/--decision:\s*var\(--signal\)\s*;/);
+    expect(token("signal").toUpperCase()).toBe("#E8723C");
+    expect(css).not.toMatch(/#FF9B6B/i);
+    expect(token("link")).not.toBe(token("signal"));
   });
 
   it.each([
