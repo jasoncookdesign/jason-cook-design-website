@@ -1,3 +1,5 @@
+import fs from "fs";
+import path from "path";
 import { render, screen, within } from "@testing-library/react";
 import BookPage from "@/components/writing/BookPage";
 import { metadata } from "@/app/writing/longform/page";
@@ -86,6 +88,22 @@ describe("Book page content", () => {
       for (const chapter of chapters) expect(within(contents).getByText(chapter)).toBeTruthy();
     }
     expect(within(contents).getAllByRole("listitem").length).toBeGreaterThanOrEqual(16 + 2);
+  });
+
+  it("sets the two page plates inside the contents section, beside the list", () => {
+    const contents = screen.getByRole("region", { name: "Contents" });
+    const figures = within(contents).getAllByRole("figure");
+    expect(figures).toHaveLength(2);
+    expect(within(figures[0]).getByText("FIG. 2")).toBeTruthy();
+    expect(within(figures[1]).getByText("FIG. 3")).toBeTruthy();
+    expect(document.querySelector('[data-name="PLATES"]')).toBeNull();
+  });
+
+  it("places the plates in a right-hand column from the wide breakpoint, and stacks them below it", () => {
+    const css = fs.readFileSync(path.join(process.cwd(), "app/bp-book.css"), "utf8");
+    expect(css).toMatch(/\.book-contents\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s+\d+px/);
+    expect(css).toMatch(/\.book-contents \.book-plates\s*\{[^}]*justify-self:\s*end/);
+    expect(css).toMatch(/@media \(max-width: 1199px\)[^@]*\.book-contents\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)/);
   });
 
   it("shows three numbered plates of the book, each with alt text and a factual caption", () => {

@@ -6,7 +6,7 @@ function Plate({ index }: { index: number }) {
   const plate = book.plates[index];
   return (
     <figure className="fig book-plate">
-      <Image src={plate.src} alt={plate.alt} width={plate.width} height={plate.height} sizes={index === 0 ? "(max-width: 899px) 90vw, 690px" : "(max-width: 899px) 90vw, 360px"} priority={index === 0} />
+      <Image src={plate.src} alt={plate.alt} width={plate.width} height={plate.height} sizes={index === 0 ? "(max-width: 899px) 90vw, 690px" : "(max-width: 1199px) 340px, 320px"} priority={index === 0} />
       <figcaption>
         <span className="idx">FIG. {index + 1}</span>
         {plate.caption}
@@ -66,17 +66,9 @@ export default function BookPage() {
         </div>
       </section>
 
-      <section className="pgs" data-sheet="A-103" data-name="PLATES">
-        <div className="pg">
-          <div className="book-plates">
-            <Plate index={1} />
-            <Plate index={2} />
-          </div>
-        </div>
-      </section>
-
-      <section className="pgs" data-sheet="A-104" data-name="CONTENTS" aria-label="Contents">
-        <div className="pg">
+      <section className="pgs" data-sheet="A-103" data-name="CONTENTS" aria-label="Contents">
+        <div className="pg book-contents">
+          <div className="book-contents-main">
           <h2 className="book-contents-title">Contents</h2>
           <div className="toc">
             <ul className="toc-matter">
@@ -99,10 +91,15 @@ export default function BookPage() {
               <li>{book.backMatter}</li>
             </ul>
           </div>
+          </div>
+          <div className="book-plates">
+            <Plate index={1} />
+            <Plate index={2} />
+          </div>
         </div>
       </section>
 
-      <section className="pgs" data-sheet="A-105" data-name="CLOSE">
+      <section className="pgs" data-sheet="A-104" data-name="CLOSE">
         <div className="pg">
           <p className="book-disclaimer">{book.disclaimer}</p>
           <Link href="/writing" className="btn tertiary">
