@@ -12,11 +12,12 @@ import PricingSection from "@/components/home/PricingSection";
 const read = (f: string) => readFileSync(join(process.cwd(), f), "utf8");
 
 describe("home FAQ answers the call question first", () => {
-  it("opens the list with what happens on the strategy call, and the count in the heading matches the list", () => {
+  it("opens the list with what happens on the strategy call, and the count in the eyebrow matches the list", () => {
     const { container } = render(<FaqSection />);
     const triggers = Array.from(container.querySelectorAll("button, [role=button]")).filter((b) => /\?/.test(b.textContent ?? ""));
     expect(triggers[0].textContent).toMatch(/What happens on the strategy call\?/);
-    expect(container.querySelector("h2")!.textContent).toBe("Thirteen of them, answered plainly.");
+    expect(container.querySelector("h2")!.textContent).toBe("Questions");
+    expect(container.querySelector("h2")!.previousElementSibling!.textContent).toBe("Thirteen answered here, plus a way to ask yours");
     expect(triggers).toHaveLength(13);
   });
 

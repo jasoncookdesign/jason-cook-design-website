@@ -15,7 +15,7 @@ const sections = (c: HTMLElement) => Array.from(c.querySelectorAll("section")) a
 const bySheet = (c: HTMLElement, name: string) => c.querySelector(`section[data-name="${name}"]`) as HTMLElement;
 
 describe("Home sheets", () => {
-  it("numbers the eight sheets A-101 to A-108 in page order with a one-word role", () => {
+  it("numbers the nine sheets A-101 to A-109 in page order with a one-word role", () => {
     const { container } = render(<HomePage />);
     const found = sections(container).map((s) => [s.getAttribute("data-sheet"), s.getAttribute("data-name")]);
     expect(found).toEqual([
@@ -27,6 +27,7 @@ describe("Home sheets", () => {
       ["A-106", "PRICE"],
       ["A-107", "CLOSE"],
       ["A-108", "FAQ"],
+      ["A-109", "ASK"],
     ]);
   });
 
