@@ -138,6 +138,14 @@ describe("meeting-type chooser layout", () => {
   });
 });
 
+describe("the meet page explains itself", () => {
+  it("follows the h1 with a lead line saying how to meet", () => {
+    const { container } = render(<MeetPage />);
+    const lead = container.querySelector("h1 + div p.lead, h1 ~ p.lead");
+    expect((lead?.textContent ?? "").replace(/\s+/g, " ").trim()).toBe("Book time with Jason Cook online, by phone, or in person.");
+  });
+});
+
 describe("the meet page is unlisted", () => {
   it("asks search engines not to index or follow it", () => {
     expect(meetMetadata.robots).toEqual({ index: false, follow: false });
