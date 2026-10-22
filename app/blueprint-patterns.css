@@ -154,21 +154,24 @@ a.row:hover .btn.ghost, a.row:focus-visible .btn.ghost { background: var(--hover
   content: ""; position: absolute; left: var(--pad); top: 20px; width: 14px; height: 14px;
   border: 1px solid var(--ink2); background: transparent;
 }
-.seg > *:hover { background: var(--paper2); }
-.seg > *:hover::before { border-color: var(--ink); }
-/* the chosen option is filled with the secondary accent (steel blue); orange stays reserved for decisions */
-.seg > [aria-current="page"], .seg > [aria-current="true"] { background: var(--accent); color: var(--bg); }
-.seg > [aria-current]::before { border-color: var(--bg); background: var(--bg); }
-.seg > [aria-current]:hover { background: var(--accent); }
+.seg > *:hover { background: var(--hover-fill); color: var(--paper); }
+.seg > *:hover::before { border-color: var(--paper); }
+.seg > *:hover .lbl, .seg > *:hover .sit { color: var(--paper); }
+/* the chosen option is framed (an inset ivory border) on the raised surface; selection never takes a color of its own */
+.seg > [aria-current="page"], .seg > [aria-current="true"] { background: var(--paper2); outline: 2px solid var(--ink); outline-offset: -2px; }
+.seg > [aria-current]::before { border-color: var(--ink); background: var(--ink); }
+.seg > [aria-current]:hover { background: var(--hover-fill); }
+.seg > [aria-current]:hover::before { border-color: var(--paper); background: var(--paper); }
 .seg .lbl { font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
-.seg > [aria-current] .lbl { color: var(--bg); }
 
 /* ---------- breadcrumb, tags, ghost button, prose ---------- */
 .crumb { display: flex; flex-wrap: wrap; gap: 6px 10px; font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
 .crumb a { text-decoration: none; }
 .crumb a:hover { text-decoration: underline; text-underline-offset: 4px; color: var(--hover-fill); text-decoration-color: var(--hover-fill); }
 .tag { display: inline-block; padding: 3px 8px; border: 1px solid var(--rule); font: 500 11px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
-.btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+/* secondary: outlined in the clickable blue, no orange bar */
+.btn.ghost { background: transparent; color: var(--link); border: 1.5px solid var(--link); border-left-width: 1.5px; padding-left: 24px; }
+.btn.ghost.sm { padding-left: 18px; }
 .btn.ghost:hover { background: var(--hover-fill); border-color: var(--hover-fill); color: var(--paper); }
 
 .prose { max-width: 720px; font-size: 20px; line-height: 1.7; }

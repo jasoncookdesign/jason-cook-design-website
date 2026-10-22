@@ -38,6 +38,6 @@ describe("signal accent", () => {
     expect(all).toMatch(/\.eyebrow:has\(\+ h2\)::before\s*\{[^}]*background:\s*var\(--signal\)/);
     expect(all).toMatch(/\.nav a:hover\s*\{[^}]*text-decoration-color:\s*var\(--signal\)/);
     expect(all).toMatch(/:focus-visible\s*\{[^}]*outline:\s*3px solid var\(--signal\)/);
-    expect(all).toMatch(/\.bar \.lv\[aria-pressed="true"\]\s*\{[^}]*color:\s*var\(--signal\)/);
+    expect(all).toMatch(/\.btn\{[^}]*border-left:\s*8px solid var\(--signal\)/);
   });
 });

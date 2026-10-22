@@ -50,9 +50,9 @@ a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var
 .menu{display:none}
 
 /* ---------- button ---------- */
-.btn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 24px;background:var(--ink);color:var(--paper);border:1.5px solid var(--ink);text-decoration:none;font:500 15px/1.2 var(--mono);letter-spacing:.01em;transition:background-color .15s,color .15s}
-.btn:hover{background:var(--hover-fill);border-color:var(--hover-fill);color:var(--paper)}
-.btn.sm{min-height:44px;padding:0 18px;font-size:13px}
+.btn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 24px 0 18px;background:var(--ink);color:var(--paper);border:1.5px solid var(--ink);border-left:8px solid var(--signal);text-decoration:none;font:500 15px/1.2 var(--mono);letter-spacing:.01em;transition:background-color .15s,color .15s}
+.btn:hover{background:var(--hover-fill);border-color:var(--hover-fill);border-left-color:var(--signal);color:var(--paper)}
+.btn.sm{min-height:44px;padding:0 18px 0 14px;font-size:13px}
 
 /* ---------- hero ---------- */
 .hero{padding:40px 0 40px}

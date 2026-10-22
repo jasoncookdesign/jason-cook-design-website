@@ -13,8 +13,8 @@ html.layers .lvstrip{display:flex}
 .lvstrip .cue{display:inline;font-size:11px}
 @media (min-width:1200px){.lvstrip .cue{display:none}}
 .lvstrip.long .cue{display:none}
-.stb{min-height:24px;padding:0 8px;background:transparent;color:var(--ink);border:1px solid var(--ink2);border-radius:0;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer}
-.stb:hover{background:var(--paper2)}
+.stb{min-height:24px;padding:0 8px;background:transparent;color:var(--link);border:1px solid var(--link);border-radius:0;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer}
+.stb:hover{background:var(--hover-fill);color:var(--paper);border-color:var(--hover-fill)}
 .stb[hidden]{display:none}
 /* ---------- layer view ---------- */
 [data-sheet]{position:relative;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transform-origin:50% var(--oy,50%);transition:transform 420ms cubic-bezier(.22,.7,.2,1)}

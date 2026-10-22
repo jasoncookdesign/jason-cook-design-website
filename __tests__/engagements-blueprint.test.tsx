@@ -220,11 +220,10 @@ describe("selector reads as interactive", () => {
     return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
   };
 
-  it("fills the selected option with the secondary (steel blue) accent and keeps text readable on it", () => {
-    expect(patterns).toMatch(/\.seg > \[aria-current\][^{]*\{[^}]*background:\s*var\(--accent\)/);
-    expect(patterns).toMatch(/\.seg > \[aria-current\][^{]*\{[^}]*color:\s*var\(--bg\)/);
-    const [a, b] = [lum(tok("accent")), lum(tok("bg"))].sort((x, y) => y - x);
-    expect((a + 0.05) / (b + 0.05)).toBeGreaterThanOrEqual(4.5);
+  it("frames the selected option on the raised surface, with no color of its own", () => {
+    expect(patterns).toMatch(/\.seg > \[aria-current="page"\][^{]*\{[^}]*background:\s*var\(--paper2\)/);
+    expect(patterns).toMatch(/\.seg > \[aria-current="page"\][^{]*\{[^}]*outline:\s*2px solid var\(--ink\)/);
+    expect(patterns).not.toMatch(/\.seg > \[aria-current[^{]*\{[^}]*var\(--accent\)/);
   });
 
   it("gives every option a radio-style indicator and the unselected ones a hover response", () => {

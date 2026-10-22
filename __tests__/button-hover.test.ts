@@ -28,11 +28,6 @@ describe("hover-fill token", () => {
     expect(globals).toMatch(/--hover-fill:\s*#58C4C6;/i);
   });
 
-  it("is what the older button hover tokens point at", () => {
-    expect(globals).toMatch(/--btn-bg-hover:\s*var\(--hover-fill\)/);
-    expect(globals).toMatch(/--band-btn-hover:\s*var\(--hover-fill\)/);
-  });
-
   it("keeps the field-colored label readable on it (WCAG AA for text)", () => {
     expect(contrast("#0D2438", "#58C4C6")).toBeGreaterThanOrEqual(4.5);
   });

@@ -58,9 +58,10 @@ describe("interactive things show it at rest", () => {
     expect(cr(hex("link"), hex("bg"))).toBeGreaterThanOrEqual(4.5);
   });
 
-  it("unselected booking type buttons use the link colour, and the selected one keeps the accent fill", () => {
+  it("unselected booking type buttons use the link colour, and the selected one is framed on the raised surface", () => {
     expect(rule(".cal-typebar button")).toMatch(/color:\s*var\(--link\)/);
-    expect(rule('.cal-typebar button[aria-pressed="true"]')).toMatch(/background:\s*var\(--accent\)/);
+    expect(rule('.cal-typebar button[aria-pressed="true"]')).toMatch(/background:\s*var\(--paper2\)/);
+    expect(rule('.cal-typebar button[aria-pressed="true"]')).toMatch(/outline:\s*2px solid var\(--ink\)/);
   });
 
   it("the Cal.com fallback link is underlined in the link colour at rest", () => {

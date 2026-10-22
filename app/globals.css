@@ -68,7 +68,6 @@
   --color-decision: var(--decision);
   --color-btn-bg: var(--btn-bg);
   --color-btn-ink: var(--btn-ink);
-  --color-btn-bg-hover: var(--btn-bg-hover);
   --color-band-bg: var(--band-bg);
   --color-band-ink: var(--band-ink);
   --color-band-body: var(--band-body);
@@ -76,7 +75,6 @@
   --color-band-border: var(--band-border);
   --color-band-btn-bg: var(--band-btn-bg);
   --color-band-btn-ink: var(--band-btn-ink);
-  --color-band-btn-hover: var(--band-btn-hover);
 
   /* JCD design system: one radius, everywhere. */
   --radius-sm: var(--radius);
@@ -107,21 +105,21 @@
   --muted: #A9BDCD;
   --ghost: #2F5775;
   --guide: #173650;
-  --accent: #8FB2CC;
+  --accent: var(--link);
   --decision: #FF9B6B;
   /* the lockups' orange: a fine accent in small places (never a fill) */
   --signal: #E8723C;
   /* motion: one curve, one duration; the duration is zero under reduced motion */
   --ease: cubic-bezier(.2, .7, .2, 1);
   --t: .25s;
-  --link: #5CB0FF;
+  /* the one clickable blue: secondary and icon controls, and link-like marks, at rest */
+  --link: #8FB2CC;
 
   --btn-bg: #E8EFF5;
   --btn-ink: #0D2438;
   /* the aqua (the teal from the logo exploration) that interactive things take on hover: a fill for solid controls,
-     the text and underline color for links. The older button hover tokens below point at it. */
+     the text and underline color for links. */
   --hover-fill: #58C4C6;
-  --btn-bg-hover: var(--hover-fill);
   --band-bg: #133049;
   --band-ink: #E8EFF5;
   --band-body: #D3DEE8;
@@ -129,7 +127,6 @@
   --band-border: #5E7E96;
   --band-btn-bg: #E8EFF5;
   --band-btn-ink: #0D2438;
-  --band-btn-hover: var(--hover-fill);
 
   --radius: 0px;
 
@@ -233,12 +230,14 @@ main section {
   padding: 0;
   gap: 0;
   background: transparent;
-  border: 1px solid var(--rule);
-  color: var(--ink2);
+  border: 1px solid var(--link);
+  color: var(--link);
 }
 .bar .lv[hidden] { display: none; }
-.bar .lv:hover { border-color: var(--ink); color: var(--ink); }
-.bar .lv[aria-pressed="true"] { background: var(--paper2); border-color: var(--ink); color: var(--signal); }
+.bar .lv:hover { background: var(--hover-fill); border-color: var(--hover-fill); color: var(--paper); }
+/* pressed: an inset ivory frame on the raised surface, the same signal as every other chosen state */
+.bar .lv[aria-pressed="true"] { background: var(--paper2); border-color: var(--ink); outline: 2px solid var(--ink); outline-offset: -2px; color: var(--ink); }
+.bar .lv[aria-pressed="true"]:hover { background: var(--hover-fill); color: var(--paper); }
 .bar .lv .lv-icon { display: block; width: 22px; height: 22px; }
 .bar .btn.sm {
   margin-left: 0;
@@ -253,14 +252,16 @@ main section {
   min-height: 44px;
   padding: 0 14px;
   background: transparent;
-  color: var(--ink);
-  border: 1.5px solid var(--ink);
+  color: var(--link);
+  border: 1.5px solid var(--link);
   font: 500 12px/1 var(--mono);
   letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 .bar .menu-btn:hover {
-  background: var(--paper2);
+  background: var(--hover-fill);
+  border-color: var(--hover-fill);
+  color: var(--paper);
 }
 .bar .menu nav a:hover {
   background: var(--paper2);

@@ -44,7 +44,7 @@ ul.rows, ol.rows { list-style: none; margin: 0; padding: 0; }
 .fig .loop { position: relative; }
 .fig video { display: block; width: 100%; height: auto; border: 0; }
 /* One 44px pause/play button over the animation's corner; the glyph is drawn from currentColor. */
-.loop-toggle { position: absolute; right: 8px; bottom: 8px; width: 44px; height: 44px; padding: 0; border: 1.5px solid var(--ink); background: var(--bg); color: var(--ink); cursor: pointer; }
+.loop-toggle { position: absolute; right: 8px; bottom: 8px; width: 44px; height: 44px; padding: 0; border: 1.5px solid var(--link); background: var(--bg); color: var(--link); cursor: pointer; }
 .loop-toggle::before { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 16px; transform: translate(-50%, -50%); }
 .loop-toggle[data-state="playing"]::before { background: linear-gradient(90deg, currentColor 0 4px, transparent 4px 10px, currentColor 10px 14px); }
 .loop-toggle[data-state="paused"]::before { background: currentColor; clip-path: polygon(0 0, 100% 50%, 0 100%); }
