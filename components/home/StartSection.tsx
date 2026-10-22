@@ -105,8 +105,8 @@ function ScheduleFigure() {
         <div className="cap">
           <span className="idx">FIG. 1 — 01</span>
           <p>
-            It starts with a paid diagnosis. Nothing gets designed or built until we write down what the
-            problem is, with a shared definition of success.
+            The paid first phase in five steps, from the owner interview to a written recommendation and the
+            decision to build or stop.
           </p>
         </div>
       </figcaption>
