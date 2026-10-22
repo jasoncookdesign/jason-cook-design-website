@@ -62,6 +62,8 @@ a.row:hover { background: var(--paper2); }
 .row .go::after { content: ""; position: absolute; right: 12px; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-top: 2px solid currentColor; border-right: 2px solid currentColor; transform: rotate(45deg); }
 a.row .go { background: var(--link); border-color: var(--link); color: var(--bg); }
 a.row:hover .go, a.row:focus-visible .go { background: transparent; color: var(--link); }
+/* A secondary button inside a row link: the whole row is the hit area, so the row's hover or focus fills the button. */
+a.row:hover .btn.ghost, a.row:focus-visible .btn.ghost { background: var(--hover-fill); border-color: var(--hover-fill); color: var(--paper); }
 .row.hold { grid-template-columns: 120px 1fr; }
 /* Rows without a key: the substance fills the row. */
 .row.plain { grid-template-columns: 1fr auto; }
