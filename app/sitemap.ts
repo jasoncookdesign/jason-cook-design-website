@@ -5,7 +5,7 @@ import { posts } from "@/lib/writing";
 const SITE = "https://jasoncookdesign.com";
 
 // Fixed pages; case studies and posts come from their registries so a new entry is listed without a second edit.
-const pages = ["", "/about", "/capabilities", "/contact", "/engagements", "/engagements/offering", "/engagements/operating", "/legal", "/work", "/writing"];
+const pages = ["", "/about", "/capabilities", "/contact", "/engagements", "/engagements/offering", "/engagements/operating", "/legal", "/work", "/writing", "/writing/the-constitution-and-the-machine"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

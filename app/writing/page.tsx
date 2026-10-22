@@ -1,15 +1,16 @@
 import Link from "next/link";
 import { posts } from "@/lib/writing";
+import { book } from "@/lib/book";
 import { withSocial } from "@/lib/metadata";
 
 export const metadata = withSocial({
   title: "Writing | Jason Cook Design",
   description:
-    "Notes from the seam between design and engineering, by Jason Cook.",
+    "Notes from the seam between design and engineering, and a free book on technology and governance, by Jason Cook.",
   openGraph: {
     title: "Writing | Jason Cook Design",
     description:
-      "Notes from the seam between design and engineering, by Jason Cook.",
+      "Notes from the seam between design and engineering, and a free book on technology and governance, by Jason Cook.",
   },
 });
 
@@ -64,6 +65,24 @@ export default function WritingPage() {
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      <section className="pgs" data-sheet="A-103" data-name="BOOK">
+        <div className="rows">
+          <Link href={`/writing/${book.slug}`} className="row book-entry">
+            <h2 className="k">Book</h2>
+            <div>
+              <h3>{book.title}</h3>
+              <p>{book.subtitle}</p>
+              <div className="tags">
+                <span className="tag">Free</span>
+                <span className="tag">PDF</span>
+                <span className="tag">EPUB</span>
+              </div>
+            </div>
+            <span className="go" aria-hidden="true" />
+          </Link>
         </div>
       </section>
     </>

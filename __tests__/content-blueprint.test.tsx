@@ -167,7 +167,7 @@ describe("writing index", () => {
 
   it("lists one ruled row per post: a date key, the title, the excerpt, and tags", () => {
     const { container } = render(<WritingPage />);
-    const rows = container.querySelectorAll('.rows > a.row[href^="/writing/"]');
+    const rows = container.querySelectorAll('[data-name="INDEX"] .rows > a.row[href^="/writing/"]');
     expect(rows).toHaveLength(posts.length);
     const newestFirst = [...posts].sort((a, b) => b.date.localeCompare(a.date));
     rows.forEach((row, i) => {
@@ -177,6 +177,15 @@ describe("writing index", () => {
       expect(row.querySelector(".btn.secondary.icon")!.textContent).toBe("→");
       expect(row.querySelector(".go")).toBeNull();
     });
+  });
+
+  it("lists the book as one row in its own sheet, after the posts", () => {
+    const { container } = render(<WritingPage />);
+    const rows = container.querySelectorAll('[data-name="BOOK"] .rows > a.row');
+    expect(rows).toHaveLength(1);
+    expect(rows[0].getAttribute("href")).toBe("/writing/the-constitution-and-the-machine");
+    const sheets = Array.from(container.querySelectorAll("[data-name]")).map((e) => e.getAttribute("data-name"));
+    expect(sheets.indexOf("BOOK")).toBeGreaterThan(sheets.indexOf("INDEX"));
   });
 });
 

@@ -9,6 +9,7 @@ import { metadata as offering } from "@/app/engagements/offering/page";
 import { metadata as legal } from "@/app/legal/page";
 import { metadata as work } from "@/app/work/page";
 import { metadata as writing } from "@/app/writing/page";
+import { metadata as book } from "@/app/writing/the-constitution-and-the-machine/page";
 import { generateMetadata as workCaseStudy } from "@/app/work/[slug]/page";
 import { generateMetadata as writingPost } from "@/app/writing/[slug]/page";
 import { caseStudies } from "@/lib/work";
@@ -34,6 +35,7 @@ const staticPages: Array<[string, Meta]> = [
   ["/legal", legal],
   ["/work", work],
   ["/writing", writing],
+  ["/writing/the-constitution-and-the-machine", book],
 ];
 
 const params = (slug: string) => ({ params: Promise.resolve({ slug }) });

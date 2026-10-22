@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import WritingPage from "@/app/writing/page";
+import WritingPage, { metadata as writingMetadata } from "@/app/writing/page";
 import WritingPostContent from "@/components/writing/WritingPostContent";
 import { posts } from "@/lib/writing";
 
@@ -40,6 +40,43 @@ describe("Writing index page", () => {
     const links = screen.getAllByRole("link");
     const hrefs = links.map((l) => l.getAttribute("href") ?? "");
     expect(hrefs.some((h) => h.includes("/writing/"))).toBe(true);
+  });
+});
+
+describe("Writing index page, the book entry", () => {
+  const BOOK_HREF = "/writing/the-constitution-and-the-machine";
+
+  it("lists the book after every post", () => {
+    render(<WritingPage />);
+    const book = screen.getByRole("link", { name: /The Constitution and the Machine/ });
+    expect(book.getAttribute("href")).toBe(BOOK_HREF);
+    const postLinks = screen.getAllByRole("link").filter((l) => /^\/writing\/(?!the-constitution)/.test(l.getAttribute("href") ?? ""));
+    expect(postLinks).toHaveLength(posts.length);
+    for (const link of postLinks) {
+      expect(link.compareDocumentPosition(book) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    }
+  });
+
+  it("sets the book one heading level below the posts, under a Book label", () => {
+    render(<WritingPage />);
+    expect(screen.getByRole("heading", { level: 2, name: "Book" })).toBeTruthy();
+    expect(screen.getByRole("heading", { level: 3, name: "The Constitution and the Machine" })).toBeTruthy();
+    expect(screen.getAllByRole("heading", { level: 2 }).length).toBe(posts.length + 1);
+  });
+
+  it("shows the subtitle and that the book is free as a PDF and an EPUB", () => {
+    render(<WritingPage />);
+    expect(screen.getByText("Technology, Governance, and the Limits of Power")).toBeTruthy();
+    for (const tag of ["Free", "PDF", "EPUB"]) expect(screen.getByText(tag)).toBeTruthy();
+  });
+
+  it("leaves the count in the hero as the number of posts", () => {
+    const { container } = render(<WritingPage />);
+    expect(container.querySelector(".count")?.textContent).toBe(String(posts.length).padStart(2, "0"));
+  });
+
+  it("mentions the book in the page description", () => {
+    expect(String(writingMetadata.description)).toMatch(/book/i);
   });
 });
 

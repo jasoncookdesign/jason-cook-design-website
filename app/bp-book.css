@@ -1,0 +1,39 @@
+/* Book page: the free book listed under Writing. Uses the blueprint tokens; no new color, shadow, or radius. */
+.hero.page.post.book .main { grid-column: 1 / 7; }
+.hero.page.book .side { grid-column: 7 / 13; grid-row: 1; align-self: center; }
+.hero.page.book .side .fig { max-width: 690px; margin-left: auto; }
+.book-actions { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px; margin-top: 32px; }
+.book-action { display: flex; flex-direction: column; gap: 8px; }
+.book-size { font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
+.book-facts { margin: 18px 0 0; font: 500 12px/1.5 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
+.book-plates { display: grid; grid-template-columns: repeat(2, minmax(0, 360px)); gap: var(--gl); justify-content: start; }
+.book-plate figcaption { display: flex; gap: 14px; }
+.book-plate figcaption .idx { flex: none; margin-right: 0; white-space: nowrap; }
+.book-contents-title { margin: 0 0 28px; font-size: 30px; line-height: 1.1; }
+.toc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--gl); max-width: 980px; }
+.toc ul, .toc ol { list-style: none; margin: 0; padding: 0; }
+.toc-matter { grid-column: 1 / -1; padding: 14px 0; border-top: 1px solid var(--rule); font-size: 20px; line-height: 1.4; }
+.toc-part { padding: 18px 0 22px; border-top: 1px solid var(--rule); }
+.toc-part .lbl { margin: 0 0 6px; font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
+.toc-part h3 { margin: 0 0 12px; font-size: 24px; line-height: 1.2; }
+.toc-part ol li { display: grid; grid-template-columns: 34px 1fr; padding: 4px 0; font-size: 19px; line-height: 1.4; counter-increment: none; }
+.toc-part ol li::before { content: attr(value); font: 500 12px/2 var(--mono); letter-spacing: 0.09em; color: var(--ink2); }
+.book-disclaimer { margin: 0 0 28px; max-width: 58ch; font-size: 19px; line-height: 1.5; color: var(--ink2); }
+@media (max-width: 1199px) {
+  .hero.page.post.book .main { grid-column: 1 / 13; }
+  .hero.page.book .side { grid-column: 1 / 11; grid-row: auto; }
+}
+@media (max-width: 899px) {
+  .hero.page.post.book .main { grid-column: auto; }
+  .hero.page.book .side { grid-column: auto; }
+  .hero.page.book .side .fig { max-width: none; margin-left: 0; }
+  .book-actions { flex-direction: column; align-items: stretch; }
+  .book-plates { grid-template-columns: 1fr; }
+  .book-plates .fig { max-width: 340px; }
+  .toc { grid-template-columns: 1fr; }
+}
+
+/* Writing index: the book is listed below the posts and set smaller than they are */
+.book-entry h2.k { margin: 0; }
+.book-entry h3 { font-size: 22px; }
+.book-entry p { font-size: 17px; }
