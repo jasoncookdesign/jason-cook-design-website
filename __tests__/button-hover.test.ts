@@ -1,5 +1,5 @@
 /**
- * Button hover. A solid button stays solid on hover: the primary button's ivory fill moves to the light-blue
+ * Button hover. A solid button stays solid on hover: the primary button's ivory fill moves to the aqua
  * hover fill (token --hover-fill), keeping the field-colored label, instead of going hollow (field fill, ivory
  * border). Other solid-on-hover controls take the same fill. Low-emphasis rows, cells and tabs keep their raised
  * surface on hover, since their light labels would not survive a light fill.
@@ -24,8 +24,8 @@ const contrast = (a: string, b: string) => {
 };
 
 describe("hover-fill token", () => {
-  it("is defined once, as the light blue", () => {
-    expect(globals).toMatch(/--hover-fill:\s*#C9D8E5;/i);
+  it("is defined once, as the aqua", () => {
+    expect(globals).toMatch(/--hover-fill:\s*#58C4C6;/i);
   });
 
   it("is what the older button hover tokens point at", () => {
@@ -34,11 +34,11 @@ describe("hover-fill token", () => {
   });
 
   it("keeps the field-colored label readable on it (WCAG AA for text)", () => {
-    expect(contrast("#0D2438", "#C9D8E5")).toBeGreaterThanOrEqual(4.5);
+    expect(contrast("#0D2438", "#58C4C6")).toBeGreaterThanOrEqual(4.5);
   });
 
   it("is documented in the design spec", () => {
-    expect(design).toMatch(/hover-fill:\s*"#C9D8E5"/i);
+    expect(design).toMatch(/hover-fill:\s*"#58C4C6"/i);
     expect(design).toMatch(/hover/i);
   });
 });

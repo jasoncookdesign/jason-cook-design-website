@@ -118,8 +118,9 @@
 
   --btn-bg: #E8EFF5;
   --btn-ink: #0D2438;
-  /* the light blue a solid control takes on hover; the older button hover tokens below point at it */
-  --hover-fill: #C9D8E5;
+  /* the aqua (the teal from the logo exploration) that interactive things take on hover: a fill for solid controls,
+     the text and underline color for links. The older button hover tokens below point at it. */
+  --hover-fill: #58C4C6;
   --btn-bg-hover: var(--hover-fill);
   --band-bg: #133049;
   --band-ink: #E8EFF5;
@@ -299,6 +300,7 @@ main section {
 .foot-sheet .cell a:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
+  color: var(--hover-fill); text-decoration-color: var(--hover-fill);
 }
 .foot-sheet .foot-mail {
   font-size: 22px;
@@ -306,6 +308,7 @@ main section {
 .foot-sheet .colo a:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
+  color: var(--hover-fill); text-decoration-color: var(--hover-fill);
 }
 
 /* Brand logos on dark surfaces (DESIGN.md §5) */
