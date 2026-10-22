@@ -39,19 +39,6 @@ describe("hover-fill token", () => {
 });
 
 describe("solid buttons stay solid on hover", () => {
-  it("fills the primary button with the hover fill and keeps its label field-colored", () => {
-    const m = blueprint.match(/\.btn:hover\s*\{([^}]*)\}/);
-    expect(m).not.toBeNull();
-    expect(m![1]).toMatch(/background:\s*var\(--hover-fill\)/);
-    expect(m![1]).toMatch(/border-color:\s*var\(--hover-fill\)/);
-    expect(m![1]).toMatch(/color:\s*var\(--paper\)/);
-  });
-
-  it("no longer turns the primary button hollow (field fill with the ivory label)", () => {
-    const m = blueprint.match(/\.btn:hover\s*\{([^}]*)\}/);
-    expect(m![1]).not.toMatch(/background:\s*var\(--paper\)/);
-  });
-
   it("fills the tertiary button on hover the same way", () => {
     const m = patterns.match(/\.btn\.tertiary:hover\s*\{([^}]*)\}/);
     expect(m).not.toBeNull();
