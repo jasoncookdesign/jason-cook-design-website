@@ -360,7 +360,22 @@ export function mountLayerView(cb: Callbacks): LayerController | null {
     setCue(cur ? cur.code + " " + cur.name : (bar!.dataset.sheet ?? "") + " " + (bar!.dataset.name ?? ""));
     if (tiltOn()) refreshOrigins(y);
   }
+  /* The tilt pulls in while the page scrolls and relaxes once it has been still (CSS eases --eng; see blueprint-layers.css) */
+  const STILL_MS = 240;
+  let stillTimer: ReturnType<typeof setTimeout> | undefined;
+  function clearMoving() {
+    if (stillTimer !== undefined) clearTimeout(stillTimer);
+    stillTimer = undefined;
+    h.classList.remove("moving");
+  }
+  function markMoving() {
+    if (!tiltOn() || isRm()) return;
+    h.classList.add("moving");
+    if (stillTimer !== undefined) clearTimeout(stillTimer);
+    stillTimer = setTimeout(clearMoving, STILL_MS);
+  }
   function onScroll() {
+    markMoving();
     if (queuedS) return;
     queuedS = true;
     requestAnimationFrame(onScrollFrame);
@@ -374,7 +389,22 @@ export function mountLayerView(cb: Callbacks): LayerController | null {
     emit();
     if (isOn()) renderAll();
   }
+  /* While a tilted view eases out, plates keep their paper (CSS fades it); `leaving` marks that window */
+  const LEAVE_MS = 700;
+  let leaveTimer: ReturnType<typeof setTimeout> | undefined;
+  function clearLeaving() {
+    if (leaveTimer !== undefined) clearTimeout(leaveTimer);
+    leaveTimer = undefined;
+    h.classList.remove("leaving");
+  }
+  function startLeaving() {
+    clearLeaving();
+    h.classList.add("leaving");
+    leaveTimer = setTimeout(clearLeaving, LEAVE_MS);
+  }
   function setOn(on: boolean) {
+    if (on) clearLeaving();
+    else if (tiltOn()) startLeaving();
     if (on) {
       ensureBuilt();
       measureTops();
@@ -382,6 +412,7 @@ export function mountLayerView(cb: Callbacks): LayerController | null {
       void document.body.offsetWidth;
     }
     h.classList.toggle("layers", on);
+    if (!on) clearMoving();
     syncTilt();
     if (on) observe();
     else unobserve();
@@ -498,6 +529,8 @@ export function mountLayerView(cb: Callbacks): LayerController | null {
     },
     destroy() {
       destroyed = true;
+      clearMoving();
+      clearLeaving();
       unobserve();
       frameRo.disconnect();
       mainMo?.disconnect();

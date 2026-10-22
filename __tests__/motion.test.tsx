@@ -43,7 +43,7 @@ describe("state transitions", () => {
 
   it("nudges the arrow on a button, and the chevron on a linked row, on hover", () => {
     expect(all).toMatch(/\.btn:hover span\[aria-hidden\]\s*\{[^}]*transform:\s*translateX\(/);
-    expect(all).toMatch(/a\.row:hover \.go\s*\{[^}]*transform:\s*translateX\(/);
+    expect(all).toMatch(/a\.row:hover \.btn span\[aria-hidden\]\s*\{[^}]*transform:\s*translateX\(/);
     expect(all).toMatch(/\.btn:active\s*\{[^}]*transform:\s*translateY\(1px\)/);
   });
 

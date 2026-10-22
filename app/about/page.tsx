@@ -44,6 +44,17 @@ export default function AboutPage() {
         </div>
         <div className="side">
           <figure className="fig portrait">
+            {/* A gamma curve lifts the midtones (the face and jacket) while the light backdrop stays put; the filter also drops the color. */}
+            <svg width="0" height="0" aria-hidden="true" focusable="false" style={{ position: "absolute" }}>
+              <filter id="portrait-lift" colorInterpolationFilters="sRGB">
+                <feColorMatrix type="saturate" values="0" />
+                <feComponentTransfer>
+                  <feFuncR type="gamma" exponent="0.65" />
+                  <feFuncG type="gamma" exponent="0.65" />
+                  <feFuncB type="gamma" exponent="0.65" />
+                </feComponentTransfer>
+              </filter>
+            </svg>
             <Image src="/images/jason-cook.jpg" alt="Portrait of Jason Cook" width={1200} height={1200} sizes="(min-width: 900px) 30vw, 90vw" priority />
             <figcaption>Jason Cook</figcaption>
           </figure>

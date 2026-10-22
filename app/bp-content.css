@@ -44,15 +44,16 @@ ul.rows, ol.rows { list-style: none; margin: 0; padding: 0; }
 .fig .loop { position: relative; }
 .fig video { display: block; width: 100%; height: auto; border: 0; }
 /* One 44px pause/play button over the animation's corner; the glyph is drawn from currentColor. */
-.loop-toggle { position: absolute; right: 8px; bottom: 8px; width: 44px; height: 44px; padding: 0; border: 1.5px solid var(--ink); background: var(--bg); color: var(--ink); cursor: pointer; }
+.loop-toggle { position: absolute; right: 8px; bottom: 8px; width: 44px; height: 44px; padding: 0; border: 1.5px solid var(--link); background: var(--bg); color: var(--link); cursor: pointer; }
 .loop-toggle::before { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 16px; transform: translate(-50%, -50%); }
 .loop-toggle[data-state="playing"]::before { background: linear-gradient(90deg, currentColor 0 4px, transparent 4px 10px, currentColor 10px 14px); }
 .loop-toggle[data-state="paused"]::before { background: currentColor; clip-path: polygon(0 0, 100% 50%, 0 100%); }
-.loop-toggle:hover { background: var(--ink); color: var(--bg); }
+.loop-toggle:hover { background: var(--hover-fill); border-color: var(--hover-fill); color: var(--bg); }
 .loop-toggle:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
 .fig figcaption { margin: 0; padding: 10px 14px; border-top: 1px solid var(--rule); font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
 .fig figcaption .idx { margin-right: 14px; }
 .fig figcaption a { text-decoration: underline; text-underline-offset: 4px; }
+.fig figcaption a:hover { color: var(--hover-fill); text-decoration-color: var(--hover-fill); }
 .fig.thumbnail { display: block; position: relative; aspect-ratio: 16 / 9; align-self: start; }
 .fig.thumbnail img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
 .prose > .fig { margin-top: 1.8em; }
@@ -90,7 +91,7 @@ ul.rows, ol.rows { list-style: none; margin: 0; padding: 0; }
 .defs ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .defs li span { color: var(--ink2); }
 .defs a { text-decoration: underline; text-underline-offset: 4px; }
-.defs a:hover { background: var(--paper2); }
+.defs a:hover { color: var(--hover-fill); text-decoration-color: var(--hover-fill); }
 .ph-line { margin: 0; }
 
 /* ---------- phone ---------- */
@@ -121,10 +122,10 @@ ul.rows, ol.rows { list-style: none; margin: 0; padding: 0; }
 .book .cal-inline { width: 100%; min-height: 640px; border: 1px solid var(--rule); background: var(--paper); overflow: hidden; }
 .book-fallback { margin: 0; padding: 12px 0 0; font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; }
 .book-fallback a { display: inline-flex; align-items: center; min-height: 44px; color: var(--link); text-decoration: underline; text-underline-offset: 4px; }
-.book-fallback a:hover { color: var(--ink); }
+.book-fallback a:hover { color: var(--hover-fill); text-decoration-color: var(--hover-fill); }
 .book-sheet .book-fallback { padding-bottom: 20px; }
 
-/* ---------- about: the portrait, desaturated and tinted into the sheet's navy ---------- */
+/* ---------- about: the portrait, desaturated with a midtone lift (an SVG gamma filter in the page) and tinted into the sheet's navy ---------- */
 .fig.portrait { position: relative; }
-.fig.portrait img { aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 22%; filter: grayscale(1) contrast(1.06) brightness(0.96); }
-.fig.portrait::after { content: ""; position: absolute; inset: 0 0 auto 0; aspect-ratio: 4 / 5; background: var(--bg); mix-blend-mode: soft-light; opacity: 0.55; pointer-events: none; }
+.fig.portrait img { aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 22%; filter: url(#portrait-lift); }
+.fig.portrait::after { content: ""; position: absolute; inset: 0 0 auto 0; aspect-ratio: 4 / 5; background: var(--bg); mix-blend-mode: soft-light; opacity: 0.4; pointer-events: none; }

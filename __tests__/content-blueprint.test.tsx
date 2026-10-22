@@ -78,7 +78,8 @@ describe("work index", () => {
       expect(row.querySelector(".k")!.textContent).toBe(caseStudies[i].client);
       expect(row.querySelector(".title")!.textContent).toBe(caseStudies[i].title);
       expect(row.querySelector(".fig img")).not.toBeNull();
-      expect(row.querySelector(".go")!.getAttribute("aria-hidden")).toBe("true");
+      expect(row.querySelector(".btn.secondary.icon")!.textContent).toBe("→");
+      expect(row.querySelector(".go")).toBeNull();
     });
   });
 
@@ -129,9 +130,9 @@ describe("case study", () => {
     expect(fig.querySelector("figcaption")!.textContent).toContain(dell.testimonial!.role);
   });
 
-  it("closes with a ghost button back to the work index", () => {
+  it("closes with a tertiary button back to the work index", () => {
     const { container } = render(<WorkCaseStudyContent cs={dell} />);
-    const back = container.querySelector('a.btn.ghost[href="/work"]')!;
+    const back = container.querySelector('a.btn.tertiary[href="/work"]')!;
     expect(back.textContent).toBe("← All work");
   });
 });
@@ -155,6 +156,8 @@ describe("writing index", () => {
       expect(row.querySelector(".k")!.textContent).toMatch(/2026/);
       expect(row.querySelector(".title")!.textContent).toBe(posts[i].title);
       expect(row.querySelectorAll(".tag")).toHaveLength(posts[i].tags.length);
+      expect(row.querySelector(".btn.secondary.icon")!.textContent).toBe("→");
+      expect(row.querySelector(".go")).toBeNull();
     });
   });
 });
@@ -177,9 +180,9 @@ describe("writing post", () => {
     expect(container.querySelector("figure.fig figcaption a")).not.toBeNull();
   });
 
-  it("closes with a ghost button back to the writing index", () => {
+  it("closes with a tertiary button back to the writing index", () => {
     const { container } = render(<WritingPostContent post={posts[0]} />);
-    expect(container.querySelector('a.btn.ghost[href="/writing"]')!.textContent).toBe("← All writing");
+    expect(container.querySelector('a.btn.tertiary[href="/writing"]')!.textContent).toBe("← All writing");
   });
 });
 
@@ -227,8 +230,29 @@ describe("about portrait", () => {
 
   it("is desaturated and tinted into the sheet's palette by CSS, so the file stays the original", () => {
     const css = readFileSync(join(process.cwd(), "app/bp-content.css"), "utf8");
-    expect(css).toMatch(/\.fig\.portrait img\s*\{[^}]*filter:\s*grayscale\(1\)/);
+    expect(css).toMatch(/\.fig\.portrait img\s*\{[^}]*filter:\s*url\(#portrait-lift\)/);
     expect(css).toMatch(/\.fig\.portrait::after\s*\{[^}]*mix-blend-mode:/);
+  });
+
+  it("lifts the midtones with a gamma curve in an SVG filter, which brightens the face without clipping the background", () => {
+    const { container } = render(<AboutPage />);
+    const filter = container.querySelector("svg filter#portrait-lift")!;
+    expect(filter).not.toBeNull();
+    expect(filter.querySelector('feColorMatrix[type="saturate"]')!.getAttribute("values")).toBe("0");
+    for (const ch of ["R", "G", "B"]) {
+      const fn = filter.querySelector(`feFunc${ch}[type="gamma"]`)!;
+      const exponent = Number(fn.getAttribute("exponent"));
+      expect(exponent).toBeGreaterThan(0.5);
+      expect(exponent).toBeLessThan(1);
+    }
+    expect(container.querySelector("svg:has(filter#portrait-lift)")!.getAttribute("aria-hidden")).toBe("true");
+  });
+
+  it("uses a gamma lift, not a brightness multiplier, and a light navy tint", () => {
+    const css = readFileSync(join(process.cwd(), "app/bp-content.css"), "utf8");
+    expect(css).not.toMatch(/\.fig\.portrait img\s*\{[^}]*brightness\(/);
+    const opacity = Number(css.match(/\.fig\.portrait::after\s*\{[^}]*opacity:\s*([\d.]+)/)![1]);
+    expect(opacity).toBeLessThanOrEqual(0.4);
   });
 
   it("ships the photo from the old site, as a file in public/images", () => {

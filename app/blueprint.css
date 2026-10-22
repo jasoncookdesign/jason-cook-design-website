@@ -50,9 +50,19 @@ a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var
 .menu{display:none}
 
 /* ---------- button ---------- */
-.btn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 24px;background:var(--ink);color:var(--paper);border:1.5px solid var(--ink);text-decoration:none;font:500 15px/1.2 var(--mono);letter-spacing:.01em;transition:background-color .15s,color .15s}
-.btn:hover{background:var(--paper);color:var(--ink)}
-.btn.sm{min-height:44px;padding:0 18px;font-size:13px}
+.btn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 24px 0 18px;background:var(--ink);color:var(--paper);border:1.5px solid var(--ink);border-left:8px solid var(--signal);text-decoration:none;font:500 15px/1.2 var(--mono);letter-spacing:.01em;transition:background-color .15s,color .15s}
+/* primary hover: the face knocks out to the page's dark blue, the label flips to white, the orange bar stays, and a soft conic halo
+   in light orange, white and light blue spins behind the button. Primary only; every other control keeps the aqua. */
+@property --angle{syntax:'<angle>';inherits:false;initial-value:0deg}
+.btn:not(.secondary,.tertiary){position:relative;background-clip:padding-box}
+.btn:not(.secondary,.tertiary)::before{content:"";position:absolute;z-index:-1;pointer-events:none;inset:-4px;background:conic-gradient(from var(--angle),var(--glow-orange),var(--glow-white),var(--glow-blue),var(--glow-white),var(--glow-orange));filter:blur(8px);opacity:0;transition:opacity .35s ease-in-out;animation:btn-glow 6s linear infinite}
+.btn:not(.secondary,.tertiary):is(:hover,:focus-visible){background:var(--btn-face-hover);color:#fff;border-top-color:transparent;border-right-color:transparent;border-bottom-color:transparent;border-left-color:var(--signal)}
+.btn:not(.secondary,.tertiary):is(:hover,:focus-visible)::before{opacity:1}
+.btn:not(.secondary,.tertiary):active::before{opacity:0}
+@keyframes btn-glow{to{--angle:360deg}}
+@media (prefers-reduced-motion:reduce){.btn:not(.secondary,.tertiary)::before{animation:none;--angle:35deg}}
+@media (forced-colors:active){.btn:not(.secondary,.tertiary)::before{display:none}}
+.btn.sm{min-height:44px;padding:0 18px 0 14px;font-size:13px}
 
 /* ---------- hero ---------- */
 .hero{padding:40px 0 40px}
@@ -146,7 +156,7 @@ a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var
 .not .v p{margin:0}
 
 /* ---------- colophon ---------- */
-.colo{border-top:1px solid var(--ink);padding:26px var(--pad);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 28px;font:400 12px/1.4 var(--mono);letter-spacing:.03em}
+.colo{border-top:1px solid var(--ink);padding:26px var(--pad);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 28px;font:400 12px/1.4 var(--mono);letter-spacing:.03em}
 .colo nav{display:flex;flex-wrap:wrap;gap:6px 22px}
 .colo a{display:inline-flex;align-items:center;min-height:32px}
 
@@ -211,7 +221,7 @@ a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var
   .sp,.not{display:block}
   .sp .k,.not .k{border-right:0;padding:16px 16px 0}
   .sp .v,.not .v{padding:8px 16px 18px;font-size:19px}
-  .colo{flex-direction:column}
+  .colo{flex-direction:column;align-items:flex-start}
   :root{--rx:calc(1.4deg * var(--k));--ry:calc(-2deg * var(--k));--tz:18px;--dz:40px}
   .menu summary{padding:0 10px}
   .bar{gap:10px}

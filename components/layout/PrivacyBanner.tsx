@@ -28,10 +28,10 @@ export default function PrivacyBanner() {
         <Link href="/legal#privacy">Privacy policy</Link>.
       </p>
       <div className="privacy-actions">
-        <button type="button" className="btn ghost sm" onClick={() => setConsent("declined")}>
+        <button type="button" className="btn tertiary sm" onClick={() => setConsent("declined")}>
           Decline
         </button>
-        <button type="button" className="btn sm" onClick={() => setConsent("accepted")}>
+        <button type="button" className="btn secondary sm" onClick={() => setConsent("accepted")}>
           Accept
         </button>
       </div>

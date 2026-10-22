@@ -17,26 +17,25 @@ const rule = (selector: string): string => {
 };
 
 describe("interactive things show it at rest", () => {
-  it("row action squares on links are solid link colour with a field-coloured arrow at rest", () => {
-    const r = rule("a.row .go");
+  it("row buttons are secondary buttons: solid clickable blue with a field-colored label at rest", () => {
+    const r = rule(".btn.secondary");
     expect(r).toMatch(/background:\s*var\(--link\)/);
-    expect(r).toMatch(/border-color:\s*var\(--link\)/);
-    expect(r).toMatch(/color:\s*var\(--bg\)/);
+    expect(r).toMatch(/color:\s*var\(--paper\)/);
   });
 
-  it("row action squares invert to an outline when the row is hovered or focused", () => {
-    const r = rule("a.row:hover .go, a.row:focus-visible .go");
-    expect(r).toMatch(/background:\s*transparent/);
-    expect(r).toMatch(/color:\s*var\(--link\)/);
+  it("row buttons fill aqua with an ivory border when the row is hovered or focused", () => {
+    const r = rule("a.row:hover .btn.secondary, a.row:focus-visible .btn.secondary");
+    expect(r).toMatch(/background:\s*var\(--hover-fill\)/);
+    expect(r).toMatch(/border-color:\s*var\(--ink\)/);
   });
 
-  it("the arrow is drawn in CSS from currentColor, a 2px shaft and head, so it inverts with the square", () => {
-    const shaft = rule(".row .go::before");
-    const head = rule(".row .go::after");
-    expect(shaft).toMatch(/height:\s*2px/);
-    expect(shaft).toMatch(/background:\s*currentColor/);
-    expect(head).toMatch(/border-top:\s*2px solid currentColor/);
-    expect(head).toMatch(/border-right:\s*2px solid currentColor/);
+  it("the old arrow squares are gone from the stylesheet", () => {
+    expect(all).not.toMatch(/\.row \.go|a\.row:hover \.go/);
+  });
+
+  it("FAQ plus and minus marks turn the hover color when their row is hovered or focused", () => {
+    const r = rule(".faq-trigger:hover .mark::before, .faq-trigger:hover .mark::after, .faq-trigger:focus-visible .mark::before, .faq-trigger:focus-visible .mark::after");
+    expect(r).toMatch(/background:\s*var\(--hover-fill\)/);
   });
 
   it("FAQ plus marks are 20px with 2px strokes in the link colour", () => {
@@ -58,9 +57,10 @@ describe("interactive things show it at rest", () => {
     expect(cr(hex("link"), hex("bg"))).toBeGreaterThanOrEqual(4.5);
   });
 
-  it("unselected booking type buttons use the link colour, and the selected one keeps the accent fill", () => {
+  it("unselected booking type buttons use the link colour, and the selected one is framed on the raised surface", () => {
     expect(rule(".cal-typebar button")).toMatch(/color:\s*var\(--link\)/);
-    expect(rule('.cal-typebar button[aria-pressed="true"]')).toMatch(/background:\s*var\(--accent\)/);
+    expect(rule('.cal-typebar button[aria-pressed="true"]')).toMatch(/background:\s*var\(--paper2\)/);
+    expect(rule('.cal-typebar button[aria-pressed="true"]')).toMatch(/outline:\s*2px solid var\(--ink\)/);
   });
 
   it("the Cal.com fallback link is underlined in the link colour at rest", () => {

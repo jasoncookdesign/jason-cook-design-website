@@ -26,7 +26,7 @@ function Key({ k }: { k: string }) {
 
 function Book() {
   return (
-    <Link className="btn" href={BOOKING_PATH}>
+    <Link className="btn secondary" href={BOOKING_PATH}>
       Book your strategy call <span aria-hidden="true">&rarr;</span>
     </Link>
   );

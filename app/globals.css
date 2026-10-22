@@ -68,7 +68,6 @@
   --color-decision: var(--decision);
   --color-btn-bg: var(--btn-bg);
   --color-btn-ink: var(--btn-ink);
-  --color-btn-bg-hover: var(--btn-bg-hover);
   --color-band-bg: var(--band-bg);
   --color-band-ink: var(--band-ink);
   --color-band-body: var(--band-body);
@@ -76,7 +75,6 @@
   --color-band-border: var(--band-border);
   --color-band-btn-bg: var(--band-btn-bg);
   --color-band-btn-ink: var(--band-btn-ink);
-  --color-band-btn-hover: var(--band-btn-hover);
 
   /* JCD design system: one radius, everywhere. */
   --radius-sm: var(--radius);
@@ -107,18 +105,26 @@
   --muted: #A9BDCD;
   --ghost: #2F5775;
   --guide: #173650;
-  --accent: #8FB2CC;
+  --accent: var(--link);
   --decision: #FF9B6B;
   /* the lockups' orange: a fine accent in small places (never a fill) */
   --signal: #E8723C;
   /* motion: one curve, one duration; the duration is zero under reduced motion */
   --ease: cubic-bezier(.2, .7, .2, 1);
   --t: .25s;
-  --link: #5CB0FF;
+  /* the one clickable blue: secondary and icon controls, and link-like marks, at rest */
+  --link: #8FB2CC;
 
   --btn-bg: #E8EFF5;
   --btn-ink: #0D2438;
-  --btn-bg-hover: #C9D8E5;
+  /* the aqua (the teal from the logo exploration) that interactive things take on hover: a fill for solid controls,
+     the text and underline color for links. */
+  --hover-fill: #58C4C6;
+  /* the primary button's hover: its face knocks out to the page's dark blue, with a soft halo in these three colors */
+  --btn-face-hover: var(--bg);
+  --glow-orange: #FFB48A;
+  --glow-white: #F4F8FC;
+  --glow-blue: #9CCBFF;
   --band-bg: #133049;
   --band-ink: #E8EFF5;
   --band-body: #D3DEE8;
@@ -126,7 +132,6 @@
   --band-border: #5E7E96;
   --band-btn-bg: #E8EFF5;
   --band-btn-ink: #0D2438;
-  --band-btn-hover: #C9D8E5;
 
   --radius: 0px;
 
@@ -200,14 +205,50 @@ main section {
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
-.bar .wordmark:hover {
-  opacity: 0.8;
-}
 .bar .wm-mark {
   display: block;
   height: 22px;
   width: auto;
   flex: none;
+  transition: color 0.25s var(--ease);
+}
+/* The orange field lives on its own element under the mark. It is invisible at rest, opaque when the flash starts,
+   and stays beneath every later frame while it fades out over the whole animation. */
+.bar .wm-badge { position: relative; isolation: isolate; display: block; flex: none; }
+.bar .wm-badge::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  z-index: -1;
+  background: #E8723C;
+  opacity: 0;
+  pointer-events: none;
+}
+/* The mark's pieces take their fill from variables the hover flash sets; at rest they are all currentColor. */
+.bar .wm-mark .mk-top { fill: var(--mk-top, currentColor); }
+.bar .wm-mark .mk-bot { fill: var(--mk-bot, currentColor); }
+.bar .wm-mark .mk-gap { opacity: var(--mk-gap, 0); }
+/* Hover or keyboard focus flashes the mark in quick, held cuts: navy on an orange field, solid orange, solid white,
+   the top band stepping from white toward the two-tone blue, then the whole mark in the hover-fill blue, where it
+   settles. The last stop is not a defined lockup: it is the mark with the site's hover color applied. */
+.bar .wordmark:is(:hover, :focus-visible) .wm-mark {
+  color: var(--hover-fill);
+  animation: mk-flash 675ms linear;
+}
+.bar .wordmark:is(:hover, :focus-visible) .wm-badge::before { animation: mk-field-fade 675ms linear forwards; }
+@keyframes mk-field-fade {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes mk-flash {
+  0% { color: #0D2438; --mk-gap: 0; --mk-top: currentColor; --mk-bot: currentColor; animation-timing-function: steps(1, end); }
+  14% { color: #E8723C; --mk-gap: 1; animation-timing-function: steps(1, end); }
+  28% { color: #E8EFF5; --mk-gap: 1; animation-timing-function: steps(1, end); }
+  42% { color: #E8EFF5; --mk-gap: 0; --mk-top: #D1E4F8; --mk-bot: #E8EFF5; animation-timing-function: steps(1, end); }
+  56% { --mk-top: #BAD9FB; --mk-bot: #E8EFF5; animation-timing-function: steps(1, end); }
+  70% { --mk-top: #9CCBFF; --mk-bot: #E8EFF5; animation-timing-function: steps(1, end); }
+  84% { color: var(--hover-fill); --mk-gap: 0; --mk-top: currentColor; --mk-bot: currentColor; animation-timing-function: steps(1, end); }
+  100% { color: var(--hover-fill); --mk-gap: 0; --mk-top: currentColor; --mk-bot: currentColor; }
 }
 .bar .nav ul {
   display: flex;
@@ -230,12 +271,14 @@ main section {
   padding: 0;
   gap: 0;
   background: transparent;
-  border: 1px solid var(--rule);
-  color: var(--ink2);
+  border: 1px solid var(--link);
+  color: var(--link);
 }
 .bar .lv[hidden] { display: none; }
-.bar .lv:hover { border-color: var(--ink); color: var(--ink); }
-.bar .lv[aria-pressed="true"] { background: var(--paper2); border-color: var(--ink); color: var(--signal); }
+.bar .lv:hover { background: var(--hover-fill); border-color: var(--hover-fill); color: var(--paper); }
+/* pressed: an inset ivory frame on the raised surface, the same signal as every other chosen state */
+.bar .lv[aria-pressed="true"] { background: var(--paper2); border-color: var(--ink); outline: 2px solid var(--ink); outline-offset: -2px; color: var(--ink); }
+.bar .lv[aria-pressed="true"]:hover { background: var(--hover-fill); color: var(--paper); }
 .bar .lv .lv-icon { display: block; width: 22px; height: 22px; }
 .bar .btn.sm {
   margin-left: 0;
@@ -250,14 +293,16 @@ main section {
   min-height: 44px;
   padding: 0 14px;
   background: transparent;
-  color: var(--ink);
-  border: 1.5px solid var(--ink);
+  color: var(--link);
+  border: 1.5px solid var(--link);
   font: 500 12px/1 var(--mono);
   letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 .bar .menu-btn:hover {
-  background: var(--paper2);
+  background: var(--hover-fill);
+  border-color: var(--hover-fill);
+  color: var(--paper);
 }
 .bar .menu nav a:hover {
   background: var(--paper2);
@@ -297,6 +342,7 @@ main section {
 .foot-sheet .cell a:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
+  color: var(--hover-fill); text-decoration-color: var(--hover-fill);
 }
 .foot-sheet .foot-mail {
   font-size: 22px;
@@ -304,6 +350,7 @@ main section {
 .foot-sheet .colo a:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
+  color: var(--hover-fill); text-decoration-color: var(--hover-fill);
 }
 
 /* Brand logos on dark surfaces (DESIGN.md §5) */
@@ -331,7 +378,11 @@ main section > :first-child:is(.intro, .logos, .cells, .rows) { border-top: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   :root { --t: 0s; }
+  .bar .wordmark:is(:hover, :focus-visible) .wm-mark { animation: none; }
+  .bar .wordmark:is(:hover, :focus-visible) .wm-badge::before { animation: none; }
 }
+html.rm .bar .wordmark:is(:hover, :focus-visible) .wm-mark { animation: none; }
+html.rm .bar .wordmark:is(:hover, :focus-visible) .wm-badge::before { animation: none; }
 
 /* The docked sheet cue needs room: below 1360px the bar keeps the lockup, the links, the action, and the toggle. */
 .bar.docked > .cue { display: none; }
