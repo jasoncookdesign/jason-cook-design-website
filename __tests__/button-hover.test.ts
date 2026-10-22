@@ -52,8 +52,8 @@ describe("solid buttons stay solid on hover", () => {
     expect(m![1]).not.toMatch(/background:\s*var\(--paper\)/);
   });
 
-  it("fills the ghost button on hover the same way", () => {
-    const m = patterns.match(/\.btn\.ghost:hover\s*\{([^}]*)\}/);
+  it("fills the tertiary button on hover the same way", () => {
+    const m = patterns.match(/\.btn\.tertiary:hover\s*\{([^}]*)\}/);
     expect(m).not.toBeNull();
     expect(m![1]).toMatch(/background:\s*var\(--hover-fill\)/);
     expect(m![1]).toMatch(/border-color:\s*var\(--hover-fill\)/);

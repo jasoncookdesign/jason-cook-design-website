@@ -84,7 +84,7 @@ export default function CapabilitiesPage() {
             <p className="sub">{intro[1]}</p>
           </div>
           <div className="actions">
-            <Link href="/work" className="btn ghost">
+            <Link href="/work" className="btn tertiary">
               See all case studies &rarr;
             </Link>
           </div>

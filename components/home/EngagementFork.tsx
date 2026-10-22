@@ -17,7 +17,7 @@ export default function EngagementFork() {
               <p className="lbl">{t.name}</p>
               <h3>{t.situation}</h3>
             </div>
-            <span className="btn ghost sm">
+            <span className="btn secondary sm">
               {t.cta} <span aria-hidden="true">&rarr;</span>
             </span>
           </Link>

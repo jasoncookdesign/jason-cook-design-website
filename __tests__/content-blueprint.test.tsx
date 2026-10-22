@@ -129,9 +129,9 @@ describe("case study", () => {
     expect(fig.querySelector("figcaption")!.textContent).toContain(dell.testimonial!.role);
   });
 
-  it("closes with a ghost button back to the work index", () => {
+  it("closes with a tertiary button back to the work index", () => {
     const { container } = render(<WorkCaseStudyContent cs={dell} />);
-    const back = container.querySelector('a.btn.ghost[href="/work"]')!;
+    const back = container.querySelector('a.btn.tertiary[href="/work"]')!;
     expect(back.textContent).toBe("← All work");
   });
 });
@@ -177,9 +177,9 @@ describe("writing post", () => {
     expect(container.querySelector("figure.fig figcaption a")).not.toBeNull();
   });
 
-  it("closes with a ghost button back to the writing index", () => {
+  it("closes with a tertiary button back to the writing index", () => {
     const { container } = render(<WritingPostContent post={posts[0]} />);
-    expect(container.querySelector('a.btn.ghost[href="/writing"]')!.textContent).toBe("← All writing");
+    expect(container.querySelector('a.btn.tertiary[href="/writing"]')!.textContent).toBe("← All writing");
   });
 });
 

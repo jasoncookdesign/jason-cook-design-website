@@ -16,7 +16,7 @@ const design = read("design/blueprint/DESIGN.md");
 
 function rule(selector: string): string {
   const esc = selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const all = [...css.matchAll(new RegExp(`(?:^|[},\\s])${esc}\\s*\\{([^}]*)\\}`, "gm"))].map((m) => m[1]);
+  const all = [...css.matchAll(new RegExp(`(?:^|[},\\s])${esc}\\s*(?:,[^{}]*)?\\{([^}]*)\\}`, "gm"))].map((m) => m[1]);
   if (!all.length) throw new Error(`rule not found: ${selector}`);
   return all.join(";");
 }
@@ -64,8 +64,26 @@ describe("primary button", () => {
 });
 
 describe("secondary button", () => {
-  it("is outlined in the clickable blue, with no orange bar", () => {
-    const r = rule(".btn.ghost");
+  it("is filled with the clickable blue and a field-colored label, with no orange bar", () => {
+    const r = rule(".btn.secondary");
+    expect(r).toMatch(/background:\s*var\(--link\)/);
+    expect(r).toMatch(/color:\s*var\(--paper\)/);
+    expect(r).toMatch(/border-left-width:\s*1\.5px/);
+    expect(r).not.toMatch(/--signal/);
+  });
+
+  it("goes aqua on hover", () => {
+    const r = rule(".btn.secondary:hover");
+    expect(r).toMatch(/background:\s*var\(--hover-fill\)/);
+    expect(r).toMatch(/border-color:\s*var\(--hover-fill\)/);
+    expect(r).toMatch(/color:\s*var\(--paper\)/);
+  });
+});
+
+describe("tertiary button", () => {
+  it("is outlined in the clickable blue, with no fill and no orange bar", () => {
+    const r = rule(".btn.tertiary");
+    expect(r).toMatch(/background:\s*transparent/);
     expect(r).toMatch(/color:\s*var\(--link\)/);
     expect(r).toMatch(/border:\s*1\.5px solid var\(--link\)/);
     expect(r).toMatch(/border-left-width:\s*1\.5px/);
@@ -73,10 +91,13 @@ describe("secondary button", () => {
   });
 
   it("goes aqua on hover", () => {
-    const r = rule(".btn.ghost:hover");
+    const r = rule(".btn.tertiary:hover");
     expect(r).toMatch(/background:\s*var\(--hover-fill\)/);
-    expect(r).toMatch(/border-color:\s*var\(--hover-fill\)/);
     expect(r).toMatch(/color:\s*var\(--paper\)/);
+  });
+
+  it("is retired from the old ghost name", () => {
+    expect(css).not.toMatch(/\.btn\.ghost/);
   });
 });
 

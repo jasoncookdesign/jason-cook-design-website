@@ -143,7 +143,7 @@ describe("Home fork, start, and delivery", () => {
       expect(rows[i].querySelector(".k")).toBeNull();
       expect(rows[i].querySelector("h3")?.textContent).toBe(t.situation);
       expect(rows[i].textContent).toContain(t.name);
-      expect(rows[i].querySelector(".btn.ghost")?.textContent).toContain(t.cta);
+      expect(rows[i].querySelector(".btn.secondary")?.textContent).toContain(t.cta);
     });
   });
 

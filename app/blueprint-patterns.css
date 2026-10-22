@@ -63,7 +63,7 @@ a.row:hover { background: var(--paper2); }
 a.row .go { background: var(--link); border-color: var(--link); color: var(--bg); }
 a.row:hover .go, a.row:focus-visible .go { background: transparent; color: var(--link); }
 /* A secondary button inside a row link: the whole row is the hit area, so the row's hover or focus fills the button. */
-a.row:hover .btn.ghost, a.row:focus-visible .btn.ghost { background: var(--hover-fill); border-color: var(--hover-fill); color: var(--paper); }
+a.row:hover .btn.secondary, a.row:focus-visible .btn.secondary { background: var(--hover-fill); border-color: var(--hover-fill); color: var(--paper); }
 .row.hold { grid-template-columns: 120px 1fr; }
 /* Rows without a key: the substance fills the row. */
 .row.plain { grid-template-columns: 1fr auto; }
@@ -163,15 +163,18 @@ a.row:hover .btn.ghost, a.row:focus-visible .btn.ghost { background: var(--hover
 .seg > [aria-current]::before { border-color: var(--ink); background: var(--ink); }
 .seg .lbl { font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
 
-/* ---------- breadcrumb, tags, ghost button, prose ---------- */
+/* ---------- breadcrumb, tags, secondary and tertiary buttons, prose ---------- */
 .crumb { display: flex; flex-wrap: wrap; gap: 6px 10px; font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
 .crumb a { text-decoration: none; }
 .crumb a:hover { text-decoration: underline; text-underline-offset: 4px; color: var(--hover-fill); text-decoration-color: var(--hover-fill); }
 .tag { display: inline-block; padding: 3px 8px; border: 1px solid var(--rule); font: 500 11px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
-/* secondary: outlined in the clickable blue, no orange bar */
-.btn.ghost { background: transparent; color: var(--link); border: 1.5px solid var(--link); border-left-width: 1.5px; padding-left: 24px; }
-.btn.ghost.sm { padding-left: 18px; }
-.btn.ghost:hover { background: var(--hover-fill); border-color: var(--hover-fill); color: var(--paper); }
+/* secondary: filled with the clickable blue, a field-colored label, no orange bar */
+.btn.secondary { background: var(--link); color: var(--paper); border: 1.5px solid var(--link); border-left-width: 1.5px; padding-left: 24px; }
+.btn.secondary.sm { padding-left: 18px; }
+/* tertiary: the outline, for the quietest action beside or after a stronger one */
+.btn.tertiary { background: transparent; color: var(--link); border: 1.5px solid var(--link); border-left-width: 1.5px; padding-left: 24px; }
+.btn.tertiary.sm { padding-left: 18px; }
+.btn.secondary:hover, .btn.tertiary:hover { background: var(--hover-fill); border-color: var(--hover-fill); color: var(--paper); }
 
 .prose { max-width: 720px; font-size: 20px; line-height: 1.7; }
 .prose > * { margin: 0; }

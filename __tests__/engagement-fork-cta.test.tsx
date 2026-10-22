@@ -1,5 +1,5 @@
 /**
- * The home page's two engagement rows are links with a secondary (ghost) button inside, labelled with what
+ * The home page's two engagement rows are links with a secondary (filled) button inside, labelled with what
  * happens next, instead of a bare arrow square. The whole row is the hit area; hovering or focusing it fills
  * the button with the hover-fill, the same hover every solid control takes. The arrow squares stay on the
  * Work and Writing lists, where the row itself is the call to action.
@@ -30,7 +30,7 @@ describe("home fork rows", () => {
     const rows = container.querySelectorAll("a.row");
     expect(rows).toHaveLength(engagementTypes.length);
     rows.forEach((row, i) => {
-      const btn = row.querySelector(".btn.ghost.sm");
+      const btn = row.querySelector(".btn.secondary.sm");
       expect(btn).not.toBeNull();
       expect(btn!.textContent).toContain(engagementTypes[i].cta);
       expect(row.querySelector(".go")).toBeNull();
@@ -54,7 +54,7 @@ describe("home fork rows", () => {
 
 describe("row button hover", () => {
   it("fills the button with the hover-fill when the row is hovered or focused", () => {
-    const m = patterns.match(/a\.row:hover \.btn\.ghost,\s*a\.row:focus-visible \.btn\.ghost\s*\{([^}]*)\}/);
+    const m = patterns.match(/a\.row:hover \.btn\.secondary,\s*a\.row:focus-visible \.btn\.secondary\s*\{([^}]*)\}/);
     expect(m).not.toBeNull();
     expect(m![1]).toMatch(/background:\s*var\(--hover-fill\)/);
     expect(m![1]).toMatch(/border-color:\s*var\(--hover-fill\)/);
