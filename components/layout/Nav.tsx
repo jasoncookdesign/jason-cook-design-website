@@ -43,7 +43,9 @@ export default function Nav() {
   return (
     <header data-docked={docked ? "true" : "false"} data-sheet="G-001" data-name="TITLE BAR" data-flat className={`bar${docked ? " docked" : ""}`}>
       <Link href="/" className="wordmark">
-        <JcdMark className="wm-mark" morph />
+        <span className="wm-badge">
+          <JcdMark className="wm-mark" morph />
+        </span>
         <span className="wm-name">Jason Cook Design</span>
       </Link>
       <span className="cue" aria-hidden="true">{cue}</span>

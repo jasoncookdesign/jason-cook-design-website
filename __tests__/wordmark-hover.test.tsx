@@ -8,6 +8,7 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import { render } from "@testing-library/react";
 import JcdMark from "@/components/brand/JcdMark";
+import Nav from "@/components/layout/Nav";
 
 const css = readFileSync(join(process.cwd(), "app/globals.css"), "utf8");
 const keyframes = (css.match(/@keyframes mk-flash\s*\{([\s\S]*?)\n\}/) ?? [])[1] ?? "";
@@ -35,7 +36,7 @@ describe("header mark hover", () => {
   const indexOf = (re: RegExp) => frames.findIndex((f) => re.test(f));
 
   it("runs the sequence in order: orange box, orange, white, white-to-two-tone in rising steps, then all hover blue", () => {
-    const orangeBox = indexOf(/--mk-field:\s*#E8723C;[^}]*color:\s*#0D2438/i);
+    const orangeBox = indexOf(/^0%[^}]*color:\s*#0D2438/i);
     const orange = indexOf(/color:\s*#E8723C;[^}]*--mk-gap:\s*1/i);
     const white = indexOf(/color:\s*#E8EFF5;[^}]*--mk-gap:\s*1/i);
     const tint1 = indexOf(/--mk-top:\s*#D1E4F8/i);
@@ -71,5 +72,41 @@ describe("header mark hover", () => {
 
   it("does not flash under reduced motion", () => {
     expect(css).toMatch(/prefers-reduced-motion:\s*reduce\)\s*\{[\s\S]*\.wm-mark[^}]*animation:\s*none/);
+  });
+});
+
+describe("orange field behind the mark", () => {
+  const fade = (css.match(/@keyframes mk-field-fade\s*\{([\s\S]*?)\n\}/) ?? [])[1] ?? "";
+
+  it("is its own element under the mark, not an outline or background on the svg", () => {
+    expect(css).toMatch(/\.bar \.wm-badge::before\s*\{[^}]*background:\s*#E8723C/i);
+    expect(css).toMatch(/\.bar \.wm-badge::before\s*\{[^}]*z-index:\s*-1/);
+    expect(css).toMatch(/\.bar \.wm-badge\s*\{[^}]*isolation:\s*isolate/);
+    expect(css).not.toMatch(/\.wm-mark\s*\{[^}]*outline:/);
+    expect(css).not.toMatch(/--mk-field/);
+  });
+
+  it("is invisible at rest and starts fully opaque when the flash starts", () => {
+    expect(css).toMatch(/\.bar \.wm-badge::before\s*\{[^}]*opacity:\s*0/);
+    expect(fade).toMatch(/0%\s*\{[^}]*opacity:\s*1/);
+  });
+
+  it("stays under every later frame and fades out smoothly, finishing as the flash does", () => {
+    expect(fade).toMatch(/100%\s*\{[^}]*opacity:\s*0/);
+    expect(fade).not.toMatch(/steps\(/);
+    expect(css).toMatch(/\.bar \.wordmark:is\(:hover,\s*:focus-visible\) \.wm-badge::before\s*\{[^}]*animation:\s*mk-field-fade\s+900ms\s+linear\s+forwards/);
+  });
+
+  it("is left out under reduced motion", () => {
+    expect(css).toMatch(/prefers-reduced-motion:\s*reduce\)\s*\{[\s\S]*\.wm-badge::before[^}]*animation:\s*none/);
+  });
+});
+
+describe("header lockup markup", () => {
+  it("wraps the mark in a badge element that carries the field", () => {
+    const { container } = render(<Nav />);
+    const badge = container.querySelector(".wordmark > .wm-badge")!;
+    expect(badge).not.toBeNull();
+    expect(badge.querySelector("svg.wm-mark")).not.toBeNull();
   });
 });

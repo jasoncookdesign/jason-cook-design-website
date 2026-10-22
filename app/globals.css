@@ -210,9 +210,19 @@ main section {
   height: 22px;
   width: auto;
   flex: none;
-  background: var(--mk-field, transparent);
-  outline: 5px solid var(--mk-field, transparent);
   transition: color 0.25s var(--ease);
+}
+/* The orange field lives on its own element under the mark. It is invisible at rest, opaque when the flash starts,
+   and stays beneath every later frame while it fades out over the whole animation. */
+.bar .wm-badge { position: relative; isolation: isolate; display: block; flex: none; }
+.bar .wm-badge::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  z-index: -1;
+  background: #E8723C;
+  opacity: 0;
+  pointer-events: none;
 }
 /* The mark's pieces take their fill from variables the hover flash sets; at rest they are all currentColor. */
 .bar .wm-mark .mk-top { fill: var(--mk-top, currentColor); }
@@ -225,9 +235,14 @@ main section {
   color: var(--hover-fill);
   animation: mk-flash 900ms linear;
 }
+.bar .wordmark:is(:hover, :focus-visible) .wm-badge::before { animation: mk-field-fade 900ms linear forwards; }
+@keyframes mk-field-fade {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
 @keyframes mk-flash {
-  0% { --mk-field: #E8723C; color: #0D2438; --mk-gap: 0; --mk-top: currentColor; --mk-bot: currentColor; animation-timing-function: steps(1, end); }
-  14% { --mk-field: transparent; color: #E8723C; --mk-gap: 1; animation-timing-function: steps(1, end); }
+  0% { color: #0D2438; --mk-gap: 0; --mk-top: currentColor; --mk-bot: currentColor; animation-timing-function: steps(1, end); }
+  14% { color: #E8723C; --mk-gap: 1; animation-timing-function: steps(1, end); }
   28% { color: #E8EFF5; --mk-gap: 1; animation-timing-function: steps(1, end); }
   42% { color: #E8EFF5; --mk-gap: 0; --mk-top: #D1E4F8; --mk-bot: #E8EFF5; animation-timing-function: steps(1, end); }
   56% { --mk-top: #BAD9FB; --mk-bot: #E8EFF5; animation-timing-function: steps(1, end); }
@@ -364,8 +379,10 @@ main section > :first-child:is(.intro, .logos, .cells, .rows) { border-top: 0; }
 @media (prefers-reduced-motion: reduce) {
   :root { --t: 0s; }
   .bar .wordmark:is(:hover, :focus-visible) .wm-mark { animation: none; }
+  .bar .wordmark:is(:hover, :focus-visible) .wm-badge::before { animation: none; }
 }
 html.rm .bar .wordmark:is(:hover, :focus-visible) .wm-mark { animation: none; }
+html.rm .bar .wordmark:is(:hover, :focus-visible) .wm-badge::before { animation: none; }
 
 /* The docked sheet cue needs room: below 1360px the bar keeps the lockup, the links, the action, and the toggle. */
 .bar.docked > .cue { display: none; }
