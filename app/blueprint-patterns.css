@@ -47,6 +47,7 @@ a.cell:hover { background: var(--paper2); }
   color: inherit;
 }
 .row:last-child { border-bottom: 0; }
+.row .k .yr { display: block; }
 .row .k { font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); align-self: start; padding-top: 6px; }
 .row h3, .row .title { margin: 0; font-weight: 400; font-size: 28px; line-height: 1.2; letter-spacing: -0.012em; text-wrap: balance; }
 .row p { margin: 6px 0 0; font-size: 18px; line-height: 1.5; color: var(--ink); max-width: 62ch; text-wrap: pretty; }
@@ -191,6 +192,7 @@ a.row:hover .btn.secondary, a.row:focus-visible .btn.secondary { background: var
   .cell:first-child, .quotes figure:first-child, .statrow > div:first-child { border-top: 0; }
   .row { grid-template-columns: 1fr auto; padding: 18px var(--pad); }
   .row .k { grid-column: 1 / -1; padding-top: 0; }
+  .row .k .yr { display: inline; }
   .row.hold { grid-template-columns: 1fr; }
   .row .pair { grid-template-columns: 1fr; gap: 2px; }
   .defs .d { grid-template-columns: 1fr; }

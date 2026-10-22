@@ -33,10 +33,9 @@ export default function WritingPage() {
       <section className="pgs" data-sheet="A-102" data-name="INDEX">
         <div className="rows" data-build>
           {newestFirst.map((post) => {
-            const displayDate = new Date(
-              post.date + "T00:00:00"
-            ).toLocaleDateString("en-US", {
-              year: "numeric",
+            // Month and day on one line, the year on the next, so rows wrap the same whatever the month's length.
+            const date = new Date(post.date + "T00:00:00");
+            const monthDay = date.toLocaleDateString("en-US", {
               month: "long",
               day: "numeric",
             });
@@ -46,7 +45,9 @@ export default function WritingPage() {
                 href={`/writing/${post.slug}`}
                 className="row"
               >
-                <span className="k">{displayDate}</span>
+                <span className="k">
+                  {monthDay}, <span className="yr">{date.getFullYear()}</span>
+                </span>
                 <div>
                   <h2 className="title">{post.title}</h2>
                   <p>{post.excerpt}</p>

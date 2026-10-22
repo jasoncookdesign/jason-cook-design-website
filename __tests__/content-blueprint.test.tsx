@@ -149,6 +149,17 @@ describe("case study sections that carry a diagnosis note", () => {
 });
 
 describe("writing index", () => {
+  it("sets each date as month and day, with the year in its own block below, so wrapping does not depend on month length", () => {
+    const { container } = render(<WritingPage />);
+    const keys = Array.from(container.querySelectorAll(".rows > a.row .k"));
+    expect(keys.length).toBeGreaterThan(0);
+    for (const k of keys) {
+      const yr = k.querySelector(".yr")!;
+      expect(yr.textContent).toBe("2026");
+      expect(k.textContent!.replace(yr.textContent!, "").trim()).toMatch(/^[A-Z][a-z]+ \d{1,2},$/);
+    }
+  });
+
   it("lists posts newest first, the date key running downward", () => {
     const { container } = render(<WritingPage />);
     const hrefs = Array.from(container.querySelectorAll('.rows > a.row[href^="/writing/"]')).map((r) => r.getAttribute("href"));
