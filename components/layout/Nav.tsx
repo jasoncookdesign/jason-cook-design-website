@@ -9,8 +9,8 @@ import LayerView from "@/components/layout/LayerView";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/work", label: "Work" },
   { href: "/engagements", label: "Engagements" },
+  { href: "/work", label: "Work" },
   { href: "/writing", label: "Writing" },
   { href: "/about", label: "About" },
 ] as const;

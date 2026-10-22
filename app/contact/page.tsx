@@ -19,7 +19,6 @@ export default function ContactPage() {
     <>
     <section className="hero page solo g" data-sheet="A-101" data-name="HERO">
       <div className="main">
-        <p className="eyebrow">Contact</p>
         <h1>Contact</h1>
         <div className="actions">
           <Link href="#book" className="btn">
