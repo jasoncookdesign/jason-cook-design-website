@@ -149,6 +149,14 @@ describe("case study sections that carry a diagnosis note", () => {
 });
 
 describe("writing index", () => {
+  it("lists posts newest first, the date key running downward", () => {
+    const { container } = render(<WritingPage />);
+    const hrefs = Array.from(container.querySelectorAll('.rows > a.row[href^="/writing/"]')).map((r) => r.getAttribute("href"));
+    const expected = [...posts].sort((a, b) => b.date.localeCompare(a.date)).map((p) => `/writing/${p.slug}`);
+    expect(hrefs).toEqual(expected);
+    expect(hrefs[0]).toBe("/writing/rebuilding-jasoncookdesign-com");
+  });
+
   it("has no post counter in the hero", () => {
     const { container } = render(<WritingPage />);
     const hero = container.querySelector("section.hero")!;
@@ -161,10 +169,11 @@ describe("writing index", () => {
     const { container } = render(<WritingPage />);
     const rows = container.querySelectorAll('.rows > a.row[href^="/writing/"]');
     expect(rows).toHaveLength(posts.length);
+    const newestFirst = [...posts].sort((a, b) => b.date.localeCompare(a.date));
     rows.forEach((row, i) => {
       expect(row.querySelector(".k")!.textContent).toMatch(/2026/);
-      expect(row.querySelector(".title")!.textContent).toBe(posts[i].title);
-      expect(row.querySelectorAll(".tag")).toHaveLength(posts[i].tags.length);
+      expect(row.querySelector(".title")!.textContent).toBe(newestFirst[i].title);
+      expect(row.querySelectorAll(".tag")).toHaveLength(newestFirst[i].tags.length);
       expect(row.querySelector(".btn.secondary.icon")!.textContent).toBe("→");
       expect(row.querySelector(".go")).toBeNull();
     });
