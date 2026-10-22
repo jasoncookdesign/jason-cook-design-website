@@ -112,16 +112,28 @@ describe("selected state", () => {
   });
 
   it("keeps the chosen option's text light: nothing recolors it to the field color", () => {
-    expect(css).not.toMatch(/aria-current[^{]*\.(sit|lbl)\s*\{[^}]*color:\s*var\(--(bg|paper)\)/);
+    const chosenOnly = css.replace(/[^{}]*:not\(\[aria-current\]\)[^{}]*\{[^}]*\}/g, "");
+    expect(chosenOnly).not.toMatch(/aria-current[^{]*\.(sit|lbl)\s*\{[^}]*color:\s*var\(--(bg|paper)\)/);
   });
 
-  it("fills an option aqua on hover, whether or not it is chosen, with navy labels", () => {
-    for (const sel of [".seg > *:hover", ".cal-typebar button:hover"]) {
+  it("fills an option aqua on hover only while choosing it would change something, with navy labels", () => {
+    for (const sel of [".seg > *:not([aria-current]):hover", '.cal-typebar button:not([aria-pressed="true"]):hover']) {
       const r = rule(sel);
       expect(r).toMatch(/background:\s*var\(--hover-fill\)/);
       expect(r).toMatch(/color:\s*var\(--paper\)/);
     }
-    expect(css).toMatch(/\.seg > \*:hover \.lbl[^{]*\{[^}]*color:\s*var\(--paper\)/);
+    expect(css).toMatch(/\.seg > \*:not\(\[aria-current\]\):hover \.lbl[^{]*\{[^}]*color:\s*var\(--paper\)/);
+  });
+
+  it("gives the chosen option no hover response and no pointer, since choosing it again does nothing", () => {
+    expect(css).not.toMatch(/\.seg > \[aria-current[^{]*:hover[^{]*\{/);
+    expect(css).not.toMatch(/\.cal-typebar button\[aria-pressed="true"\]:hover/);
+    expect(rule('.seg > [aria-current="page"], .seg > [aria-current="true"]')).toMatch(/cursor:\s*default/);
+    expect(rule('.cal-typebar button[aria-pressed="true"]')).toMatch(/cursor:\s*default/);
+  });
+
+  it("keeps the layers toggle responsive while pressed, since pressing it again turns the view off", () => {
+    expect(rule('.bar .lv[aria-pressed="true"]:hover')).toMatch(/background:\s*var\(--hover-fill\)/);
   });
 });
 

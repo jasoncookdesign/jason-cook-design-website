@@ -154,14 +154,13 @@ a.row:hover .btn.ghost, a.row:focus-visible .btn.ghost { background: var(--hover
   content: ""; position: absolute; left: var(--pad); top: 20px; width: 14px; height: 14px;
   border: 1px solid var(--ink2); background: transparent;
 }
-.seg > *:hover { background: var(--hover-fill); color: var(--paper); }
-.seg > *:hover::before { border-color: var(--paper); }
-.seg > *:hover .lbl, .seg > *:hover .sit { color: var(--paper); }
+/* only an option that is not already chosen responds to hover: choosing the chosen one again changes nothing */
+.seg > *:not([aria-current]):hover { background: var(--hover-fill); color: var(--paper); }
+.seg > *:not([aria-current]):hover::before { border-color: var(--paper); }
+.seg > *:not([aria-current]):hover .lbl, .seg > *:not([aria-current]):hover .sit { color: var(--paper); }
 /* the chosen option is framed (an inset ivory border) on the raised surface; selection never takes a color of its own */
-.seg > [aria-current="page"], .seg > [aria-current="true"] { background: var(--paper2); outline: 2px solid var(--ink); outline-offset: -2px; }
+.seg > [aria-current="page"], .seg > [aria-current="true"] { background: var(--paper2); outline: 2px solid var(--ink); outline-offset: -2px; cursor: default; }
 .seg > [aria-current]::before { border-color: var(--ink); background: var(--ink); }
-.seg > [aria-current]:hover { background: var(--hover-fill); }
-.seg > [aria-current]:hover::before { border-color: var(--paper); background: var(--paper); }
 .seg .lbl { font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
 
 /* ---------- breadcrumb, tags, ghost button, prose ---------- */

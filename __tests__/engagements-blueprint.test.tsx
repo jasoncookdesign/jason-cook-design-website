@@ -229,6 +229,6 @@ describe("selector reads as interactive", () => {
   it("gives every option a radio-style indicator and the unselected ones a hover response", () => {
     expect(patterns).toMatch(/\.seg > \*::before/);
     expect(patterns).toMatch(/\.seg > \[aria-current\]::before/);
-    expect(patterns).toMatch(/\.seg > \*:hover/);
+    expect(patterns).toMatch(/\.seg > \*:not\(\[aria-current\]\):hover/);
   });
 });
