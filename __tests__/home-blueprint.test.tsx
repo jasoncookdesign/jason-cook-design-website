@@ -312,7 +312,10 @@ describe("Home START: the schedule figure from the concept", () => {
     const fig = bySheet(container, "START").querySelector("figure.sheet")!;
     const id = fig.getAttribute("aria-labelledby")!;
     expect(fig.querySelector("#" + id)?.textContent).toBe("Find the real problem");
-    expect(fig.querySelector("figcaption .cap p")?.textContent).toMatch(/^It starts with a paid diagnosis/);
+    const caption = fig.querySelector("figcaption .cap p")?.textContent ?? "";
+    expect(caption).toBe("The paid first phase in five steps, from the owner interview to a written recommendation and the decision to build or stop.");
+    // the card beside the figure already says how the engagement starts; the caption describes the figure
+    expect(bySheet(container, "START").textContent!.match(/paid diagnosis|paid first phase/g)).toHaveLength(2);
   });
 });
 
