@@ -62,7 +62,7 @@ describe("header mark hover", () => {
   });
 
   it("runs on hover and keyboard focus, and settles on the hover-fill blue", () => {
-    expect(css).toMatch(/\.bar \.wordmark:is\(:hover,\s*:focus-visible\) \.wm-mark\s*\{[^}]*animation:\s*mk-flash\s+\d+ms/);
+    expect(css).toMatch(/\.bar \.wordmark:is\(:hover,\s*:focus-visible\) \.wm-mark\s*\{[^}]*animation:\s*mk-flash\s+675ms/);
     expect(css).toMatch(/\.bar \.wordmark:is\(:hover,\s*:focus-visible\) \.wm-mark\s*\{[^}]*color:\s*var\(--hover-fill\)/);
   });
 
@@ -94,7 +94,7 @@ describe("orange field behind the mark", () => {
   it("stays under every later frame and fades out smoothly, finishing as the flash does", () => {
     expect(fade).toMatch(/100%\s*\{[^}]*opacity:\s*0/);
     expect(fade).not.toMatch(/steps\(/);
-    expect(css).toMatch(/\.bar \.wordmark:is\(:hover,\s*:focus-visible\) \.wm-badge::before\s*\{[^}]*animation:\s*mk-field-fade\s+900ms\s+linear\s+forwards/);
+    expect(css).toMatch(/\.bar \.wordmark:is\(:hover,\s*:focus-visible\) \.wm-badge::before\s*\{[^}]*animation:\s*mk-field-fade\s+675ms\s+linear\s+forwards/);
   });
 
   it("is left out under reduced motion", () => {

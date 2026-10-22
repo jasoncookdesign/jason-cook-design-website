@@ -233,9 +233,9 @@ main section {
    settles. The last stop is not a defined lockup: it is the mark with the site's hover color applied. */
 .bar .wordmark:is(:hover, :focus-visible) .wm-mark {
   color: var(--hover-fill);
-  animation: mk-flash 900ms linear;
+  animation: mk-flash 675ms linear;
 }
-.bar .wordmark:is(:hover, :focus-visible) .wm-badge::before { animation: mk-field-fade 900ms linear forwards; }
+.bar .wordmark:is(:hover, :focus-visible) .wm-badge::before { animation: mk-field-fade 675ms linear forwards; }
 @keyframes mk-field-fade {
   0% { opacity: 1; }
   100% { opacity: 0; }
