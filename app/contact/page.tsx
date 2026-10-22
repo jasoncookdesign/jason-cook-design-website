@@ -1,6 +1,5 @@
 import Link from "next/link";
 import BookingEmbed from "@/components/booking/BookingEmbed";
-import { BOOKING_TYPES } from "@/lib/booking";
 import { withSocial } from "@/lib/metadata";
 import CallStrip from "@/components/booking/CallStrip";
 
@@ -31,7 +30,7 @@ export default function ContactPage() {
     </section>
 
     <section className="book-sheet" data-sheet="A-102" data-name="BOOK">
-      <BookingEmbed types={BOOKING_TYPES} />
+      <BookingEmbed />
     </section>
     </>
   );
