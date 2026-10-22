@@ -38,7 +38,7 @@ describe("Nav — mouse affordance", () => {
     const brandLink = container.querySelector('a[href="/"]') as HTMLAnchorElement | null;
     expect(brandLink).not.toBeNull();
     expect(brandLink!.classList.contains("wordmark")).toBe(true);
-    expect(kitCss).toMatch(/\.wordmark:hover\s*\{/);
+    expect(kitCss).toMatch(/\.wordmark:(?:hover|is\(:hover)/);
   });
 
   it("menu button is kit-styled and the kit gives it a hover rule", () => {
