@@ -8,7 +8,7 @@ import { useConsent } from "@/lib/consent";
 /** The embedded Cal.com picker, with a plain link to the event page for visitors whose embed does not load. */
 type BookingType = { readonly slug: string; readonly label: string };
 
-export default function BookingEmbed({ className = "book", types }: { className?: string; types?: readonly BookingType[] }) {
+export default function BookingEmbed({ className = "book", types, label = "Book a strategy call with Jason Cook Design" }: { className?: string; types?: readonly BookingType[]; label?: string }) {
   const [slug, setSlug] = useState(types?.[0]?.slug ?? "");
   const calLink = types && slug ? calLinkFor(slug) : CAL_LINK;
   const box = useRef<HTMLDivElement>(null);
@@ -19,7 +19,7 @@ export default function BookingEmbed({ className = "book", types }: { className?
   }, [declined, calLink]);
 
   return (
-    <div id="book" className={className} role="region" aria-label="Book a strategy call with Jason Cook Design">
+    <div id="book" className={className} role="region" aria-label={label}>
       {types ? (
         <div className="cal-typebar" role="group" aria-label="Choose a meeting type">
           {types.map((t) => (

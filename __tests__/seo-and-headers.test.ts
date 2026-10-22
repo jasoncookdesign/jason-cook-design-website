@@ -19,6 +19,11 @@ describe("robots.txt", () => {
 describe("sitemap.xml", () => {
   const urls = sitemap().map((e) => e.url);
 
+  it("leaves out the unlisted meet page, and robots.txt does not disallow it (a disallow would advertise the path)", () => {
+    expect(urls.some((u) => u.endsWith("/meet"))).toBe(false);
+    expect(JSON.stringify(robots().rules)).not.toMatch(/meet/);
+  });
+
   it("lists every page, case study, and post on the production host", () => {
     for (const path of ["", "/about", "/capabilities", "/contact", "/engagements", "/engagements/offering", "/engagements/operating", "/legal", "/work", "/writing"]) {
       expect(urls).toContain(`${SITE}${path}`);

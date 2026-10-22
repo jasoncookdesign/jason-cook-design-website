@@ -21,9 +21,8 @@ export const CAL_LINK = "jasoncookdesign/engagement-consultation";
 /** The Cal.com account the events live under. */
 const CAL_USER = "jasoncookdesign";
 
-/** The events a visitor can choose between on the contact page (the old site's list, with the strategy call first). */
-export const BOOKING_TYPES = [
-  { slug: "engagement-consultation", label: "Strategy call" },
+/** The personal meeting types, offered on the unlisted /meet page and not on the contact page. */
+export const MEETING_TYPES = [
   { slug: "meeting", label: "Meeting" },
   { slug: "coffee", label: "Coffee" },
   { slug: "breakfast", label: "Breakfast" },
