@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Post, ContentBlock } from "@/lib/writing";
+import { renderBeats } from "@/components/ui/beats";
 
 function renderBlock(block: ContentBlock, idx: number, fig: number) {
   switch (block.type) {
@@ -94,9 +95,13 @@ export default function WritingPostContent({ post }: Props) {
 
       <section className="pgs" data-sheet="A-102" data-name="BODY">
         <div className="pg">
-          <div className="prose">
-            {blocks.map(({ block, fig }, idx) => renderBlock(block, idx, fig))}
-          </div>
+          {post.layout === "figures-right" ? (
+            <div className="prose beats">{renderBeats(blocks, renderBlock)}</div>
+          ) : (
+            <div className="prose">
+              {blocks.map(({ block, fig }, idx) => renderBlock(block, idx, fig))}
+            </div>
+          )}
         </div>
       </section>
 
