@@ -149,6 +149,14 @@ describe("case study sections that carry a diagnosis note", () => {
 });
 
 describe("writing index", () => {
+  it("has no post counter in the hero", () => {
+    const { container } = render(<WritingPage />);
+    const hero = container.querySelector("section.hero")!;
+    expect(hero.querySelector(".count")).toBeNull();
+    expect(hero.querySelector(".side")).toBeNull();
+    expect(hero.textContent).not.toMatch(/\b0\d\b/);
+  });
+
   it("lists one ruled row per post: a date key, the title, the excerpt, and tags", () => {
     const { container } = render(<WritingPage />);
     const rows = container.querySelectorAll('.rows > a.row[href^="/writing/"]');

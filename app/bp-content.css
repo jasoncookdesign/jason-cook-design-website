@@ -17,7 +17,6 @@
 .hero.page .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
 .hero.page.solo { padding-bottom: 88px; }  /* the top padding is the shared .hero.page one, so the title sits at the same height as on every page */
 .hero.page .side { text-align: right; }
-.hero.page .side .count { margin: 0; font: 400 92px/1 var(--serif); letter-spacing: -0.03em; color: var(--ink2); }
 
 /* Case studies and posts wrap their sheets in an article, so the shell's section rule does not reach them. */
 article > section:not(:first-child) { border-top: 1px solid var(--ink); }
@@ -104,7 +103,6 @@ ul.rows, ol.rows { list-style: none; margin: 0; padding: 0; }
   .hero.page.post .main { grid-column: auto; }
   .hero.page.solo { padding-bottom: 56px; }
   .hero.page .side { margin-top: 28px; }
-  .hero.page .side .count { font-size: 64px; }
   .pg { padding: 28px var(--pad) 44px; }
   .row.thumb { grid-template-columns: 1fr auto; row-gap: 14px; }
   .row.thumb .fig { grid-column: 1 / -1; }

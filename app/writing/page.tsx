@@ -25,9 +25,6 @@ export default function WritingPage() {
             </p>
           </div>
         </div>
-        <div className="side">
-          <p className="count">{String(posts.length).padStart(2, "0")}</p>
-        </div>
       </section>
 
       <section className="pgs" data-sheet="A-102" data-name="INDEX">
