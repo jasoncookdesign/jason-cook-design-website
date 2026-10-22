@@ -215,18 +215,21 @@ main section {
 .bar .wm-mark .mk-top { fill: var(--mk-top, currentColor); }
 .bar .wm-mark .mk-bot { fill: var(--mk-bot, currentColor); }
 .bar .wm-mark .mk-gap { opacity: var(--mk-gap, 0); }
-/* Hover or keyboard focus flashes the approved final variations in quick, held cuts (navy on an orange field, solid
-   ivory, two-tone, solid orange), then settles on the hover-fill blue. */
+/* Hover or keyboard focus flashes the mark in quick, held cuts: navy on an orange field, solid orange, solid white,
+   the top band stepping from white toward the two-tone blue, then the whole mark in the hover-fill blue, where it
+   settles. The last stop is not a defined lockup: it is the mark with the site's hover color applied. */
 .bar .wordmark:is(:hover, :focus-visible) .wm-mark {
   color: var(--hover-fill);
-  animation: mk-flash 720ms linear;
+  animation: mk-flash 900ms linear;
 }
 @keyframes mk-flash {
   0% { --mk-field: #E8723C; color: #0D2438; --mk-gap: 0; --mk-top: currentColor; --mk-bot: currentColor; animation-timing-function: steps(1, end); }
-  20% { --mk-field: transparent; color: #E8EFF5; --mk-gap: 1; animation-timing-function: steps(1, end); }
-  40% { color: #E8EFF5; --mk-gap: 0; --mk-top: #9CCBFF; --mk-bot: #E8EFF5; animation-timing-function: steps(1, end); }
-  60% { color: #E8723C; --mk-gap: 1; --mk-top: currentColor; --mk-bot: currentColor; animation-timing-function: steps(1, end); }
-  80% { color: var(--hover-fill); --mk-gap: 0; animation-timing-function: steps(1, end); }
+  14% { --mk-field: transparent; color: #E8723C; --mk-gap: 1; animation-timing-function: steps(1, end); }
+  28% { color: #E8EFF5; --mk-gap: 1; animation-timing-function: steps(1, end); }
+  42% { color: #E8EFF5; --mk-gap: 0; --mk-top: #D1E4F8; --mk-bot: #E8EFF5; animation-timing-function: steps(1, end); }
+  56% { --mk-top: #BAD9FB; --mk-bot: #E8EFF5; animation-timing-function: steps(1, end); }
+  70% { --mk-top: #9CCBFF; --mk-bot: #E8EFF5; animation-timing-function: steps(1, end); }
+  84% { color: var(--hover-fill); --mk-gap: 0; --mk-top: currentColor; --mk-bot: currentColor; animation-timing-function: steps(1, end); }
   100% { color: var(--hover-fill); --mk-gap: 0; --mk-top: currentColor; --mk-bot: currentColor; }
 }
 .bar .nav ul {
