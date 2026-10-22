@@ -44,8 +44,8 @@ describe("Writing index page", () => {
 });
 
 describe("Writing post data", () => {
-  it("contains all 4 posts with required fields", () => {
-    expect(posts).toHaveLength(4);
+  it("contains all 5 posts with required fields", () => {
+    expect(posts).toHaveLength(5);
     for (const post of posts) {
       expect(post.slug).toBeTruthy();
       expect(post.title).toBeTruthy();
@@ -62,6 +62,7 @@ describe("Writing post data", () => {
     expect(slugs).toContain("why-this-blog-exists");
     expect(slugs).toContain("the-quality-gate");
     expect(slugs).toContain("your-ai-doesnt-have-to-go-rogue-to-break-your-rules");
+    expect(slugs).toContain("rebuilding-jasoncookdesign-com");
   });
 });
 
