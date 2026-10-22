@@ -27,7 +27,7 @@ export default function OfferingProblem() {
           <h2>You have an offering in mind and a decision to make.</h2>
         </div>
       </div>
-      <div className="cells c2">
+      <div className="cells c2" data-build>
         {problemCards.map((card) => (
           <article key={card.label} className="cell">
             <h3>{card.label}</h3>

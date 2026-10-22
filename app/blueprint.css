@@ -100,10 +100,10 @@ a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var
 .cols i{border-left:1px solid var(--rule);font:400 12px/1 var(--mono);font-style:normal;color:var(--ink2);padding:8px 0 0 7px}
 .cols i:first-child{border-left:0}
 .cols i.z{background:var(--paper2)}
-.bx{position:absolute;top:50%;height:30px;margin-top:-15px;left:var(--s);width:var(--w);border:1.5px solid var(--ink);background:var(--paper2);transform-origin:left center;animation:draw .9s cubic-bezier(.3,.7,.2,1) both;animation-delay:var(--d,0s)}
+.bx{position:absolute;top:50%;height:30px;margin-top:-15px;left:var(--s);width:var(--w);border:1.5px solid var(--ink);background:var(--paper2);transform-origin:left center;animation:draw .9s cubic-bezier(.3,.7,.2,1) both;animation-delay:calc(var(--rv-lead,0s) + var(--d,0s))}
 .bx.dash{--s:calc(75% + 34px);--w:calc(25% - 58px);--d:.9s;border-style:dashed;background:transparent}
 .mk.d{left:calc(75% + 52px)}
-.dec{position:absolute;left:75%;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--decision);transform-origin:top;animation:drop .9s ease both .6s}
+.dec{position:absolute;left:75%;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--decision);transform-origin:top;animation:drop .9s ease both calc(var(--rv-lead,0s) + .6s)}
 .node{position:absolute;left:75%;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;background:var(--decision)}
 .mk{position:absolute;top:50%;width:10px;height:10px;margin-top:-5px;border:1.5px solid var(--ink);background:var(--paper)}
 .mk::before{content:"";position:absolute;left:100%;top:50%;width:18px;height:1px;background:var(--ink)}

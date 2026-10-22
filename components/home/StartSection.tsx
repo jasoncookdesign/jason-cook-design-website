@@ -45,7 +45,7 @@ const stages = [
 
 function ScheduleFigure() {
   return (
-    <figure className="sheet" aria-labelledby="fig1">
+    <figure className="sheet" aria-labelledby="fig1" data-build>
       <div className="sheet-top">
         <div className="ttl">
           <span className="idx">FIG. 1</span>
@@ -124,7 +124,7 @@ export default function StartSection() {
         </div>
       </div>
       <ScheduleFigure />
-      <div className="cells c3">
+      <div className="cells c3" data-build>
         {solutionCards.map((card) => (
           <article key={card.label} className="cell">
             <span className="idx">{card.n}</span>

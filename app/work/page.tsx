@@ -33,7 +33,7 @@ export default function WorkPage() {
       </section>
 
       <section className="pgs" data-sheet="A-102" data-name="INDEX">
-        <div className="rows">
+        <div className="rows" data-build>
           {caseStudies.map((cs) => (
             <Link key={cs.slug} href={`/work/${cs.slug}`} className="row thumb">
               <span className="k">{cs.client}</span>

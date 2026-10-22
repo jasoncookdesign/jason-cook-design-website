@@ -27,7 +27,7 @@ export default function OperatingProblem() {
           <h2>You&apos;ve outgrown the systems you built to get here.</h2>
         </div>
       </div>
-      <div className="cells c2">
+      <div className="cells c2" data-build>
         {problemCards.map((card) => (
           <article key={card.label} className="cell">
             <h3>{card.label}</h3>

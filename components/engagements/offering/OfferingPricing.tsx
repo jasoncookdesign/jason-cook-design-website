@@ -6,7 +6,7 @@ export default function OfferingPricing() {
         <div className="t">
           <h2>What it costs</h2>
         </div>
-        <div className="pl">
+        <div className="pl" data-build>
           <span className="regs" aria-hidden="true">
             <i />
             <i />

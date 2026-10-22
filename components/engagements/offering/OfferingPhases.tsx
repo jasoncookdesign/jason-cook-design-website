@@ -57,7 +57,7 @@ export default function OfferingPhases() {
           <h2>Six phases. Each one is a place you can stop.</h2>
         </div>
       </div>
-      <ol className="rows">
+      <ol className="rows" data-build>
         {phases.map((p, i) => (
           <li key={p.label} className="row hold">
             <span className="k">{String(i).padStart(2, "0")}</span>

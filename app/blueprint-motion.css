@@ -42,6 +42,20 @@ a:focus-visible, summary:focus-visible, button:focus-visible { transition: outli
 html.js:not(.rm):not(.layers) .rv { opacity: 0; transform: translateY(12px); transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); }
 html.js:not(.rm):not(.layers) .rv.in, .rv.in { opacity: 1; transform: none; }
 
+/* ---------- builds inside a revealed block ----------
+   A block fades in when it scrolls into view; whatever builds inside it starts 350 ms later, so the fade is not
+   covering the opening of the build. Drawn shapes (the Gantt figure) wait for their block instead of running on page
+   load. Children of a data-build container step in, 60 ms apart (RevealOnScroll numbers them in --i, capped at 7).
+   Transform and opacity only; backwards fill, so nothing is held after the build and hover is unaffected. */
+html.js:not(.rm):not(.layers) .rv { --rv-lead: 350ms; }
+html.js:not(.rm):not(.layers) .rv:not(.in) :is(.bx, .dec) { animation-play-state: paused; }
+@keyframes build-in { from { opacity: 0; transform: translateY(10px); } }
+html.js:not(.rm):not(.layers) .rv:not(.in) [data-build] > *, html.js:not(.rm):not(.layers) .rv[data-build]:not(.in) > * { opacity: 0; }
+html.js:not(.rm):not(.layers) .rv.in [data-build] > *, html.js:not(.rm):not(.layers) .rv.in[data-build] > * {
+  animation: build-in .5s var(--ease) backwards;
+  animation-delay: calc(var(--rv-lead) + var(--i, 0) * 60ms);
+}
+
 /* ---------- privacy notice: a fixed bar along the foot of the viewport ---------- */
 .privacy { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; padding: 14px var(--pad); background: var(--paper); border-top: 1px solid var(--ink); animation: menu-in var(--t) var(--ease) both; }
 .privacy p { margin: 0; max-width: 72ch; font: 400 14px/1.5 var(--mono); letter-spacing: 0.02em; color: var(--ink2); }

@@ -20,7 +20,7 @@ export default function DeliveryOptionsSection() {
           <h2>Two ways to get it built.</h2>
         </div>
       </div>
-      <div className="cells c2">
+      <div className="cells c2" data-build>
         {options.map((opt) => (
           <article key={opt.label} className="cell">
             <p className="lbl">{opt.label}</p>

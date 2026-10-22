@@ -32,7 +32,7 @@ export default function WritingPage() {
       </section>
 
       <section className="pgs" data-sheet="A-102" data-name="INDEX">
-        <div className="rows">
+        <div className="rows" data-build>
           {posts.map((post) => {
             const displayDate = new Date(
               post.date + "T00:00:00"

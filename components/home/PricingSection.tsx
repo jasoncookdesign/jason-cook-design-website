@@ -55,7 +55,7 @@ export default function PricingSection() {
         </div>
       </div>
 
-      <div className="plates">
+      <div className="plates" data-build>
         {/* Offering Engagement entry plate. */}
         <div className="pl">
           <Regs />
