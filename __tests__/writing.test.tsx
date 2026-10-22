@@ -49,8 +49,9 @@ describe("Writing index page", () => {
 describe("Writing index page, the longform module", () => {
   const BOOK_HREF = "/writing/longform";
 
+  const announced = book.announcementSlug;
   afterEach(() => {
-    delete book.announcementSlug;
+    book.announcementSlug = announced;
   });
 
   it("shows the book's cover as a thumbnail that links to the book page", () => {
@@ -82,6 +83,7 @@ describe("Writing index page, the longform module", () => {
   });
 
   it("offers no link to a post about the book until one is set", () => {
+    delete book.announcementSlug;
     render(<WritingPage />);
     expect(screen.queryByRole("link", { name: /story behind the book/ })).toBeNull();
   });
@@ -123,9 +125,32 @@ describe("Writing index page, the longform module", () => {
   });
 });
 
+describe("The post announcing the book", () => {
+  const post = posts.find((p) => p.slug === book.announcementSlug);
+
+  it("is the post the book record points to, and the Writing page links it", () => {
+    expect(post).toBeTruthy();
+    render(<WritingPage />);
+    const cta = screen.getByRole("link", { name: /story behind the book/ });
+    expect(cta.getAttribute("href")).toBe(`/writing/blog/${book.announcementSlug}`);
+  });
+
+  it("is dated, tagged, and ends by pointing readers to the book page", () => {
+    expect(post!.date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(post!.tags.length).toBeGreaterThan(0);
+    const last = [...post!.content].reverse().find((b) => b.type === "p")!;
+    expect(last.type === "p" && last.html).toContain(`href="${book.href}"`);
+  });
+
+  it("uses the book's mockup as its cover, and the file exists", () => {
+    expect(post!.coverImage).toBe("/images/book/book-mockup.jpg");
+    expect(fs.existsSync(path.join(process.cwd(), "public", post!.coverImage!))).toBe(true);
+  });
+});
+
 describe("Writing post data", () => {
-  it("contains all 5 posts with required fields", () => {
-    expect(posts).toHaveLength(5);
+  it("contains all 6 posts with required fields", () => {
+    expect(posts).toHaveLength(6);
     for (const post of posts) {
       expect(post.slug).toBeTruthy();
       expect(post.title).toBeTruthy();

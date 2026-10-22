@@ -629,4 +629,25 @@ export const posts: Post[] = [
       { type: "img", src: "/images/blog/rebuilding-jasoncookdesign/02-home.webp", alt: "The rebuilt home page at desktop and phone width.", credit: "The rebuilt home page at desktop and phone width." },
     ],
   },
+  // ─── The Blog Post That Became a Book ────────────────────────────────────
+  {
+    slug: "the-blog-post-that-became-a-book",
+    title: "The Blog Post That Became a Book",
+    date: "2026-10-22",
+    tags: ["writing", "governance", "systems-thinking"],
+    excerpt: "I started with an idea for a blog post. It kept growing until a post couldn't hold it, so I'm posting the book instead, free to read and download.",
+    coverImage: "/images/book/book-mockup.jpg",
+    content: [
+      { type: "img", src: "/images/book/book-mockup.jpg", alt: "The book as a hardcover at an angle, its spine showing: a parchment cover with a script texture above a dark cover with the title The Constitution and the Machine.", credit: "The Constitution and the Machine, free to read and download." },
+      { type: "p", html: "The Constitution and the Machine started as an idea for a blog post. Today it's a book, and you can read it here for free." },
+      { type: "p", html: "The first question was simple: could a democracy work without political parties? I asked it as a thought experiment, mostly to see what would happen when I pulled on it. Within a few exchanges two problems showed up, and both of them were mine. People group up on their own, so a ban on parties would only produce unofficial ones. And a system that bans organized groups hands an advantage to whoever already has money or name recognition. Those looked like two problems about parties. They were one problem about power changing form." },
+      { type: "p", html: "This year I asked a bigger version of the question: what comes after democracy? The answer I kept coming back to was uncomfortable. The same technology that could let citizens take part in decisions continuously could just as easily run a computational autocracy, and both futures run on the same architecture. That gave me a design problem I could say in one line. Can a constitution stop power from converting? I call that power conversion: power in one place, such as money, office, or information, turning into power somewhere else. It's what the book is about." },
+      { type: "p", html: "Then came the research, which is where a blog post stopped being the right container. I used AI tools to dig through sources, and it went the way good research goes. Some of what I believed held up, and some of it didn't. The hypothesis that held was the one I started with: a distributed democracy and a computational autocracy run on the same technological architecture. The one that didn't was my assumption that real expansions of political power need violence. Athens didn't become a democracy by overthrowing a king, and Britain widened its vote through three Reform Acts, each passed by legislation. I count both as results, because a refuted hypothesis keeps you from building on it." },
+      { type: "p", html: "Each answer raised two more questions, and the idea grew past what a post could hold. A post gives you a conclusion. This needed room to show how I got there, including the parts I threw out." },
+      { type: "p", html: "The habit that refined the idea most was attacking the position before anyone else could. I set up a hostile panel of AI reviewers, built to take the argument apart, and then I rebuilt what survived. I ran that cycle many times. Each pass left the position smaller in some places and sturdier in the ones that mattered. It works on any idea. Set out to break it, take the objections seriously, and rebuild. What comes out is a position you can defend, because you've already watched it get attacked." },
+      { type: "p", html: "The rebuilding was my part. I outlined the argument myself, the problem and what answers it. I revised again and again, polishing arguments and messaging until my words conveyed a well-honed idea clearly in the final version. The panel could show me where the argument was weak. It couldn't tell me what I believed, so I decided what stayed." },
+      { type: "p", html: "The book runs from ancient Athens through the American founding to the systems running today, in five parts with a Foreword and a Coda. It ends on what a person can do: state constitutions, city charters, and the rules your own community already lets you amend. It's free in two formats, a PDF made for reading on a screen and an EPUB, and there's no price, signup, or gate on either. The question it asks matters to everyone, and I don't want anything standing between the question and a reader: when power in one place can turn into power everywhere, what keeps a free people free?" },
+      { type: "p", html: "Read it or download it on <a href=\"/writing/longform\">the book's page</a>." },
+    ],
+  },
 ];

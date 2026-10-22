@@ -14,7 +14,8 @@ export interface Book {
 export const book: Book = {
   slug: "the-constitution-and-the-machine",
   href: "/writing/longform",
-  // Set to the slug of the blog post that announces the book to link it from the Writing page. A slug only, so this module does not depend on the blog collection.
+  // The slug of the blog post that announces the book, linked from the Writing page. A slug only, so this module does not depend on the blog collection.
+  announcementSlug: "the-blog-post-that-became-a-book",
   title: "The Constitution and the Machine",
   subtitle: "Technology, Governance, and the Limits of Power",
   author: "Jason Cook",
