@@ -72,10 +72,10 @@ describe("secondary button", () => {
     expect(r).not.toMatch(/--signal/);
   });
 
-  it("goes aqua on hover", () => {
+  it("goes aqua on hover and takes an ivory border, so the change is unmistakable against the blue", () => {
     const r = rule(".btn.secondary:hover");
     expect(r).toMatch(/background:\s*var\(--hover-fill\)/);
-    expect(r).toMatch(/border-color:\s*var\(--hover-fill\)/);
+    expect(r).toMatch(/border-color:\s*var\(--ink\)/);
     expect(r).toMatch(/color:\s*var\(--paper\)/);
   });
 });

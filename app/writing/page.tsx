@@ -59,7 +59,9 @@ export default function WritingPage() {
                     ))}
                   </div>
                 </div>
-                <span className="go" aria-hidden="true" />
+                <span className="btn secondary sm">
+                  Read the post <span aria-hidden="true">&rarr;</span>
+                </span>
               </Link>
             );
           })}

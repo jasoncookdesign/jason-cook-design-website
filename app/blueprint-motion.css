@@ -24,10 +24,9 @@ a.row:hover .btn span[aria-hidden] { transform: translateX(4px); }
 .bar .menu nav { animation: menu-in var(--t) var(--ease) both; }
 
 a.row, a.cell { transition: background-color var(--t) var(--ease); }
-.row .go { transition: transform var(--t) var(--ease), background-color var(--t) var(--ease), color var(--t) var(--ease), border-color var(--t) var(--ease); }
-a.row:hover .go { transform: translateX(4px); }
 .faq-trigger { transition: background-color var(--t) var(--ease); }
-.faq-trigger .mark::after { transition: transform var(--t) var(--ease); }
+.faq-trigger .mark::before { transition: background-color var(--t) var(--ease); }
+.faq-trigger .mark::after { transition: transform var(--t) var(--ease), background-color var(--t) var(--ease); }
 .faq-panel { animation: menu-in var(--t) var(--ease) both; }
 
 .seg > * { transition: background-color var(--t) var(--ease), color var(--t) var(--ease); }

@@ -1,11 +1,13 @@
 /**
  * Button levels in use. The privacy notice pairs a secondary (Accept) with a tertiary (Decline), so a cookie
  * choice never competes with the page's primary action. Closing links back to an index are tertiary, and so is the
- * header's call to action, which leaves the hero button as the one primary on the home page.
+ * header's call to action, which leaves the hero button as the one primary on the home page. The booking buttons in
+ * the two engagement cards sit side by side, so they are secondary.
  */
 import { render, screen } from "@testing-library/react";
 import PrivacyBanner from "@/components/layout/PrivacyBanner";
 import Nav from "@/components/layout/Nav";
+import PricingSection from "@/components/home/PricingSection";
 import { fireEvent } from "@testing-library/react";
 
 describe("privacy notice buttons", () => {
@@ -43,5 +45,17 @@ describe("header call to action", () => {
     fireEvent.click(container.querySelector("button.menu-btn")!);
     const menuCta = container.querySelector("#mobile-menu a.menu-cta")!;
     expect(menuCta.classList.contains("tertiary")).toBe(true);
+  });
+});
+
+describe("engagement card booking buttons", () => {
+  it("are secondary, since two of them sit side by side", () => {
+    const { container } = render(<PricingSection />);
+    const buttons = Array.from(container.querySelectorAll("a.btn"));
+    expect(buttons.length).toBeGreaterThanOrEqual(2);
+    buttons.forEach((b) => {
+      expect(b.classList.contains("secondary")).toBe(true);
+      expect(b.classList.contains("tertiary")).toBe(false);
+    });
   });
 });

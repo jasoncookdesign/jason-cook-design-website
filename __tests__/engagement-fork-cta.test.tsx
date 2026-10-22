@@ -57,7 +57,7 @@ describe("row button hover", () => {
     const m = patterns.match(/a\.row:hover \.btn\.secondary,\s*a\.row:focus-visible \.btn\.secondary\s*\{([^}]*)\}/);
     expect(m).not.toBeNull();
     expect(m![1]).toMatch(/background:\s*var\(--hover-fill\)/);
-    expect(m![1]).toMatch(/border-color:\s*var\(--hover-fill\)/);
+    expect(m![1]).toMatch(/border-color:\s*var\(--ink\)/);
     expect(m![1]).toMatch(/color:\s*var\(--paper\)/);
   });
 
