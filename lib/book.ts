@@ -5,7 +5,7 @@ export interface BookPart { numeral: string; title: string; chapters: string[] }
 export interface BookFormat { name: string; href: string; file: string }
 export interface BookPlate { src: string; alt: string; caption: string; width: number; height: number }
 export interface Book {
-  slug: string; title: string; subtitle: string; author: string; description: string; blurb: string[]; disclaimer: string;
+  slug: string; href: string; announcementSlug?: string; title: string; subtitle: string; author: string; description: string; blurb: string[]; disclaimer: string;
   pages: number; formats: { pdf: BookFormat; epub: BookFormat };
   frontMatter: string; backMatter: string; parts: BookPart[]; plates: BookPlate[];
 }
@@ -13,6 +13,8 @@ export interface Book {
 /** The free book, listed under Writing. The downloads live in public/book/; the page shows a size for a file only when the file is present at build time. */
 export const book: Book = {
   slug: "the-constitution-and-the-machine",
+  href: "/writing/longform",
+  // Set to the slug of the blog post that announces the book to link it from the Writing page. A slug only, so this module does not depend on the blog collection.
   title: "The Constitution and the Machine",
   subtitle: "Technology, Governance, and the Limits of Power",
   author: "Jason Cook",

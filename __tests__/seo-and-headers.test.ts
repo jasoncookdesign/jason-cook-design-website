@@ -25,11 +25,11 @@ describe("sitemap.xml", () => {
   });
 
   it("lists every page, case study, and post on the production host", () => {
-    for (const path of ["", "/about", "/capabilities", "/contact", "/engagements", "/engagements/offering", "/engagements/operating", "/legal", "/work", "/writing"]) {
+    for (const path of ["", "/about", "/capabilities", "/contact", "/engagements", "/engagements/offering", "/engagements/operating", "/legal", "/work", "/writing", "/writing/longform"]) {
       expect(urls).toContain(`${SITE}${path}`);
     }
     for (const cs of caseStudies) expect(urls).toContain(`${SITE}/work/${cs.slug}`);
-    for (const p of posts) expect(urls).toContain(`${SITE}/writing/${p.slug}`);
+    for (const p of posts) expect(urls).toContain(`${SITE}/writing/blog/${p.slug}`);
   });
 
   it("has no duplicates and no other host", () => {

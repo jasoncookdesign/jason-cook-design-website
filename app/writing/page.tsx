@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { posts } from "@/lib/writing";
-import { book } from "@/lib/book";
+import { posts, postHref } from "@/lib/writing";
+import LongformEntry from "@/components/writing/LongformEntry";
 import { withSocial } from "@/lib/metadata";
 
 export const metadata = withSocial({
@@ -25,13 +25,17 @@ export default function WritingPage() {
           <h1>Writing</h1>
           <div>
             <p className="lead">
-              Notes from the seam between design and engineering.
+              Notes from the seam between design and engineering, and a{" "}
+              <a href="#longform">free book</a>.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="pgs" data-sheet="A-102" data-name="INDEX">
+      <section className="pgs" data-sheet="A-102" data-name="BLOG">
+        <div className="pg">
+          <h2 className="eyebrow">Blog</h2>
+        </div>
         <div className="rows" data-build>
           {newestFirst.map((post) => {
             const displayDate = new Date(
@@ -44,7 +48,7 @@ export default function WritingPage() {
             return (
               <Link
                 key={post.slug}
-                href={`/writing/${post.slug}`}
+                href={postHref(post.slug)}
                 className="row"
               >
                 <span className="k">{displayDate}</span>
@@ -68,21 +72,14 @@ export default function WritingPage() {
         </div>
       </section>
 
-      <section className="pgs" data-sheet="A-103" data-name="BOOK">
+      <section className="pgs" id="longform" data-sheet="A-103" data-name="LONGFORM">
+        <div className="pg">
+          <h2 className="eyebrow">Longform</h2>
+        </div>
         <div className="rows">
-          <Link href={`/writing/${book.slug}`} className="row book-entry">
-            <h2 className="k">Book</h2>
-            <div>
-              <h3>{book.title}</h3>
-              <p>{book.subtitle}</p>
-              <div className="tags">
-                <span className="tag">Free</span>
-                <span className="tag">PDF</span>
-                <span className="tag">EPUB</span>
-              </div>
-            </div>
-            <span className="go" aria-hidden="true" />
-          </Link>
+          <div className="pg">
+            <LongformEntry />
+          </div>
         </div>
       </section>
     </>

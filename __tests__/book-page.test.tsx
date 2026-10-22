@@ -1,6 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import BookPage from "@/components/writing/BookPage";
-import { metadata } from "@/app/writing/the-constitution-and-the-machine/page";
+import { metadata } from "@/app/writing/longform/page";
 import { book, fileSizeLabel } from "@/lib/book";
 
 jest.mock("@/lib/book", () => ({ ...jest.requireActual("@/lib/book"), fileSizeLabel: jest.fn() }));
@@ -58,9 +58,12 @@ describe("Book page content", () => {
     expect(document.body.textContent).not.toMatch(/Screen PDF, 172/);
   });
 
-  it("makes the PDF the one primary action and the EPUB the secondary", () => {
-    expect(screen.getByRole("link", { name: /Download the PDF/ }).className).not.toMatch(/ghost/);
-    expect(screen.getByRole("link", { name: /Download the EPUB/ }).className).toMatch(/ghost/);
+  it("sets both downloads as secondary buttons", () => {
+    for (const name of [/Download the PDF/, /Download the EPUB/]) {
+      const cls = screen.getByRole("link", { name }).className;
+      expect(cls).toMatch(/\bsecondary\b/);
+      expect(cls).not.toMatch(/ghost/);
+    }
   });
 
   it("prints the blurb verbatim", () => {
@@ -92,7 +95,9 @@ describe("Book page content", () => {
 
   it("carries the book's own disclaimer and a way back to Writing", () => {
     expect(screen.getByText("The views in this book are his own and do not represent any client or employer.")).toBeTruthy();
-    expect(screen.getByRole("link", { name: /All writing/ }).getAttribute("href")).toBe("/writing");
+    const back = screen.getByRole("link", { name: /All writing/ });
+    expect(back.getAttribute("href")).toBe("/writing");
+    expect(back.className).toMatch(/\btertiary\b/);
   });
 });
 
@@ -119,6 +124,6 @@ describe("Book page route", () => {
   });
 
   it("is listed in the sitemap", () => {
-    expect(sitemap().map((e) => e.url)).toContain("https://jasoncookdesign.com/writing/the-constitution-and-the-machine");
+    expect(sitemap().map((e) => e.url)).toContain("https://jasoncookdesign.com/writing/longform");
   });
 });

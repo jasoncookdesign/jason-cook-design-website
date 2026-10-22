@@ -37,13 +37,13 @@ export default function BookPage() {
           <p className="sub">By {book.author}</p>
           <div className="book-actions">
             <div className="book-action">
-              <a className="btn" href={book.formats.pdf.href} download>
+              <a className="btn secondary" href={book.formats.pdf.href} download>
                 Download the PDF
               </a>
               {pdfSize && <span className="book-size">{pdfSize}</span>}
             </div>
             <div className="book-action">
-              <a className="btn ghost" href={book.formats.epub.href} download>
+              <a className="btn secondary" href={book.formats.epub.href} download>
                 Download the EPUB
               </a>
               {epubSize && <span className="book-size">{epubSize}</span>}
@@ -105,7 +105,7 @@ export default function BookPage() {
       <section className="pgs" data-sheet="A-105" data-name="CLOSE">
         <div className="pg">
           <p className="book-disclaimer">{book.disclaimer}</p>
-          <Link href="/writing" className="btn ghost">
+          <Link href="/writing" className="btn tertiary">
             &larr; All writing
           </Link>
         </div>
