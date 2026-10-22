@@ -1,6 +1,6 @@
 /**
- * Blog post data — mechanically ported from jasoncookdesign.github.io/content/blog/*.md.
- * No new copy authored; all content is verbatim from the source markdown files.
+ * Blog post data. The first four posts are mechanically ported from jasoncookdesign.github.io/content/blog/*.md,
+ * verbatim. "Rebuilding jasoncookdesign.com" was written for this site.
  */
 
 export type ContentBlock =
@@ -577,6 +577,48 @@ export const posts: Post[] = [
           },
         ],
       },
+    ],
+  },
+  // ─── Rebuilding jasoncookdesign.com ──────────────────────────────────────
+  {
+    slug: "rebuilding-jasoncookdesign-com",
+    title: "Rebuilding jasoncookdesign.com, Start to Finish",
+    shortTitle: "Rebuilding jasoncookdesign.com",
+    date: "2026-10-22",
+    tags: ["design", "process", "case-study"],
+    excerpt: "The process behind the redesign, from audit to launch.",
+    coverImage: "/images/blog/rebuilding-jasoncookdesign/01-before-after.webp",
+    content: [
+      { type: "p", html: "Until this fall, the first thing a visitor to jasoncookdesign.com saw was my face under a headline that read \"I'll help you deliver a world-class digital product.\" That headline went up in December 2024 and ran until October 2026, on a Bootstrap template I first put online in April 2019. The site had a hero, eight case studies, a pricing section, and a blog. It no longer described what I do, which is build working systems for businesses with a new offering to launch or a system to fix." },
+      { type: "img", src: "/images/blog/rebuilding-jasoncookdesign/01-before-after.webp", alt: "Before and after: the old home page and the rebuilt one.", credit: "Before and after: the old home page and the rebuilt one." },
+      { type: "h2", text: "Context" },
+      { type: "p", html: "The old site was a customized Bootstrap template on GitHub Pages. I put it up quickly to get my contact information listed, and I was too busy working for other people to finish the thought for years. Since then, what I offer has come into focus, and the site should say so." },
+      { type: "h2", text: "Audit" },
+      { type: "p", html: "Before I drew anything, I captured the live site as it stood: home, case studies, blog, and booking pages, at desktop and phone width. The content was relevant, but the delivery was flat, plain-vanilla non-design. My value had also sharpened since I built the site. I could say more clearly how I can help, and I'd defined two ways to engage. A page that couldn't carry that merited a full redesign." },
+      { type: "p", html: "The catch was that some essential services ran on the legacy site, and they had to keep working through the cutover: the blog posts, my calendar integration, and the PDFs of my resumes and old portfolio. Each old link still works. The blog posts and case studies redirect to their new pages, and the three PDFs stay where they were. The calendar had to keep working too, so the new Contact page carries the same Cal.com booking as an embedded widget, and the old booking links still reach it. The new information architecture gave every section of the old site a logical home." },
+      { type: "img", src: "/images/blog/rebuilding-jasoncookdesign/05-reconstructed-ia.webp", alt: "Reconstructed information architecture: the old static site on the left, the rebuilt site on the right, redirects between them. Mapped after launch.", credit: "Reconstructed information architecture: the old static site on the left, the rebuilt site on the right, redirects between them. Mapped after launch." },
+      { type: "h2", text: "Design iterations" },
+      { type: "p", html: "I started with a minimal expression of the brand and rendered every page. A minimal design is a good baseline because you can build on it, and this one reflected the new information architecture with good structure. It was ready enough that I could have launched it." },
+      { type: "img", src: "/images/blog/rebuilding-jasoncookdesign/07-minimal-version.webp", alt: "The minimal version, fully rendered before I set it aside: home and the Engagements page.", credit: "The minimal version, fully rendered before I set it aside: home and the Engagements page." },
+      { type: "p", html: "It doesn't suit Jason Cook Design because it has no opinion. It's neutral, so it can become anything, and that leaves it with no identity of its own. The site should have the opinions I'd bring to your project." },
+      { type: "img", src: "/images/blog/rebuilding-jasoncookdesign/07a-design-progression.webp", alt: "The progression, left to right: legacy site, minimal, A document, C cut-list, and the blueprint that shipped.", credit: "The progression, left to right: legacy site, minimal, A document, C cut-list, and the blueprint that shipped." },
+      { type: "p", html: "<strong>A, document.</strong> This is where I started adding some style. I only looked at it in light mode, and I kept going and made other iterations before I went back to it." },
+      { type: "p", html: "<strong>C, cut-list.</strong> Here I was trying out different combinations of design tokens." },
+      { type: "img", src: "/images/blog/rebuilding-jasoncookdesign/08-direction-a-c-light.webp", alt: "Direction A, a document, and direction C, a cut-list, in light mode, with placeholder content.", credit: "Direction A, a document, and direction C, a cut-list, in light mode, with placeholder content." },
+      { type: "p", html: "<strong>Blueprint.</strong> When I finally flipped A to dark mode, it came out blue, and I immediately had the blueprint idea. The rule marks in the layout, thin white lines on blue, started to look like a blueprint. The metaphor holds for what I do, so I leaned into it. That's why the \"layers\" button in the header exposes the structure underneath." },
+      { type: "img", src: "/images/blog/rebuilding-jasoncookdesign/09-direction-a-light-dark.webp", alt: "Direction A in light and in dark. The dark version came out blue.", credit: "Direction A in light and in dark. The dark version came out blue." },
+      { type: "img", src: "/images/blog/rebuilding-jasoncookdesign/11-layers-view.webp", alt: "The layers view on the shipped home page.", credit: "The layers view on the shipped home page." },
+      { type: "p", html: "I set out to express the design starting with the brand exercise: what the brand was about. I still left enough room for exploration, and in doing so the UI concept emerged naturally." },
+      { type: "h2", text: "Identity" },
+      { type: "p", html: "I've used an isometric cube in a few logos recently, so I started there on reflex. While I was shaping the curves of the letterforms, I turned off the transform by accident and found that the letters had character on their own. They looked better flat than projected onto the face of a die." },
+      { type: "img", src: "/images/blog/rebuilding-jasoncookdesign/10-logo-iterations.webp", alt: "Rounds of logo exploration, with the locked set at the center.", credit: "Rounds of logo exploration, with the locked set at the center." },
+      { type: "p", html: "I drew the mark on a grid. Each letter sits in an 84-by-100 cell on a grid of 21-unit modules, and the one stripe is 8 units thick, the same as the notch in the J. The construction drawing sits in the hero with its dimensions showing." },
+      { type: "img", src: "/images/blog/rebuilding-jasoncookdesign/02-home.webp", alt: "The rebuilt home page at desktop and phone width.", credit: "The rebuilt home page at desktop and phone width." },
+      { type: "p", html: "The palette is built to stand out against the blueprint background. Orange reads loudest against the blue, so I use it sparingly, as a marker for what matters." },
+      { type: "h2", text: "Outcome" },
+      { type: "p", html: "The site went live on October 19, 2026, with 22 pages: the home page; Work, Engagements, Writing, About, Capabilities, and Contact; a legal page; the two Engagements paths, offering and operating; eight case studies; and four blog posts. Every old page either redirects to its new home or still loads where it was. The blog's RSS feed is the one thing I retired." },
+      { type: "p", html: "The design is the visible story, but the technical one is the cutover: moving a running site to a new structure and design while it stayed up. The content and build work behind it isn't shown here. The site shipped." },
+      { type: "p", html: "A site that says it builds working systems should keep working while it's rebuilt." },
     ],
   },
 ];
