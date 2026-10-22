@@ -27,7 +27,7 @@ export const book: Book = {
     "The Constitution has served for more than two centuries, and it has been amended twenty-seven times along the way. This book invites you to read it as a working design, and to help decide what it needs next.",
   ],
   disclaimer: "The views in this book are his own and do not represent any client or employer.",
-  pages: 172,
+  pages: 173,
   formats: {
     pdf: { name: "Screen PDF", href: "/book/the-constitution-and-the-machine.pdf", file: "book/the-constitution-and-the-machine.pdf" },
     epub: { name: "EPUB", href: "/book/the-constitution-and-the-machine.epub", file: "book/the-constitution-and-the-machine.epub" },

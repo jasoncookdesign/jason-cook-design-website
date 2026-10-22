@@ -51,11 +51,11 @@ describe("Book page content", () => {
     expect(within(pdf.parentElement as HTMLElement).getByText("2.4 MB")).toBeTruthy();
     expect(within(epub.parentElement as HTMLElement).getByText("0.9 MB")).toBeTruthy();
     expect(pdf.parentElement).not.toBe(epub.parentElement);
-    const free = screen.getByText("Free \u00b7 172 pages");
+    const free = screen.getByText("Free \u00b7 173 pages");
     expect(free.parentElement).not.toBe(pdf.parentElement);
     expect(pdf.compareDocumentPosition(free) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(epub.compareDocumentPosition(free) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(document.body.textContent).not.toMatch(/Screen PDF, 172/);
+    expect(document.body.textContent).not.toMatch(/Screen PDF, 173/);
   });
 
   it("sets both downloads as secondary buttons", () => {
@@ -107,7 +107,7 @@ describe("Book page before the files are added", () => {
     render(<BookPage />);
     expect(document.body.textContent).not.toMatch(/\bMB\b/);
     expect(screen.getByRole("link", { name: /Download the PDF/ })).toBeTruthy();
-    expect(screen.getByText("Free \u00b7 172 pages")).toBeTruthy();
+    expect(screen.getByText("Free \u00b7 173 pages")).toBeTruthy();
   });
 });
 
