@@ -149,12 +149,12 @@ describe("case study sections that carry a diagnosis note", () => {
 });
 
 describe("writing index", () => {
-  it("lists posts newest first, the date key running downward", () => {
+  it("lists posts newest first under /writing/blog, the date key running downward", () => {
     const { container } = render(<WritingPage />);
-    const hrefs = Array.from(container.querySelectorAll('.rows > a.row[href^="/writing/"]')).map((r) => r.getAttribute("href"));
-    const expected = [...posts].sort((a, b) => b.date.localeCompare(a.date)).map((p) => `/writing/${p.slug}`);
+    const hrefs = Array.from(container.querySelectorAll('[data-name="BLOG"] .rows > a.row')).map((r) => r.getAttribute("href"));
+    const expected = [...posts].sort((a, b) => b.date.localeCompare(a.date)).map((p) => `/writing/blog/${p.slug}`);
     expect(hrefs).toEqual(expected);
-    expect(hrefs[0]).toBe("/writing/rebuilding-jasoncookdesign-com");
+    expect(hrefs[0]).toBe("/writing/blog/rebuilding-jasoncookdesign-com");
   });
 
   it("has no post counter in the hero", () => {
@@ -167,7 +167,7 @@ describe("writing index", () => {
 
   it("lists one ruled row per post: a date key, the title, the excerpt, and tags", () => {
     const { container } = render(<WritingPage />);
-    const rows = container.querySelectorAll('.rows > a.row[href^="/writing/"]');
+    const rows = container.querySelectorAll('[data-name="BLOG"] .rows > a.row');
     expect(rows).toHaveLength(posts.length);
     const newestFirst = [...posts].sort((a, b) => b.date.localeCompare(a.date));
     rows.forEach((row, i) => {
@@ -177,6 +177,14 @@ describe("writing index", () => {
       expect(row.querySelector(".btn.secondary.icon")!.textContent).toBe("→");
       expect(row.querySelector(".go")).toBeNull();
     });
+  });
+
+  it("labels the blog and longform sections with their own header bands, longform after blog", () => {
+    const { container } = render(<WritingPage />);
+    const labels = Array.from(container.querySelectorAll(".pgs > .pg > .eyebrow")).map((e) => e.textContent);
+    expect(labels).toEqual(["Blog", "Longform"]);
+    const sheets = Array.from(container.querySelectorAll("[data-name]")).map((e) => e.getAttribute("data-name"));
+    expect(sheets.indexOf("LONGFORM")).toBeGreaterThan(sheets.indexOf("BLOG"));
   });
 });
 

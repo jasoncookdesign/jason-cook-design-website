@@ -30,20 +30,25 @@ describe("legacy jasoncookdesign.github.io URLs keep working", () => {
     ["/index.html", "/"],
     ["/blog", "/writing"],
     ["/blog/index.html", "/writing"],
-    ["/blog/the-quality-gate", "/writing/the-quality-gate"],
-    ["/blog/why-this-blog-exists", "/writing/why-this-blog-exists"],
+    ["/blog/the-quality-gate", "/writing/blog/the-quality-gate"],
+    ["/blog/why-this-blog-exists", "/writing/blog/why-this-blog-exists"],
     [
       "/blog/your-ai-doesnt-have-to-go-rogue-to-break-your-rules",
-      "/writing/your-ai-doesnt-have-to-go-rogue-to-break-your-rules",
+      "/writing/blog/your-ai-doesnt-have-to-go-rogue-to-break-your-rules",
     ],
     [
       "/blog/youre-not-building-a-tool-youre-building-an-organization",
-      "/writing/youre-not-building-a-tool-youre-building-an-organization",
+      "/writing/blog/youre-not-building-a-tool-youre-building-an-organization",
     ],
     [
       "/blog/you-re-not-building-a-tool-you-re-building-an-organization-treat-it-that-way",
-      "/writing/youre-not-building-a-tool-youre-building-an-organization",
+      "/writing/blog/youre-not-building-a-tool-youre-building-an-organization",
     ],
+    ["/writing/the-quality-gate", "/writing/blog/the-quality-gate"],
+    ["/writing/why-this-blog-exists", "/writing/blog/why-this-blog-exists"],
+    ["/writing/your-ai-doesnt-have-to-go-rogue-to-break-your-rules", "/writing/blog/your-ai-doesnt-have-to-go-rogue-to-break-your-rules"],
+    ["/writing/youre-not-building-a-tool-youre-building-an-organization", "/writing/blog/youre-not-building-a-tool-youre-building-an-organization"],
+    ["/writing/rebuilding-jasoncookdesign-com", "/writing/blog/rebuilding-jasoncookdesign-com"],
   ])("%s permanently redirects to %s", async (from, to) => {
     expect(await resolve(from)).toEqual({ to, permanent: true });
   });
@@ -62,7 +67,7 @@ describe("legacy jasoncookdesign.github.io URLs keep working", () => {
   });
 
   it("leaves current routes and the retired feed alone", async () => {
-    for (const path of ["/", "/work", "/writing/the-quality-gate", "/engagements", "/engagements/operating", "/engagements/offering", "/blog/feed.xml"]) {
+    for (const path of ["/", "/work", "/writing", "/writing/blog/the-quality-gate", "/writing/longform", "/engagements", "/engagements/operating", "/engagements/offering", "/blog/feed.xml"]) {
       expect(await resolve(path)).toBeNull();
     }
   });

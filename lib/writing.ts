@@ -25,6 +25,9 @@ export interface Post {
   content: ContentBlock[];
 }
 
+/** Blog posts live under /writing/blog; longform works (the book) live under /writing/longform. */
+export const postHref = (slug: string) => `/writing/blog/${slug}`;
+
 export const posts: Post[] = [
   // ─── You're Not Building a Tool ──────────────────────────────────────────
   {
@@ -575,7 +578,7 @@ export const posts: Post[] = [
           },
           {
             ref: "5",
-            html: '<a href="/writing/youre-not-building-a-tool-youre-building-an-organization" class="underline">You\'re Not Building a Tool. You\'re Building an Organization. Treat it That Way.</a>',
+            html: '<a href="/writing/blog/youre-not-building-a-tool-youre-building-an-organization" class="underline">You\'re Not Building a Tool. You\'re Building an Organization. Treat it That Way.</a>',
           },
         ],
       },

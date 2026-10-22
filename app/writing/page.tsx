@@ -1,15 +1,16 @@
 import Link from "next/link";
-import { posts } from "@/lib/writing";
+import { posts, postHref } from "@/lib/writing";
+import LongformEntry from "@/components/writing/LongformEntry";
 import { withSocial } from "@/lib/metadata";
 
 export const metadata = withSocial({
   title: "Writing | Jason Cook Design",
   description:
-    "Notes from the seam between design and engineering, by Jason Cook.",
+    "Notes from the seam between design and engineering, and a free book on technology and governance, by Jason Cook.",
   openGraph: {
     title: "Writing | Jason Cook Design",
     description:
-      "Notes from the seam between design and engineering, by Jason Cook.",
+      "Notes from the seam between design and engineering, and a free book on technology and governance, by Jason Cook.",
   },
 });
 
@@ -24,13 +25,17 @@ export default function WritingPage() {
           <h1>Writing</h1>
           <div>
             <p className="lead">
-              Notes from the seam between design and engineering.
+              Notes from the seam between design and engineering, and a{" "}
+              <a href="#longform">free book</a>.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="pgs" data-sheet="A-102" data-name="INDEX">
+      <section className="pgs" data-sheet="A-102" data-name="BLOG">
+        <div className="pg">
+          <h2 className="eyebrow">Blog</h2>
+        </div>
         <div className="rows" data-build>
           {newestFirst.map((post) => {
             const displayDate = new Date(
@@ -43,7 +48,7 @@ export default function WritingPage() {
             return (
               <Link
                 key={post.slug}
-                href={`/writing/${post.slug}`}
+                href={postHref(post.slug)}
                 className="row"
               >
                 <span className="k">{displayDate}</span>
@@ -64,6 +69,17 @@ export default function WritingPage() {
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      <section className="pgs" id="longform" data-sheet="A-103" data-name="LONGFORM">
+        <div className="pg">
+          <h2 className="eyebrow">Longform</h2>
+        </div>
+        <div className="rows">
+          <div className="pg">
+            <LongformEntry />
+          </div>
         </div>
       </section>
     </>

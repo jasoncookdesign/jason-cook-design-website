@@ -60,9 +60,17 @@ const nextConfig: NextConfig = {
       { source: "/blog/index.html", destination: "/writing", permanent: true },
       ...Object.entries(posts).map(([from, to]) => ({
         source: `/blog/${from}`,
-        destination: `/writing/${to}`,
+        destination: `/writing/blog/${to}`,
         permanent: true,
       })),
+      // Posts moved from /writing/<slug> to /writing/blog/<slug>; the blog and longform indexes are the Writing page.
+      ...[...new Set(Object.values(posts))].map((slug) => ({
+        source: `/writing/${slug}`,
+        destination: `/writing/blog/${slug}`,
+        permanent: true,
+      })),
+      { source: "/writing/rebuilding-jasoncookdesign-com", destination: "/writing/blog/rebuilding-jasoncookdesign-com", permanent: true },
+      { source: "/writing/blog", destination: "/writing", permanent: false },
       { source: "/calendar", destination: CAL, permanent: false },
       ...Object.entries(calendar).map(([from, to]) => ({
         source: `/calendar/${from}`,

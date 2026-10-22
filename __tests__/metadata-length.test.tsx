@@ -9,8 +9,9 @@ import { metadata as offering } from "@/app/engagements/offering/page";
 import { metadata as legal } from "@/app/legal/page";
 import { metadata as work } from "@/app/work/page";
 import { metadata as writing } from "@/app/writing/page";
+import { metadata as book } from "@/app/writing/longform/page";
 import { generateMetadata as workCaseStudy } from "@/app/work/[slug]/page";
-import { generateMetadata as writingPost } from "@/app/writing/[slug]/page";
+import { generateMetadata as writingPost } from "@/app/writing/blog/[slug]/page";
 import { caseStudies } from "@/lib/work";
 import { posts } from "@/lib/writing";
 import { pageTitle } from "@/lib/metadata";
@@ -34,6 +35,7 @@ const staticPages: Array<[string, Meta]> = [
   ["/legal", legal],
   ["/work", work],
   ["/writing", writing],
+  ["/writing/longform", book],
 ];
 
 const params = (slug: string) => ({ params: Promise.resolve({ slug }) });
@@ -41,7 +43,7 @@ const params = (slug: string) => ({ params: Promise.resolve({ slug }) });
 async function allPages(): Promise<Array<[string, Meta]>> {
   const dynamic: Array<[string, Meta]> = [];
   for (const cs of caseStudies) dynamic.push([`/work/${cs.slug}`, await workCaseStudy(params(cs.slug))]);
-  for (const p of posts) dynamic.push([`/writing/${p.slug}`, await writingPost(params(p.slug))]);
+  for (const p of posts) dynamic.push([`/writing/blog/${p.slug}`, await writingPost(params(p.slug))]);
   return [...staticPages, ...dynamic];
 }
 
