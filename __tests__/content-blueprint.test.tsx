@@ -78,7 +78,7 @@ describe("work index", () => {
       expect(row.querySelector(".k")!.textContent).toBe(caseStudies[i].client);
       expect(row.querySelector(".title")!.textContent).toBe(caseStudies[i].title);
       expect(row.querySelector(".fig img")).not.toBeNull();
-      expect(row.querySelector(".btn.secondary.sm")!.textContent).toMatch(/Read the case study/);
+      expect(row.querySelector(".btn.secondary.icon")!.textContent).toBe("→");
       expect(row.querySelector(".go")).toBeNull();
     });
   });
@@ -156,7 +156,7 @@ describe("writing index", () => {
       expect(row.querySelector(".k")!.textContent).toMatch(/2026/);
       expect(row.querySelector(".title")!.textContent).toBe(posts[i].title);
       expect(row.querySelectorAll(".tag")).toHaveLength(posts[i].tags.length);
-      expect(row.querySelector(".btn.secondary.sm")!.textContent).toMatch(/Read the post/);
+      expect(row.querySelector(".btn.secondary.icon")!.textContent).toBe("→");
       expect(row.querySelector(".go")).toBeNull();
     });
   });

@@ -162,6 +162,8 @@ a.row:hover .btn.secondary, a.row:focus-visible .btn.secondary { background: var
 /* secondary: filled with the clickable blue, a field-colored label, no orange bar */
 .btn.secondary { background: var(--link); color: var(--paper); border: 1.5px solid var(--link); border-left-width: 1.5px; padding-left: 24px; }
 .btn.secondary.sm { padding-left: 18px; }
+/* icon button: a 44px square holding one arrow, for list rows where the whole row is the link */
+.btn.icon { width: 44px; min-height: 44px; padding: 0; gap: 0; justify-content: center; font-size: 18px; }
 /* tertiary: the outline, for the quietest action beside or after a stronger one */
 .btn.tertiary { background: transparent; color: var(--link); border: 1.5px solid var(--link); border-left-width: 1.5px; padding-left: 24px; }
 .btn.tertiary.sm { padding-left: 18px; }

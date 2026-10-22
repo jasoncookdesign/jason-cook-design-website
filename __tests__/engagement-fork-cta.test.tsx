@@ -1,8 +1,7 @@
 /**
- * The home page's two engagement rows are links with a secondary (filled) button inside, labelled with what
- * happens next, instead of a bare arrow square. The whole row is the hit area; hovering or focusing it fills
- * the button with the hover-fill, the same hover every solid control takes. The arrow squares stay on the
- * Work and Writing lists, where the row itself is the call to action.
+ * The engagement rows on the home page, and the Work and Writing lists, are links with a secondary icon button
+ * inside: a filled square with an arrow. The whole row is the hit area; hovering or focusing it fills the button
+ * with the hover-fill and an ivory border, the same hover every secondary button takes.
  */
 import { readFileSync } from "fs";
 import { join } from "path";
@@ -13,27 +12,18 @@ import { engagementTypes } from "@/lib/engagement-types";
 const patterns = readFileSync(join(process.cwd(), "app/blueprint-patterns.css"), "utf8");
 const motion = readFileSync(join(process.cwd(), "app/blueprint-motion.css"), "utf8");
 
-describe("engagement registry call to action", () => {
-  it("gives every type a short, verb-led call to action", () => {
-    for (const t of engagementTypes) {
-      expect(typeof t.cta).toBe("string");
-      expect(t.cta.trim().length).toBeGreaterThan(3);
-      expect(t.cta.length).toBeLessThanOrEqual(28);
-    }
-    expect(new Set(engagementTypes.map((t) => t.cta)).size).toBe(engagementTypes.length);
-  });
-});
-
 describe("home fork rows", () => {
-  it("show a secondary button labelled with the type's call to action, in place of the arrow square", () => {
+  it("show a secondary icon button, a square with a decorative arrow", () => {
     const { container } = render(<EngagementFork />);
     const rows = container.querySelectorAll("a.row");
     expect(rows).toHaveLength(engagementTypes.length);
     rows.forEach((row, i) => {
-      const btn = row.querySelector(".btn.secondary.sm");
+      const btn = row.querySelector(".btn.secondary.icon");
       expect(btn).not.toBeNull();
-      expect(btn!.textContent).toContain(engagementTypes[i].cta);
+      expect(btn!.textContent).toBe("→");
+      expect(btn!.querySelector("[aria-hidden='true']")).not.toBeNull();
       expect(row.querySelector(".go")).toBeNull();
+      void i;
     });
   });
 

@@ -49,8 +49,8 @@ export default function WorkPage() {
                 <h2 className="title">{cs.title}</h2>
                 <p>{cs.indexOneLiner}</p>
               </div>
-              <span className="btn secondary sm">
-                Read the case study <span aria-hidden="true">&rarr;</span>
+              <span className="btn secondary icon">
+                <span aria-hidden="true">&rarr;</span>
               </span>
             </Link>
           ))}

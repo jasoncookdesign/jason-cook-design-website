@@ -156,7 +156,7 @@ a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var
 .not .v p{margin:0}
 
 /* ---------- colophon ---------- */
-.colo{border-top:1px solid var(--ink);padding:26px var(--pad);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 28px;font:400 12px/1.4 var(--mono);letter-spacing:.03em}
+.colo{border-top:1px solid var(--ink);padding:26px var(--pad);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 28px;font:400 12px/1.4 var(--mono);letter-spacing:.03em}
 .colo nav{display:flex;flex-wrap:wrap;gap:6px 22px}
 .colo a{display:inline-flex;align-items:center;min-height:32px}
 
@@ -221,7 +221,7 @@ a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var
   .sp,.not{display:block}
   .sp .k,.not .k{border-right:0;padding:16px 16px 0}
   .sp .v,.not .v{padding:8px 16px 18px;font-size:19px}
-  .colo{flex-direction:column}
+  .colo{flex-direction:column;align-items:flex-start}
   :root{--rx:calc(1.4deg * var(--k));--ry:calc(-2deg * var(--k));--tz:18px;--dz:40px}
   .menu summary{padding:0 10px}
   .bar{gap:10px}

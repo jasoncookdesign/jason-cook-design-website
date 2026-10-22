@@ -165,3 +165,13 @@ describe("design spec", () => {
     expect(design).toMatch(/inset/i);
   });
 });
+
+describe("secondary icon button", () => {
+  it("is a 44px square with a centered arrow, and no orange bar", () => {
+    const r = rule(".btn.icon");
+    expect(r).toMatch(/width:\s*44px/);
+    expect(r).toMatch(/min-height:\s*44px/);
+    expect(r).toMatch(/justify-content:\s*center/);
+    expect(r).toMatch(/padding:\s*0/);
+  });
+});
