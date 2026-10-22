@@ -51,7 +51,7 @@ a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var
 
 /* ---------- button ---------- */
 .btn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 24px 0 18px;background:var(--ink);color:var(--paper);border:1.5px solid var(--ink);border-left:8px solid var(--signal);text-decoration:none;font:500 15px/1.2 var(--mono);letter-spacing:.01em;transition:background-color .15s,color .15s}
-/* primary hover: the face drops to near-black, the label flips to white, the orange bar stays, and a soft conic halo
+/* primary hover: the face knocks out to the page's dark blue, the label flips to white, the orange bar stays, and a soft conic halo
    in light orange, white and light blue spins behind the button. Primary only; every other control keeps the aqua. */
 @property --angle{syntax:'<angle>';inherits:false;initial-value:0deg}
 .btn:not(.secondary,.tertiary){position:relative;background-clip:padding-box}

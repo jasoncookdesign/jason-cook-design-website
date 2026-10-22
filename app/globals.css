@@ -120,8 +120,8 @@
   /* the aqua (the teal from the logo exploration) that interactive things take on hover: a fill for solid controls,
      the text and underline color for links. */
   --hover-fill: #58C4C6;
-  /* the primary button's hover: a near-black face with a soft halo in these three colors */
-  --btn-face-hover: #071724;
+  /* the primary button's hover: its face knocks out to the page's dark blue, with a soft halo in these three colors */
+  --btn-face-hover: var(--bg);
   --glow-orange: #FFB48A;
   --glow-white: #F4F8FC;
   --glow-blue: #9CCBFF;

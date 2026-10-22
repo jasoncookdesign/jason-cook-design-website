@@ -1,6 +1,6 @@
 /**
  * Primary button hover. Only the primary button (ivory with the orange left border) glows: on hover or keyboard
- * focus its face drops to near-black, the label flips to white, the orange bar stays, and a soft conic halo in
+ * focus its face drops to the page's dark blue (a knockout), the label flips to white, the orange bar stays, and a soft conic halo in
  * light orange, white and light blue spins behind it. No other control takes the glow. The halo is a still frame
  * under reduced motion, hidden in forced-colors mode, and hidden while the button is pressed.
  */
@@ -44,7 +44,8 @@ describe("primary glow", () => {
     expect(block(new RegExp(`${P}:active::before\\s*\\{([^}]*)\\}`))).toMatch(/opacity:\s*0/);
   });
 
-  it("drops the face to near-black with a white label and keeps the orange bar", () => {
+  it("knocks the face out to the page's dark blue, with a white label, and keeps the orange bar", () => {
+    expect(css).toMatch(/--btn-face-hover:\s*var\(--bg\)/);
     const r = block(new RegExp(`${P}:is\\(:hover, ?:focus-visible\\)\\s*\\{([^}]*)\\}`));
     expect(r).toMatch(/background:\s*var\(--btn-face-hover\)/);
     expect(r).toMatch(/color:\s*#fff/i);

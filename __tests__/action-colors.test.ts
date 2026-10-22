@@ -55,7 +55,7 @@ describe("primary button", () => {
     expect(r).toMatch(/border-left:\s*8px solid var\(--signal\)/);
   });
 
-  it("drops to a near-black face with a white label on hover and keeps its orange bar (the glow is in primary-glow.test)", () => {
+  it("knocks out to the page's dark blue with a white label on hover and keeps its orange bar (the glow is in primary-glow.test)", () => {
     const r = rule(".btn:not(.secondary,.tertiary):is(:hover,:focus-visible)");
     expect(r).toMatch(/background:\s*var\(--btn-face-hover\)/);
     expect(r).toMatch(/border-left-color:\s*var\(--signal\)/);
