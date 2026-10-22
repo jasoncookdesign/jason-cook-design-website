@@ -122,7 +122,7 @@ describe("Book page content", () => {
   });
 
   it("carries the book's own disclaimer and a way back to Writing", () => {
-    expect(screen.getByText("The views in this book are his own and do not represent any client or employer.")).toBeTruthy();
+    expect(screen.getByText("The views in this book are the author's own and do not represent any client or employer.")).toBeTruthy();
     const back = screen.getByRole("link", { name: /All writing/ });
     expect(back.getAttribute("href")).toBe("/writing");
     expect(back.className).toMatch(/\btertiary\b/);
