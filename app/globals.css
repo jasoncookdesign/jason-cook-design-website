@@ -106,9 +106,9 @@
   --ghost: #2F5775;
   --guide: #173650;
   --accent: var(--link);
-  --decision: #FF9B6B;
-  /* the lockups' orange: a fine accent in small places (never a fill) */
+  /* the lockups' orange, the site's only orange; --decision names its one role on a sheet */
   --signal: #E8723C;
+  --decision: var(--signal);
   /* motion: one curve, one duration; the duration is zero under reduced motion */
   --ease: cubic-bezier(.2, .7, .2, 1);
   --t: .25s;

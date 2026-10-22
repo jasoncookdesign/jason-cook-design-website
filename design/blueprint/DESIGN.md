@@ -10,7 +10,7 @@ colors:
   rule: "#5E7E96"
   guide: "#173650"
   guide-sketch: "#2F5775"
-  accent: "#FF9B6B"
+  accent: "#E8723C"
   button-bg: "#E8EFF5"
   hover-fill: "#58C4C6"
   button-ink: "#0D2438"
@@ -91,7 +91,7 @@ Newsreader (variable, optical sizing on) for statements and body; IBM Plex Mono 
 One easing curve, `cubic-bezier(.2, .7, .2, 1)`, and one duration, 250 ms (`--ease`, `--t`); both are zero under `prefers-reduced-motion`. Interactive things ease between states (links, buttons, the bar controls, rows, cells, the FAQ, the segmented control, the docked bar, the mobile menu); button arrows and row chevrons nudge 4px on hover; non-interactive elements never respond to hover. Blocks below the fold fade and rise 12px once as they scroll in (an `IntersectionObserver`, 500 ms). Nothing is hidden without JavaScript, under reduced motion, or while the layer view is on. The hero drawing draws itself in once on load.
 
 ## Accents
-The signal orange `#E8723C` (from the approved lockups) is a fine accent, never a fill: the marker on eyebrows, the nav hover underline, and the keyboard focus ring. Primary actions and the mark stay monochrome. The chosen option of a segmented control is filled with the steel-blue `#8FB2CC` with field-colored text.
+The signal orange `#E8723C` (from the approved lockups) is the site's only orange. It marks what matters: the marker on eyebrows, the nav hover underline, the keyboard focus ring, the primary button's left bar, and the decision line and its nodes. The mark stays monochrome. The chosen option of a segmented control is filled with the steel-blue `#8FB2CC` with field-colored text.
 
 ## Elevation and depth
 None in the page. The optional layer view lifts plates in 3D and draws the measured sketch layer beneath; it is off by default and a flat overlay under reduced motion. It opens with a short damped-spring settle (about 8% overshoot) and closes on an exponential ease in and out. At rest the plates sit at 2.4 times the base tilt; while the page scrolls the tilt eases in to 1.2 times, and relaxes back to 2.4 once scrolling has been still for 240 ms (`--eng`). The `?tilt=DEG` query still sets the resting tilt. Reduced motion never changes the tilt.
