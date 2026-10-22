@@ -4,7 +4,15 @@
  * Scripted in lib/layer-view.ts. Off by default. Under reduced motion it is a flat overlay unless the viewer
  * opts in to the still tilt. Hidden in print; forced-colors uses system colors.
  */
-:root{--k:1;--rx:calc(2.4deg * var(--k));--ry:calc(-3.4deg * var(--k));--tz:36px;--dz:72px;--persp:2000px}
+:root{--k:2.4;--eng:1;--rx:calc(2.4deg * var(--k) * var(--eng));--ry:calc(-3.4deg * var(--k) * var(--eng));--tz:36px;--dz:72px;--persp:2000px;
+  --ease-bounce:cubic-bezier(.34,1.3,.64,1);--ease-expo-io:cubic-bezier(.87,0,.13,1)}
+/* Opening settles like a damped spring (about 8% overshoot); browsers without linear() get the bezier above. */
+@supports (animation-timing-function: linear(0, 1)){
+  :root{--ease-bounce:linear(0, 0.269, 0.512, 0.712, 0.862, 0.966, 1.031, 1.065, 1.077, 1.075, 1.064, 1.051, 1.037, 1.024, 1.014, 1.007, 1.001, 0.998, 0.997, 0.996, 0.996, 0.997, 0.997, 0.998, 1)}
+}
+/* The tilt breathes with scrolling: --eng is 1 at rest and eases to 0.5 (2.4 to 1.2 times the base tilt)
+   while the page moves, then relaxes back once scrolling has been still. Scripted in lib/layer-view.ts. */
+@property --eng{syntax:'<number>';inherits:true;initial-value:1}
 .cue{display:none;font:500 12px/1 var(--mono);letter-spacing:.09em;color:var(--ink2);white-space:nowrap}
 @media (min-width:1200px){.bar.docked>.cue{display:inline}}
 .lvstrip{display:none;position:absolute;left:-1px;right:-1px;top:100%;height:24px;align-items:center;justify-content:space-between;gap:12px;padding:0 var(--pad);background:var(--paper);border-bottom:1px solid var(--rule);font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);white-space:nowrap}
@@ -17,7 +25,7 @@ html.layers .lvstrip{display:flex}
 .stb:hover{background:var(--paper2)}
 .stb[hidden]{display:none}
 /* ---------- layer view ---------- */
-[data-sheet]{position:relative;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transform-origin:50% var(--oy,50%);transition:transform 420ms cubic-bezier(.22,.7,.2,1)}
+[data-sheet]{position:relative;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transform-origin:50% var(--oy,50%);transition:transform 640ms var(--ease-expo-io),background-color 640ms var(--ease-expo-io)}
 .lv{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 14px;background:transparent;color:var(--ink);border:1.5px solid var(--ink);border-radius:0;font:500 12px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;cursor:pointer;-webkit-appearance:none;appearance:none}
 .lv[hidden]{display:none}
 .lv:hover{background:var(--paper2)}
@@ -32,19 +40,28 @@ html.layers .lvstrip{display:flex}
 html.t3d [data-sheet]:not([data-flat]){
   transform:perspective(var(--persp)) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(var(--tz));
   background:var(--paper);background-clip:content-box;
-  animation:posein 900ms cubic-bezier(.3,.7,.25,1) backwards}
-@keyframes posein{0%{transform:none}45%{transform:perspective(var(--persp)) rotateX(calc(var(--rx) * 1.5)) rotateY(calc(var(--ry) * 1.5)) translateZ(calc(var(--tz) * 1.6))}}
-.ly{position:absolute;overflow:visible;pointer-events:none;opacity:0;-webkit-user-select:none;user-select:none;transition:opacity 420ms ease,transform 420ms cubic-bezier(.22,.7,.2,1)}
+  animation:posein 900ms var(--ease-bounce) backwards}
+@keyframes posein{from{transform:none}}
+/* While tilted, --eng moves the angle every frame, so the plate itself must not also ease toward each new value */
+html.t3d [data-sheet]:not([data-flat]){transition:background-color 420ms ease-out}
+/* On exit the plates keep their content-box paper while it fades, so the padding bands do not flash with it */
+html.leaving [data-sheet]:not([data-flat]){background-clip:content-box}
+html.t3d{transition:--eng 1100ms cubic-bezier(.16,1,.3,1)}
+html.t3d.moving{--eng:.5;transition:--eng 420ms cubic-bezier(.22,1,.36,1)}
+.ly{position:absolute;overflow:visible;pointer-events:none;opacity:0;-webkit-user-select:none;user-select:none;transition:opacity 640ms var(--ease-expo-io),transform 640ms var(--ease-expo-io)}
 .sk{z-index:0;transform:translateZ(0)}
 .an{z-index:2}
-.dl{position:absolute;display:block;width:2px;height:var(--dz);background:var(--ink2);pointer-events:none;opacity:0;transform-origin:0 0;transform:rotateX(-90deg);transition:opacity 420ms ease}
+.dl{position:absolute;display:block;width:2px;height:var(--dz);background:var(--ink2);pointer-events:none;opacity:0;transform-origin:0 0;transform:rotateX(-90deg);transition:opacity 640ms var(--ease-expo-io)}
 .bar .dl{display:none}
 html.layers .ly,html.t3d .dl{opacity:1}
-html:not(.t3d) .dl{display:none}
-html.t3d .sk{transform:translateZ(calc(-1 * var(--dz)));animation:skin 900ms cubic-bezier(.3,.7,.25,1) backwards}
-@keyframes skin{0%{transform:translateZ(0)}45%{transform:translateZ(calc(var(--dz) * -1.7))}}
-html.t3d .dl{animation:dlin 900ms cubic-bezier(.3,.7,.25,1) backwards}
-@keyframes dlin{0%{height:0}45%{height:calc(var(--dz) * 1.7)}}
+html.layers .ly{transition:opacity 420ms ease-out,transform 420ms ease-out}
+html.t3d .dl{transition:opacity 420ms ease-out}
+/* hidden only after the exit fade has finished, so the drop lines leave in step with the plates and layers */
+html:not(.t3d) .dl{visibility:hidden;transition:opacity 640ms var(--ease-expo-io),visibility 0s 640ms}
+html.t3d .sk{transform:translateZ(calc(-1 * var(--dz)));animation:skin 900ms var(--ease-bounce) backwards}
+@keyframes skin{from{transform:translateZ(0)}}
+html.t3d .dl{animation:dlin 900ms var(--ease-bounce) backwards}
+@keyframes dlin{from{height:0}}
 /* flat (reduced motion, no opt-in): the same markups in the page plane, above the content, only in empty regions */
 html.layers:not(.t3d) .sk{z-index:1}
 .ly text{font-family:var(--mono);font-weight:500;fill:var(--ink2);white-space:pre;letter-spacing:0}
