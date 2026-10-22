@@ -28,7 +28,7 @@ export default function BookPage() {
           <nav className="crumb" aria-label="Breadcrumb">
             <Link href="/writing">Writing</Link>
             <span aria-hidden="true">/</span>
-            <span>Book</span>
+            <span>Longform</span>
           </nav>
           <h1>{book.title}</h1>
           <div>
