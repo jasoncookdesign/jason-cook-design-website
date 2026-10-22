@@ -9,6 +9,14 @@ import {
 
 const faqs = [
   {
+    id: "faq-13",
+    question: "What happens on the strategy call?",
+    answer: [
+      "It's twenty minutes, and it's free. It's a fit and ethics check: I listen to who you are and the outcome you're after.",
+      "Afterward I send you a summary of how, and whether, I can help. If I can, the next step is the paid diagnosis.",
+    ],
+  },
+  {
     id: "faq-01",
     question: "What do I get for $2,500?",
     answer: [
@@ -112,7 +120,7 @@ export default function FaqSection() {
       <div className="intro g">
         <div className="t">
           <p className="eyebrow">Questions</p>
-          <h2>Twelve of them, answered plainly.</h2>
+          <h2>Thirteen of them, answered plainly.</h2>
         </div>
       </div>
       <Accordion multiple={false} data-build>

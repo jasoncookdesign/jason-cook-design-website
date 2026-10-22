@@ -26,13 +26,13 @@ describe("Contact page", () => {
 
   it("renders the decided CTA subtext verbatim", () => {
     render(<ContactPage />);
-    // Verbatim, already-approved copy — do not edit
-    // The sentence is set as two lines of the strip (mono line, then italic line), so read it across both.
+    // Copy changed 2026-10-22 on the owner's say-so: the strip describes the free intro call (fit and ethics check, then a
+    // summary), not what the paid diagnosis delivers. The sentence is set as two lines (mono, then italic), so read across both.
     const strip = Array.from(document.querySelectorAll("p")).find((p) =>
-      (p.textContent ?? "").startsWith("No commitment.")
+      (p.textContent ?? "").startsWith("Free.")
     );
     expect((strip?.textContent ?? "").replace(/\s+/g, " ")).toMatch(
-      /^No commitment\. 20 minutes\. Find out what you need — and what you don.t\.$/
+      /^Free\. 20 minutes\. No commitment\. I.ll listen first, then send you a summary of how, and whether, I can help\.$/
     );
   });
 

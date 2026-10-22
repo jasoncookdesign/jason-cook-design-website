@@ -240,7 +240,7 @@ describe("Home close and FAQ", () => {
     expect(close.querySelector("h2")?.textContent).toBe("When you're done guessing how to fix it");
     expect(close.querySelector("p.quote")?.textContent).toBe("“Build the right thing” comes before “build the thing right.”");
     expect(close.querySelector("a.btn")?.getAttribute("href")).toBe("#book");
-    expect(close.querySelector("p.strip .a")?.textContent).toBe("No commitment. 20 minutes.");
+    expect(close.querySelector("p.strip .a")?.textContent).toBe("Free. 20 minutes. No commitment.");
     expect(Array.from(close.children).map((c) => c.className.split(" ")[0])).toEqual(["pitch", "book"]);
     expect(close.querySelector(".book#book .cal-inline")).not.toBeNull();
   });
@@ -250,13 +250,14 @@ describe("Home close and FAQ", () => {
     const faq = bySheet(container, "FAQ");
     expect(faq.querySelector(".faq")).not.toBeNull();
     const items = faq.querySelectorAll(".faq > .faq-item");
-    expect(items).toHaveLength(12);
-    expect(items[0].id).toBe("faq-01");
-    const trigger = items[0].querySelector("button.faq-trigger")!;
+    expect(items).toHaveLength(13);
+    expect(items[0].id).toBe("faq-13");
+    expect(items[1].id).toBe("faq-01");
+    const trigger = items[1].querySelector("button.faq-trigger")!;
     expect(trigger.querySelector(".k")).toBeNull();
     expect(trigger.querySelector(".mark")).not.toBeNull();
     expect(trigger.textContent).toBe("What do I get for $2,500?");
-    expect(screen.getAllByRole("button").length).toBe(12);
+    expect(screen.getAllByRole("button").length).toBe(13);
   });
 
   it("does not number the FAQ rows: no CSS counter for them", () => {

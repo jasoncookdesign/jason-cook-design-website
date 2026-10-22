@@ -2,15 +2,16 @@ import Link from "next/link";
 import BookingEmbed from "@/components/booking/BookingEmbed";
 import { BOOKING_TYPES } from "@/lib/booking";
 import { withSocial } from "@/lib/metadata";
+import CallStrip from "@/components/booking/CallStrip";
 
 export const metadata = withSocial({
   title: "Contact | Jason Cook Design",
   description:
-    "Book a strategy call with Jason Cook Design. No commitment, 20 minutes.",
+    "Book a strategy call with Jason Cook Design. Free, 20 minutes, no commitment.",
   openGraph: {
     title: "Contact | Jason Cook Design",
     description:
-      "Book a strategy call with Jason Cook Design. No commitment, 20 minutes.",
+      "Book a strategy call with Jason Cook Design. Free, 20 minutes, no commitment.",
   },
 });
 
@@ -24,12 +25,7 @@ export default function ContactPage() {
           <Link href="#book" className="btn">
             Book your strategy call <span aria-hidden="true">&rarr;</span>
           </Link>
-          <p className="strip">
-            <span className="a">No commitment. 20 minutes.</span>{" "}
-            <span className="b">
-              Find out what you need — and what you don&rsquo;t.
-            </span>
-          </p>
+          <CallStrip />
         </div>
       </div>
     </section>

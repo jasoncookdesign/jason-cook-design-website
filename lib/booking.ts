@@ -5,6 +5,16 @@
  */
 export const BOOKING_PATH = "/contact";
 
+/**
+ * What the strategy call is, in the two lines under every booking button. The call is a free 20-minute fit and ethics
+ * check; the visitor is listened to and then sent a summary of how, and whether, I can help. What they learn about
+ * what they need is the paid diagnosis, so nothing here promises it.
+ */
+export const CALL_STRIP = {
+  a: "Free. 20 minutes. No commitment.",
+  b: "I\u2019ll listen first, then send you a summary of how, and whether, I can help.",
+} as const;
+
 /** The Cal.com event: username/event-slug. */
 export const CAL_LINK = "jasoncookdesign/engagement-consultation";
 
