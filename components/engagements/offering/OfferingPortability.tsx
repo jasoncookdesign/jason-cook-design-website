@@ -7,7 +7,7 @@ export default function OfferingPortability() {
           <h2>Take any phase&apos;s output wherever you like.</h2>
         </div>
       </div>
-      <div className="cells c2 eng-statements">
+      <div className="cells c2 eng-statements" data-build>
         <div className="cell">
           <p>
             No contract covers the whole engagement. Each phase is scoped and

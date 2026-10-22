@@ -37,7 +37,7 @@ const testimonials = [
 export default function ProofSection() {
   return (
     <section data-sheet="A-105" data-name="PROOF">
-      <div className="logos c5">
+      <div className="logos c5" data-build>
         {brandLogos.map((brand) => (
           <div key={brand.name}>
             <Image
@@ -65,7 +65,7 @@ export default function ProofSection() {
         </div>
       </div>
 
-      <div className="quotes">
+      <div className="quotes" data-build>
         {testimonials.map((t) => (
           <figure key={t.name}>
             <blockquote>&ldquo;{t.quote}&rdquo;</blockquote>

@@ -69,7 +69,7 @@ export default function EngagementsFaq() {
           <h2>Questions</h2>
         </div>
       </div>
-      <Accordion multiple={false}>
+      <Accordion multiple={false} data-build>
         {faqs.map((faq) => (
           <AccordionItem key={faq.id} value={faq.id}>
             <AccordionTrigger>{faq.question}</AccordionTrigger>

@@ -34,7 +34,7 @@ export default function EngagementsPricing() {
         </div>
       </div>
       <div className="plate eng-plate g">
-        <div className="pl">
+        <div className="pl" data-build>
           <span className="regs" aria-hidden="true">
             <i />
             <i />

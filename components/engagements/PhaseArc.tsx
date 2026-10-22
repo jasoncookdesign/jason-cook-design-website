@@ -61,7 +61,7 @@ export default function PhaseArc() {
           <h2>What each phase changes, and what it leaves behind.</h2>
         </div>
       </div>
-      <ol className="rows">
+      <ol className="rows" data-build>
         {phases.map((phase, i) => (
           <li key={phase.label} className="row hold">
             <span className="k">{String(i + 1).padStart(2, "0")}</span>

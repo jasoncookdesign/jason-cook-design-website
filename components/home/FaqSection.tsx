@@ -115,7 +115,7 @@ export default function FaqSection() {
           <h2>Twelve of them, answered plainly.</h2>
         </div>
       </div>
-      <Accordion multiple={false}>
+      <Accordion multiple={false} data-build>
         {faqs.map((faq) => (
           <AccordionItem key={faq.id} id={faq.id} value={faq.id}>
             <AccordionTrigger>{faq.question}</AccordionTrigger>

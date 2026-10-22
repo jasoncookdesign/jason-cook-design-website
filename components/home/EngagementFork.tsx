@@ -10,7 +10,7 @@ export default function EngagementFork() {
           <h2>Two ways to start. Pick the one that sounds like you.</h2>
         </div>
       </div>
-      <div className="rows">
+      <div className="rows" data-build>
         {engagementTypes.map((t) => (
           <Link key={t.slug} href={`/engagements/${t.slug}`} className="row plain">
             <div>
