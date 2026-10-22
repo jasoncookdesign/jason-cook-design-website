@@ -13,6 +13,9 @@ export const metadata = withSocial({
   },
 });
 
+// Newest first. The registry stays in the order posts were added; the index sorts a copy by date.
+const newestFirst = [...posts].sort((a, b) => b.date.localeCompare(a.date));
+
 export default function WritingPage() {
   return (
     <>
@@ -29,7 +32,7 @@ export default function WritingPage() {
 
       <section className="pgs" data-sheet="A-102" data-name="INDEX">
         <div className="rows" data-build>
-          {posts.map((post) => {
+          {newestFirst.map((post) => {
             const displayDate = new Date(
               post.date + "T00:00:00"
             ).toLocaleDateString("en-US", {
