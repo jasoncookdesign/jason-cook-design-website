@@ -96,5 +96,17 @@
 .faq-trigger { font-family: inherit; }
 .faq-panel a { text-decoration: underline; text-underline-offset: 4px; }
 
+/* ---------- ask: the slim last word after the questions ---------- */
+.ask { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "h b" "p b"; column-gap: 48px; row-gap: 8px; align-items: center; padding: 56px var(--pad) 64px; }
+.ask h2 { grid-area: h; margin: 0; font-weight: 400; font-size: 36px; line-height: 1.1; letter-spacing: -0.02em; text-wrap: balance; }
+.ask p { grid-area: p; margin: 0; font-size: 22px; line-height: 1.35; color: var(--ink2); }
+.ask .btn { grid-area: b; }
+@media (max-width: 899px) {
+  .ask { grid-template-columns: minmax(0, 1fr); grid-template-areas: "h" "p" "b"; row-gap: 12px; padding: 40px var(--pad) 48px; }
+  .ask h2 { font-size: 30px; }
+  .ask p { font-size: 20px; }
+  .ask .btn { margin-top: 12px; justify-self: start; }
+}
+
 /* Fine accent: a small signal marker leads the hero eyebrow and each eyebrow that introduces an h2, so the page rhythm is easy to scan. */
 .hero .eyebrow::before, .eyebrow:has(+ h2)::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: var(--signal); }

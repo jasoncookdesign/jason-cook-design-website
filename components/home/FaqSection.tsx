@@ -119,8 +119,8 @@ export default function FaqSection() {
     <section data-sheet="A-108" data-name="FAQ">
       <div className="intro g">
         <div className="t">
-          <p className="eyebrow">Questions</p>
-          <h2>Thirteen of them, answered plainly.</h2>
+          <p className="eyebrow">Thirteen answered here, plus a way to ask yours</p>
+          <h2>Questions</h2>
         </div>
       </div>
       <Accordion multiple={false} data-build>

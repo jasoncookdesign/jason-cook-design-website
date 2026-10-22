@@ -6,6 +6,7 @@ import ProofSection from "@/components/home/ProofSection";
 import PricingSection from "@/components/home/PricingSection";
 import CtaSection from "@/components/home/CtaSection";
 import FaqSection from "@/components/home/FaqSection";
+import AskSection from "@/components/home/AskSection";
 
 export default function HomePage() {
   return (
@@ -18,6 +19,7 @@ export default function HomePage() {
       <PricingSection />
       <CtaSection />
       <FaqSection />
+      <AskSection />
     </>
   );
 }
