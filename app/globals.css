@@ -205,14 +205,35 @@ main section {
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
-.bar .wordmark:hover {
-  opacity: 0.8;
-}
 .bar .wm-mark {
   display: block;
   height: 22px;
   width: auto;
   flex: none;
+  background: var(--mk-field, transparent);
+  outline: 5px solid var(--mk-field, transparent);
+  transition: color 0.25s var(--ease);
+}
+/* The mark's pieces take their fill from variables the hover flash sets; at rest they are all currentColor. */
+.bar .wm-mark .mk-top { fill: var(--mk-top, currentColor); }
+.bar .wm-mark .mk-bot { fill: var(--mk-bot, currentColor); }
+.bar .wm-mark .mk-gap { opacity: var(--mk-gap, 0); }
+/* Hover or keyboard focus flashes the mark in quick, held cuts: navy on an orange field, solid orange, solid white,
+   the top band stepping from white toward the two-tone blue, then the whole mark in the hover-fill blue, where it
+   settles. The last stop is not a defined lockup: it is the mark with the site's hover color applied. */
+.bar .wordmark:is(:hover, :focus-visible) .wm-mark {
+  color: var(--hover-fill);
+  animation: mk-flash 900ms linear;
+}
+@keyframes mk-flash {
+  0% { --mk-field: #E8723C; color: #0D2438; --mk-gap: 0; --mk-top: currentColor; --mk-bot: currentColor; animation-timing-function: steps(1, end); }
+  14% { --mk-field: transparent; color: #E8723C; --mk-gap: 1; animation-timing-function: steps(1, end); }
+  28% { color: #E8EFF5; --mk-gap: 1; animation-timing-function: steps(1, end); }
+  42% { color: #E8EFF5; --mk-gap: 0; --mk-top: #D1E4F8; --mk-bot: #E8EFF5; animation-timing-function: steps(1, end); }
+  56% { --mk-top: #BAD9FB; --mk-bot: #E8EFF5; animation-timing-function: steps(1, end); }
+  70% { --mk-top: #9CCBFF; --mk-bot: #E8EFF5; animation-timing-function: steps(1, end); }
+  84% { color: var(--hover-fill); --mk-gap: 0; --mk-top: currentColor; --mk-bot: currentColor; animation-timing-function: steps(1, end); }
+  100% { color: var(--hover-fill); --mk-gap: 0; --mk-top: currentColor; --mk-bot: currentColor; }
 }
 .bar .nav ul {
   display: flex;
@@ -342,7 +363,9 @@ main section > :first-child:is(.intro, .logos, .cells, .rows) { border-top: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   :root { --t: 0s; }
+  .bar .wordmark:is(:hover, :focus-visible) .wm-mark { animation: none; }
 }
+html.rm .bar .wordmark:is(:hover, :focus-visible) .wm-mark { animation: none; }
 
 /* The docked sheet cue needs room: below 1360px the bar keeps the lockup, the links, the action, and the toggle. */
 .bar.docked > .cue { display: none; }
