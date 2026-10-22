@@ -27,7 +27,7 @@ export const book: Book = {
     "This book follows the question from ancient Athens to the American founding to the systems running today, and ends where peaceful change can begin: state constitutions, city charters, and the rules your own community already lets you amend.",
     "The Constitution has served for more than two centuries, and it has been amended twenty-seven times along the way. This book invites you to read it as a working design, and to help decide what it needs next.",
   ],
-  disclaimer: "The views in this book are his own and do not represent any client or employer.",
+  disclaimer: "The views in this book are the author's own and do not represent any client or employer.",
   pages: 173,
   formats: {
     pdf: { name: "Screen PDF", href: "/book/the-constitution-and-the-machine.pdf", file: "book/the-constitution-and-the-machine.pdf" },
