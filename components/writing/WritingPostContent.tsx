@@ -102,7 +102,7 @@ export default function WritingPostContent({ post }: Props) {
 
       <section className="pgs" data-sheet="A-103" data-name="CLOSE">
         <div className="pg">
-          <Link href="/writing" className="btn ghost">
+          <Link href="/writing" className="btn tertiary">
             &larr; All writing
           </Link>
         </div>

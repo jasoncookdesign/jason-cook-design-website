@@ -135,7 +135,7 @@ describe("Home hero", () => {
 });
 
 describe("Home fork, start, and delivery", () => {
-  it("lists the two engagement types as rows: one link each, situation heading, arrow, and no number key", () => {
+  it("lists the two engagement types as rows: one link each, situation heading, a call-to-action button, and no number key", () => {
     const { container } = render(<HomePage />);
     const rows = Array.from(bySheet(container, "FORK").querySelectorAll(".rows > a.row"));
     expect(rows.map((r) => r.getAttribute("href"))).toEqual(engagementTypes.map((t) => `/engagements/${t.slug}`));
@@ -143,7 +143,8 @@ describe("Home fork, start, and delivery", () => {
       expect(rows[i].querySelector(".k")).toBeNull();
       expect(rows[i].querySelector("h3")?.textContent).toBe(t.situation);
       expect(rows[i].textContent).toContain(t.name);
-      expect(rows[i].querySelector(".go")?.getAttribute("aria-hidden")).toBe("true");
+      expect(rows[i].querySelector(".btn.secondary.icon")).not.toBeNull();
+      void t;
     });
   });
 

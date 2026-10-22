@@ -16,7 +16,7 @@ describe("blueprint patterns", () => {
 
   it.each([
     ".cells", ".cell", ".rows", ".row", ".defs", ".faq-item", ".faq-trigger", ".faq-panel",
-    ".quotes", ".logos", ".prose", ".statrow", ".seg", ".crumb", ".btn.ghost",
+    ".quotes", ".logos", ".prose", ".statrow", ".seg", ".crumb", ".btn.tertiary",
   ])("defines %s", (sel) => {
     expect(css).toContain(sel);
   });

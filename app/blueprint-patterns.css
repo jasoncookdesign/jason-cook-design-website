@@ -50,18 +50,9 @@ a.cell:hover { background: var(--paper2); }
 .row .k { font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); align-self: start; padding-top: 6px; }
 .row h3, .row .title { margin: 0; font-weight: 400; font-size: 28px; line-height: 1.2; letter-spacing: -0.012em; text-wrap: balance; }
 .row p { margin: 6px 0 0; font-size: 18px; line-height: 1.5; color: var(--ink); max-width: 62ch; text-wrap: pretty; }
-.row .go {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 44px; height: 44px; border: 1px solid var(--ink); color: var(--ink);
-}
 a.row:hover { background: var(--paper2); }
-/* Link colour means "act here": the action square is solid link colour at rest, with a field-coloured arrow
-   drawn in CSS from currentColor, and inverts to an outline on hover or focus. */
-.row .go { position: relative; }
-.row .go::before { content: ""; position: absolute; left: 12px; right: 12px; top: 50%; height: 2px; margin-top: -1px; background: currentColor; }
-.row .go::after { content: ""; position: absolute; right: 12px; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-top: 2px solid currentColor; border-right: 2px solid currentColor; transform: rotate(45deg); }
-a.row .go { background: var(--link); border-color: var(--link); color: var(--bg); }
-a.row:hover .go, a.row:focus-visible .go { background: transparent; color: var(--link); }
+/* A secondary button inside a row link: the whole row is the hit area, so the row's hover or focus fills the button. */
+a.row:hover .btn.secondary, a.row:focus-visible .btn.secondary { background: var(--hover-fill); border-color: var(--ink); color: var(--paper); }
 .row.hold { grid-template-columns: 120px 1fr; }
 /* Rows without a key: the substance fills the row. */
 .row.plain { grid-template-columns: 1fr auto; }
@@ -103,6 +94,8 @@ a.row:hover .go, a.row:focus-visible .go { background: transparent; color: var(-
 .faq-trigger .mark::before { left: 0; right: 0; top: 9px; height: 2px; }
 .faq-trigger .mark::after { top: 0; bottom: 0; left: 9px; width: 2px; transition: transform 0.2s ease; }
 .faq-trigger[aria-expanded="true"] .mark::after { transform: scaleY(0); }
+/* the plus and minus take the hover color with their row */
+.faq-trigger:hover .mark::before, .faq-trigger:hover .mark::after, .faq-trigger:focus-visible .mark::before, .faq-trigger:focus-visible .mark::after { background: var(--hover-fill); }
 .faq-panel { padding: 0 var(--pad) 26px var(--pad); font-size: 19px; line-height: 1.6; max-width: 86ch; }
 .faq-panel p { margin: 0; }
 .faq-panel p + p { margin-top: 12px; }
@@ -152,22 +145,30 @@ a.row:hover .go, a.row:focus-visible .go { background: transparent; color: var(-
   content: ""; position: absolute; left: var(--pad); top: 20px; width: 14px; height: 14px;
   border: 1px solid var(--ink2); background: transparent;
 }
-.seg > *:hover { background: var(--paper2); }
-.seg > *:hover::before { border-color: var(--ink); }
-/* the chosen option is filled with the secondary accent (steel blue); orange stays reserved for decisions */
-.seg > [aria-current="page"], .seg > [aria-current="true"] { background: var(--accent); color: var(--bg); }
-.seg > [aria-current]::before { border-color: var(--bg); background: var(--bg); }
-.seg > [aria-current]:hover { background: var(--accent); }
+/* only an option that is not already chosen responds to hover: choosing the chosen one again changes nothing */
+.seg > *:not([aria-current]):hover { background: var(--hover-fill); color: var(--paper); }
+.seg > *:not([aria-current]):hover::before { border-color: var(--paper); }
+.seg > *:not([aria-current]):hover .lbl, .seg > *:not([aria-current]):hover .sit { color: var(--paper); }
+/* the chosen option is framed (an inset ivory border) on the raised surface; selection never takes a color of its own */
+.seg > [aria-current="page"], .seg > [aria-current="true"] { background: var(--paper2); outline: 2px solid var(--ink); outline-offset: -2px; cursor: default; }
+.seg > [aria-current]::before { border-color: var(--ink); background: var(--ink); }
 .seg .lbl { font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
-.seg > [aria-current] .lbl { color: var(--bg); }
 
-/* ---------- breadcrumb, tags, ghost button, prose ---------- */
+/* ---------- breadcrumb, tags, secondary and tertiary buttons, prose ---------- */
 .crumb { display: flex; flex-wrap: wrap; gap: 6px 10px; font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
 .crumb a { text-decoration: none; }
-.crumb a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.crumb a:hover { text-decoration: underline; text-underline-offset: 4px; color: var(--hover-fill); text-decoration-color: var(--hover-fill); }
 .tag { display: inline-block; padding: 3px 8px; border: 1px solid var(--rule); font: 500 11px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
-.btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
-.btn.ghost:hover { background: var(--paper2); color: var(--ink); }
+/* secondary: filled with the clickable blue, a field-colored label, no orange bar */
+.btn.secondary { background: var(--link); color: var(--paper); border: 1.5px solid var(--link); border-left-width: 1.5px; padding-left: 24px; }
+.btn.secondary.sm { padding-left: 18px; }
+/* icon button: a 44px square holding one arrow, for list rows where the whole row is the link */
+.btn.icon { width: 44px; min-height: 44px; padding: 0; gap: 0; justify-content: center; font-size: 18px; }
+/* tertiary: the outline, for the quietest action beside or after a stronger one */
+.btn.tertiary { background: transparent; color: var(--link); border: 1.5px solid var(--link); border-left-width: 1.5px; padding-left: 24px; }
+.btn.tertiary.sm { padding-left: 18px; }
+.btn.secondary:hover { background: var(--hover-fill); border-color: var(--ink); color: var(--paper); }
+.btn.tertiary:hover { background: var(--hover-fill); border-color: var(--hover-fill); color: var(--paper); }
 
 .prose { max-width: 720px; font-size: 20px; line-height: 1.7; }
 .prose > * { margin: 0; }
@@ -178,6 +179,7 @@ a.row:hover .go, a.row:focus-visible .go { background: transparent; color: var(-
 .prose li + li { margin-top: 0.4em; }
 .prose blockquote { padding-left: 20px; border-left: 1px solid var(--ink); font-size: 22px; line-height: 1.5; }
 .prose a { text-decoration: underline; text-underline-offset: 4px; }
+.prose a:hover { color: var(--hover-fill); text-decoration-color: var(--hover-fill); }
 .prose figure { margin-inline: 0; }
 .prose img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); }
 .prose figcaption { margin-top: 8px; font: 500 12px/1.5 var(--mono); letter-spacing: 0.06em; color: var(--ink2); }

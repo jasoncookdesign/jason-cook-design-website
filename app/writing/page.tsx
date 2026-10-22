@@ -59,7 +59,9 @@ export default function WritingPage() {
                     ))}
                   </div>
                 </div>
-                <span className="go" aria-hidden="true" />
+                <span className="btn secondary icon">
+                  <span aria-hidden="true">&rarr;</span>
+                </span>
               </Link>
             );
           })}

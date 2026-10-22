@@ -78,7 +78,8 @@ describe("work index", () => {
       expect(row.querySelector(".k")!.textContent).toBe(caseStudies[i].client);
       expect(row.querySelector(".title")!.textContent).toBe(caseStudies[i].title);
       expect(row.querySelector(".fig img")).not.toBeNull();
-      expect(row.querySelector(".go")!.getAttribute("aria-hidden")).toBe("true");
+      expect(row.querySelector(".btn.secondary.icon")!.textContent).toBe("→");
+      expect(row.querySelector(".go")).toBeNull();
     });
   });
 
@@ -129,9 +130,9 @@ describe("case study", () => {
     expect(fig.querySelector("figcaption")!.textContent).toContain(dell.testimonial!.role);
   });
 
-  it("closes with a ghost button back to the work index", () => {
+  it("closes with a tertiary button back to the work index", () => {
     const { container } = render(<WorkCaseStudyContent cs={dell} />);
-    const back = container.querySelector('a.btn.ghost[href="/work"]')!;
+    const back = container.querySelector('a.btn.tertiary[href="/work"]')!;
     expect(back.textContent).toBe("← All work");
   });
 });
@@ -155,6 +156,8 @@ describe("writing index", () => {
       expect(row.querySelector(".k")!.textContent).toMatch(/2026/);
       expect(row.querySelector(".title")!.textContent).toBe(posts[i].title);
       expect(row.querySelectorAll(".tag")).toHaveLength(posts[i].tags.length);
+      expect(row.querySelector(".btn.secondary.icon")!.textContent).toBe("→");
+      expect(row.querySelector(".go")).toBeNull();
     });
   });
 });
@@ -177,9 +180,9 @@ describe("writing post", () => {
     expect(container.querySelector("figure.fig figcaption a")).not.toBeNull();
   });
 
-  it("closes with a ghost button back to the writing index", () => {
+  it("closes with a tertiary button back to the writing index", () => {
     const { container } = render(<WritingPostContent post={posts[0]} />);
-    expect(container.querySelector('a.btn.ghost[href="/writing"]')!.textContent).toBe("← All writing");
+    expect(container.querySelector('a.btn.tertiary[href="/writing"]')!.textContent).toBe("← All writing");
   });
 });
 

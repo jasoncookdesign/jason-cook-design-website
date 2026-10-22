@@ -168,7 +168,7 @@ export default function WorkCaseStudyContent({ cs: study }: Props) {
         data-name="CLOSE"
       >
         <div className="pg">
-          <Link href="/work" className="btn ghost">
+          <Link href="/work" className="btn tertiary">
             &larr; All work
           </Link>
         </div>

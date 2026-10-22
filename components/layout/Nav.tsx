@@ -43,7 +43,9 @@ export default function Nav() {
   return (
     <header data-docked={docked ? "true" : "false"} data-sheet="G-001" data-name="TITLE BAR" data-flat className={`bar${docked ? " docked" : ""}`}>
       <Link href="/" className="wordmark">
-        <JcdMark className="wm-mark" />
+        <span className="wm-badge">
+          <JcdMark className="wm-mark" morph />
+        </span>
         <span className="wm-name">Jason Cook Design</span>
       </Link>
       <span className="cue" aria-hidden="true">{cue}</span>
@@ -58,7 +60,7 @@ export default function Nav() {
         </ul>
       </nav>
 
-      <Link href={BOOKING_PATH} className="btn sm">
+      <Link href={BOOKING_PATH} className="btn tertiary sm">
         Start a conversation
       </Link>
 
@@ -85,7 +87,7 @@ export default function Nav() {
             <Link
               href={BOOKING_PATH}
               onClick={() => setOpen(false)}
-              className="btn sm menu-cta"
+              className="btn tertiary sm menu-cta"
             >
               Start a conversation
             </Link>

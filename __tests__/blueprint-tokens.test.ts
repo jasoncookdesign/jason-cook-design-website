@@ -39,7 +39,7 @@ describe("blueprint tokens", () => {
 
   it("keeps the decision accent as its own token, separate from the mark accent", () => {
     expect(token("decision")).toBe("#FF9B6B");
-    expect(token("accent")).not.toBe(token("decision"));
+    expect(token("link")).not.toBe(token("decision"));
   });
 
   it.each([
@@ -61,8 +61,8 @@ describe("blueprint tokens", () => {
   });
 
   it.each([
-    ["accent", "bg"],
-    ["accent", "surface"],
+    ["link", "bg"],
+    ["link", "surface"],
     ["border", "bg"],
     ["border", "surface"],
   ])("control mark or line %s on %s is at least 3:1", (fg, bg) => {
