@@ -18,7 +18,6 @@ export default function WritingPage() {
     <>
       <section className="hero page g" data-sheet="A-101" data-name="HERO">
         <div className="main">
-          <p className="eyebrow">Writing</p>
           <h1>Writing</h1>
           <div>
             <p className="lead">

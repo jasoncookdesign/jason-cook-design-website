@@ -36,7 +36,6 @@ export default function AboutPage() {
     <>
       <section className="hero page g" data-sheet="A-101" data-name="HERO">
         <div className="main">
-          <p className="eyebrow">About</p>
           <h1>About</h1>
           <div>
             <p className="lead long">{paragraphs[0]}</p>

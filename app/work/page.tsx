@@ -21,7 +21,6 @@ export default function WorkPage() {
     <>
       <section className="hero page g" data-sheet="A-101" data-name="HERO">
         <div className="main">
-          <p className="eyebrow">Work</p>
           <h1>Work</h1>
           <div>
             <p className="lead">

@@ -14,8 +14,8 @@ export default function Footer() {
         <nav aria-label="Footer navigation" className="cell">
           <p className="lbl">Site</p>
           <ul role="list">
-            <li><Link href="/work">Work</Link></li>
             <li><Link href="/engagements">Engagements</Link></li>
+            <li><Link href="/work">Work</Link></li>
             <li><Link href="/writing">Writing</Link></li>
             <li><Link href="/about">About</Link></li>
             <li><Link href="/capabilities">Capabilities and institutional work</Link></li>

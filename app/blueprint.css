@@ -36,6 +36,7 @@ a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var
 
 /* ---------- type furniture ---------- */
 .mono{font-family:var(--mono)}
+:root{--eyebrow-h:calc(12px * 1.4)} /* the eyebrow's height, kept above a title that has none */
 .eyebrow{margin:0;font:500 12px/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink2)}
 .ph{font-family:var(--mono);font-size:12px;line-height:1.45;color:var(--ink2);border-bottom:1px dashed var(--ink2);padding-bottom:1px}
 .idx{font:500 12px/1 var(--mono);letter-spacing:.06em;color:var(--ink2)}

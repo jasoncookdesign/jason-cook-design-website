@@ -23,14 +23,15 @@ const withImages = caseStudies.find((c) =>
   c.sections.some((s) => s.blocks.some((b) => b.type === "img"))
 )!;
 
+// third column: whether the hero carries an eyebrow (dropped where it only repeated the title)
 const pages: Array<[string, () => React.ReactElement, boolean]> = [
-  ["work index", () => <WorkPage />, true],
+  ["work index", () => <WorkPage />, false],
   ["case study", () => <WorkCaseStudyContent cs={dell} />, true],
-  ["writing index", () => <WritingPage />, true],
+  ["writing index", () => <WritingPage />, false],
   ["writing post", () => <WritingPostContent post={posts[0]} />, false],
-  ["about", () => <AboutPage />, true],
+  ["about", () => <AboutPage />, false],
   ["capabilities", () => <CapabilitiesPage />, true],
-  ["contact", () => <ContactPage />, true],
+  ["contact", () => <ContactPage />, false],
   ["legal", () => <LegalPage />, false],
   ["not found", () => <NotFound />, true],
 ];
