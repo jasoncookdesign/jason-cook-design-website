@@ -6,7 +6,7 @@ function Plate({ index }: { index: number }) {
   const plate = book.plates[index];
   return (
     <figure className="fig book-plate">
-      <Image src={plate.src} alt={plate.alt} width={plate.width} height={plate.height} sizes={index === 0 ? "(max-width: 899px) 90vw, 690px" : "(max-width: 1199px) 340px, 320px"} priority={index === 0} />
+      <Image src={plate.src} alt={plate.alt} width={plate.width} height={plate.height} sizes={index === 0 ? "(max-width: 899px) 90vw, 690px" : "(max-width: 1199px) 340px, 420px"} priority={index === 0} />
       <figcaption>
         <span className="idx">FIG. {index + 1}</span>
         {plate.caption}
@@ -57,40 +57,37 @@ export default function BookPage() {
       </section>
 
       <section className="pgs" data-sheet="A-102" data-name="ABOUT">
-        <div className="pg">
-          <div className="prose">
-            {book.blurb.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="pgs" data-sheet="A-103" data-name="CONTENTS" aria-label="Contents">
-        <div className="pg book-contents">
-          <div className="book-contents-main">
-          <h2 className="book-contents-title">Contents</h2>
-          <div className="toc">
-            <ul className="toc-matter">
-              <li>{book.frontMatter}</li>
-            </ul>
-            {book.parts.map((part, partIndex) => (
-              <div className="toc-part" key={part.numeral}>
-                <p className="lbl">Part {part.numeral}</p>
-                <h3>{part.title}</h3>
-                <ol>
-                  {part.chapters.map((title, i) => (
-                    <li key={title} value={firstChapter[partIndex] + i}>
-                      <span>{title}</span>
-                    </li>
-                  ))}
-                </ol>
+        <div className="pg book-body">
+          <div className="book-body-main">
+            <div className="prose">
+              {book.blurb.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <div className="book-contents" role="region" aria-label="Contents">
+              <h2 className="book-contents-title">Contents</h2>
+              <div className="toc">
+                <ul className="toc-matter">
+                  <li>{book.frontMatter}</li>
+                </ul>
+                {book.parts.map((part, partIndex) => (
+                  <div className="toc-part" key={part.numeral}>
+                    <p className="lbl">Part {part.numeral}</p>
+                    <h3>{part.title}</h3>
+                    <ol>
+                      {part.chapters.map((title, i) => (
+                        <li key={title} value={firstChapter[partIndex] + i}>
+                          <span>{title}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                ))}
+                <ul className="toc-matter">
+                  <li>{book.backMatter}</li>
+                </ul>
               </div>
-            ))}
-            <ul className="toc-matter">
-              <li>{book.backMatter}</li>
-            </ul>
-          </div>
+            </div>
           </div>
           <div className="book-plates">
             <Plate index={1} />
@@ -99,7 +96,7 @@ export default function BookPage() {
         </div>
       </section>
 
-      <section className="pgs" data-sheet="A-104" data-name="CLOSE">
+      <section className="pgs" data-sheet="A-103" data-name="CLOSE">
         <div className="pg">
           <p className="book-disclaimer">{book.disclaimer}</p>
           <Link href="/writing" className="btn tertiary">

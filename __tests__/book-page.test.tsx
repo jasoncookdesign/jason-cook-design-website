@@ -90,20 +90,24 @@ describe("Book page content", () => {
     expect(within(contents).getAllByRole("listitem").length).toBeGreaterThanOrEqual(16 + 2);
   });
 
-  it("sets the two page plates inside the contents section, beside the list", () => {
-    const contents = screen.getByRole("region", { name: "Contents" });
-    const figures = within(contents).getAllByRole("figure");
+  it("runs the contents after the blurb in the page's one content section, with the plates beside them", () => {
+    const sections = document.querySelectorAll("article > section");
+    expect(Array.from(sections).map((s) => s.getAttribute("data-name"))).toEqual(["HERO", "ABOUT", "CLOSE"]);
+    const about = document.querySelector('[data-name="ABOUT"]')!;
+    const contents = within(about as HTMLElement).getByRole("region", { name: "Contents" });
+    expect(about.querySelector(".prose")!.compareDocumentPosition(contents) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    const figures = within(about as HTMLElement).getAllByRole("figure");
     expect(figures).toHaveLength(2);
     expect(within(figures[0]).getByText("FIG. 2")).toBeTruthy();
     expect(within(figures[1]).getByText("FIG. 3")).toBeTruthy();
-    expect(document.querySelector('[data-name="PLATES"]')).toBeNull();
   });
 
-  it("places the plates in a right-hand column from the wide breakpoint, and stacks them below it", () => {
+  it("sets the plates in a wider right-hand column from the wide breakpoint, the list in one column, and stacks below it", () => {
     const css = fs.readFileSync(path.join(process.cwd(), "app/bp-book.css"), "utf8");
-    expect(css).toMatch(/\.book-contents\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s+\d+px/);
-    expect(css).toMatch(/\.book-contents \.book-plates\s*\{[^}]*justify-self:\s*end/);
-    expect(css).toMatch(/@media \(max-width: 1199px\)[^@]*\.book-contents\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)/);
+    expect(css).toMatch(/\.book-body\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s+4\d\dpx/);
+    expect(css).toMatch(/\.book-body \.book-plates\s*\{[^}]*justify-self:\s*end/);
+    expect(css).toMatch(/@media \(max-width: 1199px\)[^@]*\.book-body\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)/);
+    expect(css).not.toMatch(/\.toc\s*\{[^}]*repeat\(2/);
   });
 
   it("shows three numbered plates of the book, each with alt text and a factual caption", () => {
