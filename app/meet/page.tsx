@@ -11,9 +11,14 @@ export const metadata = {
 export default function MeetPage() {
   return (
     <>
-    <section className="hero page solo g" data-sheet="A-101" data-name="HERO">
+    <section className="hero page g" data-sheet="A-101" data-name="HERO">
       <div className="main">
         <h1>Meet</h1>
+        <div>
+          <p className="lead">
+            Book time with Jason Cook online, by phone, or in person.
+          </p>
+        </div>
       </div>
     </section>
 
