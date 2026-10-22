@@ -5,15 +5,24 @@
  */
 export const BOOKING_PATH = "/contact";
 
+/**
+ * What the strategy call is, in the two lines under every booking button. The call is a free 20-minute fit and ethics
+ * check; the visitor is listened to and then sent a summary of how, and whether, I can help. What they learn about
+ * what they need is the paid diagnosis, so nothing here promises it.
+ */
+export const CALL_STRIP = {
+  a: "Free. 20 minutes. No commitment.",
+  b: "I\u2019ll listen first, then send you a summary of how, and whether, I can help.",
+} as const;
+
 /** The Cal.com event: username/event-slug. */
 export const CAL_LINK = "jasoncookdesign/engagement-consultation";
 
 /** The Cal.com account the events live under. */
 const CAL_USER = "jasoncookdesign";
 
-/** The events a visitor can choose between on the contact page (the old site's list, with the strategy call first). */
-export const BOOKING_TYPES = [
-  { slug: "engagement-consultation", label: "Strategy call" },
+/** The personal meeting types, offered on the unlisted /meet page and not on the contact page. */
+export const MEETING_TYPES = [
   { slug: "meeting", label: "Meeting" },
   { slug: "coffee", label: "Coffee" },
   { slug: "breakfast", label: "Breakfast" },

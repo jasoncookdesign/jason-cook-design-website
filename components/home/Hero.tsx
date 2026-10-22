@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BOOKING_PATH } from "@/lib/booking";
 import ConstructionDrawing from "@/components/brand/ConstructionDrawing";
+import CallStrip from "@/components/booking/CallStrip";
 
 
 // DRAFT — Jason to edit
@@ -31,10 +32,7 @@ export default function Hero() {
           <Link className="btn" href={BOOKING_PATH}>
             Book your strategy call <span aria-hidden="true">&rarr;</span>
           </Link>
-          <p className="strip">
-            <span className="a">No commitment. 20 minutes.</span>{" "}
-            <span className="b">Find out what you need &mdash; and what you don&apos;t.</span>
-          </p>
+          <CallStrip />
         </div>
       </div>
 

@@ -45,6 +45,10 @@ export default function PricingSection() {
         </p>
         <div className="notes">
           <p>
+            Before either one, there&apos;s a free 20-minute call. I listen,
+            then send you a summary of how, and whether, I can help.
+          </p>
+          <p>
             Everything after that gets quoted against what the diagnosis
             found, one outcome and one fixed price at a time.
           </p>

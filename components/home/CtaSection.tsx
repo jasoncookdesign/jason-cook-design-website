@@ -1,5 +1,6 @@
 import Link from "next/link";
 import BookingEmbed from "@/components/booking/BookingEmbed";
+import CallStrip from "@/components/booking/CallStrip";
 
 export default function CtaSection() {
   return (
@@ -12,10 +13,7 @@ export default function CtaSection() {
         <Link className="btn" href="#book">
           Book your strategy call <span aria-hidden="true">&rarr;</span>
         </Link>
-        <p className="strip">
-          <span className="a">No commitment. 20 minutes.</span>{" "}
-          <span className="b">Find out what you need &mdash; and what you don&apos;t.</span>
-        </p>
+        <CallStrip />
       </div>
       <BookingEmbed />
     </section>

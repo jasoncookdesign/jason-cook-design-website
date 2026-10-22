@@ -1,7 +1,8 @@
 import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
 import { render, screen, fireEvent, within } from "@testing-library/react";
-import { BOOKING_PATH, BOOKING_URL, BOOKING_TYPES, CAL_LINK, calLinkFor, calUiConfig } from "@/lib/booking";
+import { BOOKING_PATH, BOOKING_URL, MEETING_TYPES, CAL_LINK, calLinkFor, calUiConfig } from "@/lib/booking";
+import MeetPage, { metadata as meetMetadata } from "@/app/meet/page";
 import BookingEmbed from "@/components/booking/BookingEmbed";
 import ContactPage from "@/app/contact/page";
 
@@ -53,40 +54,49 @@ describe("booking module", () => {
 });
 
 describe("meeting types", () => {
-  it("lists the strategy call first, then the old site's meeting, coffee, breakfast, lunch, and dinner", () => {
-    expect(BOOKING_TYPES.map((t) => t.slug)).toEqual(["engagement-consultation", "meeting", "coffee", "breakfast", "lunch", "dinner"]);
-    expect(BOOKING_TYPES.map((t) => t.label)).toEqual(["Strategy call", "Meeting", "Coffee", "Breakfast", "Lunch", "Dinner"]);
+  it("lists the old site's personal meeting, coffee, breakfast, lunch, and dinner; the strategy call is not among them", () => {
+    expect(MEETING_TYPES.map((t) => t.slug)).toEqual(["meeting", "coffee", "breakfast", "lunch", "dinner"]);
+    expect(MEETING_TYPES.map((t) => t.label)).toEqual(["Meeting", "Coffee", "Breakfast", "Lunch", "Dinner"]);
     expect(calLinkFor("coffee")).toBe("jasoncookdesign/coffee");
-    expect(BOOKING_TYPES[0].slug).toBe(CAL_LINK.split("/")[1]);
+    expect(MEETING_TYPES.map((t) => t.slug)).not.toContain(CAL_LINK.split("/")[1]);
   });
 });
 
 describe("BookingEmbed with a meeting-type chooser", () => {
-  it("shows one pressed button per type, the strategy call first, and loads the first event", () => {
-    const { container } = render(<BookingEmbed types={BOOKING_TYPES} />);
+  it("shows one pressed button per type, the first pressed, and loads the first event", () => {
+    const { container } = render(<BookingEmbed types={MEETING_TYPES} />);
     const group = screen.getByRole("group", { name: /choose a meeting type/i });
     const buttons = within(group).getAllByRole("button");
-    expect(buttons.map((b) => b.textContent)).toEqual(["Strategy call", "Meeting", "Coffee", "Breakfast", "Lunch", "Dinner"]);
-    expect(buttons.map((b) => b.getAttribute("aria-pressed"))).toEqual(["true", "false", "false", "false", "false", "false"]);
-    expect(mountCalEmbed).toHaveBeenCalledWith(container.querySelector(".cal-inline"), CAL_LINK);
+    expect(buttons.map((b) => b.textContent)).toEqual(["Meeting", "Coffee", "Breakfast", "Lunch", "Dinner"]);
+    expect(buttons.map((b) => b.getAttribute("aria-pressed"))).toEqual(["true", "false", "false", "false", "false"]);
+    expect(mountCalEmbed).toHaveBeenCalledWith(container.querySelector(".cal-inline"), "jasoncookdesign/meeting");
   });
 
   it("switching type moves the pressed state, reloads the picker for that event, and updates the fallback link", () => {
-    const { container } = render(<BookingEmbed types={BOOKING_TYPES} />);
+    const { container } = render(<BookingEmbed types={MEETING_TYPES} />);
     fireEvent.click(screen.getByRole("button", { name: "Coffee" }));
     expect(screen.getByRole("button", { name: "Coffee" }).getAttribute("aria-pressed")).toBe("true");
-    expect(screen.getByRole("button", { name: "Strategy call" }).getAttribute("aria-pressed")).toBe("false");
+    expect(screen.getByRole("button", { name: "Meeting" }).getAttribute("aria-pressed")).toBe("false");
     expect(mountCalEmbed).toHaveBeenLastCalledWith(container.querySelector(".cal-inline"), "jasoncookdesign/coffee");
     expect(screen.getByRole("link", { name: /open the booking page in cal\.com/i }).getAttribute("href")).toBe("https://cal.com/jasoncookdesign/coffee");
   });
 
-  it("has no chooser unless asked (the home close sheet keeps the strategy call only)", () => {
+  it("has no chooser unless asked (the home close sheet and the contact page keep the strategy call only)", () => {
     render(<BookingEmbed />);
     expect(screen.queryByRole("group", { name: /choose a meeting type/i })).toBeNull();
   });
 
-  it("the contact page asks for it", () => {
-    render(<ContactPage />);
+  it("the contact page offers the strategy call alone", () => {
+    const { container } = render(<ContactPage />);
+    expect(screen.queryByRole("group", { name: /choose a meeting type/i })).toBeNull();
+    expect(mountCalEmbed).toHaveBeenCalledWith(container.querySelector(".cal-inline"), CAL_LINK);
+    for (const label of ["Meeting", "Coffee", "Breakfast", "Lunch", "Dinner"]) {
+      expect(screen.queryByRole("button", { name: label })).toBeNull();
+    }
+  });
+
+  it("the unlisted meet page asks for the chooser", () => {
+    render(<MeetPage />);
     expect(screen.getByRole("group", { name: /choose a meeting type/i })).toBeTruthy();
   });
 });
@@ -125,5 +135,11 @@ describe("meeting-type chooser layout", () => {
   it("gives every type an equal share of the row, and clears the sheet tag above the row", () => {
     expect(css).toMatch(/\.cal-typebar button\s*\{[^}]*flex:\s*1 1 0/);
     expect(css).toMatch(/\.book-sheet\s*\{[^}]*padding:\s*44px var\(--pad\) 0/);
+  });
+});
+
+describe("the meet page is unlisted", () => {
+  it("asks search engines not to index or follow it", () => {
+    expect(meetMetadata.robots).toEqual({ index: false, follow: false });
   });
 });
