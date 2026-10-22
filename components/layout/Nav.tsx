@@ -58,7 +58,7 @@ export default function Nav() {
         </ul>
       </nav>
 
-      <Link href={BOOKING_PATH} className="btn sm">
+      <Link href={BOOKING_PATH} className="btn tertiary sm">
         Start a conversation
       </Link>
 
@@ -85,7 +85,7 @@ export default function Nav() {
             <Link
               href={BOOKING_PATH}
               onClick={() => setOpen(false)}
-              className="btn sm menu-cta"
+              className="btn tertiary sm menu-cta"
             >
               Start a conversation
             </Link>
