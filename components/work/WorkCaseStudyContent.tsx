@@ -1,7 +1,7 @@
-import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { CaseStudy, Block } from "@/lib/work";
+import { renderBeats } from "@/components/ui/beats";
 import LoopVideo from "./LoopVideo";
 
 function renderBlock(block: Block, idx: number, fig: number) {
@@ -49,41 +49,6 @@ function renderBlock(block: Block, idx: number, fig: number) {
     default:
       return null;
   }
-}
-
-type Placed = { block: Block; fig: number };
-
-// Groups each figure with the run of text just before it, so a wide screen can set them side by side. A figure with
-// no text before it is a beat of its own, so every figure lands in the same column. Text with no figure after it
-// stays a plain sibling.
-function renderBeats(blocks: Placed[]) {
-  const out: ReactNode[] = [];
-  let run: Placed[] = [];
-  const flush = () => {
-    run.forEach(({ block, fig }, i) => out.push(renderBlock(block, out.length + i, fig)));
-    run = [];
-  };
-  blocks.forEach(({ block, fig }, i) => {
-    if (block.type !== "img") {
-      run.push({ block, fig });
-    } else if (run.length) {
-      out.push(
-        <div key={`beat-${i}`} className="beat">
-          <div className="beat-text">{run.map((r, j) => renderBlock(r.block, j, r.fig))}</div>
-          {renderBlock(block, i, fig)}
-        </div>,
-      );
-      run = [];
-    } else {
-      out.push(
-        <div key={`beat-${i}`} className="beat">
-          {renderBlock(block, i, fig)}
-        </div>,
-      );
-    }
-  });
-  flush();
-  return out;
 }
 
 interface Props {
@@ -136,7 +101,7 @@ export default function WorkCaseStudyContent({ cs: study }: Props) {
             {section.diagnosisNote && (
               <aside className="note">{section.diagnosisNote}</aside>
             )}
-            <div className="prose beats">{renderBeats(blocks)}</div>
+            <div className="prose beats">{renderBeats(blocks, renderBlock)}</div>
           </div>
         </section>
       ))}

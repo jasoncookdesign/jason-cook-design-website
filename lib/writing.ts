@@ -20,6 +20,8 @@ export interface Post {
   tags: string[];
   excerpt: string;
   coverImage?: string;
+  /** "figures-right" sets each figure beside the text before it from 1200px, as the case studies do. Default: one column. */
+  layout?: "figures-right";
   content: ContentBlock[];
 }
 
@@ -588,6 +590,7 @@ export const posts: Post[] = [
     tags: ["design", "process", "case-study"],
     excerpt: "The process behind the redesign, from audit to launch.",
     coverImage: "/images/blog/rebuilding-jasoncookdesign/01-before-after.webp",
+    layout: "figures-right",
     content: [
       { type: "p", html: "Until this fall, the first thing a visitor to jasoncookdesign.com saw was my face under a headline that read \"I'll help you deliver a world-class digital product.\" That headline went up in December 2024 and ran until October 2026, on a Bootstrap template I first put online in April 2019. The site had a hero, eight case studies, a pricing section, and a blog. It no longer described what I do, which is build working systems for businesses with a new offering to launch or a system to fix." },
       { type: "img", src: "/images/blog/rebuilding-jasoncookdesign/01-before-after.webp", alt: "Before and after: the old home page and the rebuilt one.", credit: "Before and after: the old home page and the rebuilt one." },
