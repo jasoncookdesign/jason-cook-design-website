@@ -51,7 +51,7 @@ a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var
 
 /* ---------- button ---------- */
 .btn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 24px;background:var(--ink);color:var(--paper);border:1.5px solid var(--ink);text-decoration:none;font:500 15px/1.2 var(--mono);letter-spacing:.01em;transition:background-color .15s,color .15s}
-.btn:hover{background:var(--paper);color:var(--ink)}
+.btn:hover{background:var(--hover-fill);border-color:var(--hover-fill);color:var(--paper)}
 .btn.sm{min-height:44px;padding:0 18px;font-size:13px}
 
 /* ---------- hero ---------- */

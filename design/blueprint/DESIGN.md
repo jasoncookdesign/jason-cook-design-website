@@ -12,6 +12,7 @@ colors:
   guide-sketch: "#2F5775"
   accent: "#FF9B6B"
   button-bg: "#E8EFF5"
+  hover-fill: "#C9D8E5"
   button-ink: "#0D2438"
 typography:
   display:
@@ -99,7 +100,7 @@ None in the page. The optional layer view lifts plates in 3D and draws the measu
 Square corners (no radius) on every control and cell. The only curves are the brand mark's own circular arcs (radius 6 and 26 in a 84 by 100 letter cell).
 
 ## Components
-Primary button: ivory fill, field-colored mono label, 1.5px ivory border, 52px high, square. Layers toggle: an understated 44px square icon button (four stacked layers), transparent with a 1px rule border, accessible name "Layers" and `aria-pressed`. Sheet top: a bar with a mono figure number, a serif title, and a mono right-hand note, with a 1px rule beneath. Docked header: one sticky header that compacts after scrolling and keeps the mark, the nav, the primary action, and the layer toggle.
+Primary button: ivory fill, field-colored mono label, 1.5px ivory border, 52px high, square. On hover a solid control stays solid and takes the light-blue `hover-fill` (`#C9D8E5`, `--hover-fill`) with its field-colored label: the primary button, the ghost button, and the media pause/play control. Rows, cells, tabs and the segmented control keep the raised-surface hover, since their light labels would not survive a light fill. Layers toggle: an understated 44px square icon button (four stacked layers), transparent with a 1px rule border, accessible name "Layers" and `aria-pressed`. Sheet top: a bar with a mono figure number, a serif title, and a mono right-hand note, with a 1px rule beneath. Docked header: one sticky header that compacts after scrolling and keeps the mark, the nav, the primary action, and the layer toggle.
 
 ## Do's and Don'ts
 Do keep the primary action reachable in every viewport (visible or in the sticky header). Do mark every placeholder as `[SAMPLE: ...]` and never ship one. Do keep motion off under `prefers-reduced-motion` and keep all content visible without JavaScript. Don't use gradients, glow, stock imagery, illustration, or old-work screenshots as hero or proof. Don't use orange for more than one decision point per sheet.

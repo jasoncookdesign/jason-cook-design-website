@@ -118,7 +118,9 @@
 
   --btn-bg: #E8EFF5;
   --btn-ink: #0D2438;
-  --btn-bg-hover: #C9D8E5;
+  /* the light blue a solid control takes on hover; the older button hover tokens below point at it */
+  --hover-fill: #C9D8E5;
+  --btn-bg-hover: var(--hover-fill);
   --band-bg: #133049;
   --band-ink: #E8EFF5;
   --band-body: #D3DEE8;
@@ -126,7 +128,7 @@
   --band-border: #5E7E96;
   --band-btn-bg: #E8EFF5;
   --band-btn-ink: #0D2438;
-  --band-btn-hover: #C9D8E5;
+  --band-btn-hover: var(--hover-fill);
 
   --radius: 0px;
 

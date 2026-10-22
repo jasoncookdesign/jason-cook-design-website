@@ -48,7 +48,7 @@ ul.rows, ol.rows { list-style: none; margin: 0; padding: 0; }
 .loop-toggle::before { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 16px; transform: translate(-50%, -50%); }
 .loop-toggle[data-state="playing"]::before { background: linear-gradient(90deg, currentColor 0 4px, transparent 4px 10px, currentColor 10px 14px); }
 .loop-toggle[data-state="paused"]::before { background: currentColor; clip-path: polygon(0 0, 100% 50%, 0 100%); }
-.loop-toggle:hover { background: var(--ink); color: var(--bg); }
+.loop-toggle:hover { background: var(--hover-fill); border-color: var(--hover-fill); color: var(--bg); }
 .loop-toggle:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
 .fig figcaption { margin: 0; padding: 10px 14px; border-top: 1px solid var(--rule); font: 500 12px/1.4 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink2); }
 .fig figcaption .idx { margin-right: 14px; }
