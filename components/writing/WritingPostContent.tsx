@@ -3,6 +3,19 @@ import Link from "next/link";
 import { Post, ContentBlock } from "@/lib/writing";
 import { renderBeats } from "@/components/ui/beats";
 
+function renderExcerpt({ excerpt, excerptLink }: Post) {
+  const at = excerptLink ? excerpt.indexOf(excerptLink.text) : -1;
+  if (!excerptLink || at < 0) return excerpt;
+  const end = at + excerptLink.text.length;
+  return (
+    <>
+      {excerpt.slice(0, at)}
+      <Link href={excerptLink.href}>{excerptLink.text}</Link>
+      {excerpt.slice(end)}
+    </>
+  );
+}
+
 function renderBlock(block: ContentBlock, idx: number, fig: number) {
   switch (block.type) {
     case "p":
@@ -81,7 +94,7 @@ export default function WritingPostContent({ post }: Props) {
           </nav>
           <h1>{post.title}</h1>
           <div>
-            <p className="lead">{post.excerpt}</p>
+            <p className="lead">{renderExcerpt(post)}</p>
           </div>
           <div className="tags">
             {post.tags.map((tag) => (

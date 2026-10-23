@@ -197,6 +197,7 @@ main section {
   position: sticky;
   top: 0;
   z-index: 20;
+  container-type: inline-size;
 }
 .bar .wordmark {
   align-items: center;
@@ -363,6 +364,20 @@ main section {
 /* Phone: the lockup, layers button, and menu must fit the bar. */
 @media (max-width: 899px) {
   .bar .wordmark { gap: 10px; font-size: 11px; letter-spacing: 0.04em; }
+}
+
+/* Narrow phones: when the bar cannot fit the lockup, layers button, and menu, the wordmark text steps aside and the
+   mark stays. The text is hidden visually so the link keeps its accessible name. */
+/* 331px of bar content: the mark (62px), the 11px wordmark (~120px), layers (44px), the Close-state menu (~72px), and two 12px gaps need about 332px. */
+@container (max-width: 331px) {
+  .bar .wm-name {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
 }
 
 /* One rule between sheets: when a sheet opens with a block that has its own top rule, the section's rule is the only one. */

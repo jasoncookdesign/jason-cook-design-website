@@ -142,6 +142,14 @@ describe("The post announcing the book", () => {
     expect(last.type === "p" && last.html).toContain(`href="${book.href}"`);
   });
 
+  it("links 'free to read and download' in the subheading to the book page", () => {
+    const { container } = render(<WritingPostContent post={post!} />);
+    const link = container.querySelector(".hero .lead a")!;
+    expect(link.textContent).toBe("free to read and download");
+    expect(link.getAttribute("href")).toBe(book.href);
+    expect(container.querySelector(".hero .lead")!.textContent).toBe(post!.excerpt);
+  });
+
   it("uses the book's mockup as its cover, and the file exists", () => {
     expect(post!.coverImage).toBe("/images/book/book-mockup.jpg");
     expect(fs.existsSync(path.join(process.cwd(), "public", post!.coverImage!))).toBe(true);

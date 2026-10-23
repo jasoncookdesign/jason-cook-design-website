@@ -19,6 +19,8 @@ export interface Post {
   date: string;
   tags: string[];
   excerpt: string;
+  /** A phrase inside the excerpt that the post page links to `href`. */
+  excerptLink?: { text: string; href: string };
   coverImage?: string;
   /** "figures-right" sets each figure beside the text before it from 1200px, as the case studies do. Default: one column. */
   layout?: "figures-right";
@@ -636,6 +638,7 @@ export const posts: Post[] = [
     date: "2026-10-22",
     tags: ["writing", "governance", "systems-thinking"],
     excerpt: "I started with an idea for a blog post. It kept growing until a post couldn't hold it, so I'm posting the book instead, free to read and download.",
+    excerptLink: { text: "free to read and download", href: "/writing/longform" },
     coverImage: "/images/book/book-mockup.jpg",
     content: [
       { type: "img", src: "/images/book/book-mockup.jpg", alt: "The book as a hardcover at an angle, its spine showing: a parchment cover with a script texture above a dark cover with the title The Constitution and the Machine.", credit: "The Constitution and the Machine, free to read and download." },
