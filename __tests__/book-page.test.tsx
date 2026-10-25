@@ -19,7 +19,7 @@ const BLURB = [
 
 const PARTS: Array<[string, string, string[]]> = [
   ["I", "The Machine That Was Built", ["The Jury Summons and the Kleroterion", "A Brilliant Machine for 1787", "The Menu of Power in 1787", "Compression"]],
-  ["II", "What Changed", ["The Menu Got Longer", "Conversion, Named Plainly", "The Decompression"]],
+  ["II", "What Changed", ["The Menu Got Longer", "Conversion, Named Plainly", "Decompression"]],
   ["III", "Two Futures on One Machine", ["The Competent Autocracy", "The Distributed Republic", "How the Good Version Breaks"]],
   ["IV", "The Design Problem", ["From “Who Governs?” to “What Procedure Is Legitimate Here?”", "Non-Convertibility", "The Power Graph", "Constitutional Entropy"]],
   ["V", "Getting There Without Blood", ["How Change Actually Happens", "What You Could Start On Monday"]],

@@ -37,7 +37,7 @@ export const book: Book = {
   backMatter: "Coda: The Window",
   parts: [
     { numeral: "I", title: "The Machine That Was Built", chapters: ["The Jury Summons and the Kleroterion", "A Brilliant Machine for 1787", "The Menu of Power in 1787", "Compression"] },
-    { numeral: "II", title: "What Changed", chapters: ["The Menu Got Longer", "Conversion, Named Plainly", "The Decompression"] },
+    { numeral: "II", title: "What Changed", chapters: ["The Menu Got Longer", "Conversion, Named Plainly", "Decompression"] },
     { numeral: "III", title: "Two Futures on One Machine", chapters: ["The Competent Autocracy", "The Distributed Republic", "How the Good Version Breaks"] },
     { numeral: "IV", title: "The Design Problem", chapters: ["From “Who Governs?” to “What Procedure Is Legitimate Here?”", "Non-Convertibility", "The Power Graph", "Constitutional Entropy"] },
     { numeral: "V", title: "Getting There Without Blood", chapters: ["How Change Actually Happens", "What You Could Start On Monday"] },
