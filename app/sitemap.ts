@@ -4,8 +4,9 @@ import { posts } from "@/lib/writing";
 
 const SITE = "https://jasoncookdesign.com";
 
+// /engagements is left out because its canonical is /engagements/offering.
 // Fixed pages; case studies and posts come from their registries so a new entry is listed without a second edit.
-const pages = ["", "/about", "/capabilities", "/contact", "/engagements", "/engagements/offering", "/engagements/operating", "/legal", "/work", "/writing", "/writing/longform"];
+const pages = ["", "/about", "/capabilities", "/contact", "/engagements/offering", "/engagements/operating", "/legal", "/work", "/writing", "/writing/longform"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
