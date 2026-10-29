@@ -111,12 +111,12 @@ describe("Home page", () => {
     expect(screen.getByText(/How long does it take/i)).toBeTruthy();
   });
 
-  it("says in the $2,500 answer that the fee is credited against the next phase on the same standing terms", () => {
+  it("says in the $2,500 diagnosis answer that the fee is credited against the next phase, with its terms", () => {
     render(<HomePage />);
     fireEvent.click(screen.getByText(/What do I get for \$2,500/i));
     const text = document.body.textContent ?? "";
-    expect(text).toContain("credited in full against Discovery and Architecture");
-    expect(text).toContain("applied automatically on your first invoice");
+    expect(text).toContain("credited in full against the next phase");
+    expect(text).toContain("applied automatically on that phase's first invoice");
     expect(text).toContain("as long as my quote for that phase is valid");
     expect(text).toContain("no cash value");
   });
