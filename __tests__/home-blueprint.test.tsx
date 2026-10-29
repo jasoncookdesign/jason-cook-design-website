@@ -218,13 +218,11 @@ describe("Home proof and pricing", () => {
     for (const p of Array.from(plates)) {
       expect(p.querySelector(".pl-h")?.textContent).toContain("$2,500");
       expect(p.querySelectorAll(".regs i")).toHaveLength(4);
-      expect(p.querySelector("a.btn")?.textContent).toContain("Book your strategy call");
+      expect(p.querySelector("a")).toBeNull();
     }
     for (const p of Array.from(plates)) {
       const steps = Array.from(p.querySelectorAll(".sp"));
-      expect(steps.map((s) => s.querySelector(".k .l")?.textContent)).toEqual(["A", "B"]);
-      expect(steps[0].querySelector("a.btn")).toBeNull();
-      expect(steps[1].querySelector("a.btn")).not.toBeNull();
+      expect(steps.map((s) => s.querySelector(".k .l")?.textContent)).toEqual(["What happens", "What you keep"]);
     }
   });
 
