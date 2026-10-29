@@ -1,7 +1,7 @@
 const pricingCards = [
   {
     label: "Set in advance",
-    body: "The paid diagnosis is the only part with a price I can publish: $2,500. It’s the same number for everyone.",
+    body: "The paid diagnosis is the only part with a price I can publish: $2,500. It’s the same number for everyone, and if you go on, it’s credited in full against the next phase.",
   },
   {
     label: "Quoted per phase",

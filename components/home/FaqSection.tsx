@@ -22,6 +22,7 @@ const faqs = [
     answer: [
       "A diagnosis I lead personally, and a written recommendation at the end of it. It names the real problem, what to address first, and what addressing it takes.",
       "If the recommendation is that you shouldn't build, you get that in writing too.",
+      "If you go on, the $2,500 is credited in full against Discovery and Architecture, applied automatically on your first invoice. The credit holds for as long as my quote for that phase is valid. It can't move to another project or company, and it has no cash value.",
     ],
   },
   {

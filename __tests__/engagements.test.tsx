@@ -55,6 +55,11 @@ describe("Engagements page", () => {
     expect(screen.queryByText(/\[ENTRY-OFFER-NAME\]/)).toBeNull();
   });
 
+  it("tells the buyer in the pricing card that the $2,500 is credited if they continue", () => {
+    render(<EngagementsPage />);
+    expect(screen.getByText(/credited in full against the next phase/)).toBeTruthy();
+  });
+
   it("renders $2,500 in the pricing card", () => {
     render(<EngagementsPage />);
     expect(screen.getByText(/\$2,500/)).toBeTruthy();
