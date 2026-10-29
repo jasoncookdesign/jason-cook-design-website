@@ -69,6 +69,16 @@ describe("Offering Engagement opens with a paid first phase", () => {
     expect(hasFeeFigure(text.replaceAll("$2,500", ""))).toBe(false);
   });
 
+  it("says on the offering page that the $2,500 is credited in full against the next phase, with its terms and no other fee figure", () => {
+    const { container } = render(<OfferingPage />);
+    const text = container.textContent ?? "";
+    expect(text).toContain("credited in full against the next phase");
+    expect(text).toContain("applied automatically on that phase's first invoice");
+    expect(text).toContain("as long as my quote for that phase is valid");
+    expect(text).toContain("no cash value");
+    expect(hasFeeFigure(text.replaceAll("$2,500", ""))).toBe(false);
+  });
+
   it("says on the home page that the Offering Engagement opens with a paid assessment", () => {
     const { container } = render(<HomePage />);
     expect(container.textContent).toMatch(/Offering Engagement opens with a paid assessment of the decision/);
