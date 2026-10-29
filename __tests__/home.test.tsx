@@ -19,6 +19,17 @@ describe("Home page pricing plate", () => {
     expect(plate?.querySelectorAll(".sp").length).toBeGreaterThanOrEqual(2);
     void container;
   });
+
+  it("labels each plate's rows 'What happens' and 'What you keep', with no booking button inside the plates", () => {
+    const { container } = render(<HomePage />);
+    const plates = container.querySelectorAll(".plates .pl");
+    expect(plates).toHaveLength(2);
+    plates.forEach((plate) => {
+      const labels = Array.from(plate.querySelectorAll(".sp .k .l")).map((l) => l.textContent);
+      expect(labels).toEqual(["What happens", "What you keep"]);
+      expect(plate.querySelector("a")).toBeNull();
+    });
+  });
 });
 
 describe("Home page", () => {

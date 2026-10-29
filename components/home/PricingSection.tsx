@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { BOOKING_PATH } from "@/lib/booking";
 // DRAFT — Jason to edit
 
 function Regs() {
@@ -21,14 +19,6 @@ function Key({ k }: { k: string }) {
         <span className="l">{k}</span>
       </span>
     </div>
-  );
-}
-
-function Book() {
-  return (
-    <Link className="btn secondary" href={BOOKING_PATH}>
-      Book your strategy call <span aria-hidden="true">&rarr;</span>
-    </Link>
   );
 }
 
@@ -68,7 +58,7 @@ export default function PricingSection() {
             <p className="price">$2,500</p>
           </div>
           <div className="sp">
-            <Key k="A" />
+            <Key k="What happens" />
             <div className="v">
               <p>
                 For a new product or business line, the first phase is a paid
@@ -77,12 +67,11 @@ export default function PricingSection() {
             </div>
           </div>
           <div className="sp">
-            <Key k="B" />
+            <Key k="What you keep" />
             <div className="v">
               <p>
                 You leave with a written verdict and the proof behind it.
               </p>
-              <Book />
             </div>
           </div>
         </div>
@@ -95,7 +84,7 @@ export default function PricingSection() {
             <p className="price">$2,500</p>
           </div>
           <div className="sp">
-            <Key k="A" />
+            <Key k="What happens" />
             <div className="v">
               <p>
                 I lead a paid diagnosis personally, looking at what you&apos;re trying
@@ -105,14 +94,13 @@ export default function PricingSection() {
             </div>
           </div>
           <div className="sp">
-            <Key k="B" />
+            <Key k="What you keep" />
             <div className="v">
               <p>
                 You leave with a written recommendation: what the real problem is,
                 what to address first, and what it takes. If the answer is
                 something other than &ldquo;build it,&rdquo; that&apos;s what it says.
               </p>
-              <Book />
             </div>
           </div>
         </div>
