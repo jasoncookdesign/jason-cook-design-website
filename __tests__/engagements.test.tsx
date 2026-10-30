@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import EngagementsPage from "@/app/engagements/operating/page";
+import { SHORT } from "@/lib/first-phase-terms";
 
 describe("Engagements page", () => {
   it("renders the hero H1", () => {
@@ -55,14 +56,15 @@ describe("Engagements page", () => {
     expect(screen.queryByText(/\[ENTRY-OFFER-NAME\]/)).toBeNull();
   });
 
-  it("tells the buyer in the pricing card that the $2,500 is credited if they continue", () => {
-    render(<EngagementsPage />);
-    expect(screen.getByText(/credited in full against the next phase/)).toBeTruthy();
+  it("gives the credit in the pricing card as a short form with a link to the terms page", () => {
+    const { container } = render(<EngagementsPage />);
+    expect(container.textContent).toContain(SHORT.credit.text);
+    expect(container.querySelector(`a[href="${SHORT.credit.href}"]`)).not.toBeNull();
   });
 
   it("renders $2,500 in the pricing card", () => {
     render(<EngagementsPage />);
-    expect(screen.getByText(/\$2,500/)).toBeTruthy();
+    expect(screen.getAllByText(/\$2,500/).length).toBeGreaterThan(0);
   });
 
   it("renders the FAQ section including FAQ-E6", () => {

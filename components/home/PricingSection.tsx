@@ -1,4 +1,6 @@
 // DRAFT — Jason to edit
+import Link from "next/link";
+import { SHORT } from "@/lib/first-phase-terms";
 
 function Regs() {
   return (
@@ -45,6 +47,12 @@ export default function PricingSection() {
           <p>
             If you want me around after the build, that&apos;s a separate
             conversation and a separate decision.
+          </p>
+          <p>
+            {SHORT.credit.text}{" "}
+            <Link href={SHORT.credit.href} className="underline">
+              {SHORT.credit.label}
+            </Link>
           </p>
         </div>
       </div>

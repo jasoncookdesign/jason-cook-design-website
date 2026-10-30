@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { render, screen } from "@testing-library/react";
 import HomePage from "@/app/page";
+import { SHORT } from "@/lib/first-phase-terms";
 import OfferingPage from "@/app/engagements/offering/page";
 import { expectValidHeadingOrder } from "./helpers/headings";
 import { hasFeeFigure } from "./helpers/prices";
@@ -69,13 +70,11 @@ describe("Offering Engagement opens with a paid first phase", () => {
     expect(hasFeeFigure(text.replaceAll("$2,500", ""))).toBe(false);
   });
 
-  it("says on the offering page that the $2,500 is credited in full against the next phase, with its terms and no other fee figure", () => {
+  it("gives the credit and the guarantee as a short form with a link to the terms page, with no other fee figure", () => {
     const { container } = render(<OfferingPage />);
     const text = container.textContent ?? "";
-    expect(text).toContain("credited in full against the next phase");
-    expect(text).toContain("applied automatically on that phase's first invoice");
-    expect(text).toContain("as long as my quote for that phase is valid");
-    expect(text).toContain("no cash value");
+    expect(text).toContain(SHORT.both.text);
+    expect(container.querySelector(`a[href="${SHORT.both.href}"]`)).not.toBeNull();
     expect(hasFeeFigure(text.replaceAll("$2,500", ""))).toBe(false);
   });
 
