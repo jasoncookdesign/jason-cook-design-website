@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { withSocial } from "@/lib/metadata";
 
 export const metadata = withSocial({
@@ -22,6 +23,19 @@ const paragraphs = [
   "AI is part of this work when it creates real leverage. It isn't the identity of the practice. The question the diagnosis answers is whether any given technology — AI included — is the right fit for the specific problem.",
   "The recommendation you can trust is the one that's built to say no. If that kind of rigor is what you're looking for, the paid first step is where it starts.",
 ];
+
+const FIRST_STEP = "paid first step";
+function withFirstPhaseLink(text: string) {
+  const at = text.indexOf(FIRST_STEP);
+  if (at < 0) return text;
+  return (
+    <>
+      {text.slice(0, at)}
+      <Link href="/engagements/first-phase" className="underline">{FIRST_STEP}</Link>
+      {text.slice(at + FIRST_STEP.length)}
+    </>
+  );
+}
 
 // DRAFT — Jason to edit. Career facts from Jason's own records; titles as recorded there.
 const background = [
@@ -64,7 +78,7 @@ export default function AboutPage() {
         <div className="pg">
           <div className="prose">
             {paragraphs.slice(1).map((para, i) => (
-              <p key={i}>{para}</p>
+              <p key={i}>{withFirstPhaseLink(para)}</p>
             ))}
           </div>
         </div>

@@ -10,8 +10,10 @@ import { engagementTypes } from "@/lib/engagement-types";
  */
 export default function EngagementSelector() {
   const pathname = usePathname();
-  const active =
-    engagementTypes.find((t) => pathname === `/engagements/${t.slug}`) ?? engagementTypes[0];
+  const match = engagementTypes.find((t) => pathname === `/engagements/${t.slug}`);
+  // /engagements itself shows the first type. Other pages under it (the first phase, the sample) belong to no type.
+  if (!match && pathname && pathname !== "/engagements") return null;
+  const active = match ?? engagementTypes[0];
 
   return (
     <div className="eng-select">
