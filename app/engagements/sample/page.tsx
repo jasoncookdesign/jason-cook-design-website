@@ -31,7 +31,7 @@ export default function SamplePage() {
       <section className="hero page g" data-question="what-is-this" data-sheet="A-120" data-name="SAMPLE">
         <div className="main">
           <p className="eyebrow">See what you would get</p>
-          <h1>A sample first-phase report, written for a fictional client.</h1>
+          <h1>A sample first-phase report</h1>
           <div>
             <p className="lead">
               This is a sample of the report you get from the paid first phase, written for a fictional client so you can see
