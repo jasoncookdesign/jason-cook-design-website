@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SITE_NAV } from "@/lib/site-nav";
 import JcdMark from "@/components/brand/JcdMark";
 
 // The foot of the sheet: a plate of three ruled cells (the mark, the site, the contact) over the colophon row.
@@ -14,10 +15,20 @@ export default function Footer() {
         <nav aria-label="Footer navigation" className="cell">
           <p className="lbl">Site</p>
           <ul role="list">
-            <li><Link href="/engagements">Engagements</Link></li>
-            <li><Link href="/work">Work</Link></li>
-            <li><Link href="/writing">Writing</Link></li>
-            <li><Link href="/about">About</Link></li>
+            {SITE_NAV.filter((i) => i.href !== "/").map(({ href, label, children }) => (
+              <li key={href}>
+                <Link href={href}>{label}</Link>
+                {children && (
+                  <ul role="list" className="foot-sub">
+                    {children.map((c) => (
+                      <li key={c.href}>
+                        <Link href={c.href}>{c.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
             <li><Link href="/capabilities">Capabilities and institutional work</Link></li>
           </ul>
         </nav>

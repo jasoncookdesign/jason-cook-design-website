@@ -411,3 +411,25 @@ html.rm .bar .wordmark:is(:hover, :focus-visible) .wm-badge::before { animation:
   .bar .nav ul { gap: 18px; }
   .bar { gap: 20px; }
 }
+
+/* Engagements opens a dropdown of its three pages on hover and keyboard focus; the mobile menu and footer list them inline. */
+.bar .nav li { position: relative; }
+.bar .nav .sub {
+  position: absolute;
+  top: 100%;
+  left: -14px;
+  z-index: 4;
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  min-width: 240px;
+  padding: 6px 0;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+}
+.bar .nav .has-sub:hover > .sub,
+.bar .nav .has-sub:focus-within > .sub { display: flex; }
+.bar .nav .sub a { padding: 0 14px; }
+.bar .nav .sub a:hover { background: var(--raised, transparent); }
+.menu nav a.sub { padding-left: calc(var(--pad) + 18px); }
+.foot-sheet .foot-sub { margin: 0; padding: 0 0 0 16px; list-style: none; }

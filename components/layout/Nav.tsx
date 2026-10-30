@@ -1,19 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Fragment, useState, useEffect } from "react";
 import Link from "next/link";
 import { BOOKING_PATH } from "@/lib/booking";
 import JcdMark from "@/components/brand/JcdMark";
 import LayerView from "@/components/layout/LayerView";
+import { SITE_NAV } from "@/lib/site-nav";
 
-
-const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/engagements", label: "Engagements" },
-  { href: "/work", label: "Work" },
-  { href: "/writing", label: "Writing" },
-  { href: "/about", label: "About" },
-] as const;
 
 const DOCK_AFTER_PX = 120;
 
@@ -52,9 +45,18 @@ export default function Nav() {
 
       <nav className="nav" aria-label="Main navigation">
         <ul role="list">
-          {NAV_LINKS.map(({ href, label }) => (
-            <li key={href}>
+          {SITE_NAV.map(({ href, label, children }) => (
+            <li key={href} className={children ? "has-sub" : undefined}>
               <Link href={href}>{label}</Link>
+              {children && (
+                <ul role="list" className="sub">
+                  {children.map((c) => (
+                    <li key={c.href}>
+                      <Link href={c.href}>{c.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
           ))}
         </ul>
@@ -79,10 +81,17 @@ export default function Nav() {
         </button>
         {open && (
           <nav id="mobile-menu" aria-label="Mobile navigation">
-            {NAV_LINKS.map(({ href, label }) => (
-              <Link key={href} href={href} onClick={() => setOpen(false)}>
-                {label}
-              </Link>
+            {SITE_NAV.map(({ href, label, children }) => (
+              <Fragment key={href}>
+                <Link href={href} onClick={() => setOpen(false)}>
+                  {label}
+                </Link>
+                {children?.map((c) => (
+                  <Link key={c.href} href={c.href} onClick={() => setOpen(false)} className="sub">
+                    {c.label}
+                  </Link>
+                ))}
+              </Fragment>
             ))}
             <Link
               href={BOOKING_PATH}
