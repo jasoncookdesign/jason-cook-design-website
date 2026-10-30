@@ -16,7 +16,7 @@ export default function EngagementsHero() {
         "You buy one phase at a time. Each gets its own scope, its own price, and its own decision.",
         "No contract covers the whole engagement. Stop after any phase and you keep what it produced.",
       ]}
-      metric={{ value: "5", label: "phases, each priced and decided on its own" }}
+      metric={{ value: "6", label: "phases, each priced and decided on its own" }}
     />
   );
 }

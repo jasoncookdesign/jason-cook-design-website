@@ -1,4 +1,7 @@
 // DRAFT — Jason to edit
+import Link from "next/link";
+import { SAMPLE_PATH } from "@/lib/first-phase-terms";
+
 const HOLDS = "You hold";
 const CLOSES = "Closes with";
 
@@ -8,6 +11,7 @@ const phases = [
     holds:
       "A written verdict on whether to build, with the proof artifacts behind it.",
     closes: "Your decision: go, change course, or stop.",
+    sample: true,
   },
   {
     label: "Define the model and product",
@@ -69,6 +73,13 @@ export default function OfferingPhases() {
                 <dt>{CLOSES}</dt>
                 <dd>{p.closes}</dd>
               </dl>
+              {"sample" in p && (
+                <p>
+                  <Link href={SAMPLE_PATH} className="underline">
+                    See a sample of the report
+                  </Link>
+                </p>
+              )}
             </div>
           </li>
         ))}

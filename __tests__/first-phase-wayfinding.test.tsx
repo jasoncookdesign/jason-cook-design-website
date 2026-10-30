@@ -4,6 +4,8 @@ import FirstPhasePage from "@/app/engagements/first-phase/page";
 import SamplePage from "@/app/engagements/sample/page";
 import AboutPage from "@/app/about/page";
 import CapabilitiesPage from "@/app/capabilities/page";
+import OperatingPage from "@/app/engagements/operating/page";
+import OfferingPage from "@/app/engagements/offering/page";
 import { engagementTypes } from "@/lib/engagement-types";
 
 let mockPathname: string | null = null;
@@ -45,5 +47,18 @@ describe("inbound links to the first phase page", () => {
     const { container } = render(page());
     const hrefs = Array.from(container.querySelectorAll("a")).map((a) => (a.getAttribute("href") ?? "").split("#")[0]);
     expect(hrefs).toContain(FIRST_PHASE);
+  });
+});
+
+describe("both engagement pages describe Phase 0 and point to the sample", () => {
+  it.each([
+    ["operating", () => <OperatingPage />],
+    ["offering", () => <OfferingPage />],
+  ])("%s: the first phase row links to the sample page", (_slug, page) => {
+    const { container } = render(page());
+    const first = container.querySelector("ol.rows > li")!;
+    expect(first.querySelector(".k")!.textContent).toBe("00");
+    expect(first.querySelector('a[href="/engagements/sample"]')).not.toBeNull();
+    expect(container.querySelectorAll('ol.rows a[href="/engagements/sample"]')).toHaveLength(1);
   });
 });
