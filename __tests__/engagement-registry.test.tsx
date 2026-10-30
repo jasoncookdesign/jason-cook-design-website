@@ -83,7 +83,7 @@ describe("INV-01: registry, routes, selector, and fork agree", () => {
 
   it("home fork links to both types, offering first, as rows rather than cards, ahead of the problem section", () => {
     const { container } = render(<HomePage />);
-    const links = typeLinks(container);
+    const links = typeLinks(container).filter((a) => !a.closest('[data-name="PRICE"]'));
     expect(links.map((a) => a.getAttribute("href"))).toEqual(
       engagementTypes.map((t) => `/engagements/${t.slug}`)
     );
