@@ -58,7 +58,7 @@ describe("mono index nav (kit-styled, unnumbered)", () => {
     render(<Nav />);
     const desktop = screen.getByRole("navigation", { name: /main navigation/i });
     expect(desktop.classList.contains("nav")).toBe(true);
-    expect(desktop.querySelectorAll("ul a")).toHaveLength(5);
+    expect(desktop.querySelectorAll(":scope > ul > li > a")).toHaveLength(5);
   });
 
   it("sets the links in mono caps (kit) and does not number them: no CSS counter or generated content on the bar's links", () => {

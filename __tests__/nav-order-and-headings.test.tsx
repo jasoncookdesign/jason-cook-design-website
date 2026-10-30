@@ -25,7 +25,7 @@ const read = (f: string) => readFileSync(join(process.cwd(), f), "utf8");
 describe("menu order", () => {
   it("lists Home, Engagements, Work, Writing, About in the header", () => {
     const { container } = render(<Nav />);
-    const links = Array.from(container.querySelectorAll("nav[aria-label] ul a, header nav ul a")).map((a) => a.textContent);
+    const links = Array.from(container.querySelectorAll("header nav > ul > li > a")).map((a) => a.textContent);
     expect(links).toEqual(ORDER);
   });
 
@@ -38,7 +38,7 @@ describe("menu order", () => {
 
   it("lists the footer's site links in the same order, with Capabilities last", () => {
     const { container } = render(<Footer />);
-    const links = Array.from(container.querySelectorAll('nav[aria-label="Footer navigation"] a')).map((a) => a.textContent);
+    const links = Array.from(container.querySelectorAll('nav[aria-label="Footer navigation"] > ul > li > a')).map((a) => a.textContent);
     expect(links.slice(0, 4)).toEqual(["Engagements", "Work", "Writing", "About"]);
     expect(links[4]).toMatch(/^Capabilities/);
   });
