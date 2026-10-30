@@ -142,4 +142,11 @@ describe("Home page", () => {
     fireEvent.click(screen.getByText(/I already know what I want built/i));
     expect(document.querySelector(`a[href="${SHORT.fit.href}"]`)).not.toBeNull();
   });
+
+  it("links the $2,500 answer and the pricing section to the sample report", () => {
+    const { container } = render(<HomePage />);
+    fireEvent.click(screen.getByText(/What do I get for \$2,500/i));
+    expect(document.querySelectorAll('a[href="/engagements/sample"]').length).toBeGreaterThanOrEqual(2);
+    expect(container.querySelector('a[href="/engagements/sample"]')).not.toBeNull();
+  });
 });

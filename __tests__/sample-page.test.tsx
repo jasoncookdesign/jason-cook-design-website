@@ -84,8 +84,8 @@ describe("the sample page", () => {
 
   it("has one primary action, the booking link", () => {
     const { container } = render(<SamplePage />);
-    const primaries = Array.from(container.querySelectorAll<HTMLAnchorElement>("a.btn"));
-    expect(primaries.length).toBeGreaterThanOrEqual(1);
+    const primaries = Array.from(container.querySelectorAll<HTMLAnchorElement>("a.btn:not(.secondary)"));
+    expect(primaries).toHaveLength(1);
     primaries.forEach((a) => expect(a.getAttribute("href")).toBe(BOOKING_PATH));
   });
 
@@ -107,7 +107,7 @@ describe("the sample page's movement events", () => {
 
   it("records a click on the call link from this page, once", () => {
     const { container } = render(<SamplePage />);
-    const call = container.querySelector<HTMLAnchorElement>("a.btn")!;
+    const call = container.querySelector<HTMLAnchorElement>("a.btn:not(.secondary)")!;
     fireEvent.click(call);
     fireEvent.click(call);
     expect(track.mock.calls.filter((c) => c[0] === "sample_call_click")).toHaveLength(1);
