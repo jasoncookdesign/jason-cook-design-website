@@ -88,3 +88,15 @@ describe("Phase 0 reads the same on both engagement types, with a different focu
     expect(price.querySelector('a[href="/engagements/sample"]')).not.toBeNull();
   });
 });
+
+describe("phase headings are titles only; the key column carries the number", () => {
+  it.each([
+    ["operating", () => <OperatingPage />],
+    ["offering", () => <OfferingPage />],
+  ])("%s: no phase heading spells out its number", (_slug, page) => {
+    const { container } = render(page());
+    const titles = Array.from(container.querySelectorAll("ol.rows > li h3")).map((h) => h.textContent!.trim());
+    expect(titles).toHaveLength(6);
+    for (const t of titles) expect(t).not.toMatch(/^(zero|one|two|three|four|five|six)\b/i);
+  });
+});
