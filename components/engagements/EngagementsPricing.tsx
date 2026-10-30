@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PHASE_ZERO } from "@/lib/phase-zero";
 import { SHORT } from "@/lib/first-phase-terms";
 
 const pricingCards: { label: string; body: string; link?: { text: string; label: string; href: string } }[] = [
@@ -64,8 +65,8 @@ export default function EngagementsPricing() {
                     {card.label === "Set in advance" && (
                       <>
                         {" · "}
-                        <Link href="/engagements/sample" className="underline">
-                          See a sample report
+                        <Link href={PHASE_ZERO.sample.href} className="underline">
+                          {PHASE_ZERO.sample.label}
                         </Link>
                       </>
                     )}
