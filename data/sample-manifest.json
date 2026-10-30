@@ -1,0 +1,95 @@
+{
+  "pdf": {
+    "file": "marlow-quill-sample-report.pdf",
+    "bytes": 190148,
+    "pages": 14,
+    "href": "/sample/marlow-quill-sample-report.pdf"
+  },
+  "shots": [
+    {
+      "id": "summary",
+      "page": 4,
+      "alt": "The summary page of the sample report: a one-sentence governing thought, three headline numbers, and the recommendation. (PDF page 4.)",
+      "caption": "The summary stands alone. A reader who stops here knows what was found, what to do and what they are not obliged to buy.",
+      "image": "/sample/summary.png",
+      "full": "/sample/summary-page.png"
+    },
+    {
+      "id": "findings",
+      "page": 6,
+      "alt": "The findings page: each finding states a claim, its evidence, how confident we are and what it means for the owner, plus one hypothesis that was ruled out. (PDF page 6.)",
+      "caption": "Every finding shows its evidence and how sure we are, and one is a hypothesis the evidence ruled out.",
+      "image": "/sample/findings.png",
+      "full": "/sample/findings-page.png"
+    },
+    {
+      "id": "recommendation",
+      "page": 7,
+      "alt": "The recommendation page: a conditional proceed with two checkable conditions, what would change the recommendation, and what the next phase produces. (PDF page 7.)",
+      "caption": "The recommendation says what has to be true first, and what would change it.",
+      "image": "/sample/recommendation.png",
+      "full": "/sample/recommendation-page.png"
+    },
+    {
+      "id": "model",
+      "page": 11,
+      "alt": "A chart of management hours per week for three layers of the agency, now and with a larger deal, against capacity, with the over-capacity gaps labeled. (PDF page 11.)",
+      "caption": "The model behind the central finding, with its assumptions and its limits stated.",
+      "image": "/sample/model.png",
+      "full": "/sample/model-page.png"
+    },
+    {
+      "id": "rounds",
+      "page": 13,
+      "alt": "The appendix describing four rounds of questions put to the owner, and the gap between what they said and what the evidence showed. (PDF page 13.)",
+      "caption": "How the diagnosis works: the questions asked, and where what the owner says and what the evidence shows come apart.",
+      "image": "/sample/rounds.png",
+      "full": "/sample/rounds-page.png"
+    },
+    {
+      "id": "checklist",
+      "page": 14,
+      "alt": "A checklist mapping each item promised in the written list to the page of the report that meets it. (PDF page 14.)",
+      "caption": "The written list the guarantee covers, and where each item is met.",
+      "image": "/sample/checklist.png",
+      "full": "/sample/checklist-page.png"
+    }
+  ],
+  "checklist": [
+    {
+      "criterion": "Your objective, in your terms",
+      "where": "What you asked us to look at",
+      "page": 5
+    },
+    {
+      "criterion": "A summary you can act on alone",
+      "where": "Summary",
+      "page": 4
+    },
+    {
+      "criterion": "A recommendation with its reason",
+      "where": "Our recommendation",
+      "page": 7
+    },
+    {
+      "criterion": "Every finding linked to its evidence",
+      "where": "What we found",
+      "page": 6
+    },
+    {
+      "criterion": "Remaining unknowns, with how they are handled",
+      "where": "Assumptions, unknowns and checks",
+      "page": 8
+    },
+    {
+      "criterion": "A first move",
+      "where": "Our recommendation",
+      "page": 7
+    },
+    {
+      "criterion": "Refusal and ethical flags reported as checked",
+      "where": "Assumptions, unknowns and checks",
+      "page": 8
+    }
+  ]
+}
