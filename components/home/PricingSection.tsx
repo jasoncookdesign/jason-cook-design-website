@@ -31,9 +31,15 @@ export default function PricingSection() {
         <p className="eyebrow">What it costs</p>
         <h2>Where you start, and what it costs.</h2>
         <p className="lede">
-          The Offering Engagement opens with a paid assessment of the decision.
-          The Operating Engagement opens with a diagnosis that concludes
-          before anything is built.
+          The{" "}
+          <Link href="/engagements/offering" className="underline">
+            Offering Engagement
+          </Link>{" "}
+          opens with a paid assessment of the decision. The{" "}
+          <Link href="/engagements/operating" className="underline">
+            Operating Engagement
+          </Link>{" "}
+          opens with a diagnosis that concludes before anything is built.
         </p>
         <div className="notes">
           <p>
@@ -62,7 +68,11 @@ export default function PricingSection() {
         <div className="pl">
           <Regs />
           <div className="pl-h">
-            <p>Offering Engagement</p>
+            <p>
+              <Link href="/engagements/offering" className="underline">
+                Offering Engagement
+              </Link>
+            </p>
             <p className="price">$2,500</p>
           </div>
           <div className="sp">
@@ -88,7 +98,11 @@ export default function PricingSection() {
         <div className="pl">
           <Regs />
           <div className="pl-h">
-            <p>Operating Engagement</p>
+            <p>
+              <Link href="/engagements/operating" className="underline">
+                Operating Engagement
+              </Link>
+            </p>
             <p className="price">$2,500</p>
           </div>
           <div className="sp">

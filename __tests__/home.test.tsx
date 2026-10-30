@@ -28,7 +28,8 @@ describe("Home page pricing plate", () => {
     plates.forEach((plate) => {
       const labels = Array.from(plate.querySelectorAll(".sp .k .l")).map((l) => l.textContent);
       expect(labels).toEqual(["What happens", "What you keep"]);
-      expect(plate.querySelector("a")).toBeNull();
+      expect(plate.querySelector("a.btn")).toBeNull();
+      expect(plate.querySelectorAll("a")).toHaveLength(1);
     });
   });
 });
