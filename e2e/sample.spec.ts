@@ -90,4 +90,12 @@ test.describe("movement events", () => {
       expect(await events(page)).toEqual([]);
     });
   }
+  test("buttons on the page are not underlined, matching buttons elsewhere on the site", async ({ page }) => {
+    const decoration = async (path: string, name: RegExp) => {
+      await page.goto(path);
+      return page.getByRole("link", { name }).first().evaluate((el) => getComputedStyle(el).textDecorationLine);
+    };
+    expect(await decoration("/engagements/sample", /book your strategy call/i)).toBe("none");
+    expect(await decoration("/engagements/sample", /download the sample report/i)).toBe("none");
+  });
 });

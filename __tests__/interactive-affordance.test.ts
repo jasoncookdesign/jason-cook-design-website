@@ -78,7 +78,7 @@ describe("interactive things show it at rest", () => {
 describe("text links share one underline style", () => {
   // Underlined at rest, in the text colour, 4px below the baseline. Orange is reserved for the decision point,
   // so no link underline takes the --signal colour.
-  const textLinkRules = [".privacy a", ".fig figcaption a", ".defs a", ".prose a", ".faq-panel a", ".book-fallback a"];
+  const textLinkRules = [".privacy a", ".fig figcaption a", ".defs a", ".prose a:not(.btn)", ".faq-panel a", ".book-fallback a"];
 
   it.each(textLinkRules)("%s is underlined at rest with a 4px offset", (selector) => {
     const r = rule(selector);

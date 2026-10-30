@@ -178,8 +178,8 @@ a.row:hover .btn.secondary, a.row:focus-visible .btn.secondary { background: var
 .prose ul, .prose ol { padding-left: 1.2em; }
 .prose li + li { margin-top: 0.4em; }
 .prose blockquote { padding-left: 20px; border-left: 1px solid var(--ink); font-size: 22px; line-height: 1.5; }
-.prose a { text-decoration: underline; text-underline-offset: 4px; }
-.prose a:hover { color: var(--hover-fill); text-decoration-color: var(--hover-fill); }
+.prose a:not(.btn) { text-decoration: underline; text-underline-offset: 4px; }
+.prose a:not(.btn):hover { color: var(--hover-fill); text-decoration-color: var(--hover-fill); }
 .prose figure { margin-inline: 0; }
 .prose img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); }
 .prose figcaption { margin-top: 8px; font: 500 12px/1.5 var(--mono); letter-spacing: 0.06em; color: var(--ink2); }
