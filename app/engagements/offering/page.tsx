@@ -1,10 +1,11 @@
 // DRAFT — Jason to edit
 import OfferingHero from "@/components/engagements/offering/OfferingHero";
 import OfferingProblem from "@/components/engagements/offering/OfferingProblem";
-import OfferingPhases from "@/components/engagements/offering/OfferingPhases";
-import OfferingPortability from "@/components/engagements/offering/OfferingPortability";
+import EngagementPhases from "@/components/engagements/EngagementPhases";
+import EngagementPortability from "@/components/engagements/EngagementPortability";
 import EngagementPricing from "@/components/engagements/EngagementPricing";
-import OfferingClose from "@/components/engagements/offering/OfferingClose";
+import EngagementFaq from "@/components/engagements/EngagementFaq";
+import EngagementClose from "@/components/engagements/EngagementClose";
 import { withSocial } from "@/lib/metadata";
 
 export const metadata = withSocial({
@@ -28,10 +29,11 @@ export default function OfferingEngagementPage() {
     <>
       <OfferingHero />
       <OfferingProblem />
-      <OfferingPhases />
-      <OfferingPortability />
+      <EngagementPhases kind="offering" />
+      <EngagementPortability />
       <EngagementPricing />
-      <OfferingClose />
+      <EngagementFaq />
+      <EngagementClose />
     </>
   );
 }

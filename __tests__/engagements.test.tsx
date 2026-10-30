@@ -22,18 +22,18 @@ describe("Engagements page", () => {
     for (const label of ["The old way", "The internal attempt", "The search outside", "The split"]) {
       expect(screen.getByText(label)).toBeTruthy();
     }
-    const phase = screen.getByText(/^Understand it, then decide the shape$/i);
+    const phase = screen.getByText(/^Shape it$/i);
     const card = screen.getByText("The old way");
     expect(card.compareDocumentPosition(phase) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
   it("renders all six phase labels", () => {
     render(<EngagementsPage />);
-    expect(screen.getByText(/^Diagnose the problem$/i)).toBeTruthy();
-    expect(screen.getByText(/^Understand it, then decide the shape$/i)).toBeTruthy();
-    expect(screen.getByText(/^Specify it in detail$/i)).toBeTruthy();
+    expect(screen.getByText(/^Assess it$/i)).toBeTruthy();
+    expect(screen.getByText(/^Shape it$/i)).toBeTruthy();
+    expect(screen.getByText(/^Specify it$/i)).toBeTruthy();
     expect(screen.getByText(/^Build it$/i)).toBeTruthy();
-    expect(screen.getByText(/^Hand it over$/i)).toBeTruthy();
+    expect(screen.getByText(/^Deliver it$/i)).toBeTruthy();
     expect(screen.getByText(/^Stay available$/i)).toBeTruthy();
   });
 

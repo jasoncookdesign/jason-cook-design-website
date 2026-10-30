@@ -11,8 +11,8 @@ jest.mock("next/navigation", () => ({
   usePathname: () => "/engagements/offering",
 }));
 
-const OPERATING_SHEETS = ["HERO", "PROBLEM", "PHASES", "PORTABILITY", "PRICE", "CLOSE", "FAQ"];
-const OFFERING_SHEETS = ["HERO", "PROBLEM", "PHASES", "PORTABILITY", "PRICE", "CLOSE"];
+const OPERATING_SHEETS = ["HERO", "PROBLEM", "PHASES", "PORTABILITY", "PRICE", "FAQ", "CLOSE"];
+const OFFERING_SHEETS = OPERATING_SHEETS;
 
 const pages: Array<[string, () => React.JSX.Element, string[]]> = [
   ["operating", () => <OperatingPage />, OPERATING_SHEETS],
@@ -104,7 +104,7 @@ describe.each([
 });
 
 describe("phase sheets are ledger rows", () => {
-  it("operating: one ordered list of six rows keyed 00 to 05, each with a mono key, a title, and a 'what it leaves behind' pair", () => {
+  it("operating: one ordered list of six rows keyed 00 to 05, each with a mono key, a title, and a 'what you get' pair", () => {
     const { container } = render(<OperatingPage />);
     const lists = container.querySelectorAll("ol");
     expect(lists).toHaveLength(1);
@@ -116,7 +116,7 @@ describe("phase sheets are ledger rows", () => {
       expect(li.classList.contains("row")).toBe(true);
       expect(li.classList.contains("hold")).toBe(true);
       expect(li.querySelector("h3")).not.toBeNull();
-      expect(li.querySelector("dl.pair > dt")!.textContent).toBe("What it leaves behind");
+      expect(li.querySelector("dl.pair > dt")!.textContent).toBe("What you get");
     }
   });
 
@@ -176,14 +176,7 @@ describe("portability and close sheets", () => {
     expect(close.querySelector("h2")).not.toBeNull();
   });
 
-  it("offering: the portability sheet is an intro over two ruled cells", () => {
-    const { container } = render(<OfferingPage />);
-    const sheet = sections(container)[3];
-    expect(sheet.querySelector(":scope > .intro.g h2")).not.toBeNull();
-    expect(sheet.querySelectorAll(":scope > .cells.c2 > .cell")).toHaveLength(2);
-  });
-
-  it("operating: the portability sheet is an intro over prose, with the home FAQ link kept", () => {
+  it("the portability sheet is an intro over prose, with the home FAQ link kept", () => {
     const { container } = render(<OperatingPage />);
     const sheet = sections(container)[3];
     expect(sheet.querySelector(":scope > .intro.g > .t > p.eyebrow + h2")).not.toBeNull();
@@ -193,10 +186,10 @@ describe("portability and close sheets", () => {
   });
 });
 
-describe("operating FAQ sheet", () => {
+describe("FAQ sheet", () => {
   it("has an intro block and the shared accordion", () => {
     const { container } = render(<OperatingPage />);
-    const sheet = sections(container)[6];
+    const sheet = sections(container)[5];
     expect(sheet.querySelector(":scope > .intro.g > .t > p.eyebrow + h2")).not.toBeNull();
     expect(sheet.querySelectorAll('[data-slot="accordion-trigger"]')).toHaveLength(6);
   });

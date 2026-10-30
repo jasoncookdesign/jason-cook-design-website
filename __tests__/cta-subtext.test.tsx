@@ -44,8 +44,7 @@ describe("the call strip has one source", () => {
   const files = [
     "components/home/Hero.tsx",
     "components/home/CtaSection.tsx",
-    "components/engagements/EngagementsClose.tsx",
-    "components/engagements/offering/OfferingClose.tsx",
+    "components/engagements/EngagementClose.tsx",
     "app/contact/page.tsx",
   ];
   it.each(files)("%s uses the shared CallStrip, not its own copy of the words", (f) => {
