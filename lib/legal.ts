@@ -29,7 +29,7 @@ export const legalSections: LegalSection[] = [
       {
         term: "Analytics",
         detail:
-          "If you accept the privacy notice, the site loads Google Tag Manager and Google Analytics. They record which pages you visit, roughly where you are, what device and browser you use, and whether you click the email link or finish a booking. Loading them sends your IP address to Google, which sets cookies for this. We haven't turned on Google's advertising features, such as Google signals. If you decline or ignore the notice, none of it loads.",
+          "If you accept the privacy notice, the site loads Google Tag Manager and Google Analytics. They record which pages you visit, roughly where you are, what device and browser you use, and whether you click the email link, finish a booking, download the sample report, book a call from the sample page, or reach the checklist on it. Loading them sends your IP address to Google, which sets cookies for this. We haven't turned on Google's advertising features, such as Google signals. If you decline or ignore the notice, none of it loads.",
       },
       {
         term: "Retention",

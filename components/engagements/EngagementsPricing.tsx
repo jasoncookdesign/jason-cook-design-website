@@ -61,6 +61,14 @@ export default function EngagementsPricing() {
                     <Link href={card.link.href} className="underline">
                       {card.link.label}
                     </Link>
+                    {card.label === "Set in advance" && (
+                      <>
+                        {" · "}
+                        <Link href="/engagements/sample" className="underline">
+                          See a sample report
+                        </Link>
+                      </>
+                    )}
                   </p>
                 )}
               </div>

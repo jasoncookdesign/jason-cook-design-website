@@ -27,6 +27,7 @@ const faqs: { id: string; question: string; answer: Para[] }[] = [
       "A diagnosis I lead personally, and a written recommendation at the end of it. It names the real problem, what to address first, and what addressing it takes.",
       "If the recommendation is that you shouldn't build, you get that in writing too.",
       { text: SHORT.both.text, link: { label: SHORT.both.label, href: SHORT.both.href } },
+      { text: "Want to see what the report looks like?", link: { label: "Read a sample report", href: "/engagements/sample" } },
     ],
   },
   {

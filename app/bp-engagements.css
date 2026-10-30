@@ -87,3 +87,30 @@ ul.rows .row.hold { align-items: start; }
   .eng-close-lead { font-size: 22px; }
   .eng-close .btn { align-self: stretch; }
 }
+
+/* ---------- sample page: screenshots, the asked-and-found pair, the stop panel ---------- */
+.sample-shots { display: grid; grid-template-columns: 1fr; gap: 48px; padding: 0 var(--pad); margin-top: 32px; }
+.sample-shots figure { margin: 0; display: grid; grid-template-columns: minmax(0, 720px) minmax(0, 1fr); gap: 32px; align-items: start; }
+/* The crop is wide enough that its text reads at 12px or more; on a narrow screen the frame scrolls and the page does not. */
+.sample-shots a { display: block; border: 1px solid var(--rule); background: var(--paper); overflow-x: auto; }
+.sample-shots a:focus-visible { outline-offset: 3px; }
+.sample-shots img { display: block; width: 100%; min-width: 720px; height: auto; }
+.sample-shots figcaption { font-size: 18px; line-height: 1.45; color: var(--ink2); max-width: 40ch; }
+@media (max-width: 1100px) { .sample-shots figure { grid-template-columns: minmax(0, 1fr); gap: 14px; } }
+.sample-compare { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 0 var(--pad) 32px; }
+.sample-compare > div { padding: 24px 24px 28px 0; }
+.sample-compare > div + div { padding-left: 24px; border-left: 1px solid var(--rule); }
+.sample-compare p { margin: 8px 0 0; font-size: 20px; line-height: 1.45; }
+.sample-compare .eyebrow { margin: 0; }
+[data-checklist] { margin: 32px var(--pad) 0; overflow-x: auto; }
+[data-checklist] table { width: 100%; border-collapse: collapse; font-size: 17px; line-height: 1.45; }
+[data-checklist] caption { text-align: left; font-size: 15px; color: var(--ink2); padding-bottom: 10px; }
+[data-checklist] th, [data-checklist] td { text-align: left; padding: 10px 16px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+[data-checklist] th { border-bottom-color: var(--ink); font-weight: 600; }
+.sample-stop { margin: 40px var(--pad) 0; padding: 22px 24px; border-left: 4px solid var(--ink); background: var(--paper2, transparent); max-width: 70ch; }
+.sample-stop p { margin: 8px 0 0; font-size: 18px; line-height: 1.5; }
+.sample-stop .eyebrow { margin: 0; }
+@media (max-width: 720px) {
+  .sample-compare { grid-template-columns: 1fr; }
+  .sample-compare > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); }
+}

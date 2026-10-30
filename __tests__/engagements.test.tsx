@@ -62,6 +62,11 @@ describe("Engagements page", () => {
     expect(container.querySelector(`a[href="${SHORT.credit.href}"]`)).not.toBeNull();
   });
 
+  it("links the pricing card to the sample report", () => {
+    const { container } = render(<EngagementsPage />);
+    expect(container.querySelector('a[href="/engagements/sample"]')).not.toBeNull();
+  });
+
   it("renders $2,500 in the pricing card", () => {
     render(<EngagementsPage />);
     expect(screen.getAllByText(/\$2,500/).length).toBeGreaterThan(0);

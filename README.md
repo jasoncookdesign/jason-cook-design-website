@@ -17,6 +17,8 @@ Marketing website for Jason Cook Design (JCD), a practice that assesses, designs
 | `/engagements` | Engagement selector over the first type's page (canonical: `/engagements/offering`) |
 | `/engagements/offering` | Offering Engagement: six phases from the decision to launch |
 | `/engagements/operating` | Operating Engagement: model, phases, and pricing |
+| `/engagements/first-phase` | The first phase: what it asks, who it is for, the credit and the guarantee. The one place the terms are written in full (`lib/first-phase-terms.ts`); other pages carry short forms that link to its anchors |
+| `/engagements/sample` | A sample first-phase report for a fictional client: six screenshots, the guarantee checklist, a stop panel, and the PDF download. The PDF, screenshots and `data/sample-manifest.json` come from the private sample-report repository and are copied into `public/sample/` and `data/` by pull request |
 | `/work`, `/work/[slug]` | Case studies |
 | `/writing`, `/writing/[slug]` | Writing |
 | `/about` | About the practice |
@@ -41,12 +43,13 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Configuration
 
-- `NEXT_PUBLIC_GTM_ID`: the Google Tag Manager container id (`GTM-XXXXXXX`). Optional. Analytics load only when it is set, the page is served from `jasoncookdesign.com`, and the visitor has accepted the privacy notice, so previews and local runs never send data. Events go through the data layer: `generate_lead` with `method` set to `email` (a `mailto:` link was clicked) or `booking` (a Cal.com booking finished). Tags and triggers live in the container, not in this repo.
+- `NEXT_PUBLIC_GTM_ID`: the Google Tag Manager container id (`GTM-XXXXXXX`). Optional. Analytics load only when it is set, the page is served from `jasoncookdesign.com`, and the visitor has accepted the privacy notice, so previews and local runs never send data. Events go through the data layer: `generate_lead` with `method` set to `email` (a `mailto:` link was clicked) or `booking` (a Cal.com booking finished). The sample page also sends `sample_download_click`, `sample_call_click` and `sample_checklist_view`, each once per page view. Tags and triggers live in the container, not in this repo.
 
 ## Running tests
 
 ```bash
-npm test
+npm test          # Jest: components, copy and logic
+npm run test:e2e  # Playwright in Google Chrome: layout, scrolling, accessibility (axe) and analytics events; builds and serves the site first
 ```
 
 ## Building for production

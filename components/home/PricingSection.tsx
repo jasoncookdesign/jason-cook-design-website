@@ -60,6 +60,11 @@ export default function PricingSection() {
               {SHORT.credit.label}
             </Link>
           </p>
+          <p>
+            <Link href="/engagements/sample" className="underline">
+              See a sample report
+            </Link>
+          </p>
         </div>
       </div>
 

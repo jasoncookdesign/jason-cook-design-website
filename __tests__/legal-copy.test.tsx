@@ -92,3 +92,12 @@ describe("the whole page", () => {
     }
   });
 });
+
+describe("the privacy notice names what is tracked on the sample page", () => {
+  it("says analytics records downloads of the sample report, clicks to book from it, and reaching its checklist", () => {
+    const t = text("privacy");
+    expect(t).toMatch(/download the sample report/i);
+    expect(t).toMatch(/book a call from the sample page/i);
+    expect(t).toMatch(/reach the checklist/i);
+  });
+});
