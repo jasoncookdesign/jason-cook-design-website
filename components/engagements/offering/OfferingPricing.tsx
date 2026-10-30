@@ -1,4 +1,7 @@
 // DRAFT — Jason to edit
+import Link from "next/link";
+import { SHORT } from "@/lib/first-phase-terms";
+
 export default function OfferingPricing() {
   return (
     <section className="eng-price" data-sheet="A-105" data-name="PRICE">
@@ -38,7 +41,10 @@ export default function OfferingPricing() {
             <div className="v">
               <p>Every later phase is quoted on its own, once the one before it has closed.</p>
               <p>
-                If you go on, the $2,500 is credited in full against the next phase, applied automatically on that phase&apos;s first invoice. The credit holds for as long as my quote for that phase is valid. It can&apos;t move to another project or company, and it has no cash value.
+                {SHORT.both.text}{" "}
+                <Link href={SHORT.both.href} className="underline">
+                  {SHORT.both.label}
+                </Link>
               </p>
             </div>
           </div>

@@ -1,7 +1,11 @@
-const pricingCards = [
+import Link from "next/link";
+import { SHORT } from "@/lib/first-phase-terms";
+
+const pricingCards: { label: string; body: string; link?: { text: string; label: string; href: string } }[] = [
   {
     label: "Set in advance",
-    body: "The paid diagnosis is the only part with a price I can publish: $2,500. It’s the same number for everyone, and if you go on, it’s credited in full against the next phase.",
+    body: "The paid diagnosis is the only part with a price I can publish: $2,500. It’s the same number for everyone.",
+    link: SHORT.credit,
   },
   {
     label: "Quoted per phase",
@@ -51,6 +55,14 @@ export default function EngagementsPricing() {
               </div>
               <div className="v">
                 <p>{card.body}</p>
+                {card.link && (
+                  <p>
+                    {card.link.text}{" "}
+                    <Link href={card.link.href} className="underline">
+                      {card.link.label}
+                    </Link>
+                  </p>
+                )}
               </div>
             </div>
           ))}

@@ -64,7 +64,7 @@ describe("Engagements page", () => {
 
   it("renders $2,500 in the pricing card", () => {
     render(<EngagementsPage />);
-    expect(screen.getByText(/\$2,500/)).toBeTruthy();
+    expect(screen.getAllByText(/\$2,500/).length).toBeGreaterThan(0);
   });
 
   it("renders the FAQ section including FAQ-E6", () => {

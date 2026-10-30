@@ -1,5 +1,7 @@
 import { ANCHORS, LONG } from "@/lib/first-phase-terms";
 import { withSocial } from "@/lib/metadata";
+import Link from "next/link";
+import { BOOKING_PATH } from "@/lib/booking";
 import CallStrip from "@/components/booking/CallStrip";
 
 // DRAFT — Jason to edit
@@ -77,7 +79,12 @@ export default function FirstPhasePage() {
           ))}
         </ul>
       </Section>
-      <CallStrip />
+      <section className="eng-close" data-sheet="A-115" data-name="CLOSE">
+        <Link href={BOOKING_PATH} className="btn">
+          Book your strategy call <span aria-hidden="true">&rarr;</span>
+        </Link>
+        <CallStrip />
+      </section>
     </>
   );
 }

@@ -30,7 +30,7 @@ describe("sitemap.xml", () => {
   });
 
   it("lists every page, case study, and post on the production host", () => {
-    for (const path of ["", "/about", "/capabilities", "/contact", "/engagements/offering", "/engagements/operating", "/legal", "/work", "/writing", "/writing/longform"]) {
+    for (const path of ["", "/about", "/capabilities", "/contact", "/engagements/offering", "/engagements/operating", "/engagements/first-phase", "/legal", "/work", "/writing", "/writing/longform"]) {
       expect(urls).toContain(`${SITE}${path}`);
     }
     for (const cs of caseStudies) expect(urls).toContain(`${SITE}/work/${cs.slug}`);
