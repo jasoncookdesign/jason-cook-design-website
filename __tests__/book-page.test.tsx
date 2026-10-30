@@ -47,9 +47,8 @@ describe("Book page content", () => {
     expect(epub.hasAttribute("download")).toBe(true);
   });
 
-  it("names the page in the breadcrumb after its route segment", () => {
-    const crumb = screen.getByRole("navigation", { name: "Breadcrumb" });
-    expect(crumb.textContent).toBe("Writing/Longform");
+  it("leaves the breadcrumb to the layout and keeps the route segment the breadcrumb names", () => {
+    expect(screen.queryByRole("navigation", { name: "Breadcrumb" })).toBeNull();
     expect(book.href.split("/").pop()).toBe("longform");
   });
 

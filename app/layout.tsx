@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Newsreader, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+import Breadcrumb from "@/components/layout/Breadcrumb";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import SheetFrame from "@/components/layout/SheetFrame";
@@ -61,7 +62,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <RevealOnScroll />
         <SheetFrame>
           <Nav />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1">
+            <Breadcrumb />
+            {children}
+          </main>
           <Footer />
         </SheetFrame>
         <PrivacyBanner />
