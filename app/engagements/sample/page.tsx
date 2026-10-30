@@ -28,21 +28,17 @@ export default function SamplePage() {
   const { pdf, shots, checklist } = manifest;
   return (
     <>
-      <section data-question="what-is-this" data-sheet="A-120" data-name="SAMPLE">
-        <div className="intro g">
-          <div className="t">
-            <p className="eyebrow">See what you would get</p>
-            <h1>A sample first-phase report, written for a fictional client.</h1>
-          </div>
-        </div>
-        <div className="eng-body">
-          <div className="prose">
-            <p>
+      <section className="hero page g" data-question="what-is-this" data-sheet="A-120" data-name="SAMPLE">
+        <div className="main">
+          <p className="eyebrow">See what you would get</p>
+          <h1>A sample first-phase report, written for a fictional client.</h1>
+          <div>
+            <p className="lead">
               This is a sample of the report you get from the paid first phase, written for a fictional client so you can see
               what the $2,500 buys. None of its people, numbers or findings belong to a real company. A guarantee stands behind the
               real one.
             </p>
-            <p>
+            <p style={{ marginTop: 32 }}>
               <TrackedLink href={BOOKING_PATH} event="sample_call_click" className="btn">
                 Book your strategy call <span aria-hidden="true">&rarr;</span>
               </TrackedLink>

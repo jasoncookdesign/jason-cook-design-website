@@ -3,6 +3,7 @@ import { withSocial } from "@/lib/metadata";
 import Link from "next/link";
 import { BOOKING_PATH } from "@/lib/booking";
 import CallStrip from "@/components/booking/CallStrip";
+import { engagementTypes } from "@/lib/engagement-types";
 
 // DRAFT — Jason to edit
 const description =
@@ -36,11 +37,12 @@ export default function FirstPhasePage() {
   const { whatItAsks, fit, credit, guarantee } = LONG;
   return (
     <>
-      <section data-sheet="A-110" data-name="FIRST-PHASE">
-        <div className="intro g">
-          <div className="t">
-            <p className="eyebrow">Before you buy</p>
-            <h1>The first phase: what it asks, who it is for, and what stands behind it.</h1>
+      <section className="hero page g" data-sheet="A-110" data-name="FIRST-PHASE">
+        <div className="main">
+          <p className="eyebrow">Before you buy</p>
+          <h1>The first phase</h1>
+          <div>
+            <p className="lead">What it asks of you, who it is for, and what stands behind it.</p>
           </div>
         </div>
       </section>
@@ -79,7 +81,27 @@ export default function FirstPhasePage() {
           ))}
         </ul>
       </Section>
-      <section className="eng-close" data-sheet="A-115" data-name="CLOSE">
+      <section data-sheet="A-115" data-name="ENGAGEMENTS">
+        <div className="intro g">
+          <div className="t">
+            <p className="eyebrow">After the first phase</p>
+            <h2>Where the work can go from here.</h2>
+          </div>
+        </div>
+        <div className="eng-body">
+          <div className="prose">
+            <p>The first phase comes before either kind of engagement. Read about the one that matches your situation.</p>
+            <ul>
+              {engagementTypes.map((t) => (
+                <li key={t.slug}>
+                  <Link href={`/engagements/${t.slug}`}>{t.name}</Link>: {t.situation}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section className="eng-close" data-sheet="A-116" data-name="CLOSE">
         <Link href={BOOKING_PATH} className="btn">
           Book your strategy call <span aria-hidden="true">&rarr;</span>
         </Link>
