@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function PortabilitySection() {
+export default function EngagementPortability() {
   return (
     <section data-sheet="A-104" data-name="PORTABILITY">
       <div className="intro g">
@@ -11,6 +11,11 @@ export default function PortabilitySection() {
       </div>
       <div className="eng-body">
         <div className="prose">
+          <p>
+            No contract covers the whole engagement. Each phase is scoped and
+            agreed on its own, so you are never committed to the next one by the
+            one before it.
+          </p>
           <p>
             The architecture is written so someone else can follow the
             rationale, the constraints, the boundaries, and the assumptions
@@ -23,7 +28,7 @@ export default function PortabilitySection() {
           </p>
           <p>
             The tools I use to produce them stay mine. That split is written
-            into the roadmap you get at the end of the first step.{" "}
+            into the roadmap you get at the end of the first phase.{" "}
             <Link href="/#faq-11" className="underline">What do I keep when it&apos;s over?</Link>
           </p>
           <blockquote>

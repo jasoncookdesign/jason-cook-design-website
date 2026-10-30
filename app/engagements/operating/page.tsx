@@ -1,10 +1,10 @@
 import EngagementsHero from "@/components/engagements/EngagementsHero";
 import OperatingProblem from "@/components/engagements/OperatingProblem";
-import PhaseArc from "@/components/engagements/PhaseArc";
-import PortabilitySection from "@/components/engagements/PortabilitySection";
+import EngagementPhases from "@/components/engagements/EngagementPhases";
+import EngagementPortability from "@/components/engagements/EngagementPortability";
 import EngagementPricing from "@/components/engagements/EngagementPricing";
-import EngagementsClose from "@/components/engagements/EngagementsClose";
-import EngagementsFaq from "@/components/engagements/EngagementsFaq";
+import EngagementClose from "@/components/engagements/EngagementClose";
+import EngagementFaq from "@/components/engagements/EngagementFaq";
 import { withSocial } from "@/lib/metadata";
 
 // DRAFT — Jason to edit
@@ -29,11 +29,11 @@ export default function EngagementsPage() {
     <>
       <EngagementsHero />
       <OperatingProblem />
-      <PhaseArc />
-      <PortabilitySection />
+      <EngagementPhases kind="operating" />
+      <EngagementPortability />
       <EngagementPricing />
-      <EngagementsClose />
-      <EngagementsFaq />
+      <EngagementFaq />
+      <EngagementClose />
     </>
   );
 }

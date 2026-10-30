@@ -16,7 +16,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import Nav from "@/components/layout/Nav";
 import FaqSection from "@/components/home/FaqSection";
-import EngagementsFaq from "@/components/engagements/EngagementsFaq";
+import EngagementFaq from "@/components/engagements/EngagementFaq";
 import { Button } from "@/components/ui/button";
 import fs from "fs";
 import path from "path";
@@ -62,9 +62,9 @@ describe("FaqSection accordion — mouse affordance", () => {
   });
 });
 
-describe("EngagementsFaq accordion — mouse affordance", () => {
+describe("EngagementFaq accordion — mouse affordance", () => {
   it("accordion trigger buttons are kit FAQ rows and the kit gives them a hover rule", () => {
-    const { container } = render(<EngagementsFaq />);
+    const { container } = render(<EngagementFaq />);
     const trigger = container.querySelector('[data-slot="accordion-trigger"]') as HTMLElement | null;
     expect(trigger).not.toBeNull();
     expect(trigger!.classList.contains("faq-trigger")).toBe(true);
@@ -121,9 +121,9 @@ describe("FaqSection accordion — cursor-pointer affordance", () => {
   });
 });
 
-describe("EngagementsFaq accordion — cursor-pointer affordance", () => {
+describe("EngagementFaq accordion — cursor-pointer affordance", () => {
   it("accordion trigger is a kit FAQ row and the kit sets cursor: pointer on it", () => {
-    const { container } = render(<EngagementsFaq />);
+    const { container } = render(<EngagementFaq />);
     const trigger = container.querySelector('[data-slot="accordion-trigger"]') as HTMLElement | null;
     expect(trigger).not.toBeNull();
     expect(trigger!.classList.contains("faq-trigger")).toBe(true);

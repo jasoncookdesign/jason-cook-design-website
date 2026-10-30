@@ -14,13 +14,12 @@ import RevealOnScroll from "@/components/layout/RevealOnScroll";
 import HomePage from "@/app/page";
 import WorkPage from "@/app/work/page";
 import WritingPage from "@/app/writing/page";
-import PhaseArc from "@/components/engagements/PhaseArc";
+import EngagementPhases from "@/components/engagements/EngagementPhases";
 import OperatingProblem from "@/components/engagements/OperatingProblem";
 import EngagementPricing from "@/components/engagements/EngagementPricing";
-import EngagementsFaq from "@/components/engagements/EngagementsFaq";
-import OfferingPhases from "@/components/engagements/offering/OfferingPhases";
+import EngagementFaq from "@/components/engagements/EngagementFaq";
 import OfferingProblem from "@/components/engagements/offering/OfferingProblem";
-import OfferingPortability from "@/components/engagements/offering/OfferingPortability";
+import EngagementPortability from "@/components/engagements/EngagementPortability";
 
 const css = ["app/blueprint.css", "app/blueprint-motion.css"].map((f) => readFileSync(join(process.cwd(), f), "utf8")).join("\n");
 const GATE = "html\\.js:not\\(\\.rm\\):not\\(\\.layers\\)";
@@ -106,11 +105,11 @@ describe("which sections build", () => {
   });
 
   it("builds the engagement pages: phases, problem cards, pricing, portability statements and FAQ", () => {
-    has(render(<PhaseArc />).container, "ol.rows");
+    has(render(<EngagementPhases kind="operating" />).container, "ol.rows");
     has(render(<OperatingProblem />).container, ".cells");
     has(render(<EngagementPricing />).container, ".plate .pl");
-    has(render(<EngagementsFaq />).container, ".faq");
-    has(render(<OfferingPhases />).container, "ol.rows");
+    has(render(<EngagementFaq />).container, ".faq");
+    has(render(<EngagementPhases kind="offering" />).container, "ol.rows");
     has(render(<OfferingProblem />).container, ".cells");
     has(render(<EngagementPricing />).container, ".plate .pl");
   });
