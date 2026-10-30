@@ -63,7 +63,7 @@ html.js:not(.rm):not(.layers) .rv.in [data-build] > *, html.js:not(.rm):not(.lay
 .privacy a { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
 .privacy a:hover { color: var(--hover-fill); text-decoration-color: var(--hover-fill); }
 /* Keyboard focus gets the same color as hover; the orange focus ring still marks the focused link. */
-:is(.prose, .fig figcaption, .defs, .book-fallback, .crumb, .foot-sheet .cell, .foot-sheet .colo, .privacy) a:focus-visible { color: var(--hover-fill); text-decoration-color: var(--hover-fill); }
+:is(.prose, .fig figcaption, .defs, .book-fallback, .crumb, .foot-sheet .cell, .foot-sheet .colo, .privacy) a:not(.btn):focus-visible { color: var(--hover-fill); text-decoration-color: var(--hover-fill); }
 .privacy-actions { display: flex; gap: 10px; flex: none; }
 .privacy .btn { min-height: 44px; }
 @media (max-width: 899px) { .privacy { padding: 12px var(--pad); } .privacy-actions { width: 100%; } .privacy-actions .btn { flex: 1; justify-content: center; } }

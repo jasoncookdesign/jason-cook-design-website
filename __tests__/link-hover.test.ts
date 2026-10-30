@@ -19,7 +19,7 @@ function rule(selector: string): string {
 }
 
 const hoverLinks = [
-  ".prose a:hover",
+  ".prose a:not(.btn):hover",
   ".fig figcaption a:hover",
   ".defs a:hover",
   ".book-fallback a:hover",
@@ -37,7 +37,7 @@ describe("link hover", () => {
   });
 
   it("applies on keyboard focus as well", () => {
-    expect(css).toMatch(/a:focus-visible[^{]*\{[^}]*color:\s*var\(--hover-fill\)/);
+    expect(css).toMatch(/a(?::not\(\.btn\))?:focus-visible[^{]*\{[^}]*color:\s*var\(--hover-fill\)/);
   });
 
   it("leaves the nav's orange underline and the row/cell surfaces alone", () => {
