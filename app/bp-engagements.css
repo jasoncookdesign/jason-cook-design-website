@@ -89,12 +89,14 @@ ul.rows .row.hold { align-items: start; }
 }
 
 /* ---------- sample page: screenshots, the asked-and-found pair, the stop panel ---------- */
-.sample-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px 32px; padding: 0 var(--pad); margin-top: 32px; }
-.sample-shots figure { margin: 0; }
-.sample-shots a { display: block; border: 1px solid var(--rule); background: var(--paper); }
+.sample-shots { display: grid; grid-template-columns: 1fr; gap: 48px; padding: 0 var(--pad); margin-top: 32px; }
+.sample-shots figure { margin: 0; display: grid; grid-template-columns: minmax(0, 720px) minmax(0, 1fr); gap: 32px; align-items: start; }
+/* The crop is wide enough that its text reads at 12px or more; on a narrow screen the frame scrolls and the page does not. */
+.sample-shots a { display: block; border: 1px solid var(--rule); background: var(--paper); overflow-x: auto; }
 .sample-shots a:focus-visible { outline-offset: 3px; }
-.sample-shots img { display: block; width: 100%; height: auto; }
-.sample-shots figcaption { margin-top: 12px; font-size: 16px; line-height: 1.45; color: var(--ink2); max-width: 46ch; }
+.sample-shots img { display: block; width: 100%; min-width: 720px; height: auto; }
+.sample-shots figcaption { font-size: 18px; line-height: 1.45; color: var(--ink2); max-width: 40ch; }
+@media (max-width: 1100px) { .sample-shots figure { grid-template-columns: minmax(0, 1fr); gap: 14px; } }
 .sample-compare { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 0 var(--pad) 32px; }
 .sample-compare > div { padding: 24px 24px 28px 0; }
 .sample-compare > div + div { padding-left: 24px; border-left: 1px solid var(--rule); }

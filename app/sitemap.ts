@@ -6,7 +6,7 @@ const SITE = "https://jasoncookdesign.com";
 
 // /engagements is left out because its canonical is /engagements/offering.
 // Fixed pages; case studies and posts come from their registries so a new entry is listed without a second edit.
-const pages = ["", "/about", "/capabilities", "/contact", "/engagements/offering", "/engagements/operating", "/engagements/first-phase", "/legal", "/work", "/writing", "/writing/longform"];
+const pages = ["", "/about", "/capabilities", "/contact", "/engagements/offering", "/engagements/operating", "/engagements/first-phase", "/engagements/sample", "/legal", "/work", "/writing", "/writing/longform"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
