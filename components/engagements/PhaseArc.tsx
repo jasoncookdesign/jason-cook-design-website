@@ -1,5 +1,20 @@
+import Link from "next/link";
+import { SAMPLE_PATH } from "@/lib/first-phase-terms";
+
 const phases = [
   {
+    n: "00",
+    label: "Zero — diagnose it",
+    changes: [
+      "You get a written report on what the real problem is, what to address first, and what addressing it takes. It may say you shouldn't build.",
+      "It takes about a week and two to three hours of your time. The $2,500 is credited in full if you go on to the next phase.",
+    ],
+    evidence: "The artifact is the report and the recommendation it ends in, with every finding linked to its evidence.",
+    term: "Fixed price, quoted before you start.",
+    sample: true,
+  },
+  {
+    n: "01",
     label: "One — understand it, then decide the shape",
     changes: [
       "You get one recommendation. It says what to do, why it fits your business, what got rejected, and which tradeoffs you're taking.",
@@ -10,6 +25,7 @@ const phases = [
     term: "Scoped after the first step.",
   },
   {
+    n: "02",
     label: "Two — specify it in detail",
     changes: [
       "The build stops being an unknown. What it takes gets decided item by item, and that's what the build gets priced from.",
@@ -20,6 +36,7 @@ const phases = [
     term: "Scoped after the architecture.",
   },
   {
+    n: "03",
     label: "Three — build it",
     changes: [
       "The manual step goes away. What replaces it runs in your environment, with your data moved over and the connections in place.",
@@ -30,6 +47,7 @@ const phases = [
     term: "Scoped after the specification.",
   },
   {
+    n: "04",
     label: "Four — hand it over",
     changes: [
       "Your team runs it while I'm still on the engagement, so the questions get answered while I'm still the one answering them.",
@@ -40,6 +58,7 @@ const phases = [
     term: "Scoped after the build is planned.",
   },
   {
+    n: "05",
     label: "Five — stay available",
     changes: [
       "The four phases above are meant to end with your team running the system without me. This one is built to be declined.",
@@ -62,9 +81,9 @@ export default function PhaseArc() {
         </div>
       </div>
       <ol className="rows" data-build>
-        {phases.map((phase, i) => (
+        {phases.map((phase) => (
           <li key={phase.label} className="row hold">
-            <span className="k">{String(i + 1).padStart(2, "0")}</span>
+            <span className="k">{phase.n}</span>
             <div>
               <h3>{phase.label}</h3>
               {phase.changes.map((change, ci) => (
@@ -77,6 +96,13 @@ export default function PhaseArc() {
                   <p className="term">{phase.term}</p>
                 </dd>
               </dl>
+              {phase.sample && (
+                <p>
+                  <Link href={SAMPLE_PATH} className="underline">
+                    See a sample of the report
+                  </Link>
+                </p>
+              )}
             </div>
           </li>
         ))}

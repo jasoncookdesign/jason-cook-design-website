@@ -104,14 +104,14 @@ describe.each([
 });
 
 describe("phase sheets are ledger rows", () => {
-  it("operating: one ordered list of five rows, each with a mono key, a title, and a 'what it leaves behind' pair", () => {
+  it("operating: one ordered list of six rows keyed 00 to 05, each with a mono key, a title, and a 'what it leaves behind' pair", () => {
     const { container } = render(<OperatingPage />);
     const lists = container.querySelectorAll("ol");
     expect(lists).toHaveLength(1);
     expect(lists[0].classList.contains("rows")).toBe(true);
     const items = Array.from(lists[0].children) as HTMLElement[];
-    expect(items).toHaveLength(5);
-    expect(items.map((li) => li.querySelector(".k")?.textContent)).toEqual(["01", "02", "03", "04", "05"]);
+    expect(items).toHaveLength(6);
+    expect(items.map((li) => li.querySelector(".k")?.textContent)).toEqual(["00", "01", "02", "03", "04", "05"]);
     for (const li of items) {
       expect(li.classList.contains("row")).toBe(true);
       expect(li.classList.contains("hold")).toBe(true);
