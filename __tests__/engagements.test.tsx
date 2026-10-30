@@ -22,18 +22,19 @@ describe("Engagements page", () => {
     for (const label of ["The old way", "The internal attempt", "The search outside", "The split"]) {
       expect(screen.getByText(label)).toBeTruthy();
     }
-    const phase = screen.getByText(/One — understand it, then decide the shape/i);
+    const phase = screen.getByText(/^Understand it, then decide the shape$/i);
     const card = screen.getByText("The old way");
     expect(card.compareDocumentPosition(phase) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
-  it("renders all five phase labels", () => {
+  it("renders all six phase labels", () => {
     render(<EngagementsPage />);
-    expect(screen.getByText(/One — understand it, then decide the shape/i)).toBeTruthy();
-    expect(screen.getByText(/Two — specify it in detail/i)).toBeTruthy();
-    expect(screen.getByText(/Three — build it/i)).toBeTruthy();
-    expect(screen.getByText(/Four — hand it over/i)).toBeTruthy();
-    expect(screen.getByText(/Five — stay available/i)).toBeTruthy();
+    expect(screen.getByText(/^Diagnose the problem$/i)).toBeTruthy();
+    expect(screen.getByText(/^Understand it, then decide the shape$/i)).toBeTruthy();
+    expect(screen.getByText(/^Specify it in detail$/i)).toBeTruthy();
+    expect(screen.getByText(/^Build it$/i)).toBeTruthy();
+    expect(screen.getByText(/^Hand it over$/i)).toBeTruthy();
+    expect(screen.getByText(/^Stay available$/i)).toBeTruthy();
   });
 
   it("renders the portability section", () => {

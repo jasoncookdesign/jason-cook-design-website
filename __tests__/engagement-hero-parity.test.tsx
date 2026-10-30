@@ -52,9 +52,8 @@ describe("engagement heroes are structurally parallel", () => {
     expect(a).toBe(b);
   });
 
-  const PHASE_WORDS = /^(Zero|One|Two|Three|Four|Five|Six|Seven) — /;
   const listedPhases: Array<[string, () => React.JSX.Element, (c: HTMLElement) => number]> = [
-    ["operating", () => <OperatingPage />, (c) => Array.from(c.querySelectorAll("*")).filter((e) => e.children.length === 0 && PHASE_WORDS.test((e.textContent ?? "").trim())).length],
+    ["operating", () => <OperatingPage />, (c) => c.querySelectorAll("ol > li").length],
     ["offering", () => <OfferingPage />, (c) => c.querySelectorAll("ol > li").length],
   ];
 

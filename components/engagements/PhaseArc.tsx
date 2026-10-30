@@ -4,7 +4,7 @@ import { PHASE_ZERO } from "@/lib/phase-zero";
 const phases = [
   {
     n: PHASE_ZERO.key,
-    label: "Zero — diagnose it",
+    label: "Diagnose the problem",
     changes: [PHASE_ZERO.focus.operating, PHASE_ZERO.process],
     evidence: "The artifact is a written diagnosis of the real problem, what to address first, and what addressing it takes. It may say you shouldn't build.",
     term: "Fixed price, quoted before you start.",
@@ -12,7 +12,7 @@ const phases = [
   },
   {
     n: "01",
-    label: "One — understand it, then decide the shape",
+    label: "Understand it, then decide the shape",
     changes: [
       "You get one recommendation. It says what to do, why it fits your business, what got rejected, and which tradeoffs you're taking.",
       "You also come out with cost ranges for building it and for running it afterward, and the things that move those numbers.",
@@ -23,7 +23,7 @@ const phases = [
   },
   {
     n: "02",
-    label: "Two — specify it in detail",
+    label: "Specify it in detail",
     changes: [
       "The build stops being an unknown. What it takes gets decided item by item, and that's what the build gets priced from.",
       "This is where deployment, data, access, integrations, and testing get decided, before anyone starts building.",
@@ -34,7 +34,7 @@ const phases = [
   },
   {
     n: "03",
-    label: "Three — build it",
+    label: "Build it",
     changes: [
       "The manual step goes away. What replaces it runs in your environment, with your data moved over and the connections in place.",
       "This is the phase that varies most. What's in it comes from the specification you already approved.",
@@ -45,7 +45,7 @@ const phases = [
   },
   {
     n: "04",
-    label: "Four — hand it over",
+    label: "Hand it over",
     changes: [
       "Your team runs it while I'm still on the engagement, so the questions get answered while I'm still the one answering them.",
       "What they learn is the operating part: reading its health, approving changes, adding workflows, and knowing when something needs escalating.",
@@ -56,7 +56,7 @@ const phases = [
   },
   {
     n: "05",
-    label: "Five — stay available",
+    label: "Stay available",
     changes: [
       "The four phases above are meant to end with your team running the system without me. This one is built to be declined.",
       "If you want me available after that, it's monthly, and it covers what you actually want me for: review, coaching, or capacity held open.",
