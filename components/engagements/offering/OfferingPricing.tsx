@@ -1,5 +1,6 @@
 // DRAFT — Jason to edit
 import Link from "next/link";
+import { PHASE_ZERO } from "@/lib/phase-zero";
 import { SHORT } from "@/lib/first-phase-terms";
 
 export default function OfferingPricing() {
@@ -29,6 +30,11 @@ export default function OfferingPricing() {
             </div>
             <div className="v">
               <p>The first phase is paid. It concludes before anything is designed or built.</p>
+              <p>
+                <Link href={PHASE_ZERO.sample.href} className="underline">
+                  {PHASE_ZERO.sample.label}
+                </Link>
+              </p>
             </div>
           </div>
           <div className="sp">

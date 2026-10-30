@@ -1,15 +1,12 @@
 import Link from "next/link";
-import { SAMPLE_PATH } from "@/lib/first-phase-terms";
+import { PHASE_ZERO } from "@/lib/phase-zero";
 
 const phases = [
   {
-    n: "00",
+    n: PHASE_ZERO.key,
     label: "Zero — diagnose it",
-    changes: [
-      "You get a written report on what the real problem is, what to address first, and what addressing it takes. It may say you shouldn't build.",
-      "It takes about a week and two to three hours of your time. The $2,500 is credited in full if you go on to the next phase.",
-    ],
-    evidence: "The artifact is the report and the recommendation it ends in, with every finding linked to its evidence.",
+    changes: [PHASE_ZERO.focus.operating, PHASE_ZERO.process],
+    evidence: "The artifact is a written diagnosis of the real problem, what to address first, and what addressing it takes. It may say you shouldn't build.",
     term: "Fixed price, quoted before you start.",
     sample: true,
   },
@@ -98,8 +95,8 @@ export default function PhaseArc() {
               </dl>
               {phase.sample && (
                 <p>
-                  <Link href={SAMPLE_PATH} className="underline">
-                    See a sample of the report
+                  <Link href={PHASE_ZERO.sample.href} className="underline">
+                    {PHASE_ZERO.sample.label}
                   </Link>
                 </p>
               )}

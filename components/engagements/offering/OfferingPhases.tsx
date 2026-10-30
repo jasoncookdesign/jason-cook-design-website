@@ -1,6 +1,6 @@
 // DRAFT — Jason to edit
 import Link from "next/link";
-import { SAMPLE_PATH } from "@/lib/first-phase-terms";
+import { PHASE_ZERO } from "@/lib/phase-zero";
 
 const HOLDS = "You hold";
 const CLOSES = "Closes with";
@@ -67,6 +67,12 @@ export default function OfferingPhases() {
             <span className="k">{String(i).padStart(2, "0")}</span>
             <div>
               <h3>{p.label}</h3>
+              {"sample" in p && (
+                <>
+                  <p>{PHASE_ZERO.focus.offering}</p>
+                  <p>{PHASE_ZERO.process}</p>
+                </>
+              )}
               <dl className="pair">
                 <dt>{HOLDS}</dt>
                 <dd>{p.holds}</dd>
@@ -75,8 +81,8 @@ export default function OfferingPhases() {
               </dl>
               {"sample" in p && (
                 <p>
-                  <Link href={SAMPLE_PATH} className="underline">
-                    See a sample of the report
+                  <Link href={PHASE_ZERO.sample.href} className="underline">
+                    {PHASE_ZERO.sample.label}
                   </Link>
                 </p>
               )}

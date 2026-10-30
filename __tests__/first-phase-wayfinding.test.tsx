@@ -6,6 +6,7 @@ import AboutPage from "@/app/about/page";
 import CapabilitiesPage from "@/app/capabilities/page";
 import OperatingPage from "@/app/engagements/operating/page";
 import OfferingPage from "@/app/engagements/offering/page";
+import { PHASE_ZERO } from "@/lib/phase-zero";
 import { engagementTypes } from "@/lib/engagement-types";
 
 let mockPathname: string | null = null;
@@ -60,5 +61,30 @@ describe("both engagement pages describe Phase 0 and point to the sample", () =>
     expect(first.querySelector(".k")!.textContent).toBe("00");
     expect(first.querySelector('a[href="/engagements/sample"]')).not.toBeNull();
     expect(container.querySelectorAll('ol.rows a[href="/engagements/sample"]')).toHaveLength(1);
+  });
+});
+
+describe("Phase 0 reads the same on both engagement types, with a different focus", () => {
+  const row = (page: React.JSX.Element) => render(page).container.querySelector("ol.rows > li")!;
+  it("shares one process text and differs in the focus sentence", () => {
+    const op = row(<OperatingPage />).textContent!;
+    const off = row(<OfferingPage />).textContent!;
+    expect(op).toContain(PHASE_ZERO.process);
+    expect(off).toContain(PHASE_ZERO.process);
+    expect(op).toContain(PHASE_ZERO.focus.operating);
+    expect(off).toContain(PHASE_ZERO.focus.offering);
+    expect(op).not.toContain(PHASE_ZERO.focus.offering);
+    expect(off).not.toContain(PHASE_ZERO.focus.operating);
+  });
+
+  it.each([
+    ["operating", () => <OperatingPage />],
+    ["offering", () => <OfferingPage />],
+  ])("%s: the sample is reachable from the phase list and from the pricing section", (_slug, page) => {
+    const { container } = render(page());
+    const inRows = container.querySelectorAll('ol.rows a[href="/engagements/sample"]');
+    const price = container.querySelector('section[data-name="PRICE"]')!;
+    expect(inRows).toHaveLength(1);
+    expect(price.querySelector('a[href="/engagements/sample"]')).not.toBeNull();
   });
 });
