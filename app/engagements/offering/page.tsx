@@ -3,7 +3,7 @@ import OfferingHero from "@/components/engagements/offering/OfferingHero";
 import OfferingProblem from "@/components/engagements/offering/OfferingProblem";
 import OfferingPhases from "@/components/engagements/offering/OfferingPhases";
 import OfferingPortability from "@/components/engagements/offering/OfferingPortability";
-import OfferingPricing from "@/components/engagements/offering/OfferingPricing";
+import EngagementPricing from "@/components/engagements/EngagementPricing";
 import OfferingClose from "@/components/engagements/offering/OfferingClose";
 import { withSocial } from "@/lib/metadata";
 
@@ -30,7 +30,7 @@ export default function OfferingEngagementPage() {
       <OfferingProblem />
       <OfferingPhases />
       <OfferingPortability />
-      <OfferingPricing />
+      <EngagementPricing />
       <OfferingClose />
     </>
   );
