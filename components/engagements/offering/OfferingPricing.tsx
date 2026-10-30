@@ -25,26 +25,27 @@ export default function OfferingPricing() {
             <div className="k">
               <span className="sq" />
               <span className="w">
-                <span className="l">A</span>
+                <span className="l">What happens</span>
               </span>
             </div>
             <div className="v">
               <p>The first phase is paid. It concludes before anything is designed or built.</p>
-              <p>
-                <Link href={PHASE_ZERO.sample.href} className="underline">
-                  {PHASE_ZERO.sample.label}
-                </Link>
-              </p>
             </div>
           </div>
           <div className="sp">
             <div className="k">
               <span className="sq" />
               <span className="w">
-                <span className="l">B</span>
+                <span className="l">What you keep</span>
               </span>
             </div>
             <div className="v">
+              <p>You leave with a written verdict on whether to build, and the proof behind it.</p>
+              <p>
+                <Link href={PHASE_ZERO.sample.href} className="underline">
+                  {PHASE_ZERO.sample.label}
+                </Link>
+              </p>
               <p>Every later phase is quoted on its own, once the one before it has closed.</p>
               <p>
                 {SHORT.both.text}{" "}
