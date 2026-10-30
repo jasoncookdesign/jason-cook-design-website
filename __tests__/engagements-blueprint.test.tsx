@@ -139,18 +139,11 @@ describe("phase sheets are ledger rows", () => {
 });
 
 describe("pricing sheets use the spec plate", () => {
-  it("offering: the plate header carries the offer name and the price; two rows labelled as on the home page follow", () => {
+  it("offering: the pricing is the operating module, three keyed rows on the spec plate", () => {
     const { container } = render(<OfferingPage />);
     const sheet = sections(container)[4];
-    const plate = sheet.querySelector(".pl") as HTMLElement;
-    expect(plate).not.toBeNull();
-    const head = plate.querySelector(".pl-h") as HTMLElement;
-    expect(head.textContent).toContain("Assess the decision");
-    expect(head.textContent).toContain("$2,500");
-    const rows = Array.from(plate.querySelectorAll(".sp"));
-    expect(rows).toHaveLength(2);
-    expect(rows.map((r) => r.querySelector(".l")?.textContent)).toEqual(["What happens", "What you keep"]);
-    expect(plate.querySelector(".regs")?.getAttribute("aria-hidden")).toBe("true");
+    expect(sheet.querySelector(".pl .regs")?.getAttribute("aria-hidden")).toBe("true");
+    expect(sheet.querySelectorAll(".pl .sp")).toHaveLength(3);
   });
 
   it("operating: the three ways to price are plate rows keyed by their own labels, and the terms are ledger rows", () => {

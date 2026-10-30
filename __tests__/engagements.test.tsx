@@ -51,9 +51,9 @@ describe("Engagements page", () => {
     expect(screen.getByText(/Monthly, if you want it/i)).toBeTruthy();
   });
 
-  it("names the paid diagnosis in plain wording in the pricing card", () => {
+  it("names the paid first phase in plain wording in the pricing card", () => {
     render(<EngagementsPage />);
-    expect(screen.getByText(/The paid diagnosis is the only part with a price I can publish/)).toBeTruthy();
+    expect(screen.getByText(/The first phase is paid, and it is the only part with a price I can publish/)).toBeTruthy();
     expect(screen.queryByText(/\[ENTRY-OFFER-NAME\]/)).toBeNull();
   });
 

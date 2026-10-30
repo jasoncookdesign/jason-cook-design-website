@@ -161,8 +161,8 @@ describe("Offering Engagement page", () => {
   it("prices only the first phase: $2,500 appears with that phase, and the token is gone", () => {
     const { container } = render(<OfferingPage />);
     expect(screen.queryByText(/\[GAP: Phase 0 price pending\]/)).toBeNull();
-    const card = screen.getByText("$2,500").closest("div")!;
-    expect(card.textContent).toContain("Assess the decision");
+    const card = screen.getByText(/only part with a price I can publish: \$2,500/).closest("div")!;
+    expect(card.textContent).toContain("first phase is paid");
     expect(container.textContent).toMatch(/Every later phase is quoted on its own/);
   });
 
