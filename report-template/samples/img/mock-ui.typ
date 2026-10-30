@@ -1,6 +1,0 @@
-#set page(width: 960pt, height: 600pt, margin: 0pt, fill: rgb("#F4F5F7"))
-#set text(font: "Inter", size: 14pt)
-#place(top, rect(width: 100%, height: 56pt, fill: white, stroke: (bottom: 1pt + rgb("#E6E8EC")))[#pad(x: 24pt, y: 18pt)[*Acme Ledger* #h(1fr) Search #h(24pt) Reports #h(24pt) Settings]])
-#place(top + left, dy: 56pt, rect(width: 200pt, height: 544pt, fill: white, stroke: (right: 1pt + rgb("#E6E8EC")))[#pad(24pt)[Overview \ \ Accounts \ \ Approvals \ \ Exports]])
-#place(top + left, dx: 232pt, dy: 88pt, rect(width: 696pt, height: 120pt, fill: white, radius: 6pt)[#pad(20pt)[*Open approvals* \ \ #text(size: 40pt, weight: "bold")[128]]])
-#place(top + left, dx: 232pt, dy: 232pt, rect(width: 696pt, height: 330pt, fill: white, radius: 6pt)[#pad(20pt)[*Queue* \ \ Invoice 4401 #h(1fr) Pending \ \ Invoice 4402 #h(1fr) Pending \ \ Invoice 4403 #h(1fr) Held]])
