@@ -6,8 +6,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Link from "next/link";
+import { SHORT } from "@/lib/first-phase-terms";
 
-const faqs = [
+type Para = string | { text: string; link: { label: string; href: string } };
+
+const faqs: { id: string; question: string; answer: Para[] }[] = [
   {
     id: "faq-13",
     question: "What happens on the strategy call?",
@@ -22,7 +26,7 @@ const faqs = [
     answer: [
       "A diagnosis I lead personally, and a written recommendation at the end of it. It names the real problem, what to address first, and what addressing it takes.",
       "If the recommendation is that you shouldn't build, you get that in writing too.",
-      "If you go on after the diagnosis, the $2,500 is credited in full against the next phase, applied automatically on that phase's first invoice. The credit holds for as long as my quote for that phase is valid. It can't move to another project or company, and it has no cash value.",
+      { text: SHORT.both.text, link: { label: SHORT.both.label, href: SHORT.both.href } },
     ],
   },
   {
@@ -111,6 +115,7 @@ const faqs = [
     answer: [
       "Probably not the diagnosis. If you can name the problem and the fix, the money is better spent building than diagnosing.",
       "Tell me on the call. If that's where you are, I'll say so.",
+      { text: SHORT.fit.text, link: { label: SHORT.fit.label, href: SHORT.fit.href } },
     ],
   },
 ];
@@ -129,9 +134,18 @@ export default function FaqSection() {
           <AccordionItem key={faq.id} id={faq.id} value={faq.id}>
             <AccordionTrigger>{faq.question}</AccordionTrigger>
             <AccordionContent>
-              {faq.answer.map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
+              {faq.answer.map((para, i) =>
+                typeof para === "string" ? (
+                  <p key={i}>{para}</p>
+                ) : (
+                  <p key={i}>
+                    {para.text}{" "}
+                    <Link href={para.link.href} className="underline">
+                      {para.link.label}
+                    </Link>
+                  </p>
+                ),
+              )}
             </AccordionContent>
           </AccordionItem>
         ))}

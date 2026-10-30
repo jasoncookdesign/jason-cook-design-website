@@ -17,8 +17,9 @@ jest.mock("next/navigation", () => ({
 const root = path.resolve(__dirname, "..");
 
 function typeLinks(container: HTMLElement) {
+  const typePaths = new Set(engagementTypes.map((t) => `/engagements/${t.slug}`));
   return Array.from(container.querySelectorAll<HTMLAnchorElement>("a")).filter((a) =>
-    (a.getAttribute("href") ?? "").startsWith("/engagements/")
+    typePaths.has(a.getAttribute("href") ?? "")
   );
 }
 

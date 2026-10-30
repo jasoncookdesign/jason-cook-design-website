@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import HomePage from "@/app/page";
+import { SHORT } from "@/lib/first-phase-terms";
 
 function operatingPlateName(): HTMLElement {
   const el = Array.from(document.querySelectorAll<HTMLElement>(".pl-h p")).find((p) => p.textContent === "Operating Engagement");
@@ -123,13 +124,22 @@ describe("Home page", () => {
     expect(screen.getByText(/How long does it take/i)).toBeTruthy();
   });
 
-  it("says in the $2,500 diagnosis answer that the fee is credited against the next phase, with its terms", () => {
+  it("gives the credit and the guarantee as a short form with a link to the terms page, in the $2,500 answer", () => {
     render(<HomePage />);
     fireEvent.click(screen.getByText(/What do I get for \$2,500/i));
-    const text = document.body.textContent ?? "";
-    expect(text).toContain("credited in full against the next phase");
-    expect(text).toContain("applied automatically on that phase's first invoice");
-    expect(text).toContain("as long as my quote for that phase is valid");
-    expect(text).toContain("no cash value");
+    expect(document.body.textContent).toContain(SHORT.both.text);
+    expect(document.querySelector(`a[href="${SHORT.both.href}"]`)).not.toBeNull();
+  });
+
+  it("links the pricing section to the credit on the terms page", () => {
+    const { container } = render(<HomePage />);
+    const pricing = container.querySelector('[data-name="PRICE"]') ?? container;
+    expect(pricing.querySelector(`a[href="${SHORT.credit.href}"]`)).not.toBeNull();
+  });
+
+  it("links the \"already know what I want built\" answer to who the first phase is for", () => {
+    render(<HomePage />);
+    fireEvent.click(screen.getByText(/I already know what I want built/i));
+    expect(document.querySelector(`a[href="${SHORT.fit.href}"]`)).not.toBeNull();
   });
 });
