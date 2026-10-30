@@ -95,10 +95,10 @@ describe("work index", () => {
 });
 
 describe("case study", () => {
-  it("opens with a breadcrumb, the client as eyebrow, the title, and the subtitle in the hero grammar", () => {
+  it("opens with the client as eyebrow (the breadcrumb comes from the layout), the title, and the subtitle in the hero grammar", () => {
     const { container } = render(<WorkCaseStudyContent cs={dell} />);
     const hero = container.querySelector("section")!;
-    expect(hero.querySelector("nav.crumb")!.textContent).toContain(dell.client);
+    expect(hero.querySelector("nav.crumb")).toBeNull();
     expect(hero.querySelector("p.eyebrow")!.textContent).toBe(dell.client);
     expect(hero.querySelector("h1")!.textContent).toBe(dell.title);
     expect(hero.querySelector("h1 ~ div > p")!.textContent).toBe(dell.subtitle);

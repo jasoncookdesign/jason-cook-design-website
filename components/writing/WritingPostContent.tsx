@@ -87,11 +87,6 @@ export default function WritingPostContent({ post }: Props) {
     <article>
       <section className="hero page post g" data-sheet="A-101" data-name="HERO">
         <div className="main">
-          <nav className="crumb" aria-label="Breadcrumb">
-            <Link href="/writing">Writing</Link>
-            <span aria-hidden="true">/</span>
-            <span>{displayDate}</span>
-          </nav>
           <h1>{post.title}</h1>
           <div>
             <p className="lead">{renderExcerpt(post)}</p>
