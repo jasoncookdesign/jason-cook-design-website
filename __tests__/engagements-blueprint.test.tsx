@@ -11,8 +11,8 @@ jest.mock("next/navigation", () => ({
   usePathname: () => "/engagements/offering",
 }));
 
-const OPERATING_SHEETS = ["HERO", "PROBLEM", "PHASES", "PORTABILITY", "PRICE", "CLOSE", "FAQ"];
-const OFFERING_SHEETS = ["HERO", "PROBLEM", "PHASES", "PORTABILITY", "PRICE", "CLOSE"];
+const OPERATING_SHEETS = ["HERO", "PROBLEM", "PHASES", "PORTABILITY", "PRICE", "FAQ", "CLOSE"];
+const OFFERING_SHEETS = OPERATING_SHEETS;
 
 const pages: Array<[string, () => React.JSX.Element, string[]]> = [
   ["operating", () => <OperatingPage />, OPERATING_SHEETS],
@@ -104,19 +104,19 @@ describe.each([
 });
 
 describe("phase sheets are ledger rows", () => {
-  it("operating: one ordered list of five rows, each with a mono key, a title, and a 'what it leaves behind' pair", () => {
+  it("operating: one ordered list of six rows keyed 00 to 05, each with a mono key, a title, and a 'what you get' pair", () => {
     const { container } = render(<OperatingPage />);
     const lists = container.querySelectorAll("ol");
     expect(lists).toHaveLength(1);
     expect(lists[0].classList.contains("rows")).toBe(true);
     const items = Array.from(lists[0].children) as HTMLElement[];
-    expect(items).toHaveLength(5);
-    expect(items.map((li) => li.querySelector(".k")?.textContent)).toEqual(["01", "02", "03", "04", "05"]);
+    expect(items).toHaveLength(6);
+    expect(items.map((li) => li.querySelector(".k")?.textContent)).toEqual(["00", "01", "02", "03", "04", "05"]);
     for (const li of items) {
       expect(li.classList.contains("row")).toBe(true);
       expect(li.classList.contains("hold")).toBe(true);
       expect(li.querySelector("h3")).not.toBeNull();
-      expect(li.querySelector("dl.pair > dt")!.textContent).toBe("What it leaves behind");
+      expect(li.querySelector("dl.pair > dt")!.textContent).toBe("What you get");
     }
   });
 
@@ -139,18 +139,11 @@ describe("phase sheets are ledger rows", () => {
 });
 
 describe("pricing sheets use the spec plate", () => {
-  it("offering: the plate header carries the offer name and the price; two keyed rows follow", () => {
+  it("offering: the pricing is the operating module, three keyed rows on the spec plate", () => {
     const { container } = render(<OfferingPage />);
     const sheet = sections(container)[4];
-    const plate = sheet.querySelector(".pl") as HTMLElement;
-    expect(plate).not.toBeNull();
-    const head = plate.querySelector(".pl-h") as HTMLElement;
-    expect(head.textContent).toContain("Assess the decision");
-    expect(head.textContent).toContain("$2,500");
-    const rows = Array.from(plate.querySelectorAll(".sp"));
-    expect(rows).toHaveLength(2);
-    expect(rows.map((r) => r.querySelector(".l")?.textContent)).toEqual(["A", "B"]);
-    expect(plate.querySelector(".regs")?.getAttribute("aria-hidden")).toBe("true");
+    expect(sheet.querySelector(".pl .regs")?.getAttribute("aria-hidden")).toBe("true");
+    expect(sheet.querySelectorAll(".pl .sp")).toHaveLength(3);
   });
 
   it("operating: the three ways to price are plate rows keyed by their own labels, and the terms are ledger rows", () => {
@@ -183,14 +176,7 @@ describe("portability and close sheets", () => {
     expect(close.querySelector("h2")).not.toBeNull();
   });
 
-  it("offering: the portability sheet is an intro over two ruled cells", () => {
-    const { container } = render(<OfferingPage />);
-    const sheet = sections(container)[3];
-    expect(sheet.querySelector(":scope > .intro.g h2")).not.toBeNull();
-    expect(sheet.querySelectorAll(":scope > .cells.c2 > .cell")).toHaveLength(2);
-  });
-
-  it("operating: the portability sheet is an intro over prose, with the home FAQ link kept", () => {
+  it("the portability sheet is an intro over prose, with the home FAQ link kept", () => {
     const { container } = render(<OperatingPage />);
     const sheet = sections(container)[3];
     expect(sheet.querySelector(":scope > .intro.g > .t > p.eyebrow + h2")).not.toBeNull();
@@ -200,10 +186,10 @@ describe("portability and close sheets", () => {
   });
 });
 
-describe("operating FAQ sheet", () => {
+describe("FAQ sheet", () => {
   it("has an intro block and the shared accordion", () => {
     const { container } = render(<OperatingPage />);
-    const sheet = sections(container)[6];
+    const sheet = sections(container)[5];
     expect(sheet.querySelector(":scope > .intro.g > .t > p.eyebrow + h2")).not.toBeNull();
     expect(sheet.querySelectorAll('[data-slot="accordion-trigger"]')).toHaveLength(6);
   });

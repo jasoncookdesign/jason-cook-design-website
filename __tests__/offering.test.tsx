@@ -41,7 +41,7 @@ describe("Offering Engagement problem section", () => {
   it("renders four problem cards ahead of the phases", () => {
     render(<OfferingPage />);
     for (const label of LABELS) expect(screen.getByText(label)).toBeTruthy();
-    const phase = screen.getByRole("heading", { level: 3, name: "Assess the decision" });
+    const phase = screen.getByRole("heading", { level: 3, name: "Assess it" });
     expect(
       screen.getByText("The idea").compareDocumentPosition(phase) & Node.DOCUMENT_POSITION_FOLLOWING
     ).toBeTruthy();
@@ -101,43 +101,33 @@ describe("Offering Engagement page", () => {
     expect(phases(container)).toHaveLength(6);
   });
 
-  it("gives every phase its own label and its own 'hold' and 'close' statements under shared, distinct field labels", () => {
+  it("gives every phase its own label and its own 'what you get' and 'closes with' statements under shared field labels", () => {
     const { container } = render(<OfferingPage />);
     const items = phases(container);
     expect(items).toHaveLength(6);
     const labels = items.map((li) => li.querySelector("h3")?.textContent?.trim() ?? "");
     expect(new Set(labels).size).toBe(6);
     for (const l of labels) expect(l.length).toBeGreaterThan(4);
-
-    const dtSets = items.map((li) => Array.from(li.querySelectorAll("dl > dt")).map((d) => (d.textContent ?? "").trim()));
-    const holds: string[] = [];
+    const gets: string[] = [];
     const closes: string[] = [];
-    items.forEach((li, i) => {
-      const dls = li.querySelectorAll("dl");
-      expect(dls).toHaveLength(1);
-      expect(dtSets[i]).toHaveLength(2);
-      expect(li.querySelectorAll("dl > dd")).toHaveLength(2);
+    for (const li of items) {
+      expect(li.querySelectorAll("dl")).toHaveLength(1);
+      const dts = Array.from(li.querySelectorAll("dl > dt")).map((d) => (d.textContent ?? "").trim());
+      expect(dts).toEqual(["What you get", "Closes with", "Scoped and priced"]);
       const dds = Array.from(li.querySelectorAll("dl > dd")).map((d) => (d.textContent ?? "").trim());
-      for (const dd of dds) expect(dd.split(/\s+/).length).toBeGreaterThanOrEqual(5);
-      holds.push(dds[0]);
+      gets.push(dds[0]);
       closes.push(dds[1]);
-    });
-    // The same two labels in every phase, and the two labels differ and are real words.
-    for (const set of dtSets) expect(set).toEqual(dtSets[0]);
-    expect(dtSets[0][0]).not.toBe(dtSets[0][1]);
-    for (const l of dtSets[0]) expect(l.length).toBeGreaterThanOrEqual(5);
-    expect(new Set(holds).size).toBe(6);
-    expect(new Set(closes).size).toBe(6);
+    }
+    // The optional last phase says the same thing on both pages; every other phase has its own statements.
+    expect(new Set(gets).size).toBe(6);
+    expect(new Set(closes.slice(0, 5)).size).toBe(5);
   });
 
-  it("presents the sixth phase as optional, names at least two distinct forms, and carries an explicit opt-out", () => {
+  it("presents the sixth phase as optional, and carries an explicit opt-out", () => {
     const { container } = render(<OfferingPage />);
     const sixth = phases(container)[5];
     expect(sixth).toBeDefined();
-    const forms = Array.from(sixth.querySelectorAll("ul > li")).map((li) => (li.textContent ?? "").trim());
-    expect(forms.length).toBeGreaterThanOrEqual(2);
-    expect(new Set(forms.map((f) => f.toLowerCase())).size).toBe(forms.length);
-    for (const f of forms) expect(f.split(/\s+/).length).toBeGreaterThanOrEqual(2);
+    expect(sixth.classList.contains("opt")).toBe(true);
     const text = sixth.textContent ?? "";
     expect(text).toMatch(OPTIONAL);
     expect(text).toMatch(OPT_OUT);
@@ -161,8 +151,8 @@ describe("Offering Engagement page", () => {
   it("prices only the first phase: $2,500 appears with that phase, and the token is gone", () => {
     const { container } = render(<OfferingPage />);
     expect(screen.queryByText(/\[GAP: Phase 0 price pending\]/)).toBeNull();
-    const card = screen.getByText("$2,500").closest("div")!;
-    expect(card.textContent).toContain("Assess the decision");
+    const card = screen.getByText(/only part with a price I can publish: \$2,500/).closest("div")!;
+    expect(card.textContent).toContain("first phase is paid");
     expect(container.textContent).toMatch(/Every later phase is quoted on its own/);
   });
 

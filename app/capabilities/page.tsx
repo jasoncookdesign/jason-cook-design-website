@@ -132,7 +132,7 @@ export default function CapabilitiesPage() {
             <p className="eyebrow">For registration and procurement</p>
             <h2>Company data</h2>
             <p className="lead">
-              For institutional or government procurement inquiries, every engagement opens with a paid first step: a
+              For institutional or government procurement inquiries, every engagement opens with a <Link href="/engagements/first-phase" className="underline">paid first step</Link>: a
               written recommendation before any design or build begins.
             </p>
           </div>

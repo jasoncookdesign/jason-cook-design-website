@@ -1,15 +1,18 @@
+// DRAFT — Jason to edit
+// One module for both engagement types: the pricing does not differ between them, so neither does this.
 import Link from "next/link";
+import { PHASE_ZERO } from "@/lib/phase-zero";
 import { SHORT } from "@/lib/first-phase-terms";
 
 const pricingCards: { label: string; body: string; link?: { text: string; label: string; href: string } }[] = [
   {
     label: "Set in advance",
-    body: "The paid diagnosis is the only part with a price I can publish: $2,500. It’s the same number for everyone.",
-    link: SHORT.credit,
+    body: "The first phase is paid, and it is the only part with a price I can publish: $2,500. It’s the same number for everyone, and it concludes before anything is designed or built.",
+    link: SHORT.both,
   },
   {
     label: "Quoted per phase",
-    body: "The four phases after it are quoted one at a time, each at a fixed price for that phase. You’re buying an outcome, not hours.",
+    body: "Every later phase is quoted on its own, once the one before it has closed, at a fixed price for that phase. You’re buying an outcome, not hours.",
   },
   {
     label: "Monthly, if you want it",
@@ -25,7 +28,7 @@ const terms = [
   "A late payment pauses the work. It never accrues interest, a finance charge, or a late fee.",
 ];
 
-export default function EngagementsPricing() {
+export default function EngagementPricing() {
   return (
     <section data-sheet="A-105" data-name="PRICE">
       <div className="intro g">
@@ -64,8 +67,8 @@ export default function EngagementsPricing() {
                     {card.label === "Set in advance" && (
                       <>
                         {" · "}
-                        <Link href="/engagements/sample" className="underline">
-                          See a sample report
+                        <Link href={PHASE_ZERO.sample.href} className="underline">
+                          {PHASE_ZERO.sample.label}
                         </Link>
                       </>
                     )}

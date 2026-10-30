@@ -3,6 +3,7 @@
  * full. The terms page renders the long form, and every other page uses a short form that links to it by full path.
  */
 export const TERMS_PATH = "/engagements/first-phase";
+export const SAMPLE_PATH = "/engagements/sample";
 
 export const ANCHORS = { whatItAsks: "what-it-asks", fit: "fit", credit: "credit", guarantee: "guarantee" } as const;
 export type Anchor = (typeof ANCHORS)[keyof typeof ANCHORS];

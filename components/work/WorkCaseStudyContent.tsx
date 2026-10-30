@@ -72,11 +72,6 @@ export default function WorkCaseStudyContent({ cs: study }: Props) {
       {/* Title block: a light, text-led hero. Screenshots appear at full opacity as plates in the body. */}
       <section className="hero page long g" data-sheet="A-101" data-name="HERO">
         <div className="main">
-          <nav className="crumb" aria-label="Breadcrumb">
-            <Link href="/work">Work</Link>
-            <span aria-hidden="true">/</span>
-            <span>{study.client}</span>
-          </nav>
           <p className="eyebrow">{study.client}</p>
           <h1>{study.title}</h1>
           <div>

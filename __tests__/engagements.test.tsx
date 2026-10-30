@@ -22,18 +22,19 @@ describe("Engagements page", () => {
     for (const label of ["The old way", "The internal attempt", "The search outside", "The split"]) {
       expect(screen.getByText(label)).toBeTruthy();
     }
-    const phase = screen.getByText(/One — understand it, then decide the shape/i);
+    const phase = screen.getByText(/^Shape it$/i);
     const card = screen.getByText("The old way");
     expect(card.compareDocumentPosition(phase) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
-  it("renders all five phase labels", () => {
+  it("renders all six phase labels", () => {
     render(<EngagementsPage />);
-    expect(screen.getByText(/One — understand it, then decide the shape/i)).toBeTruthy();
-    expect(screen.getByText(/Two — specify it in detail/i)).toBeTruthy();
-    expect(screen.getByText(/Three — build it/i)).toBeTruthy();
-    expect(screen.getByText(/Four — hand it over/i)).toBeTruthy();
-    expect(screen.getByText(/Five — stay available/i)).toBeTruthy();
+    expect(screen.getByText(/^Assess it$/i)).toBeTruthy();
+    expect(screen.getByText(/^Shape it$/i)).toBeTruthy();
+    expect(screen.getByText(/^Specify it$/i)).toBeTruthy();
+    expect(screen.getByText(/^Build it$/i)).toBeTruthy();
+    expect(screen.getByText(/^Deliver it$/i)).toBeTruthy();
+    expect(screen.getByText(/^Stay available$/i)).toBeTruthy();
   });
 
   it("renders the portability section", () => {
@@ -50,9 +51,9 @@ describe("Engagements page", () => {
     expect(screen.getByText(/Monthly, if you want it/i)).toBeTruthy();
   });
 
-  it("names the paid diagnosis in plain wording in the pricing card", () => {
+  it("names the paid first phase in plain wording in the pricing card", () => {
     render(<EngagementsPage />);
-    expect(screen.getByText(/The paid diagnosis is the only part with a price I can publish/)).toBeTruthy();
+    expect(screen.getByText(/The first phase is paid, and it is the only part with a price I can publish/)).toBeTruthy();
     expect(screen.queryByText(/\[ENTRY-OFFER-NAME\]/)).toBeNull();
   });
 
