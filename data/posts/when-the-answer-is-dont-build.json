@@ -1,0 +1,61 @@
+{
+  "slug": "when-the-answer-is-dont-build",
+  "title": "When the Answer Is \"Don't Build\"",
+  "date": "2026-11-29",
+  "tags": [
+    "diagnosis",
+    "decisions",
+    "process"
+  ],
+  "excerpt": "You pay for a diagnosis, and it tells you not to do the thing you came to do. Why that is a result, and what a useful stop recommendation looks like.",
+  "coverImage": "/images/blog/when-the-answer-is-dont-build/hero.webp",
+  "content": [
+    {
+      "type": "img",
+      "src": "/images/blog/when-the-answer-is-dont-build/hero.webp",
+      "alt": "The sample report's recommendation page, with its conditions and what would change the recommendation, in front of the findings page.",
+      "credit": "The recommendation page from the sample report, with what would change it."
+    },
+    {
+      "type": "p",
+      "html": "You pay for a diagnosis, and it tells you not to do the thing you came to do. Most people assume that means the work failed."
+    },
+    {
+      "type": "p",
+      "html": "It's the reason the work exists. A diagnostic is meant to produce an accurate recommendation. If the answer is always \"go\", the report is a sales step with a better cover, and a report that can only say yes can't really say go either."
+    },
+    {
+      "type": "p",
+      "html": "Science has worked this way for a long time. A hypothesis that fails its test counts as a result, because it tells you where not to look, and the next hypothesis starts from there. A diagnosis does the same for a business: it tests the owner's idea against evidence, and sometimes the idea doesn't survive. That clears away what doesn't work, so the effort can go to what does."
+    },
+    {
+      "type": "p",
+      "html": "Feasibility practice has treated stopping as a designed outcome for a long time. Ontario's agriculture ministry guidance for small businesses sets minimum acceptable criteria for each stage before the work starts, then states the rule: either the project meets them or it's abandoned.<sup>1</sup> Its worked example sets a $25,000 minimum against a market assessment showing at most $10,000, and the owner stops. The stated purpose is to let the owner abandon an idea before investing heavily."
+    },
+    {
+      "type": "p",
+      "html": "A stop recommendation isn't only the word \"no\". A useful one says what it was measured against, what would have to be true for the answer to change, and what to do instead. The recommendation in my <a href=\"/engagements/sample\">sample report</a> is a conditional yes, and it lists what would change it. The first-phase report works the same way when the answer goes the other direction, and the report belongs to you to take to anyone."
+    },
+    {
+      "type": "p",
+      "html": "On an earlier engagement, which I can't describe in detail because of a nondisclosure agreement, the client believed they needed a mobile app to reach their customers more easily. The evidence said otherwise. What they needed was a restructured information layer, meaning how the business's information is organized and served, so customers could reach it on any device and not only through an app. Ruling out the app wasn't the end of the work. It led straight to a reframe, and the reframe worked where I'm confident the app would not have."
+    },
+    {
+      "type": "p",
+      "html": "My guarantee covers whether the report contains what I promised. It doesn't cover whether you like the conclusion, including a recommendation not to build, because a promise of yes would make the report worthless."
+    },
+    {
+      "type": "p",
+      "html": "A diagnosis that can't say stop can't really say go either."
+    },
+    {
+      "type": "footnotes",
+      "items": [
+        {
+          "ref": "1",
+          "html": "R. Wagner, <a href=\"https://publications.gov.on.ca/store/20170501121/Free_Download_Files/030039.pdf\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline\">Evaluating the Feasibility of Business Opportunities</a>, Factsheet 17-027, Ontario Ministry of Agriculture, Food and Rural Affairs, August 2017."
+        }
+      ]
+    }
+  ]
+}
