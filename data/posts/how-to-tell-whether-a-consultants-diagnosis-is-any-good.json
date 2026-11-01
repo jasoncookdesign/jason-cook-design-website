@@ -1,0 +1,80 @@
+{
+  "slug": "how-to-tell-whether-a-consultants-diagnosis-is-any-good",
+  "title": "How to Tell Whether a Consultant's Diagnosis Is Any Good",
+  "date": "2026-11-15",
+  "tags": [
+    "diagnosis",
+    "evidence",
+    "process"
+  ],
+  "excerpt": "How do you know whether you can trust a consultant's report? Six questions, adapted from the standards auditors and intelligence analysts use, that you can ask without being an expert.",
+  "coverImage": "/images/blog/judging-a-diagnosis/hero.webp",
+  "content": [
+    {
+      "type": "img",
+      "src": "/images/blog/judging-a-diagnosis/hero.webp",
+      "alt": "A page from the sample report headed \"What we found\", in which each finding states a claim, its evidence, a confidence level, and what it means, in front of the page on assumptions, unknowns and checks.",
+      "credit": "A findings page from the sample report: claim, evidence, confidence, and what it means."
+    },
+    {
+      "type": "p",
+      "html": "You hired a consultant, and the report arrived. It's well designed, it sounds sure of itself, and it tells you what to do next. How do you know whether you can trust it?"
+    },
+    {
+      "type": "p",
+      "html": "You can't, if all that stands behind it is the consultant's reputation or confidence. A diagnostic is meant to produce an accurate recommendation, and accuracy is something you're entitled to check. A report that asks you to take it on trust hasn't finished the work."
+    },
+    {
+      "type": "p",
+      "html": "Surprisingly, there's no written standard I'm aware of to judge a consultant's report, so I started with the standards auditors and intelligence analysts use to defend their conclusions to people who weren't in the room, then adapted them for small to medium businesses."
+    },
+    {
+      "type": "h2",
+      "text": "Six questions to ask"
+    },
+    {
+      "type": "p",
+      "html": "Each comes from one of those standards, and none of them requires you to be an expert in the subject."
+    },
+    {
+      "type": "ol",
+      "items": [
+        "<strong>What was each finding measured against, what was found, and what is the evidence?</strong> The US Government Accountability Office builds an audit finding from four parts: the criteria, the condition, the cause, and the effect.<sup>1</sup> If a finding is only a conclusion, you can't see any of them.",
+        "<strong>Is the evidence relevant and reliable, or just plentiful?</strong> The same standards say a large volume of evidence doesn't make up for weak evidence. Ask what each source is and how it was checked.",
+        "<strong>How confident is the consultant in each finding, and why?</strong> A good report says so, gives a reason, and uses each label the same way throughout. The US intelligence community's analytic standards require that, and they keep confidence in the evidence separate from the likelihood of an event.<sup>2</sup>",
+        "<strong>Where are the assumptions, and what changes if one is wrong?</strong> A CIA tradecraft primer calls the habit a key assumptions check: list what the conclusion rests on, rate each item, and revisit the list before you finalize.<sup>3</sup>",
+        "<strong>Where does the evidence run out?</strong> The audit standards want a limitation stated next to the finding it affects, along with how many cases were examined.",
+        "<strong>Does the recommendation follow from the findings, state its conditions, and allow for \"don't proceed\"?</strong> Ontario's agriculture ministry guidance on feasibility sets minimum criteria before the work starts and puts the rule plainly: either the project meets them or it's abandoned.<sup>4</sup>"
+      ]
+    },
+    {
+      "type": "p",
+      "html": "My first-phase report is built to answer these questions directly. In the <a href=\"/engagements/sample\">sample report</a> on this site, written for a fictional agency, each finding states its claim, its evidence, how confident I am and why, and what it means for the owner. One finding is a hypothesis the evidence ruled out. Assumptions and unknowns have their own section, with how each unknown will be handled. The recommendation lists its conditions and what would change it."
+    },
+    {
+      "type": "p",
+      "html": "Read the evidence before you read the recommendation. If it isn't there, that tells you what you needed to know."
+    },
+    {
+      "type": "footnotes",
+      "items": [
+        {
+          "ref": "1",
+          "html": "U.S. Government Accountability Office, <a href=\"https://www.gao.gov/assets/gao-24-106786.pdf\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline\">Government Auditing Standards: 2024 Revision (GAO-24-106786)</a>, February 2024."
+        },
+        {
+          "ref": "2",
+          "html": "Office of the Director of National Intelligence, <a href=\"https://archive.dni.gov/files/documents/ICD/ICD-203.pdf\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline\">Intelligence Community Directive 203, Analytic Standards</a>, signed January 2, 2015, amended January 21, 2022."
+        },
+        {
+          "ref": "3",
+          "html": "U.S. Government, <a href=\"https://www.cia.gov/resources/csi/static/955180a45afe3f5013772c313b16face/Tradecraft-Primer-apr09.pdf\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline\">A Tradecraft Primer: Structured Analytic Techniques for Improving Intelligence Analysis</a>, March 2009."
+        },
+        {
+          "ref": "4",
+          "html": "R. Wagner, <a href=\"https://publications.gov.on.ca/store/20170501121/Free_Download_Files/030039.pdf\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline\">Evaluating the Feasibility of Business Opportunities</a>, Factsheet 17-027, Ontario Ministry of Agriculture, Food and Rural Affairs, August 2017."
+        }
+      ]
+    }
+  ]
+}
