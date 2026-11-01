@@ -157,8 +157,8 @@ describe("The post announcing the book", () => {
 });
 
 describe("Writing post data", () => {
-  it("contains all 10 posts with required fields", () => {
-    expect(posts).toHaveLength(10);
+  it("contains all 11 posts with required fields", () => {
+    expect(posts).toHaveLength(11);
     for (const post of posts) {
       expect(post.slug).toBeTruthy();
       expect(post.title).toBeTruthy();
