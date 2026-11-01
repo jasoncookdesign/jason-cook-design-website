@@ -18,7 +18,7 @@ Marketing website for Jason Cook Design (JCD), a practice that assesses, designs
 | `/engagements/offering` | Offering Engagement: six phases from the decision to launch |
 | `/engagements/operating` | Operating Engagement: model, phases, and pricing |
 | `/engagements/first-phase` | The first phase: what it asks, who it is for, the credit and the guarantee. The one place the terms are written in full (`lib/first-phase-terms.ts`); other pages carry short forms that link to its anchors |
-| `/engagements/sample` | A sample first-phase report for a fictional client: six screenshots, the guarantee checklist, a stop panel, and the PDF download. The PDF, screenshots and `data/sample-manifest.json` come from the private sample-report repository and are copied into `public/sample/` and `data/` by pull request |
+| `/engagements/sample` | A sample first-phase report for an anonymized client: six screenshots, the guarantee checklist, a stop panel, and the PDF download. The PDF, screenshots and `data/sample-manifest.json` come from the private sample-report repository and are copied into `public/sample/` and `data/` by pull request |
 | `/work`, `/work/[slug]` | Case studies |
 | `/writing`, `/writing/[slug]` | Writing |
 | `/about` | About the practice |

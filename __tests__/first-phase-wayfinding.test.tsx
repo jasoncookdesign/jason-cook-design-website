@@ -102,9 +102,9 @@ describe("phase headings are titles only; the key column carries the number", ()
 });
 
 describe("the sample page title", () => {
-  it("names the page without repeating the fictional-client note the lead carries", () => {
+  it("names the page without repeating the anonymized-client note the lead carries", () => {
     const { container } = render(<SamplePage />);
     expect(container.querySelector("h1")!.textContent).toBe("A sample first-phase report");
-    expect(container.querySelector("h1 + div .lead")!.textContent).toMatch(/fictional client/);
+    expect(container.querySelector("h1 + div .lead")!.textContent).toMatch(/anonymized client/);
   });
 });
