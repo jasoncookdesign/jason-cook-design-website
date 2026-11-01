@@ -1,0 +1,101 @@
+{
+  "slug": "keep-the-quality-gate-human",
+  "title": "Keep the Quality Gate Human",
+  "date": "2026-12-13",
+  "tags": [
+    "ai",
+    "judgment",
+    "process"
+  ],
+  "excerpt": "Hand AI every check you can write down in advance. Keep the one where you'd only recognize the right answer when you see it.",
+  "coverImage": "/images/blog/keep-the-quality-gate-human/hero.webp",
+  "content": [
+    {
+      "type": "img",
+      "src": "/images/blog/keep-the-quality-gate-human/hero.webp",
+      "alt": "Overhead view of a worn wooden table by a window: a dark tray of identical black-and-white portrait proofs in a grid, with one print pulled out and set at an angle beside the tray, a brass loupe resting on it.",
+      "credit": "One proof pulled out of the tray."
+    },
+    {
+      "type": "p",
+      "html": "I needed a cover image for a post about the hours nobody records: the work that piles up and never makes it onto a timesheet. I asked an AI tool for a picture of that, and an AI assistant helped me check what came back."
+    },
+    {
+      "type": "p",
+      "html": "The first image matched the brief on every point. Held up against the list, it passed, and the assistant said so."
+    },
+    {
+      "type": "p",
+      "html": "It took less than a second to see what was wrong with the image. Any human could tell: the brief asked for sticky notes to represent a chaotic scene, but as written it described them as blank. The image tool returned a pile of pristine sticky note pads on a desk, and the assistant reviewing it okayed it. Blank sticky notes. You didn't need a degree in design to tell the image read as \"preparation\", not \"chaos\"."
+    },
+    {
+      "type": "p",
+      "html": "No list covers every way a picture can be wrong. Somebody — a human somebody — needs to lay eyes on it; they know the human experience better than a machine could ever understand."
+    },
+    {
+      "type": "h2",
+      "text": "Two kinds of check"
+    },
+    {
+      "type": "p",
+      "html": "Some checks have answers you can write down in advance. Does the invoice total match the purchase order? Is the logo the right size and the right color? Does the page load? A list settles these, and a machine can run that list all day without getting tired. Hand them over."
+    },
+    {
+      "type": "p",
+      "html": "Other checks ask whether something is worth doing, and a list can't settle them, because the list is the thing in question. Is this the right customer to chase? Does this paragraph say what we do? Is the odd number in the report an error, or the most useful thing in it? Answering these takes someone who cares how it turns out and knows the business well enough to tell when a rule should bend."
+    },
+    {
+      "type": "p",
+      "html": "Here's a test I use to tell them apart: could you write the pass/fail criteria before you see the output? If you could, the check belongs to a machine. If you'd only recognize the right answer when you see it, keep the check yourself. The list still earns its place, because every catch a person makes can become one more line on it. It just never finishes."
+    },
+    {
+      "type": "p",
+      "html": "I call that second capacity discernment, meaning the ability to know what is good before there's a rule that says it's good. It does real work in a business, and it's the part of a decision a specification can't hold. I wrote about the first time I ran into it, a pipeline that rejected the best image in the batch, in <a href=\"/writing/blog/the-quality-gate\">The Quality Gate</a>."
+    },
+    {
+      "type": "p",
+      "html": "It's also older than AI. In the early days of multi-touch devices, I worked on a product for a client I can't name, one that came from a rigorous engineering culture. The interactions were new and unproven, a lot could go wrong, and testing reduces avoidable rework, so we built an extensive test harness."
+    },
+    {
+      "type": "p",
+      "html": "The first version passed every unit test. Then we ran it on the device, and it felt wrong. It was hard to understand and clunky, and the physics were off, even though the math was correct. Passing our tests didn't mean it felt good in your hands. What was wrong with it couldn't be measured or written into a test ahead of time. It was a human judgment about what feels good, and there was no way to encode that into a computer. It took a kind of discernment that software can't give you."
+    },
+    {
+      "type": "h2",
+      "text": "What to give the machine"
+    },
+    {
+      "type": "p",
+      "html": "AI earns its place on the first kind of check, and on the preparation that feeds the second: research, first drafts, variations, sorting, formatting, scheduling. Compressing that work gets you to the decision sooner, with more material to choose from."
+    },
+    {
+      "type": "p",
+      "html": "It can win where the outcome is a number, too. In one study that included a field experiment, fully AI-generated ads got up to 19% higher click-through than ads made by human experts, though the same research found that telling viewers an ad was AI-made cut click-through by 31.5%.<sup>1</sup> A click-through rate is a number you can write the pass/fail rule for in advance. What the ad should say about your business isn't."
+    },
+    {
+      "type": "h2",
+      "text": "What to keep"
+    },
+    {
+      "type": "p",
+      "html": "I recommend humans hold on to three types of decisions. What your business does and who it's for. Whether a piece of work is right to go out under your name. And whether the brief, the rule, or the list is itself wrong."
+    },
+    {
+      "type": "p",
+      "html": "AI doesn't make those unprompted. Given a specification, it produces something that matches the specification, and it can't tell you whether the specification was a good one. Speed raises the stakes. When a pipeline turns out in an afternoon what used to take a week, the gate is the only place left where anyone asks whether it's the right thing, and a gate made of a list lets the wrong thing ship sooner. The faster the machine produces, the more the result depends on whoever decides what it should produce. I wrote about what that costs in a <a href=\"/writing/blog/a-website-that-doesnt-really-say-what-you-do\">website that doesn't say what you do</a>: faster production doesn't fix a site that never said it."
+    },
+    {
+      "type": "p",
+      "html": "Before you automate a check, ask what it would pass that any person would stop in a second. If you already have one running, read the last ten things it approved."
+    },
+    {
+      "type": "footnotes",
+      "items": [
+        {
+          "ref": "1",
+          "html": "H. Lee, V. Todri, P. Adamopoulos, and A. Ghose, <a href=\"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5638311\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline\">The Impact of Visual Generative AI on Advertising Effectiveness</a>, SSRN working paper, November 2025. Figures as summarized by <a href=\"https://www.stern.nyu.edu/experience-stern/faculty-research/ai-advertising-paradox\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline\">NYU Stern</a>."
+        }
+      ]
+    }
+  ]
+}
