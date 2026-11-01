@@ -1,0 +1,65 @@
+{
+  "slug": "the-gap-between-using-ai-and-running-on-it",
+  "title": "The Gap Between Using AI and Running on It",
+  "date": "2026-11-22",
+  "tags": [
+    "ai",
+    "small business",
+    "decisions"
+  ],
+  "excerpt": "Most small business owners now use AI, and very few have changed how the business runs because of it. What that gap looks like, and who helps an owner close it.",
+  "coverImage": "/images/blog/the-gap-between-using-ai-and-running-on-it/hero.webp",
+  "content": [
+    {
+      "type": "img",
+      "src": "/images/blog/the-gap-between-using-ai-and-running-on-it/hero.webp",
+      "alt": "A wooden shop counter in window light with a tablet showing a text conversation, a paper order book and a receipt printer, beside a beige 1990s electronic cash register cropped at the right edge of the frame.",
+      "credit": "The new tool beside the old routine."
+    },
+    {
+      "type": "p",
+      "html": "This fall, Goldman Sachs reported that about 85% of the small business owners it surveyed use AI, up from just over half two years ago. Fewer than one in five of them have built it into their core operations.<sup>1</sup> Put another way, nearly everyone has picked the tool up, and very few have changed how the business runs because of it."
+    },
+    {
+      "type": "p",
+      "html": "The sample source probably influenced those figures. The roughly 2,500 owners surveyed all went through Goldman's own small business program, which tells me they're already the kind of owner who takes a course on running the business better. I'd expect the wider population of small companies to look less adopted than this, not more. Focus less on the exact numbers to see the overall pattern."
+    },
+    {
+      "type": "p",
+      "html": "If you run a small or medium business, you can check yourself against it in one question: if the AI tools disappeared tomorrow, which part of how the business runs would change? When the honest answer is that a few people would write emails and first drafts more slowly, you're in the majority and not in the minority that has built AI into the business. That's a perfectly reasonable place to be, and it's where most of the survey's owners are. It just isn't the same thing as the business running differently."
+    },
+    {
+      "type": "p",
+      "html": "The report's other numbers point at why the gap exists. About three in four of the owners using AI have no formal policy on how their employees use it, and a similar share of all respondents said they'd benefit from more training and resources. Nobody in this survey is short of tools. What they're missing is a decision about where a tool belongs: which work to hand over, which to keep, who checks the result, and what happens to the process around it when one step gets faster. Those are questions about how the business works, and a software subscription can't answer them."
+    },
+    {
+      "type": "p",
+      "html": "Owners already know how to get that kind of outside help in other areas. You have an accountant who looks at the money, a lawyer who reads the contract, and a banker who tests the plan. Each of them looks at your business from outside, applies a method you don't have time to learn, and gives you something written that you can act on and show to someone else. The integration question needs the same kind of person: someone who maps how work moves through the company, finds the decisions that nobody has written down, and says where a tool fits and where it would do damage."
+    },
+    {
+      "type": "p",
+      "html": "That's the part of my work I'd put in the same group. A first-phase diagnosis starts from how the business runs and ends in a written recommendation, and sometimes the recommendation is that a tool isn't the answer."
+    },
+    {
+      "type": "p",
+      "html": "A client in a financial business had employees who were overwhelmed by the information they needed to do their jobs, a backlog of alerts and tasks that kept growing, and they couldn't spread the work across more people. They wanted a tool to help their employees manage it. Examining how the work actually ran turned up a much simpler fix, because all of the employees worked in one room. Shared displays and intelligent routing of alerts and information, built around that fact, simplified how the information reached each person and how it was presented, and that solved the problem. What fixed it came from looking at the room they were already working in."
+    },
+    {
+      "type": "p",
+      "html": "There's a practical reason the outside view tends to be independent of the tool. A vendor's job is to sell the next feature, and an adviser's job is to tell you whether you need it. The adviser who's paid for the recommendation has no reason to bend it toward a product."
+    },
+    {
+      "type": "p",
+      "html": "Goldman's report calls the distance between adoption and integration the frontier for small businesses. I'd say it's also an opening for owners, because the way across it is a decision about your own business, and you can make it with the right help well before you buy anything else. A tool becomes part of the business when someone has decided what the business needs from it."
+    },
+    {
+      "type": "footnotes",
+      "items": [
+        {
+          "ref": "1",
+          "html": "Goldman Sachs 10,000 Small Businesses, <a href=\"https://www.goldmansachs.com/pdfs/community-transformation/small-business-ai-institute/ai-impact-report.pdf\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline\">The AI Economy Is a Small Business Economy</a>, October 2026."
+        }
+      ]
+    }
+  ]
+}
