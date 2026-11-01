@@ -154,7 +154,7 @@ describe("writing index", () => {
     const hrefs = Array.from(container.querySelectorAll('[data-name="BLOG"] .rows > a.row')).map((r) => r.getAttribute("href"));
     const expected = [...posts].sort((a, b) => b.date.localeCompare(a.date)).map((p) => `/writing/blog/${p.slug}`);
     expect(hrefs).toEqual(expected);
-    expect(hrefs[0]).toBe("/writing/blog/a-website-that-doesnt-really-say-what-you-do");
+    expect(hrefs[0]).toBe("/writing/blog/how-to-tell-whether-a-consultants-diagnosis-is-any-good");
   });
 
   it("has no post counter in the hero", () => {
