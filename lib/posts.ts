@@ -5,17 +5,28 @@ import { isPublished, type Post } from "@/lib/writing";
 /** One JSON file per post. Server-only: this module reads the file system. */
 const POSTS_DIR = path.join(process.cwd(), "data", "posts");
 
+const BLOCK_FIELDS: Record<string, string[]> = {
+  p: ["html"], h2: ["text"], blockquote: ["html"], ul: ["items"], ol: ["items"], img: ["src", "alt"], footnotes: ["items"],
+};
+
+const isCalendarDate = (v: unknown): boolean => {
+  if (typeof v !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(v)) return false;
+  const d = new Date(`${v}T00:00:00Z`);
+  return !Number.isNaN(d.getTime()) && d.toISOString().slice(0, 10) === v;
+};
+
 const REQUIRED: Array<[keyof Post, (v: unknown) => boolean]> = [
   ["slug", (v) => typeof v === "string" && v.length > 0],
   ["title", (v) => typeof v === "string" && v.length > 0],
-  ["date", (v) => typeof v === "string" && /^\d{4}-\d{2}-\d{2}$/.test(v)],
-  ["tags", Array.isArray],
+  ["date", isCalendarDate],
+  ["tags", (v) => Array.isArray(v) && v.every((t) => typeof t === "string")],
   ["excerpt", (v) => typeof v === "string"],
   ["content", Array.isArray],
 ];
 
 /** Oldest first, ties by slug, so the order never depends on file names. */
 export function loadPosts(dir: string): Post[] {
+  if (!fs.existsSync(dir)) throw new Error(`Posts folder not found: ${dir}`);
   return fs
     .readdirSync(dir)
     .filter((f) => f.endsWith(".json"))
@@ -29,6 +40,12 @@ export function loadPosts(dir: string): Post[] {
       for (const [field, ok] of REQUIRED) {
         if (!ok(post[field])) throw new Error(`${file}: missing or invalid field "${field}"`);
       }
+      post.content.forEach((block, i) => {
+        const needs = BLOCK_FIELDS[(block as { type?: string })?.type ?? ""];
+        if (!needs || needs.some((f) => (block as unknown as Record<string, unknown>)[f] == null)) {
+          throw new Error(`${file}: content block ${i + 1} is not a known block with its fields`);
+        }
+      });
       if (`${post.slug}.json` !== file) throw new Error(`${file}: slug "${post.slug}" must match the file name`);
       return post;
     })

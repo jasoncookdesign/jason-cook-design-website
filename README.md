@@ -60,9 +60,11 @@ npm run build
 
 ## Blog posts
 
-Each post is one file, `data/posts/<slug>.json`, whose `slug` matches the file name. Required fields: `slug`, `title`, `date` (`YYYY-MM-DD`), `tags`, `excerpt`, `content` (a list of blocks; the block types are in `lib/writing.ts`). Optional: `shortTitle`, `excerptLink`, `coverImage`, `layout`. A cover image lives under `public/images/blog/<name>/` and is named by `coverImage`. A malformed file fails the build with the file name and the field.
+Each post is one file, `data/posts/<slug>.json`, whose `slug` matches the file name. Required fields: `slug`, `title`, `date` (`YYYY-MM-DD`, a real calendar date), `tags` (strings), `excerpt`, `content` (a list of blocks; the block types and their fields are in `lib/writing.ts`). Optional: `shortTitle`, `excerptLink`, `coverImage`, `layout`. A cover image lives under `public/images/blog/<name>/` and is named by `coverImage`. A file with bad JSON, a missing required field, an unknown block type or a block missing its text fails the build, naming the file.
 
-A post is public from its `date` onward, with the date read in Central time. Before then it is not listed on `/writing`, not in the sitemap, not in the breadcrumb data, and its URL returns 404. So adding a post to `main` does not publish it; its date does, and moving a date is a one-line edit. The index, post pages and sitemap regenerate hourly, so a post appears within about an hour of its date arriving.
+A post is public on the website from its `date` onward, with the date read in Central time. Before then it is not listed on `/writing`, not in the sitemap, and not in the page data, and its URL returns 404. The files themselves are in this public repository as soon as they are merged, and a cover image is served from its path on the site whether or not the post is public, so the date controls what the website shows and not what the repository holds. Moving a date is a one-line edit.
+
+The index, post pages and sitemap regenerate hourly. A page that was requested before its post's date can keep serving its 404 until the first request after the hour, so open a new post's URL once after its date to refresh it.
 
 ## Content tokens
 

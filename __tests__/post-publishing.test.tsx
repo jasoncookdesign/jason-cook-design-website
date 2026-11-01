@@ -4,10 +4,11 @@ import path from "path";
 import { render, screen } from "@testing-library/react";
 import { isPublished, todayInChicago } from "@/lib/writing";
 import { loadPosts, posts, publishedPosts } from "@/lib/posts";
-import { trailFor } from "@/lib/breadcrumbs";
 import sitemap from "@/app/sitemap";
 import WritingPage from "@/app/writing/page";
-import WritingPostPage, { generateStaticParams } from "@/app/writing/blog/[slug]/page";
+import WritingPostPage, { generateMetadata, generateStaticParams } from "@/app/writing/blog/[slug]/page";
+import PostLayout from "@/app/writing/blog/[slug]/layout";
+import { book } from "@/lib/book";
 
 const SITE = "https://jasoncookdesign.com";
 
@@ -82,9 +83,25 @@ describe("loading posts from files", () => {
 });
 
 describe("the real site content", () => {
-  it("loads every post in data/posts, sorted newest first by the index", () => {
+  it("loads every post in data/posts, oldest first", () => {
     expect(posts.length).toBeGreaterThanOrEqual(7);
     expect(posts.map((p) => p.slug)).toContain(FIRST_POST);
+    const dates = posts.map((p) => p.date);
+    expect(dates).toEqual([...dates].sort());
+  });
+
+  it("gives an unpublished post no metadata, and a published one its title", async () => {
+    at("2026-06-10T18:00:00Z");
+    expect(await generateMetadata({ params: Promise.resolve({ slug: SECOND_POST }) })).toEqual({});
+    expect(await generateMetadata({ params: Promise.resolve({ slug: FIRST_POST }) })).toHaveProperty("title");
+  });
+
+  it("never points the book module at a post that is not public yet", () => {
+    // The module reads only the book record, so the guard is here: a slug set ahead of its post's date fails this.
+    if (!book.announcementSlug) return;
+    const announcement = posts.find((p) => p.slug === book.announcementSlug);
+    expect(announcement).toBeTruthy();
+    expect(isPublished(announcement!, new Date())).toBe(true);
   });
 
   it("shows only what has reached its date: index, post page, static params, sitemap, breadcrumb labels", async () => {
@@ -114,10 +131,48 @@ describe("the real site content", () => {
   });
 });
 
-describe("breadcrumbs for posts", () => {
-  it("name a post from the labels the layout passes in, and know no others", () => {
-    const labels = { [FIRST_POST]: "Short label" };
-    expect(trailFor(`/writing/blog/${FIRST_POST}`, labels)?.map((c) => c.label)).toEqual(["Home", "Writing", "Short label"]);
-    expect(trailFor(`/writing/blog/${SECOND_POST}`, labels)).toBeNull();
+describe("the post page's breadcrumb", () => {
+  const layoutFor = async (slug: string) =>
+    render(await PostLayout({ children: <p>page</p>, params: Promise.resolve({ slug }) }));
+
+  it("names the post once it is public, built from the post itself on every visit", async () => {
+    at("2026-06-10T18:00:00Z");
+    const { container } = await layoutFor(FIRST_POST);
+    const labels = Array.from(container.querySelectorAll("nav.crumb li")).map((li) => li.textContent);
+    expect(labels).toEqual(["Home/", "Writing/", "You're Building an Organization, Not a Tool"]);
+    expect(container.textContent).toContain("page");
+  });
+
+  it("shows no crumb for a post that has not reached its date", async () => {
+    at("2026-06-10T18:00:00Z");
+    const { container } = await layoutFor(SECOND_POST);
+    expect(container.querySelector("nav.crumb")).toBeNull();
+    expect(container.textContent).not.toMatch(/Why This Blog Exists/);
+  });
+});
+
+describe("what the loader checks beyond the top-level fields", () => {
+  const dirWith = (body: unknown, name = "a") => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "posts-"));
+    fs.writeFileSync(path.join(dir, `${name}.json`), JSON.stringify(body));
+    return dir;
+  };
+  const base = { slug: "a", title: "T", date: "2026-01-02", tags: ["t"], excerpt: "e", content: [{ type: "p", html: "x" }] };
+
+  it("rejects a date that is not on the calendar", () => {
+    expect(() => loadPosts(dirWith({ ...base, date: "2026-02-30" }))).toThrow(/a\.json.*date/);
+  });
+
+  it("rejects an unknown content block and a block missing its text", () => {
+    expect(() => loadPosts(dirWith({ ...base, content: [{ type: "paragraph", html: "x" }] }))).toThrow(/a\.json.*block 1/);
+    expect(() => loadPosts(dirWith({ ...base, content: [{ type: "p" }] }))).toThrow(/a\.json.*block 1/);
+  });
+
+  it("rejects tags that are not all strings", () => {
+    expect(() => loadPosts(dirWith({ ...base, tags: ["ok", 3] }))).toThrow(/a\.json.*tags/);
+  });
+
+  it("says which folder is missing", () => {
+    expect(() => loadPosts("/nonexistent/posts-dir")).toThrow(/\/nonexistent\/posts-dir/);
   });
 });

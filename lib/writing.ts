@@ -32,8 +32,11 @@ export interface Post {
 export const postHref = (slug: string) => `/writing/blog/${slug}`;
 
 /** The calendar date (YYYY-MM-DD) right now in Central time, the zone post dates are written in. */
-export const todayInChicago = (now: Date): string =>
-  new Intl.DateTimeFormat("en-CA", { timeZone: "America/Chicago", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
+export const todayInChicago = (now: Date): string => {
+  const parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/Chicago", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(now);
+  const get = (type: string) => parts.find((p) => p.type === type)!.value;
+  return `${get("year")}-${get("month")}-${get("day")}`;
+};
 
 /** A post is public from its date onward. Merging a post to main does not publish it; its date does. */
 export const isPublished = (post: { date: string }, now: Date): boolean => post.date <= todayInChicago(now);

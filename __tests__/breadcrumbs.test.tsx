@@ -2,14 +2,12 @@ import { render, screen } from "@testing-library/react";
 import { trailFor } from "@/lib/breadcrumbs";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import { caseStudies } from "@/lib/work";
-import { posts } from "@/lib/posts";
 
 let mockPathname: string | null = null;
 jest.mock("next/navigation", () => ({ usePathname: () => mockPathname }));
 
-const POST_LABELS = Object.fromEntries(posts.map((x) => [x.slug, x.shortTitle ?? x.title]));
-const labels = (p: string) => trailFor(p, POST_LABELS)?.map((c) => c.label);
-const hrefs = (p: string) => trailFor(p, POST_LABELS)?.map((c) => c.href);
+const labels = (p: string) => trailFor(p)?.map((c) => c.label);
+const hrefs = (p: string) => trailFor(p)?.map((c) => c.href);
 
 describe("trailFor", () => {
   it("has no trail on the home page or on an unknown route", () => {
@@ -40,8 +38,8 @@ describe("trailFor", () => {
 
   it("names case studies and posts under their section", () => {
     expect(labels(`/work/${caseStudies[0].slug}`)).toEqual(["Home", "Work", caseStudies[0].client]);
-    const p = posts[0];
-    expect(labels(`/writing/blog/${p.slug}`)).toEqual(["Home", "Writing", p.shortTitle ?? p.title]);
+    // A post's own crumb is built by the post page's layout (see post-publishing.test.tsx), not by trailFor.
+    expect(trailFor("/writing/blog/anything")).toBeNull();
     expect(labels("/writing/longform")).toEqual(["Home", "Writing", "Longform"]);
     expect(trailFor("/work/not-a-study")).toBeNull();
     expect(trailFor("/writing/blog/not-a-post")).toBeNull();
@@ -55,13 +53,13 @@ describe("trailFor", () => {
 describe("Breadcrumb", () => {
   it("renders nothing on the home page", () => {
     mockPathname = "/";
-    const { container } = render(<Breadcrumb postLabels={POST_LABELS} />);
+    const { container } = render(<Breadcrumb />);
     expect(container.firstChild).toBeNull();
   });
 
   it("links every ancestor and marks the current page without a link", () => {
     mockPathname = "/engagements/first-phase";
-    render(<Breadcrumb postLabels={POST_LABELS} />);
+    render(<Breadcrumb />);
     const nav = screen.getByRole("navigation", { name: "Breadcrumb" });
     const links = Array.from(nav.querySelectorAll("a")).map((a) => [a.textContent, a.getAttribute("href")]);
     expect(links).toEqual([["Home", "/"], ["Engagements", "/engagements"]]);
@@ -72,7 +70,7 @@ describe("Breadcrumb", () => {
 
   it("is an ordered list so assistive tech announces the depth", () => {
     mockPathname = "/work";
-    render(<Breadcrumb postLabels={POST_LABELS} />);
+    render(<Breadcrumb />);
     expect(screen.getByRole("navigation", { name: "Breadcrumb" }).querySelectorAll("ol > li")).toHaveLength(2);
   });
 });

@@ -6,10 +6,10 @@ export interface Crumb {
   href: string;
 }
 
-const HOME: Crumb = { label: "Home", href: "/" };
+export const HOME: Crumb = { label: "Home", href: "/" };
 const ENGAGEMENTS: Crumb = { label: "Engagements", href: "/engagements" };
 const WORK: Crumb = { label: "Work", href: "/work" };
-const WRITING: Crumb = { label: "Writing", href: "/writing" };
+export const WRITING: Crumb = { label: "Writing", href: "/writing" };
 
 /**
  * Pages with a fixed place in the site. The engagement types, the first phase, and the sample are siblings under
@@ -31,8 +31,7 @@ const STATIC: Record<string, Crumb[]> = {
 };
 
 /** The trail from Home to the page, or null for the home page and for routes the site does not have. */
-/** `postLabels` maps each published post slug to its breadcrumb label; the server layout supplies it, so unpublished posts never reach the client. */
-export function trailFor(pathname: string | null, postLabels: Record<string, string> = {}): Crumb[] | null {
+export function trailFor(pathname: string | null): Crumb[] | null {
   if (!pathname) return null;
   const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
   if (path === "/") return null;
@@ -43,9 +42,8 @@ export function trailFor(pathname: string | null, postLabels: Record<string, str
   const study = path.startsWith("/work/") && caseStudies.find((s) => `/work/${s.slug}` === path);
   if (study) return [HOME, WORK, { label: study.client, href: path }];
 
-  const slug = path.startsWith("/writing/blog/") ? path.slice("/writing/blog/".length) : null;
-  const postLabel = slug ? postLabels[slug] : undefined;
-  if (postLabel) return [HOME, WRITING, { label: postLabel, href: path }];
+  // A post's crumb is built by app/writing/blog/[slug]/layout.tsx from the post itself, so this client-side
+  // lookup never holds post titles (and cannot show one before its date).
 
   return null;
 }
