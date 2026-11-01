@@ -40,10 +40,13 @@ const staticPages: Array<[string, Meta]> = [
 
 const params = (slug: string) => ({ params: Promise.resolve({ slug }) });
 
+// Read at a date after every post's, so a post still waiting for its date is checked before it goes live.
 async function allPages(): Promise<Array<[string, Meta]>> {
+  jest.useFakeTimers({ now: new Date("2100-01-01T12:00:00Z") });
   const dynamic: Array<[string, Meta]> = [];
   for (const cs of caseStudies) dynamic.push([`/work/${cs.slug}`, await workCaseStudy(params(cs.slug))]);
   for (const p of posts) dynamic.push([`/writing/blog/${p.slug}`, await writingPost(params(p.slug))]);
+  jest.useRealTimers();
   return [...staticPages, ...dynamic];
 }
 
