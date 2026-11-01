@@ -64,7 +64,7 @@ Each post is one file, `data/posts/<slug>.json`, whose `slug` matches the file n
 
 A post is public on the website from its `date` onward, with the date read in Central time. Before then it is not listed on `/writing`, not in the sitemap, and not in the page data, and its URL returns 404. The files themselves are in this public repository as soon as they are merged, and a cover image is served from its path on the site whether or not the post is public, so the date controls what the website shows and not what the repository holds. Moving a date is a one-line edit.
 
-The index, post pages and sitemap regenerate hourly. A page that was requested before its post's date can keep serving its 404 until the first request after the hour, so open a new post's URL once after its date to refresh it.
+The index, post pages and sitemap regenerate hourly, and a regeneration starts when someone visits after the hour is up. So a post normally appears within about an hour of its date, and the first visitor after a stale hour can still see the old page. If a page has been visited shortly before its date, the old 404 or the old index can stay for up to an hour longer. Reloading an hour or so after the date refreshes it.
 
 ## Content tokens
 

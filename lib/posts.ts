@@ -5,8 +5,17 @@ import { isPublished, type Post } from "@/lib/writing";
 /** One JSON file per post. Server-only: this module reads the file system. */
 const POSTS_DIR = path.join(process.cwd(), "data", "posts");
 
-const BLOCK_FIELDS: Record<string, string[]> = {
-  p: ["html"], h2: ["text"], blockquote: ["html"], ul: ["items"], ol: ["items"], img: ["src", "alt"], footnotes: ["items"],
+const text = (v: unknown) => typeof v === "string" && v.length > 0;
+const strings = (v: unknown) => Array.isArray(v) && v.length > 0 && v.every(text);
+const BLOCK_CHECKS: Record<string, (b: Record<string, unknown>) => boolean> = {
+  p: (b) => text(b.html),
+  h2: (b) => text(b.text),
+  blockquote: (b) => text(b.html),
+  ul: (b) => strings(b.items),
+  ol: (b) => strings(b.items),
+  img: (b) => text(b.src) && text(b.alt),
+  footnotes: (b) =>
+    Array.isArray(b.items) && b.items.length > 0 && b.items.every((i) => i && text(i.ref) && text(i.html)),
 };
 
 const isCalendarDate = (v: unknown): boolean => {
@@ -41,8 +50,9 @@ export function loadPosts(dir: string): Post[] {
         if (!ok(post[field])) throw new Error(`${file}: missing or invalid field "${field}"`);
       }
       post.content.forEach((block, i) => {
-        const needs = BLOCK_FIELDS[(block as { type?: string })?.type ?? ""];
-        if (!needs || needs.some((f) => (block as unknown as Record<string, unknown>)[f] == null)) {
+        const b = block as unknown as Record<string, unknown>;
+        const check = BLOCK_CHECKS[typeof b?.type === "string" ? b.type : ""];
+        if (!check || !check(b)) {
           throw new Error(`${file}: content block ${i + 1} is not a known block with its fields`);
         }
       });

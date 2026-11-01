@@ -30,7 +30,7 @@ const STATIC: Record<string, Crumb[]> = {
   "/meet": [{ label: "Meet", href: "/meet" }],
 };
 
-/** The trail from Home to the page, or null for the home page and for routes the site does not have. */
+/** The trail from Home to the page, or null for the home page, for routes the site does not have, and for blog posts (the post page's layout builds those). */
 export function trailFor(pathname: string | null): Crumb[] | null {
   if (!pathname) return null;
   const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;

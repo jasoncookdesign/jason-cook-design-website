@@ -104,7 +104,7 @@ describe("the real site content", () => {
     expect(isPublished(announcement!, new Date())).toBe(true);
   });
 
-  it("shows only what has reached its date: index, post page, static params, sitemap, breadcrumb labels", async () => {
+  it("shows only what has reached its date: index, post page, static params, sitemap", async () => {
     at("2026-06-10T18:00:00Z"); // after the first post, before the second
     expect(publishedPosts().map((p) => p.slug)).toEqual([FIRST_POST]);
 
@@ -166,6 +166,13 @@ describe("what the loader checks beyond the top-level fields", () => {
   it("rejects an unknown content block and a block missing its text", () => {
     expect(() => loadPosts(dirWith({ ...base, content: [{ type: "paragraph", html: "x" }] }))).toThrow(/a\.json.*block 1/);
     expect(() => loadPosts(dirWith({ ...base, content: [{ type: "p" }] }))).toThrow(/a\.json.*block 1/);
+  });
+
+  it("rejects a block field of the wrong type, an empty image source, and footnotes without text", () => {
+    expect(() => loadPosts(dirWith({ ...base, content: [{ type: "ul", items: "text" }] }))).toThrow(/a\.json.*block 1/);
+    expect(() => loadPosts(dirWith({ ...base, content: [{ type: "p", html: 5 }] }))).toThrow(/a\.json.*block 1/);
+    expect(() => loadPosts(dirWith({ ...base, content: [{ type: "img", src: "", alt: "x" }] }))).toThrow(/a\.json.*block 1/);
+    expect(() => loadPosts(dirWith({ ...base, content: [{ type: "footnotes", items: [{ ref: "1" }] }] }))).toThrow(/a\.json.*block 1/);
   });
 
   it("rejects tags that are not all strings", () => {
