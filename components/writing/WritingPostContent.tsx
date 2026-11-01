@@ -36,6 +36,14 @@ function renderBlock(block: ContentBlock, idx: number, fig: number) {
           ))}
         </ul>
       );
+    case "ol":
+      return (
+        <ol key={idx}>
+          {block.items.map((item, i) => (
+            <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
+        </ol>
+      );
     case "img":
       return (
         <figure key={idx} className="fig">

@@ -8,6 +8,7 @@ export type ContentBlock =
   | { type: "h2"; text: string }
   | { type: "blockquote"; html: string }
   | { type: "ul"; items: string[] }
+  | { type: "ol"; items: string[] }
   | { type: "img"; src: string; alt: string; credit?: string }
   | { type: "footnotes"; items: Array<{ ref: string; html: string }> };
 
