@@ -13,7 +13,7 @@ import { metadata as book } from "@/app/writing/longform/page";
 import { generateMetadata as workCaseStudy } from "@/app/work/[slug]/page";
 import { generateMetadata as writingPost } from "@/app/writing/blog/[slug]/page";
 import { caseStudies } from "@/lib/work";
-import { posts } from "@/lib/writing";
+import { posts } from "@/lib/posts";
 import { pageTitle } from "@/lib/metadata";
 
 const TITLE_MAX = 60;
@@ -40,10 +40,16 @@ const staticPages: Array<[string, Meta]> = [
 
 const params = (slug: string) => ({ params: Promise.resolve({ slug }) });
 
+// Read at a date after every post's, so a post still waiting for its date is checked before it goes live.
 async function allPages(): Promise<Array<[string, Meta]>> {
   const dynamic: Array<[string, Meta]> = [];
   for (const cs of caseStudies) dynamic.push([`/work/${cs.slug}`, await workCaseStudy(params(cs.slug))]);
-  for (const p of posts) dynamic.push([`/writing/blog/${p.slug}`, await writingPost(params(p.slug))]);
+  jest.useFakeTimers({ now: new Date("2100-01-01T12:00:00Z") });
+  try {
+    for (const p of posts) dynamic.push([`/writing/blog/${p.slug}`, await writingPost(params(p.slug))]);
+  } finally {
+    jest.useRealTimers();
+  }
   return [...staticPages, ...dynamic];
 }
 

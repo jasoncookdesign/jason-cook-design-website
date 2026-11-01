@@ -20,7 +20,7 @@ Marketing website for Jason Cook Design (JCD), a practice that assesses, designs
 | `/engagements/first-phase` | The first phase: what it asks, who it is for, the credit and the guarantee. The one place the terms are written in full (`lib/first-phase-terms.ts`); other pages carry short forms that link to its anchors |
 | `/engagements/sample` | A sample first-phase report for an anonymized client: six screenshots, the guarantee checklist, a stop panel, and the PDF download. The PDF, screenshots and `data/sample-manifest.json` come from the private sample-report repository and are copied into `public/sample/` and `data/` by pull request |
 | `/work`, `/work/[slug]` | Case studies |
-| `/writing`, `/writing/[slug]` | Writing |
+| `/writing`, `/writing/blog/[slug]` | Writing |
 | `/about` | About the practice |
 | `/capabilities` | Capabilities and institutional work (reached from the footer only) |
 | `/contact` | Booking page for the strategy call |
@@ -57,6 +57,14 @@ npm run test:e2e  # Playwright in Google Chrome: layout, scrolling, accessibilit
 ```bash
 npm run build
 ```
+
+## Blog posts
+
+Each post is one file, `data/posts/<slug>.json`, whose `slug` matches the file name. Required fields: `slug`, `title`, `date` (`YYYY-MM-DD`, a real calendar date), `tags` (strings), `excerpt`, `content` (a list of blocks; the block types and their fields are in `lib/writing.ts`). Optional: `shortTitle`, `excerptLink`, `coverImage`, `layout`. A cover image lives under `public/images/blog/<name>/` and is named by `coverImage`. A file with bad JSON, a missing required field, an unknown block type or a block missing its text fails the build, naming the file.
+
+A post is public on the website from its `date` onward, with the date read in Central time. Before then it is not listed on `/writing`, not in the sitemap, and not in the page data, and its URL returns 404. The files themselves are in this public repository as soon as they are merged, and a cover image is served from its path on the site whether or not the post is public, so the date controls what the website shows and not what the repository holds. Moving a date is a one-line edit.
+
+The index, post pages and sitemap regenerate hourly, and a regeneration starts when someone visits after the hour is up. So a post normally appears within about an hour of its date, and the first visitor after a stale hour can still see the old page. If a page has been visited shortly before its date, the old 404 or the old index can stay for up to an hour longer. Reloading an hour or so after the date refreshes it.
 
 ## Content tokens
 

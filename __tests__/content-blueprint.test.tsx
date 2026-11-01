@@ -16,7 +16,7 @@ import ContactPage from "@/app/contact/page";
 import LegalPage from "@/app/legal/page";
 import NotFound from "@/app/not-found";
 import { caseStudies } from "@/lib/work";
-import { posts } from "@/lib/writing";
+import { posts, publishedPosts } from "@/lib/posts";
 
 const dell = caseStudies.find((c) => c.slug === "dell")!;
 const withImages = caseStudies.find((c) =>
@@ -152,9 +152,9 @@ describe("writing index", () => {
   it("lists posts newest first under /writing/blog, the date key running downward", () => {
     const { container } = render(<WritingPage />);
     const hrefs = Array.from(container.querySelectorAll('[data-name="BLOG"] .rows > a.row')).map((r) => r.getAttribute("href"));
-    const expected = [...posts].sort((a, b) => b.date.localeCompare(a.date)).map((p) => `/writing/blog/${p.slug}`);
+    const expected = [...publishedPosts()].sort((a, b) => b.date.localeCompare(a.date)).map((p) => `/writing/blog/${p.slug}`);
     expect(hrefs).toEqual(expected);
-    expect(hrefs[0]).toBe("/writing/blog/a-website-that-doesnt-really-say-what-you-do");
+    expect(hrefs[0]).toBe(expected[0]);
   });
 
   it("has no post counter in the hero", () => {
@@ -168,8 +168,8 @@ describe("writing index", () => {
   it("lists one ruled row per post: a date key, the title, the excerpt, and tags", () => {
     const { container } = render(<WritingPage />);
     const rows = container.querySelectorAll('[data-name="BLOG"] .rows > a.row');
-    expect(rows).toHaveLength(posts.length);
-    const newestFirst = [...posts].sort((a, b) => b.date.localeCompare(a.date));
+    expect(rows).toHaveLength(publishedPosts().length);
+    const newestFirst = [...publishedPosts()].sort((a, b) => b.date.localeCompare(a.date));
     rows.forEach((row, i) => {
       expect(row.querySelector(".k")!.textContent).toMatch(/2026/);
       expect(row.querySelector(".title")!.textContent).toBe(newestFirst[i].title);

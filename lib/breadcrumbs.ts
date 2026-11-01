@@ -1,16 +1,15 @@
 import { engagementTypes } from "@/lib/engagement-types";
 import { caseStudies } from "@/lib/work";
-import { posts } from "@/lib/writing";
 
 export interface Crumb {
   label: string;
   href: string;
 }
 
-const HOME: Crumb = { label: "Home", href: "/" };
+export const HOME: Crumb = { label: "Home", href: "/" };
 const ENGAGEMENTS: Crumb = { label: "Engagements", href: "/engagements" };
 const WORK: Crumb = { label: "Work", href: "/work" };
-const WRITING: Crumb = { label: "Writing", href: "/writing" };
+export const WRITING: Crumb = { label: "Writing", href: "/writing" };
 
 /**
  * Pages with a fixed place in the site. The engagement types, the first phase, and the sample are siblings under
@@ -31,7 +30,7 @@ const STATIC: Record<string, Crumb[]> = {
   "/meet": [{ label: "Meet", href: "/meet" }],
 };
 
-/** The trail from Home to the page, or null for the home page and for routes the site does not have. */
+/** The trail from Home to the page, or null for the home page, for routes the site does not have, and for blog posts (the post page's layout builds those). */
 export function trailFor(pathname: string | null): Crumb[] | null {
   if (!pathname) return null;
   const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
@@ -43,8 +42,8 @@ export function trailFor(pathname: string | null): Crumb[] | null {
   const study = path.startsWith("/work/") && caseStudies.find((s) => `/work/${s.slug}` === path);
   if (study) return [HOME, WORK, { label: study.client, href: path }];
 
-  const post = path.startsWith("/writing/blog/") && posts.find((p) => `/writing/blog/${p.slug}` === path);
-  if (post) return [HOME, WRITING, { label: post.shortTitle ?? post.title, href: path }];
+  // A post's crumb is built by app/writing/blog/[slug]/layout.tsx from the post itself, so this client-side
+  // lookup never holds post titles (and cannot show one before its date).
 
   return null;
 }

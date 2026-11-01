@@ -3,7 +3,7 @@ import path from "path";
 import { render, screen, within } from "@testing-library/react";
 import WritingPage, { metadata as writingMetadata } from "@/app/writing/page";
 import WritingPostContent from "@/components/writing/WritingPostContent";
-import { posts } from "@/lib/writing";
+import { posts } from "@/lib/posts";
 import { book } from "@/lib/book";
 
 describe("Writing alt-text audit", () => {
@@ -157,8 +157,8 @@ describe("The post announcing the book", () => {
 });
 
 describe("Writing post data", () => {
-  it("contains all 7 posts with required fields", () => {
-    expect(posts).toHaveLength(7);
+  it("contains every post with required fields", () => {
+    expect(posts.length).toBeGreaterThanOrEqual(7);
     for (const post of posts) {
       expect(post.slug).toBeTruthy();
       expect(post.title).toBeTruthy();

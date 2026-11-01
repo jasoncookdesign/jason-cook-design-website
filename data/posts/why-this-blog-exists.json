@@ -1,0 +1,69 @@
+{
+  "slug": "why-this-blog-exists",
+  "title": "Why This Blog Exists",
+  "date": "2026-06-23",
+  "tags": [
+    "design",
+    "technology",
+    "ai"
+  ],
+  "excerpt": "A short note on what this space is for — and why a working designer-engineer keeps a public notebook.",
+  "content": [
+    {
+      "type": "p",
+      "html": "I have spent a long time at the seam between design and engineering — close enough to the build to be accountable for it, close enough to the user to be accountable for them too. This is where I'm going to write about what I find there."
+    },
+    {
+      "type": "h2",
+      "text": "What this is for"
+    },
+    {
+      "type": "p",
+      "html": "Most of my work lives behind NDAs, login screens, and enterprise walls. The thinking behind it usually doesn't have to. So this is a place for the <strong>portable parts</strong> — the ideas, patterns, and arguments that outlast any single project:"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "How to design systems instead of screens.",
+        "Where AI actually earns its place in a real workflow, and where it just adds ceremony.",
+        "The unglamorous architecture decisions that decide whether a product ages well."
+      ]
+    },
+    {
+      "type": "p",
+      "html": "If you build software, lead product, or care about the craft of either, that's who I'm writing for."
+    },
+    {
+      "type": "h2",
+      "text": "A bias toward leverage"
+    },
+    {
+      "type": "p",
+      "html": "I tend to ask one question before most others:"
+    },
+    {
+      "type": "blockquote",
+      "html": "Is this a one-off fix, or the mechanism that prevents the whole class of problem?"
+    },
+    {
+      "type": "p",
+      "html": "The answer reshapes the work. A point solution closes a ticket; a good abstraction closes a category. Most of what I'll write here is some version of that question applied to design, to engineering, and increasingly to how the two collapse together when you build with AI in the loop."
+    },
+    {
+      "type": "h2",
+      "text": "Built the boring way"
+    },
+    {
+      "type": "p",
+      "html": "This site has no CMS. Posts live in a Git repository, the pages are built ahead of time, and Vercel serves the result. It runs on Next.js, but nothing sits between the repo and what you're reading except a build I can run on my own machine."
+    },
+    {
+      "type": "p",
+      "html": "That's not nostalgia. Same instinct as everything above: keep the mechanism legible, and don't add a moving part the problem doesn't need."
+    },
+    {
+      "type": "p",
+      "html": "More soon."
+    }
+  ]
+}

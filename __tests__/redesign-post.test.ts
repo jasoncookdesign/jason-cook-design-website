@@ -1,6 +1,6 @@
 import { existsSync } from "fs";
 import { join } from "path";
-import { posts } from "@/lib/writing";
+import { posts } from "@/lib/posts";
 
 const post = posts.find((p) => p.slug === "rebuilding-jasoncookdesign-com");
 

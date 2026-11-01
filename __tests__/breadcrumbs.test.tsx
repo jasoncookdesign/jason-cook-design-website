@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 import { trailFor } from "@/lib/breadcrumbs";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import { caseStudies } from "@/lib/work";
-import { posts } from "@/lib/writing";
 
 let mockPathname: string | null = null;
 jest.mock("next/navigation", () => ({ usePathname: () => mockPathname }));
@@ -39,8 +38,8 @@ describe("trailFor", () => {
 
   it("names case studies and posts under their section", () => {
     expect(labels(`/work/${caseStudies[0].slug}`)).toEqual(["Home", "Work", caseStudies[0].client]);
-    const p = posts[0];
-    expect(labels(`/writing/blog/${p.slug}`)).toEqual(["Home", "Writing", p.shortTitle ?? p.title]);
+    // A post's own crumb is built by the post page's layout (see post-publishing.test.tsx), not by trailFor.
+    expect(trailFor("/writing/blog/anything")).toBeNull();
     expect(labels("/writing/longform")).toEqual(["Home", "Writing", "Longform"]);
     expect(trailFor("/work/not-a-study")).toBeNull();
     expect(trailFor("/writing/blog/not-a-post")).toBeNull();

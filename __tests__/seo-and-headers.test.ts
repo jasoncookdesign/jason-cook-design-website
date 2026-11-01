@@ -2,7 +2,7 @@ import nextConfig from "@/next.config";
 import robots from "@/app/robots";
 import sitemap from "@/app/sitemap";
 import { caseStudies } from "@/lib/work";
-import { posts } from "@/lib/writing";
+import { publishedPosts } from "@/lib/posts";
 
 const SITE = "https://jasoncookdesign.com";
 
@@ -34,7 +34,7 @@ describe("sitemap.xml", () => {
       expect(urls).toContain(`${SITE}${path}`);
     }
     for (const cs of caseStudies) expect(urls).toContain(`${SITE}/work/${cs.slug}`);
-    for (const p of posts) expect(urls).toContain(`${SITE}/writing/blog/${p.slug}`);
+    for (const p of publishedPosts()) expect(urls).toContain(`${SITE}/writing/blog/${p.slug}`);
   });
 
   it("has no duplicates and no other host", () => {
