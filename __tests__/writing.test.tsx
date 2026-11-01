@@ -28,7 +28,7 @@ describe("Writing index page", () => {
     render(<WritingPage />);
     expect(screen.getByText(/You're Not Building a Tool/i)).toBeTruthy();
     expect(screen.getByText(/Why This Blog Exists/i)).toBeTruthy();
-    expect(screen.getByText(/The Quality Gate/i)).toBeTruthy();
+    expect(screen.getByText(/^The Quality Gate$/i)).toBeTruthy();
     expect(screen.getByText(/Your AI Doesn't Have to Go Rogue/i)).toBeTruthy();
   });
 
@@ -157,8 +157,8 @@ describe("The post announcing the book", () => {
 });
 
 describe("Writing post data", () => {
-  it("contains all 9 posts with required fields", () => {
-    expect(posts).toHaveLength(9);
+  it("contains all 10 posts with required fields", () => {
+    expect(posts).toHaveLength(10);
     for (const post of posts) {
       expect(post.slug).toBeTruthy();
       expect(post.title).toBeTruthy();
