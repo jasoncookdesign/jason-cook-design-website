@@ -1,6 +1,5 @@
 import { engagementTypes } from "@/lib/engagement-types";
 import { caseStudies } from "@/lib/work";
-import { posts } from "@/lib/writing";
 
 export interface Crumb {
   label: string;
@@ -32,7 +31,8 @@ const STATIC: Record<string, Crumb[]> = {
 };
 
 /** The trail from Home to the page, or null for the home page and for routes the site does not have. */
-export function trailFor(pathname: string | null): Crumb[] | null {
+/** `postLabels` maps each published post slug to its breadcrumb label; the server layout supplies it, so unpublished posts never reach the client. */
+export function trailFor(pathname: string | null, postLabels: Record<string, string> = {}): Crumb[] | null {
   if (!pathname) return null;
   const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
   if (path === "/") return null;
@@ -43,8 +43,9 @@ export function trailFor(pathname: string | null): Crumb[] | null {
   const study = path.startsWith("/work/") && caseStudies.find((s) => `/work/${s.slug}` === path);
   if (study) return [HOME, WORK, { label: study.client, href: path }];
 
-  const post = path.startsWith("/writing/blog/") && posts.find((p) => `/writing/blog/${p.slug}` === path);
-  if (post) return [HOME, WRITING, { label: post.shortTitle ?? post.title, href: path }];
+  const slug = path.startsWith("/writing/blog/") ? path.slice("/writing/blog/".length) : null;
+  const postLabel = slug ? postLabels[slug] : undefined;
+  if (postLabel) return [HOME, WRITING, { label: postLabel, href: path }];
 
   return null;
 }

@@ -4,8 +4,8 @@ import { usePathname } from "next/navigation";
 import { trailFor } from "@/lib/breadcrumbs";
 
 /** The first control on every page but the home page: where this page sits in the site. */
-export default function Breadcrumb() {
-  const trail = trailFor(usePathname());
+export default function Breadcrumb({ postLabels }: { postLabels: Record<string, string> }) {
+  const trail = trailFor(usePathname(), postLabels);
   if (!trail) return null;
   return (
     <nav className="crumb crumbbar" aria-label="Breadcrumb">

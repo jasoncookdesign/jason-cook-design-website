@@ -1,6 +1,7 @@
 import { render } from "@testing-library/react";
 import WritingPostContent from "@/components/writing/WritingPostContent";
-import { posts, type Post, type ContentBlock } from "@/lib/writing";
+import { type Post, type ContentBlock } from "@/lib/writing";
+import { posts } from "@/lib/posts";
 
 const base = { slug: "t", title: "T", date: "2026-10-22", tags: ["x"], excerpt: "An excerpt for the test." };
 const p = (t: string): ContentBlock => ({ type: "p", html: t });

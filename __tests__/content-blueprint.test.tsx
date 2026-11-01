@@ -16,7 +16,7 @@ import ContactPage from "@/app/contact/page";
 import LegalPage from "@/app/legal/page";
 import NotFound from "@/app/not-found";
 import { caseStudies } from "@/lib/work";
-import { posts } from "@/lib/writing";
+import { posts } from "@/lib/posts";
 
 const dell = caseStudies.find((c) => c.slug === "dell")!;
 const withImages = caseStudies.find((c) =>

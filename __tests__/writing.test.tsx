@@ -3,7 +3,7 @@ import path from "path";
 import { render, screen, within } from "@testing-library/react";
 import WritingPage, { metadata as writingMetadata } from "@/app/writing/page";
 import WritingPostContent from "@/components/writing/WritingPostContent";
-import { posts } from "@/lib/writing";
+import { posts } from "@/lib/posts";
 import { book } from "@/lib/book";
 
 describe("Writing alt-text audit", () => {

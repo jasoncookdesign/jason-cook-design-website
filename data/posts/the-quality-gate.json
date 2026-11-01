@@ -1,0 +1,125 @@
+{
+  "slug": "the-quality-gate",
+  "title": "The Quality Gate",
+  "date": "2026-06-25",
+  "tags": [
+    "ai",
+    "design",
+    "creativity",
+    "product"
+  ],
+  "excerpt": "I tried to delegate creative quality control to AI. The process failed the moment something good happened that I hadn't planned for.",
+  "coverImage": "/images/blog/the-quality-gate/hero.jpg",
+  "content": [
+    {
+      "type": "img",
+      "src": "/images/blog/the-quality-gate/hero.jpg",
+      "alt": "Close-up of a man examining an undeveloped film roll",
+      "credit": "Photo by <a href=\"https://www.pexels.com/@annushka-ahuja/\" target=\"_blank\" rel=\"noopener noreferrer\">Annushka Ahuja</a> on <a href=\"https://www.pexels.com\" target=\"_blank\" rel=\"noopener noreferrer\">Pexels</a>"
+    },
+    {
+      "type": "p",
+      "html": "There's an argument you hear a lot right now: the creative bottleneck is the human. AI can generate faster than any team can review, and the solution is to automate the review. Define what good looks like, encode it as criteria, and let the machine gate the output. Problem solved."
+    },
+    {
+      "type": "p",
+      "html": "Recently I tried to build that system."
+    },
+    {
+      "type": "p",
+      "html": "The project was called Image Foundry — an attempt to run a creative pipeline entirely through AI, including the quality gate. The idea was to generate image assets at volume and use a defined set of criteria to evaluate them: composition, subject placement, color palette, adherence to brand direction. If an asset met the criteria, it passed. If it didn't, it was rejected or regenerated. No human in the loop until the final set was ready for delivery."
+    },
+    {
+      "type": "p",
+      "html": "The system worked. It ran exactly as designed. And then one image came through that didn't fit the brief — not because it was bad, but because it was doing something the brief didn't anticipate. The composition was unusual. The framing was off-spec. By every criterion I'd defined, it should have been rejected."
+    },
+    {
+      "type": "p",
+      "html": "It was the best image in the batch."
+    },
+    {
+      "type": "p",
+      "html": "The system flagged it as non-compliant and moved on. I found it later, in the reject pile, while reviewing what the pipeline had thrown away. The machine had done its job correctly. The problem was that its job wasn't creative direction. It was adherence."
+    },
+    {
+      "type": "h2",
+      "text": "What the gate is actually for"
+    },
+    {
+      "type": "p",
+      "html": "Creative direction isn't quality control in the industrial sense. A manufacturing gate catches defects by comparing output to a specification — and defects are unambiguous. A screw with the wrong thread pitch is wrong in a way that can be measured, specified, and rejected mechanically."
+    },
+    {
+      "type": "p",
+      "html": "A creative gate does something different. It decides whether something is <em>worth doing</em> — and that question can only be answered by a person who cares about the outcome and has enough context to recognize when a constraint should be broken."
+    },
+    {
+      "type": "p",
+      "html": "The Image Foundry experiment made this concrete. The brief told the AI what good looked like. But the brief was also a prior conception of what good <em>could</em> be. A strong creative instinct operates in the space between what the brief says and what the work could become. It knows when a rule is worth breaking and when breaking it is just a mistake. You cannot write that distinction into a specification, because the distinction <em>is</em> the judgment."
+    },
+    {
+      "type": "p",
+      "html": "This is what I mean by discernment. Not taste as decoration — as some vague preference about what looks nice. Discernment as a functional capacity: the ability to know what is good before you have a rule that says it's good."
+    },
+    {
+      "type": "p",
+      "html": "AI has no access to that. It can optimize to a specification with extraordinary precision. It can sample from everything it's seen and produce something that statistically resembles the target. But it cannot tell you whether the output is worth the effort, or whether the brief was wrong, or whether the image in the reject pile is the one you should have kept."
+    },
+    {
+      "type": "h2",
+      "text": "The amplification model"
+    },
+    {
+      "type": "p",
+      "html": "The Image Foundry didn't fail because the AI was bad at its job. It failed because I asked it to do the wrong job."
+    },
+    {
+      "type": "p",
+      "html": "The right model isn't AI standing in for creative judgment — it's AI accelerating everything that feeds creative judgment. Research, asset generation, iteration, production work, distribution logistics. These are the things that take time without adding the kind of value that comes from human discernment. They're where automation earns its place."
+    },
+    {
+      "type": "p",
+      "html": "The designer's job isn't to generate faster. It's to decide better, with less friction between the insight and the output. If AI can compress the distance between \"idea\" and \"material on the table,\" the designer can spend their time on the part that actually requires them."
+    },
+    {
+      "type": "p",
+      "html": "That's amplification: not replacement, but compression. Compression of the preparation work so that human judgment can operate at a higher frequency, with better raw material to work from."
+    },
+    {
+      "type": "h2",
+      "text": "What stays human"
+    },
+    {
+      "type": "p",
+      "html": "There's a category of creative work where the human isn't a bottleneck — they're the point. Voice. Storytelling. Taste. The decision about what matters and what doesn't. These aren't things that should be delegated and probably can't be, at least not in any way that preserves what makes them valuable."
+    },
+    {
+      "type": "p",
+      "html": "An AI can draft this essay. It cannot decide what this essay is about, or why it's worth writing, or whether the argument is right. It can produce a structure that resembles good writing and hits the notes a reader expects. But meaning requires someone who has something at stake in the question."
+    },
+    {
+      "type": "p",
+      "html": "Audiences have always been able to sense when something was produced rather than made. The signal is subtle — something about the absence of a point of view, a quality of competence without risk. As AI-generated content increases in volume, I expect that signal to become easier to read, and the genuine article to become more valuable as a result."
+    },
+    {
+      "type": "h2",
+      "text": "What this means for practice"
+    },
+    {
+      "type": "p",
+      "html": "I design AI-enabled systems for a living, and I've built one that runs my own organization. The lesson from the Image Foundry — and from everything since — is the same: the goal isn't to remove the human from the output. It's to put the human where they can do the most good."
+    },
+    {
+      "type": "p",
+      "html": "That means using AI aggressively in preparation, production, and logistics. It means being deliberate about where human judgment gates the process. And it means being honest about the difference between automating the work and automating your way out of it."
+    },
+    {
+      "type": "p",
+      "html": "The best image was in the reject pile. The machine was following orders."
+    },
+    {
+      "type": "p",
+      "html": "That's not a criticism of the machine. It's a reminder that someone still has to decide what good looks like — and that job isn't going anywhere."
+    }
+  ]
+}

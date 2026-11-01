@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Newsreader, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Breadcrumb from "@/components/layout/Breadcrumb";
+import { publishedPosts } from "@/lib/posts";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import SheetFrame from "@/components/layout/SheetFrame";
@@ -63,7 +64,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SheetFrame>
           <Nav />
           <main className="flex-1">
-            <Breadcrumb />
+            <Breadcrumb postLabels={Object.fromEntries(publishedPosts().map((p) => [p.slug, p.shortTitle ?? p.title]))} />
             {children}
           </main>
           <Footer />

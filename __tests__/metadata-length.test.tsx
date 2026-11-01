@@ -13,7 +13,7 @@ import { metadata as book } from "@/app/writing/longform/page";
 import { generateMetadata as workCaseStudy } from "@/app/work/[slug]/page";
 import { generateMetadata as writingPost } from "@/app/writing/blog/[slug]/page";
 import { caseStudies } from "@/lib/work";
-import { posts } from "@/lib/writing";
+import { posts } from "@/lib/posts";
 import { pageTitle } from "@/lib/metadata";
 
 const TITLE_MAX = 60;

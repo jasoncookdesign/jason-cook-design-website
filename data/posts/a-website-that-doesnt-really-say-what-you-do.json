@@ -1,0 +1,69 @@
+{
+  "slug": "a-website-that-doesnt-really-say-what-you-do",
+  "title": "A Website That Doesn't Really Say What You Do",
+  "date": "2026-11-01",
+  "tags": [
+    "design",
+    "positioning",
+    "process"
+  ],
+  "excerpt": "For nearly two years, the headline on my website described work I no longer did. A site that went out of date and a site that never landed cost the same minutes at the start of every conversation.",
+  "coverImage": "/images/blog/website-that-doesnt-say-what-you-do/hero.webp",
+  "content": [
+    {
+      "type": "img",
+      "src": "/images/blog/website-that-doesnt-say-what-you-do/hero.webp",
+      "alt": "The previous jasoncookdesign.com home page, with its \"world-class digital product\" headline, partly covered by the current blueprint-style home page.",
+      "credit": "The previous home page, partly covered by the current one."
+    },
+    {
+      "type": "p",
+      "html": "From December 2024 until October 2026, the headline on my website read \"I'll help you deliver a world-class digital product\". By the end it no longer described what I do, and I kept meaning to fix that."
+    },
+    {
+      "type": "p",
+      "html": "The cost I could see was the first five to ten minutes of every conversation with someone who had found the site before they found me. I spent that time saying what I no longer did, and then what I do now, which meant the person across from me had to put down one picture of me and pick up another before we could talk about their business at all. That's a burden I handed them, they never asked for it, and it came out of the time they had set aside to talk about their own problem. A site that never said what you do costs the same minutes in a different way: you spend them explaining what you do in the first place, to someone who arrived without the picture the site was supposed to give them."
+    },
+    {
+      "type": "p",
+      "html": "Recently, the principal of a startup contacted me after reading the previous version of my site, and he asked specifically for engineering services. We got on a 30-minute call, and we spent the first seven minutes working out whether he simply wanted someone to build what he already had in mind. He isn't an engineer, and he recognized that his ideas were likely to have holes, so the question was a fair one to ask. Nearly a quarter of our first conversation went to checking his business goals against what I offer now. He was patient enough to get through that reorientation. The cost was avoidable, though, and it traced back to a site I hadn't kept current."
+    },
+    {
+      "type": "p",
+      "html": "I'll call this a mismatched presentation: a public description of your business that doesn't match what you do. Some sites start out that way, because they never quite said it. Mine got there over time, because the business changed and the site stayed put. Either version is easy to live with, because nothing breaks. The site loads, the contact form works, and the only symptom is that you begin your conversations by correcting the record or explaining the basics."
+    },
+    {
+      "type": "p",
+      "html": "It's also a documented kind of problem. When Nielsen Norman Group tested 100 websites with over 70 users, people were baffled by numerous sites and couldn't figure out what the organization did.<sup>1</sup> Those sites never said it clearly. Mine said it clearly, and the answer had gone out of date. The causes differ, and from the visitor's side they look the same: the page doesn't say what you do."
+    },
+    {
+      "type": "p",
+      "html": "The second cost is the one I can't measure. Someone looking for what I do now had no reason to think I did it, so they kept looking, and a person who never arrives doesn't show up in an analytics report or a pipeline. The same is true of a site that never landed: whoever it failed to convince is gone before you know they came. I can't put a number on them and I won't make one up. I'm counting that cost anyway: some calls have to be made on judgment, and this was one of them."
+    },
+    {
+      "type": "p",
+      "html": "Why did it stay that way for so long? Other people's work had deadlines and people waiting on it, and my own site had neither, so it lost every time the two competed. A site that never landed gets the same treatment, since nobody is waiting on that one either. That's how an owner's time works: whatever has someone waiting gets done first, and whatever only affects you slides."
+    },
+    {
+      "type": "p",
+      "html": "What changed was a decision. I'd treat myself like a client and run the site as a real project, which began the way I'd begin with an owner who asked me for help: with an audit of what was live, before I drew anything. The rebuild itself is written up in <a href=\"/writing/blog/rebuilding-jasoncookdesign-com\">Rebuilding jasoncookdesign.com, Start to Finish</a>."
+    },
+    {
+      "type": "p",
+      "html": "The part worth passing on is the order of operations. I looked before I designed, and that's what I'd do for your business, in a paid first phase I lead myself: about a week, 2 to 3 hours of your time across a few conversations, and a written report in which every finding links to its evidence. The report may say the website is the problem. It may say the website is a symptom, and that the offer, the way the work gets delivered, and the description of both have drifted apart. Either way, the report arrives before anything is built."
+    },
+    {
+      "type": "p",
+      "html": "Count how many of your conversations begin with a correction or an explanation of what you do. That's the visible half of what your presentation is costing you."
+    },
+    {
+      "type": "footnotes",
+      "items": [
+        {
+          "ref": "1",
+          "html": "Anna Kaley and Jakob Nielsen, \"About Us\" Information on Websites, Nielsen Norman Group, May 26, 2019. <a href=\"https://www.nngroup.com/articles/about-us-information-on-websites/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline\">nngroup.com</a>"
+        }
+      ]
+    }
+  ]
+}

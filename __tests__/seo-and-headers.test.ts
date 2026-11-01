@@ -2,7 +2,7 @@ import nextConfig from "@/next.config";
 import robots from "@/app/robots";
 import sitemap from "@/app/sitemap";
 import { caseStudies } from "@/lib/work";
-import { posts } from "@/lib/writing";
+import { posts } from "@/lib/posts";
 
 const SITE = "https://jasoncookdesign.com";
 

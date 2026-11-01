@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { posts, postHref } from "@/lib/writing";
+import { postHref } from "@/lib/writing";
+import { publishedPosts } from "@/lib/posts";
 import LongformEntry from "@/components/writing/LongformEntry";
 import { withSocial } from "@/lib/metadata";
 
@@ -14,10 +15,12 @@ export const metadata = withSocial({
   },
 });
 
-// Newest first. The registry stays in the order posts were added; the index sorts a copy by date.
-const newestFirst = [...posts].sort((a, b) => b.date.localeCompare(a.date));
+// A new post appears here on its date; the page is regenerated hourly.
+export const revalidate = 3600;
 
 export default function WritingPage() {
+  // Newest first. Only posts whose date has arrived are listed.
+  const newestFirst = [...publishedPosts()].sort((a, b) => b.date.localeCompare(a.date));
   return (
     <>
       <section className="hero page g" data-sheet="A-101" data-name="HERO">
