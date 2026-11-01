@@ -8,9 +8,9 @@ import TrackedLink from "@/components/sample/TrackedLink";
 import ViewTrack from "@/components/sample/ViewTrack";
 
 // DRAFT — Jason to edit
-const TITLE = "A sample first-phase report for a fictional client | Jason Cook Design";
+const TITLE = "A sample first-phase report for an anonymized client | Jason Cook Design";
 const DESCRIPTION =
-  "See what the paid first phase delivers. A written sample report for a fictional client, with the guarantee that stands behind the real one.";
+  "See what the paid first phase delivers. A written sample report for an anonymized client, with the guarantee that stands behind your report.";
 
 export const metadata = withSocial({
   title: TITLE,
@@ -34,9 +34,9 @@ export default function SamplePage() {
           <h1>A sample first-phase report</h1>
           <div>
             <p className="lead">
-              This is a sample of the report you get from the paid first phase, written for a fictional client so you can see
-              what the $2,500 buys. None of its people, numbers or findings belong to a real company. A guarantee stands behind the
-              real one.
+              This is a sample of the report you get from the paid first phase, written for an anonymized client so you can see
+              what the $2,500 buys. The name, people and figures are invented, and the scenario draws on real experience. A guarantee
+              stands behind your report.
             </p>
             <p style={{ marginTop: 32 }}>
               <TrackedLink href={BOOKING_PATH} event="sample_call_click" className="btn">
@@ -174,7 +174,7 @@ export default function SamplePage() {
               </TrackedLink>
             </p>
             <p>
-              Sample report for a fictional client, PDF, {pdf.pages} pages, {size(pdf.bytes)}.
+              Sample report for an anonymized client, PDF, {pdf.pages} pages, {size(pdf.bytes)}.
             </p>
             <p>
               {SHORT.fit.text}{" "}

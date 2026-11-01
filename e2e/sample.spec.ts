@@ -17,11 +17,11 @@ const events = (page: import("@playwright/test").Page) =>
   page.evaluate(() => ((window as unknown as { dataLayer: { event?: string }[] }).dataLayer || []).map((e) => e.event).filter(Boolean));
 
 test.describe("the sample page in a real browser", () => {
-  test("the first viewport says it is a sample for a fictional client with a guarantee behind it", async ({ page }) => {
+  test("the first viewport says it is a sample for an anonymized client with a guarantee behind it", async ({ page }) => {
     await page.goto("/engagements/sample");
     const statement = page.getByText(/sample of the report you get from the paid first phase/i);
     await expect(statement).toBeInViewport();
-    await expect(page.getByText(/fictional client/i).first()).toBeInViewport();
+    await expect(page.getByText(/anonymized client/i).first()).toBeInViewport();
     await expect(page.getByText(/guarantee stands behind/i)).toBeInViewport();
   });
 

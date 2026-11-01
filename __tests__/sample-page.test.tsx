@@ -18,18 +18,27 @@ describe("the sample page", () => {
     expect(sections.map((s) => s.getAttribute("data-question"))).toEqual(QUESTIONS);
   });
 
-  it("says in its first section that this is a sample of the paid first phase's report, for a fictional client, with a guarantee behind it", () => {
+  it("says in its first section that this is a sample of the paid first phase's report, for an anonymized client, with a guarantee behind it", () => {
     const { container } = render(<SamplePage />);
     const first = container.querySelector("section[data-question]")!.textContent!.toLowerCase();
     expect(first).toContain("sample");
     expect(first).toContain("first-phase report");
-    expect(first).toContain("fictional client");
+    expect(first).toContain("anonymized client");
     expect(first).toContain("guarantee");
   });
 
-  it("puts 'sample' and 'fictional client' in the title", () => {
+  it("says the name, people and figures are invented and the scenario draws on real experience, without claiming the whole thing is made up", () => {
+    const { container } = render(<SamplePage />);
+    const first = container.querySelector("section[data-question]")!.textContent!.toLowerCase();
+    expect(first).toContain("name, people and figures are invented");
+    expect(first).toContain("draws on real experience");
+    expect(first).not.toContain("fictional");
+    expect(first).not.toContain("belong to a real company");
+  });
+
+  it("puts 'sample' and 'anonymized client' in the title", () => {
     expect(String(metadata.title).toLowerCase()).toContain("sample");
-    expect(String(metadata.title).toLowerCase()).toContain("fictional client");
+    expect(String(metadata.title).toLowerCase()).toContain("anonymized client");
   });
 
   it("shows six screenshots from the manifest, each with alt text, a caption and a link to the full page", () => {
@@ -56,7 +65,7 @@ describe("the sample page", () => {
     expect(text).toContain(`${manifest.pdf.pages} pages`);
     expect(text).toMatch(/KB|MB/);
     expect(text.toLowerCase()).toContain("sample");
-    expect(text.toLowerCase()).toContain("fictional client");
+    expect(text.toLowerCase()).toContain("anonymized client");
   });
 
   it("shows the done-criteria checklist, with each criterion and the page of the report that meets it", () => {
