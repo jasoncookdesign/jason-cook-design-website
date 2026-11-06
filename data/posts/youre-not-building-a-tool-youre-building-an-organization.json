@@ -100,7 +100,8 @@
     {
       "type": "img",
       "src": "/images/blog/youre-not-building-a-tool/governance-diagram.png",
-      "alt": "Governance structure diagram for organization of autonomous agents"
+      "alt": "Governance structure diagram for organization of autonomous agents",
+      "credit": "The framework's reference architecture: constitution, governance, and operations at the top, with agents, memory, and knowledge around the core."
     },
     {
       "type": "p",

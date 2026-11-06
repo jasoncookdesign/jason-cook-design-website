@@ -13,7 +13,8 @@
     {
       "type": "img",
       "src": "/images/blog/your-ai-doesnt-have-to-go-rogue-to-break-your-rules/hero.png",
-      "alt": "A robot behind bars, rendered as a cautionary illustration of AI under constraint"
+      "alt": "A robot behind bars, rendered as a cautionary illustration of AI under constraint",
+      "credit": "A toy robot behind bars, standing in for an agent held inside its limits."
     },
     {
       "type": "p",
