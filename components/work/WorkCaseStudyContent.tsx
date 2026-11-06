@@ -16,7 +16,10 @@ function renderBlock(block: Block, idx: number, fig: number) {
           ) : (
             <Image src={block.src} alt={block.alt} width={900} height={600} />
           )}
-          <figcaption>FIG. {fig}</figcaption>
+          <figcaption>
+            <span className="idx">FIG. {fig}</span>
+            <span>{block.caption}</span>
+          </figcaption>
         </figure>
       );
     case "ul":
