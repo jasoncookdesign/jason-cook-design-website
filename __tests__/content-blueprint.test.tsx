@@ -115,10 +115,11 @@ describe("case study", () => {
   it("frames every image as a numbered FIG. plate at full opacity", () => {
     const { container } = render(<WorkCaseStudyContent cs={withImages} />);
     const total = withImages.sections.flatMap((s) => s.blocks).filter((b) => b.type === "img").length;
+    const caps = withImages.sections.flatMap((s) => s.blocks).flatMap((b) => (b.type === "img" ? [b.caption] : []));
     const figs = container.querySelectorAll("figure.fig");
     expect(figs).toHaveLength(total);
     figs.forEach((fig, i) => {
-      expect(fig.querySelector("figcaption")!.textContent).toBe(`FIG. ${i + 1}`);
+      expect(fig.querySelector("figcaption")!.textContent).toBe(`FIG. ${i + 1}${caps[i]}`);
       expect(fig.querySelector("img")!.className).not.toMatch(/opacity/);
     });
   });

@@ -7,7 +7,7 @@
 // An img block with `loop` is an animation: `src` is its poster still, and a WebM and MP4 of the same name sit beside it.
 export type Block =
   | { type: "p"; html: string }
-  | { type: "img"; src: string; alt: string; loop?: { width: number; height: number } }
+  | { type: "img"; src: string; alt: string; caption: string; loop?: { width: number; height: number } }
   | { type: "ul"; items: string[] }
   | { type: "ol"; items: string[] }
   | { type: "ul-strong"; items: Array<{ label: string; rest: string }> };
@@ -73,7 +73,7 @@ export const caseStudies: CaseStudy[] = [
             type: "p",
             html: "The client asked us to design a comprehensive UI framework to unify their fractured product experiences. This undertaking required more than a simple off-the-shelf template — their applications were filled with bespoke interactions and tailored controls that a commercial UI framework wouldn't handle elegantly.",
           },
-          { type: "img", src: "/images/cs01_01.jpg", alt: "UI beauty shot" },
+          { type: "img", src: "/images/cs01_01.jpg", alt: "UI beauty shot", caption: "The new framework on a laptop, two tablets, and two phones." },
         ],
       },
       {
@@ -83,7 +83,7 @@ export const caseStudies: CaseStudy[] = [
             type: "p",
             html: "Here's an example of the transformative journey their products underwent: from half a dozen different UI stacks, from Win32 to Silverlight, all predating modern, cross-platform, touch-friendly conventions, to a unified, modern, and user-friendly interface.",
           },
-          { type: "img", src: "/images/cs01_02.jpg", alt: "old client UIs" },
+          { type: "img", src: "/images/cs01_02.jpg", alt: "old client UIs", caption: "A collage of the client's older interfaces." },
         ],
       },
       {
@@ -96,7 +96,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs01_03.jpg",
-            alt: "process documents",
+            alt: "process documents", caption: "Journey-map sticky notes and interview write-ups from the customer research.",
           },
         ],
       },
@@ -110,7 +110,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs01_04.jpg",
-            alt: "low-to-high fidelity prototyping artifacts",
+            alt: "low-to-high fidelity prototyping artifacts", caption: "One screen, the symbol editor, from pencil sketch to wireframe to high-fidelity design.",
           },
         ],
       },
@@ -124,7 +124,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs01_05.jpg",
-            alt: "bespoke interactions",
+            alt: "bespoke interactions", caption: "Custom interactions we designed: radial menus, a map callout, touch gestures, and a rule builder.",
           },
         ],
       },
@@ -149,7 +149,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs01_06.jpg",
-            alt: "light and dark skins",
+            alt: "light and dark skins", caption: "Buttons, menus, date pickers, and notifications in the light and dark themes.",
           },
         ],
       },
@@ -163,7 +163,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs01_08.jpg",
-            alt: "design documentation",
+            alt: "design documentation", caption: "Pages from the UI specification: color primitives, type hierarchy, control states, layers, and responsive break points.",
           },
           {
             type: "p",
@@ -172,7 +172,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs01_09.jpg",
-            alt: "engineering documentation",
+            alt: "engineering documentation", caption: "The documentation site and its illustrated control-state references.",
           },
           {
             type: "p",
@@ -190,7 +190,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs01_07.jpg",
-            alt: "unified look and feel across applications",
+            alt: "unified look and feel across applications", caption: "Several of the client's applications sharing one look and feel.",
           },
         ],
       },
@@ -225,7 +225,7 @@ export const caseStudies: CaseStudy[] = [
             type: "p",
             html: "I led the multidisciplinary team of designers and architects from the front, contributing to the design vision, interaction models, and team leadership to create Ford's first touch-centric customer experience.",
           },
-          { type: "img", src: "/images/cs02_01.jpg", alt: "hero shot" },
+          { type: "img", src: "/images/cs02_01.jpg", alt: "hero shot", caption: "The Build and Price home screen, with a Mustang at the top." },
         ],
       },
       {
@@ -238,7 +238,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs02_02.jpg",
-            alt: "wireframes and comps",
+            alt: "wireframes and comps", caption: "Three screens, each in wireframe and as a finished comp: model browser, model comparison, and an option detail.",
           },
         ],
       },
@@ -249,7 +249,7 @@ export const caseStudies: CaseStudy[] = [
             type: "p",
             html: "The design was so well-received that it led to a <strong>revamped style guide for Ford's entire suite of sales tools</strong>, not only for touch devices but also on the web. Today, Ford's Build and Price product still uses the fundamental interaction models my team designed years earlier.",
           },
-          { type: "img", src: "/images/cs02_03.jpg", alt: "product usage" },
+          { type: "img", src: "/images/cs02_03.jpg", alt: "product usage", caption: "The tool in use on a tablet, beside a payment summary screen." },
         ],
       },
     ],
@@ -282,7 +282,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs03_04.jpg",
-            alt: "architecture diagram and early mockup",
+            alt: "architecture diagram and early mockup", caption: "A logic diagram for parsing menu items, beside an early menu screen.",
           },
         ],
         diagnosisNote:
@@ -298,7 +298,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs03_03.jpg",
-            alt: "mockup and running code",
+            alt: "mockup and running code", caption: "An item-detail mockup on the left and the running prototype on the right.",
           },
           {
             type: "p",
@@ -307,7 +307,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs03_02.jpg",
-            alt: "full size screenshot",
+            alt: "full size screenshot", caption: "The prototype's modifier screen, with an options popup open on Lettuce.",
           },
         ],
       },
@@ -318,7 +318,7 @@ export const caseStudies: CaseStudy[] = [
             type: "p",
             html: "The client used that prototype to showcase the capabilities of their fledgling company, attract an enthusiastic customer base, and ultimately secure $10 million in funding. Today, the product we designed enables millions of monthly transactions across the US, and the company boasts <strong>100% enterprise client retention</strong>.",
           },
-          { type: "img", src: "/images/cs03_01.jpg", alt: "device image" },
+          { type: "img", src: "/images/cs03_01.jpg", alt: "device image", caption: "The finished product on its terminal." },
         ],
       },
     ],
@@ -355,7 +355,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs04_01.jpg",
-            alt: "operations center, before",
+            alt: "operations center, before", caption: "The operations center, with engineers at their desks and the monitor wall behind them.",
           },
           {
             type: "p",
@@ -386,7 +386,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs04_02.jpg",
-            alt: "old interface screens before the redesign",
+            alt: "old interface screens before the redesign", caption: "The old screens: terminal windows and status grids full of scrolling text.",
           },
         ],
       },
@@ -400,7 +400,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs04_03.jpg",
-            alt: "persona document",
+            alt: "persona document", caption: "A one-page profile of an operator: role, process, systems, and where the person sits in the room.",
           },
         ],
       },
@@ -414,7 +414,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs04_07.jpg",
-            alt: "architectural documents",
+            alt: "architectural documents", caption: "System architecture diagrams we drew to understand how the pieces connect.",
           },
         ],
       },
@@ -428,7 +428,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs04_06.jpg",
-            alt: "diagram sketches",
+            alt: "diagram sketches", caption: "Pencil sketches of ways to draw the system, from isometric maps to subway-style layouts.",
           },
           {
             type: "p",
@@ -437,9 +437,9 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs04_05.jpg",
-            alt: "sketches in context",
+            alt: "sketches in context", caption: "Sketches placed against the monitor wall, divided into left, middle, and right sections.",
           },
-          { type: "img", src: "/images/cs04_04.jpg", alt: "diagram mockup" },
+          { type: "img", src: "/images/cs04_04.jpg", alt: "diagram mockup", caption: "Mockups of the diagram on the monitor wall, seen from the operators' desks." },
         ],
       },
       {
@@ -452,9 +452,9 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs04_09.jpg",
-            alt: "fidelity increases in designs",
+            alt: "fidelity increases in designs", caption: "The same diagram at three levels of fidelity: gray wireframe, line art, and styled.",
           },
-          { type: "img", src: "/images/cs04_08.jpg", alt: "wireframes" },
+          { type: "img", src: "/images/cs04_08.jpg", alt: "wireframes", caption: "A set of wireframes for the panels, dialogs, and docking behavior." },
         ],
       },
       {
@@ -464,7 +464,7 @@ export const caseStudies: CaseStudy[] = [
             type: "p",
             html: "Informed by a solid system representation, the next step was to determine the diagrams' appearance. The client selected their favorite of several mood boards that reflected the visual character they liked best.",
           },
-          { type: "img", src: "/images/cs04_10.jpg", alt: "mood boards" },
+          { type: "img", src: "/images/cs04_10.jpg", alt: "mood boards", caption: "Three mood boards and matching style boards: hip, espresso, and modern." },
           {
             type: "p",
             html: "We then applied that visual language to the diagrams…",
@@ -472,13 +472,13 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs04_11.jpg",
-            alt: "skinned diagrams",
+            alt: "skinned diagrams", caption: "The diagrams with the chosen visual language applied.",
           },
           {
             type: "p",
             html: "…created an accompanying style guide…",
           },
-          { type: "img", src: "/images/cs04_13.jpg", alt: "style guide" },
+          { type: "img", src: "/images/cs04_13.jpg", alt: "style guide", caption: "Style guide pages covering color, flow lines, icons, type, alert boxes, and charts." },
           {
             type: "p",
             html: "…and a parallel functional specification detailing how to build, maintain, and modify the visualizations.",
@@ -486,7 +486,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs04_12.jpg",
-            alt: "functional spec",
+            alt: "functional spec", caption: "Pages from the functional specification for building and modifying the visualizations.",
           },
         ],
       },
@@ -500,7 +500,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs04_14.jpg",
-            alt: "running system",
+            alt: "running system", caption: "The new diagram running on the monitor wall.",
           },
         ],
       },
@@ -548,7 +548,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs05_02.jpg",
-            alt: "old interface screens before redesign",
+            alt: "old interface screens before redesign", caption: "The old product's client record, service, and appointment book screens.",
           },
         ],
       },
@@ -562,7 +562,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs05_05.jpg",
-            alt: "conversational booking",
+            alt: "conversational booking", caption: "An interaction spec for ConvoBar, with annotated tokens, autocomplete, and keyboard behavior.",
           },
           {
             type: "p",
@@ -571,7 +571,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/loops/cs05_06.jpg",
-            alt: "ConvoBar wireframes",
+            alt: "ConvoBar wireframes", caption: "A wireframe of the appointment calendar with the ConvoBar above it.",
             loop: { width: 1000, height: 712 },
           },
         ],
@@ -586,7 +586,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs05_03.jpg",
-            alt: "Texter vs Clicker",
+            alt: "Texter vs Clicker", caption: "The same booking request done by typing, and by clicking.",
           },
         ],
       },
@@ -600,7 +600,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs05_07.jpg",
-            alt: "Meevo wireframes",
+            alt: "Meevo wireframes", caption: "Pages from the wireframe specification for the new interface.",
           },
         ],
       },
@@ -611,8 +611,8 @@ export const caseStudies: CaseStudy[] = [
             type: "p",
             html: "We went through several rounds of iteration to find the right design language, producing several sets of mood boards and style compositions.",
           },
-          { type: "img", src: "/images/cs05_08.jpg", alt: "Moodboards" },
-          { type: "img", src: "/images/cs05_09.jpg", alt: "early comps" },
+          { type: "img", src: "/images/cs05_08.jpg", alt: "Moodboards", caption: "Three design directions, each as a mood collage and a style board: hip, espresso, and modern." },
+          { type: "img", src: "/images/cs05_09.jpg", alt: "early comps", caption: "Early comps of the client screen in light and dark, in purple." },
           {
             type: "p",
             html: "The design we settled on — bold, typography-forward — defined the brand image for the new generation.",
@@ -620,7 +620,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/loops/cs05_04.jpg",
-            alt: "ConvoBar live",
+            alt: "ConvoBar live", caption: "The Meevo front desk on a tablet, with the ConvoBar at the top.",
             loop: { width: 700, height: 504 },
           },
         ],
@@ -635,10 +635,10 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/loops/cs05_10.jpg",
-            alt: "manager screen",
+            alt: "manager screen", caption: "The manager screen on a desktop monitor.",
             loop: { width: 700, height: 634 },
           },
-          { type: "img", src: "/images/cs05_01.jpg", alt: "awards" },
+          { type: "img", src: "/images/cs05_01.jpg", alt: "awards", caption: "Four of the awards the product has won, with the number of wins for each." },
         ],
       },
     ],
@@ -671,7 +671,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs06_01.jpg",
-            alt: "closeup of table edge",
+            alt: "closeup of table edge", caption: "The Surface logo on the edge of the table.",
           },
           {
             type: "p",
@@ -689,7 +689,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs06_02.jpg",
-            alt: "interacting with Surface",
+            alt: "interacting with Surface", caption: "A hand on the Surface table, browsing music.",
           },
           {
             type: "p",
@@ -707,7 +707,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs06_03.jpg",
-            alt: "two people using snowboard app",
+            alt: "two people using snowboard app", caption: "Two people and a third hand using the snowboard design app on the table.",
           },
           {
             type: "p",
@@ -716,7 +716,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/loops/cs06_07.jpg",
-            alt: "Microsoft Enterprise Engagement Center",
+            alt: "Microsoft Enterprise Engagement Center", caption: "A floor plan from the Enterprise Engagement Center application.",
             loop: { width: 512, height: 384 },
           },
         ],
@@ -731,7 +731,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/loops/cs06_04.jpg",
-            alt: "object recognition",
+            alt: "object recognition", caption: "A phone sharing its photos with the table.",
             loop: { width: 638, height: 358 },
           },
           {
@@ -741,7 +741,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs06_05.jpg",
-            alt: "MobileConnect sketches",
+            alt: "MobileConnect sketches", caption: "A concept image for connecting a phone to the table and browsing its photos.",
           },
         ],
       },
@@ -755,7 +755,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/loops/cs06_06.jpg",
-            alt: "MobileConnect in action",
+            alt: "MobileConnect in action", caption: "The table lighting up where a phone is placed.",
             loop: { width: 478, height: 360 },
           },
         ],
@@ -804,7 +804,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs07_01.jpg",
-            alt: "full final site",
+            alt: "full final site", caption: "The full home page of the redesigned site.",
           },
         ],
       },
@@ -815,7 +815,7 @@ export const caseStudies: CaseStudy[] = [
             type: "p",
             html: "The existing LHW.com site was ill-equipped to meet LHW's customers' expectations. It was starkly unattractive, navigationally confusing, and didn't behave well on touch-based mobile devices. The site was plagued with ambiguity in its visual hierarchy, hamstrung by an unintelligible information architecture, peppered with out-of-date technology like Java applets and Flash widgets, and largely unable to get customers through the booking funnel, the site's primary purpose.",
           },
-          { type: "img", src: "/images/cs07_02.jpg", alt: "old site" },
+          { type: "img", src: "/images/cs07_02.jpg", alt: "old site", caption: "The previous LHW.com home page." },
           {
             type: "p",
             html: "The one aspect of the existing site we sought to preserve was LHW's longstanding investment in high-quality photography and copywriting. My goal was to elevate it to the prominence it deserved while simultaneously wrapping it in a seamlessly integrated booking experience.",
@@ -832,7 +832,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs07_03.jpg",
-            alt: "booking flow",
+            alt: "booking flow", caption: "The booking path as a user flow, from search results to confirmation.",
           },
         ],
       },
@@ -843,12 +843,12 @@ export const caseStudies: CaseStudy[] = [
             type: "p",
             html: "The LHW site is much more than a simple booking site. The brand prides itself on the depth and quality of its curation and local knowledge. Research showed that customers were interested in inspirational content, but unable to find it on the existing site. The redesign focused on doing a better job showcasing LHW's owned media content, especially the expertly written travel guides and photography.",
           },
-          { type: "img", src: "/images/cs07_04.jpg", alt: "wireframes" },
+          { type: "img", src: "/images/cs07_04.jpg", alt: "wireframes", caption: "A set of wireframes for offers, hotel search, the map, and Get Inspired pages." },
           {
             type: "p",
             html: "After several rounds of iteration, we had a finely tuned interaction model that invited exploration while keeping the booking engine close at hand.",
           },
-          { type: "img", src: "/images/cs07_05.jpg", alt: "calendar" },
+          { type: "img", src: "/images/cs07_05.jpg", alt: "calendar", caption: "The date picker in six states, from start to check-out selected." },
           {
             type: "p",
             html: "Subtle interaction mechanics like an expandable map created a sense of quiet expertise to the site, echoing the brand's persona while providing the essential functionality customers need to complete the task. The functional tools are clearly within reach but out of the way until the customer is ready to use them.",
@@ -856,7 +856,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs07_07.jpg",
-            alt: "expandable map",
+            alt: "expandable map", caption: "Search results with the map closed and open.",
           },
         ],
       },
@@ -870,7 +870,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs07_06.jpg",
-            alt: "wireframe vs. composition",
+            alt: "wireframe vs. composition", caption: "An offers wireframe behind the finished composition.",
           },
         ],
       },
@@ -884,7 +884,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs07_08.jpg",
-            alt: "device mockups",
+            alt: "device mockups", caption: "The finished site on a laptop and a tablet.",
           },
         ],
       },
@@ -922,7 +922,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs08_01.jpg",
-            alt: "disjointed contact us user experiences",
+            alt: "disjointed contact us user experiences", caption: "Four of Dell's separate Contact Us pages, each with its own layout.",
           },
         ],
       },
@@ -949,7 +949,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs08_02.jpg",
-            alt: "unified contact us concept model",
+            alt: "unified contact us concept model", caption: "The content of one page plus the style of another gives the unified page.",
           },
         ],
       },
@@ -985,7 +985,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs08_03.jpg",
-            alt: "unified contact us screenshot",
+            alt: "unified contact us screenshot", caption: "The unified Contact Us page.",
           },
         ],
       },
@@ -999,7 +999,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "img",
             src: "/images/cs08_04.jpg",
-            alt: "TSIA STAR Award 2023 logo",
+            alt: "TSIA STAR Award 2023 logo", caption: "The 2023 TSIA STAR Awards logo.",
           },
         ],
       },
