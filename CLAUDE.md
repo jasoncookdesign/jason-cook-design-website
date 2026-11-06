@@ -8,6 +8,7 @@ Next.js 16 site that will replace jasoncookdesign.github.io as jasoncookdesign.c
 - Generated, never hand-edit: the nextjs-agent-rules block in `AGENTS.md` (rewritten by `next dev`), and `.next/`.
 - Copy comes from the JCD knowledge vault, which lives outside this repo. Open `[GAP: …]` markers stay verbatim until Jason resolves them. The SAM.gov identifiers on Capabilities come from Jason; never guess them.
 - Public repo: keep internal ticket IDs and machine names out of commits, code and docs.
+- Every figure needs caption text after its FIG. number. Blog images take it in the `credit` field of the `img` block (photo credits go there too); `__tests__/figure-captions.test.ts` fails when one is missing. One short sentence that says what the reader is looking at, ending in a period.
 
 ## TDD exception (recorded ruling)
 None. Copy and components are test-first, and the tests assert copy verbatim. Pure styling changes with no behavior to assert are exempt; say so in the PR. Blog post copy edits (post bodies in `data/posts/*.json`) are also exempt and get no verbatim test; say so in the PR.
