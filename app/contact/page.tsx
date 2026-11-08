@@ -12,7 +12,7 @@ export const metadata = withSocial({
     description:
       "Book a strategy call with Jason Cook Design. Free, 20 minutes, no commitment.",
   },
-});
+}, "/contact");
 
 export default function ContactPage() {
   return (

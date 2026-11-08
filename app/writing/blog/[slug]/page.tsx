@@ -1,6 +1,7 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { publishedPosts } from "@/lib/posts";
-import { pageTitle } from "@/lib/metadata";
+import { pageDescription, pageTitle, withSocial } from "@/lib/metadata";
 import WritingPostContent from "@/components/writing/WritingPostContent";
 
 // A post is served from its date onward. Posts not yet public are not pre-built; a page that is first
@@ -15,11 +16,13 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
+}): Promise<Metadata> {
   const { slug } = await params;
   const post = publishedPosts().find((p) => p.slug === slug);
   if (!post) return {};
-  return { title: pageTitle(post.shortTitle ?? post.title) };
+  const title = pageTitle(post.shortTitle ?? post.title);
+  const description = pageDescription(post.excerpt);
+  return withSocial({ title, description, openGraph: { title, description, type: "article" } }, `/writing/blog/${post.slug}`);
 }
 
 export default async function WritingPostPage({

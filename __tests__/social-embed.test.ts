@@ -47,18 +47,19 @@ import { metadata as legal } from "@/app/legal/page";
 import { metadata as work } from "@/app/work/page";
 import { metadata as writing } from "@/app/writing/page";
 
-describe("every page keeps the share card", () => {
+// Each page has its own card at /card/<path> (see share-cards.test.tsx for the full route sweep); the home page keeps the static card above.
+describe("every page keeps a share card", () => {
   it.each([
     ["about", about], ["capabilities", capabilities], ["contact", contact], ["engagements", engagements],
     ["offering", offering], ["operating", operating], ["legal", legal], ["work", work], ["writing", writing],
   ])("%s", (_n, m) => {
     const meta = m as unknown as { title: string; description: string; openGraph: { images: { url: string; width: number; height: number; alt: string }[]; siteName: string; title: string }; twitter: { card: string; images: string[]; title: string } };
-    expect(meta.openGraph.images).toEqual([expect.objectContaining({ url: "/opengraph-image.png", width: 1200, height: 630 })]);
+    expect(meta.openGraph.images).toEqual([expect.objectContaining({ url: expect.stringMatching(/^\/card\/[a-z-]+(\/[a-z-]+)*$/), width: 1200, height: 630 })]);
     expect(meta.openGraph.images[0].alt).toMatch(/Jason Cook Design/);
     expect(meta.openGraph.siteName).toBe("Jason Cook Design");
     expect(meta.openGraph.title).toBe(meta.title);
     expect(meta.twitter.card).toBe("summary_large_image");
-    expect(meta.twitter.images).toEqual(["/opengraph-image.png"]);
+    expect(meta.twitter.images).toEqual([meta.openGraph.images[0].url]);
     expect(meta.twitter.title).toBe(meta.title);
   });
 });

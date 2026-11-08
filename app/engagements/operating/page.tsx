@@ -22,7 +22,7 @@ export const metadata = withSocial({
     description:
       "For a business that has outgrown its systems. Six phases, each priced and decided on its own, each leaving you something you can use.",
   },
-});
+}, "/engagements/operating");
 
 export default function EngagementsPage() {
   return (

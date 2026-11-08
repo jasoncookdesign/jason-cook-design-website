@@ -23,5 +23,6 @@ Each cross-module invariant has one owning test or check, run against the assemb
 | INV-11 | Each image block of the new study has non-empty alt text, and each file it references (block `src` and `backgroundImage`) is under 400 KB. The existing eight studies are out of scope | `__tests__/work.test.tsx` |
 | INV-12 | The new page's sixth phase names at least two forms of availability, and no forbidden pattern from REQ-15 matches the page | `__tests__/offering.test.tsx` |
 | INV-13 | `/engagements` and both new routes have no redirect rule | `__tests__/redirects.test.ts` |
+| INV-14 | Every page route, case study, and post has its own og:url equal to its canonical, a card image at `/card/<path>`, and a title and description that match in OG and Twitter metadata. No card renders for a path outside the registry, and none for a post before its date | `__tests__/share-cards.test.tsx`, `__tests__/share-card-route.test.tsx`, `e2e/share-cards.spec.ts` |
 
 INV-01, INV-03, INV-04, and INV-10 span modules and are the ones a single module's tests would miss.

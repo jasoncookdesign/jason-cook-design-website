@@ -15,7 +15,7 @@ export const metadata = withSocial({
   openGraph: { title: "The first phase | Jason Cook Design", description },
   twitter: { title: "The first phase | Jason Cook Design", description },
   alternates: { canonical: "/engagements/first-phase" },
-});
+}, "/engagements/first-phase");
 
 function Section({ id, sheet, eyebrow, heading, children }: { id: string; sheet: string; eyebrow: string; heading: string; children: React.ReactNode }) {
   return (

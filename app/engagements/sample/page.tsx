@@ -18,7 +18,7 @@ export const metadata = withSocial({
   openGraph: { title: TITLE, description: DESCRIPTION },
   twitter: { title: TITLE, description: DESCRIPTION },
   alternates: { canonical: "/engagements/sample" },
-});
+}, "/engagements/sample");
 
 function size(bytes: number): string {
   return bytes >= 1024 * 1024 ? `${(bytes / (1024 * 1024)).toFixed(1)} MB` : `${Math.max(1, Math.round(bytes / 1024))} KB`;

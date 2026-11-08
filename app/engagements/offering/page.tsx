@@ -22,7 +22,7 @@ export const metadata = withSocial({
     description:
       "For a new product or business line. Six phases from the decision to launch, bought one at a time, each leaving you something you can use.",
   },
-});
+}, "/engagements/offering");
 
 export default function OfferingEngagementPage() {
   return (
