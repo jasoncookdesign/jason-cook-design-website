@@ -13,6 +13,12 @@
 # testing
 /coverage
 
+# playwright (run record, reports, and cache from `npm run test:e2e`)
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
 # next.js
 /.next/
 /out/
