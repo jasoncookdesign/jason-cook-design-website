@@ -1,6 +1,7 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { caseStudies } from "@/lib/work";
-import { pageTitle } from "@/lib/metadata";
+import { pageDescription, pageTitle, withSocial } from "@/lib/metadata";
 import WorkCaseStudyContent from "@/components/work/WorkCaseStudyContent";
 
 export async function generateStaticParams() {
@@ -11,11 +12,13 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
+}): Promise<Metadata> {
   const { slug } = await params;
   const cs = caseStudies.find((c) => c.slug === slug);
   if (!cs) return {};
-  return { title: pageTitle(cs.title) };
+  const title = pageTitle(cs.title);
+  const description = pageDescription(cs.subtitle);
+  return withSocial({ title, description, openGraph: { title, description } }, `/work/${cs.slug}`);
 }
 
 export default async function WorkCaseStudyPage({

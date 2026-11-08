@@ -58,9 +58,13 @@ npm run test:e2e  # Playwright in Google Chrome: layout, scrolling, accessibilit
 npm run build
 ```
 
+## Share cards
+
+Every page has its own link preview: its own og:url, canonical, title, description, and image. Page metadata goes through `withSocial(meta, path)` in `lib/metadata.ts`. The image is rendered at `/card/<page path>` by `app/card/[...path]/route.tsx` from `lib/social-cards.ts`: fixed pages have an entry in that file, and case studies and posts take their text from their data. The home page keeps the static card in `app/opengraph-image.png`. Only paths with a card render; any other path under `/card` returns 404. A post's card exists from the post's date. `npm test` fails when a route lacks a card, and `npm run test:e2e` checks the served tags and the rendered image. LinkedIn caches previews by URL; after a page changes or a post goes live, refresh it in LinkedIn's Post Inspector.
+
 ## Blog posts
 
-Each post is one file, `data/posts/<slug>.json`, whose `slug` matches the file name. Required fields: `slug`, `title`, `date` (`YYYY-MM-DD`, a real calendar date), `tags` (strings), `excerpt`, `content` (a list of blocks; the block types and their fields are in `lib/writing.ts`). Optional: `shortTitle`, `excerptLink`, `coverImage`, `layout`. A cover image lives under `public/images/blog/<name>/` and is named by `coverImage`. A file with bad JSON, a missing required field, an unknown block type or a block missing its text fails the build, naming the file.
+Each post is one file, `data/posts/<slug>.json`, whose `slug` matches the file name. Required fields: `slug`, `title`, `date` (`YYYY-MM-DD`, a real calendar date), `tags` (strings), `excerpt`, `content` (a list of blocks; the block types and their fields are in `lib/writing.ts`). Optional: `shortTitle`, `excerptLink`, `coverImage`, `layout`. A post's `excerpt` is also its share-card description (cut to 155 characters at a word boundary), so write it to read well in a link preview. Its card image is generated from the title and excerpt at `/card/writing/blog/<slug>` and needs no file. A cover image lives under `public/images/blog/<name>/` and is named by `coverImage`. A file with bad JSON, a missing required field, an unknown block type or a block missing its text fails the build, naming the file.
 
 A post is public on the website from its `date` onward, with the date read in Central time. Before then it is not listed on `/writing`, not in the sitemap, and not in the page data, and its URL returns 404. The files themselves are in this public repository as soon as they are merged, and a cover image is served from its path on the site whether or not the post is public, so the date controls what the website shows and not what the repository holds. Moving a date is a one-line edit.
 

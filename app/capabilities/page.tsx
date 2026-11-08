@@ -10,7 +10,7 @@ export const metadata = withSocial({
     description:
       "Architecture, specification, implementation, and handoff — the range of work Jason Cook Design takes on.",
   },
-});
+}, "/capabilities");
 
 // DRAFT — Jason to edit. Case-study register for procurement and institutional readers, ported from the
 // 2026-09-10 placeholder draft.

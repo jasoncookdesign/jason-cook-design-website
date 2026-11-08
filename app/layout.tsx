@@ -9,6 +9,7 @@ import RevealOnScroll from "@/components/layout/RevealOnScroll";
 import PrivacyBanner from "@/components/layout/PrivacyBanner";
 import Analytics from "@/components/layout/Analytics";
 import { LAYER_BOOT_SCRIPT } from "@/lib/layer-view-boot";
+import { SITE_DESCRIPTION } from "@/lib/metadata";
 
 const newsreader = Newsreader({
   // The serif carries the site's body and display roles; globals.css aliases font-sans to this variable.
@@ -26,24 +27,20 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: "Jason Cook Design",
-  description:
-    "Jason Cook Design assesses, designs, and builds the products and systems a business needs, and each phase leaves you something you can use.",
+  description: SITE_DESCRIPTION,
   metadataBase: new URL("https://jasoncookdesign.com"),
   manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
     siteName: "Jason Cook Design",
-    url: "/",
     locale: "en_US",
     title: "Jason Cook Design",
-    description:
-      "Jason Cook Design assesses, designs, and builds the products and systems a business needs, and each phase leaves you something you can use.",
+    description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
     title: "Jason Cook Design",
-    description:
-      "Jason Cook Design assesses, designs, and builds the products and systems a business needs, and each phase leaves you something you can use.",
+    description: SITE_DESCRIPTION,
   },
 };
 

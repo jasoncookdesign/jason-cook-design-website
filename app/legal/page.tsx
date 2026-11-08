@@ -7,7 +7,7 @@ export const metadata = withSocial({
     title: "Legal | Jason Cook Design",
     description: "Privacy policy, accessibility statement, and terms for Jason Cook Design.",
   },
-});
+}, "/legal");
 
 // One page for all legal text; the footer links to each section by anchor. The copy lives in lib/legal.ts.
 

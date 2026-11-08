@@ -14,7 +14,7 @@ export const metadata = withSocial({
     description:
       "Case studies from Jason Cook Design's enterprise and institutional work across software, consumer platforms, and regulated industries.",
   },
-});
+}, "/work");
 
 export default function WorkPage() {
   return (

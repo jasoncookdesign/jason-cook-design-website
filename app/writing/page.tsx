@@ -13,7 +13,7 @@ export const metadata = withSocial({
     description:
       "Notes from the seam between design and engineering, and a free book on technology and governance, by Jason Cook.",
   },
-});
+}, "/writing");
 
 // A new post appears here on its date; the page is regenerated hourly.
 export const revalidate = 3600;

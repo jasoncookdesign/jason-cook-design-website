@@ -6,7 +6,7 @@ export const metadata = withSocial({
   title: pageTitle(book.title),
   description: book.description,
   openGraph: { title: pageTitle(book.title), description: book.description },
-});
+}, "/writing/longform");
 
 export default function BookRoute() {
   return <BookPage />;

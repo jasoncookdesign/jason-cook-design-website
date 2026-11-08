@@ -1,12 +1,17 @@
+import { withSocial } from "@/lib/metadata";
 import BookingEmbed from "@/components/booking/BookingEmbed";
 import { MEETING_TYPES } from "@/lib/booking";
 
 // Unlisted: not linked from the site, not in the sitemap, and marked noindex. It holds the personal meeting types
 // that used to share the contact page with the strategy call.
-export const metadata = {
-  title: "Meet | Jason Cook Design",
-  robots: { index: false, follow: false },
-};
+export const metadata = withSocial(
+  {
+    title: "Meet | Jason Cook Design",
+    description: "Book time with Jason Cook online, by phone, or in person.",
+    robots: { index: false, follow: false },
+  },
+  "/meet"
+);
 
 export default function MeetPage() {
   return (

@@ -11,7 +11,7 @@ export const metadata = withSocial({
     description:
       "Enterprise-scale experience, sized for smaller businesses: strategy, design, research, and implementation in one practice, starting with a paid first step.",
   },
-});
+}, "/about");
 
 // DRAFT — Jason to edit. First-person practice copy, ported from the 2026-09-10 placeholder draft.
 const paragraphs = [

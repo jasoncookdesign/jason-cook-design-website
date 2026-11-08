@@ -1,6 +1,9 @@
 const SITE_NAME = "Jason Cook Design";
 const TITLE_MAX = 60;
 
+export const SITE_DESCRIPTION =
+  "Jason Cook Design assesses, designs, and builds the products and systems a business needs, and each phase leaves you something you can use.";
+
 /**
  * Document title for a content page, kept within TITLE_MAX characters.
  * Prefers "<title> | Jason Cook Design"; drops the suffix when only the title fits;
@@ -15,25 +18,60 @@ export function pageTitle(title: string): string {
   return `${(boundary > 0 ? cut.slice(0, boundary) : cut.slice(0, TITLE_MAX - 1)).trimEnd()}…`;
 }
 
-/** The share card, served from app/opengraph-image.png. Absolute URLs come from metadataBase in the root layout. */
-export const SOCIAL_IMAGE = {
-  url: "/opengraph-image.png",
-  width: 1200,
-  height: 630,
-  alt: 'Jason Cook Design: "Get a working system that solves the problem you actually have." The JCD mark on a blueprint sheet.',
+const DESCRIPTION_MAX = 155;
+
+/** Meta description from running text: unchanged within 155 characters, otherwise cut at a word boundary with an ellipsis. */
+export function pageDescription(text: string): string {
+  const t = text.trim();
+  if (t.length <= DESCRIPTION_MAX) return t;
+  const cut = t.slice(0, DESCRIPTION_MAX - 1);
+  const boundary = cut.lastIndexOf(" ");
+  return `${(boundary > 0 ? cut.slice(0, boundary) : cut).replace(/[\s,;:.\-—]+$/, "")}…`;
+}
+
+const CARD = { width: 1200, height: 630 };
+
+/** The home page keeps the site's static card; every other page has its own, rendered by app/card/[...path]/route.tsx. */
+export function cardImage(path: string, title: string) {
+  const url = path === "/" ? "/opengraph-image.png" : `/card${path}`;
+  return {
+    url,
+    ...CARD,
+    alt: path === "/" ? SOCIAL_ALT : `${SITE_NAME} share card: ${title.replace(` | ${SITE_NAME}`, "")}`,
+  };
+}
+
+const SOCIAL_ALT = 'Jason Cook Design: "Get a working system that solves the problem you actually have." The JCD mark on a blueprint sheet.';
+
+type PageMeta = {
+  title: string;
+  description: string;
+  openGraph?: Record<string, unknown>;
+  alternates?: { canonical?: string };
 };
 
-type PageMeta = { title: string; description: string; openGraph?: Record<string, unknown> };
-
 /**
- * Adds the share card to a page's metadata. A page that sets its own openGraph replaces the root layout's, which
- * would drop the image, so each page passes its metadata through here: OG gets the site name, the image, and the
- * page's own title and description, and the Twitter-style card matches.
+ * Gives a page its own share card. A page that sets its own openGraph replaces the root layout's, so each page
+ * passes its metadata and its path through here. The result carries og:url and the canonical (the same URL: the
+ * page's own canonical if it names one, else its path), the page's title and description for OG and the
+ * Twitter-style card, and an image of its own. Paths resolve against metadataBase in the root layout.
  */
-export function withSocial<T extends PageMeta>(meta: T) {
+export function withSocial<T extends PageMeta>(meta: T, path: string) {
+  const canonical = meta.alternates?.canonical ?? path;
+  const image = cardImage(canonical, meta.title); // the preview shows the page the canonical names
   return {
     ...meta,
-    openGraph: { type: "website", siteName: SITE_NAME, locale: "en_US", ...meta.openGraph, images: [SOCIAL_IMAGE] },
-    twitter: { card: "summary_large_image" as const, title: meta.title, description: meta.description, images: [SOCIAL_IMAGE.url] },
+    alternates: { ...meta.alternates, canonical },
+    openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      locale: "en_US",
+      title: meta.title,
+      description: meta.description,
+      ...meta.openGraph,
+      url: canonical,
+      images: [image],
+    },
+    twitter: { card: "summary_large_image" as const, title: meta.title, description: meta.description, images: [image.url] },
   };
 }

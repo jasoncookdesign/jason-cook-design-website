@@ -17,7 +17,7 @@ export const metadata = withSocial({
       "Two kinds of engagement, for a new product or business line and for a business that has outgrown its systems. Start from your situation.",
   },
   alternates: { canonical: "/engagements/offering" },
-});
+}, "/engagements");
 
 // The selector in the layout lists every type. This route shows the first one.
 export default OfferingEngagementPage;
