@@ -49,7 +49,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ```bash
 npm test          # Jest: components, copy and logic
-npm run test:e2e  # Playwright in Google Chrome: layout, scrolling, accessibility (axe) and analytics events; builds and serves the site first
+npm run test:e2e  # Playwright in Google Chrome: layout, scrolling, accessibility (axe) and analytics events; builds and serves the site first; its output (`test-results/`, `playwright-report/`) is git-ignored
 ```
 
 ## Building for production
