@@ -43,6 +43,15 @@ describe("sitemap.xml", () => {
   });
 });
 
+describe("share card images", () => {
+  it("are kept out of search results with a header, not robots.txt, which LinkedIn's crawler honours", async () => {
+    const rules = await nextConfig.headers!();
+    const card = rules.find((r) => r.source === "/card/:path*");
+    expect(card?.headers).toEqual([{ key: "X-Robots-Tag", value: "noindex" }]);
+    expect(JSON.stringify(robots().rules)).not.toMatch(/card/);
+  });
+});
+
 describe("security headers", () => {
   it("sets the baseline headers on every route", async () => {
     const rules = await nextConfig.headers!();

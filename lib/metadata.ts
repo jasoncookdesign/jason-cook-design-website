@@ -1,6 +1,9 @@
 const SITE_NAME = "Jason Cook Design";
 const TITLE_MAX = 60;
 
+export const SITE_DESCRIPTION =
+  "Jason Cook Design assesses, designs, and builds the products and systems a business needs, and each phase leaves you something you can use.";
+
 /**
  * Document title for a content page, kept within TITLE_MAX characters.
  * Prefers "<title> | Jason Cook Design"; drops the suffix when only the title fits;
@@ -34,7 +37,7 @@ export function cardImage(path: string, title: string) {
   return {
     url,
     ...CARD,
-    alt: path === "/" ? SOCIAL_ALT : `Share card for "${title}", Jason Cook Design.`,
+    alt: path === "/" ? SOCIAL_ALT : `${SITE_NAME} share card: ${title.replace(` | ${SITE_NAME}`, "")}`,
   };
 }
 
@@ -55,7 +58,7 @@ type PageMeta = {
  */
 export function withSocial<T extends PageMeta>(meta: T, path: string) {
   const canonical = meta.alternates?.canonical ?? path;
-  const image = cardImage(path, meta.title);
+  const image = cardImage(canonical, meta.title); // the preview shows the page the canonical names
   return {
     ...meta,
     alternates: { ...meta.alternates, canonical },

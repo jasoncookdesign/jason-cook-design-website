@@ -48,7 +48,11 @@ const nextConfig: NextConfig = {
   // The share-card route reads its fonts and the posts at request time, so the host must ship them with it.
   outputFileTracingIncludes: { "/card/[...path]": ["./lib/fonts/**", "./data/posts/**"] },
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
+    return [
+      { source: "/:path*", headers: securityHeaders },
+      // The card images are link previews, not content. A header, not robots.txt: LinkedIn's crawler honours robots.txt.
+      { source: "/card/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex" }] },
+    ];
   },
   async redirects() {
     return [

@@ -28,7 +28,7 @@ describe("site metadata", () => {
     expect(String(metadata.metadataBase)).toBe("https://jasoncookdesign.com/");
     const og = metadata.openGraph as Record<string, unknown>;
     expect(og.siteName).toBe("Jason Cook Design");
-    expect(og.url).toBe("/");
+    expect(og.url).toBeUndefined(); // each page sets its own; see share-cards.test.tsx
     expect(og.locale).toBe("en_US");
   });
 

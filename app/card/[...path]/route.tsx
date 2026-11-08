@@ -26,7 +26,7 @@ export async function generateStaticParams() {
 export async function GET(_req: Request, { params }: { params: Promise<{ path: string[] }> }) {
   const { path } = await params;
   const card = socialCard("/" + path.join("/"));
-  if (!card) return new Response("Not found", { status: 404 });
+  if (!card) return new Response("Not found", { status: 404, headers: { "Cache-Control": "no-store" } });
   const titleSize = card.title.length > 70 ? 60 : card.title.length > 44 ? 70 : 84;
   return new ImageResponse(
     (

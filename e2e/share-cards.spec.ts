@@ -33,3 +33,25 @@ test("two pages get two different card images", async ({ request }) => {
 test("a path with no page gets no card", async ({ request }) => {
   expect((await request.get("/card/no-such-page")).status()).toBe(404);
 });
+
+test("the home page names itself as og:url and canonical", async ({ request }) => {
+  const html = await (await request.get("/")).text();
+  expect(meta(html, "og:url")).toBe(SITE);
+  expect(html).toContain(`<link rel="canonical" href="${SITE}"`);
+  expect(meta(html, "og:image")).toBe(`${SITE}/opengraph-image.png`);
+});
+
+test("the not-found page does not claim the home URL", async ({ request }) => {
+  const html = await (await request.get("/no-such-page")).text();
+  expect(meta(html, "og:url")).toBeUndefined();
+});
+
+test("card images are marked noindex", async ({ request }) => {
+  expect((await request.get("/card/about")).headers()["x-robots-tag"]).toBe("noindex");
+});
+
+test("/engagements previews as the Offering page its canonical names", async ({ request }) => {
+  const html = await (await request.get("/engagements")).text();
+  expect(meta(html, "og:url")).toBe(`${SITE}/engagements/offering`);
+  expect(meta(html, "og:image")).toBe(`${SITE}/card/engagements/offering`);
+});

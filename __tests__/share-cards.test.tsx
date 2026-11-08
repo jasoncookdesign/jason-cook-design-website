@@ -34,7 +34,9 @@ function pageFiles(dir: string): string[] {
 const routes = pageFiles(APP)
   .map((f) => relative(APP, f).split(sep).slice(0, -1))
   .map((segs) => ({ segs, path: "/" + segs.join("/") }));
+const DYNAMIC_WITH_CARDS = ["/work/[slug]", "/writing/blog/[slug]"]; // their cards are swept by allDynamic() below
 const staticRoutes = routes.filter((r) => !r.segs.some((s) => s.startsWith("[")) && r.path !== "/");
+const homeRoute = routes.filter((r) => r.path === "/");
 
 async function allDynamic(): Promise<Array<[string, Meta]>> {
   const out: Array<[string, Meta]> = [];
@@ -49,24 +51,26 @@ async function allDynamic(): Promise<Array<[string, Meta]>> {
 }
 
 async function allPages(): Promise<Array<[string, Meta]>> {
-  const out: Array<[string, Meta]> = [];
+  const out: Array<[string, Meta]> = [["/", (await import("@/app/page")).metadata as Meta]];
   for (const r of staticRoutes) out.push([r.path, (await import(`@/app${r.path}/page`)).metadata as Meta]);
   return [...out, ...(await allDynamic())];
 }
 
 describe("withSocial", () => {
   it("sets og:url and canonical to the page path and points the image at the page's own card", () => {
-    const m = withSocial({ title: "T", description: "D" }, "/about");
+    const m = withSocial({ title: "About | Jason Cook Design", description: "D" }, "/about");
     expect(m.openGraph.url).toBe("/about");
     expect(m.alternates.canonical).toBe("/about");
     expect(m.openGraph.images[0].url).toBe("/card/about");
     expect(m.twitter.images).toEqual(["/card/about"]);
+    expect(m.openGraph.images[0].alt).toBe("Jason Cook Design share card: About");
   });
 
   it("keeps a page's own canonical and uses it for og:url, so the two never disagree", () => {
     const m = withSocial({ title: "T", description: "D", alternates: { canonical: "/engagements/offering" } }, "/engagements");
     expect(m.alternates.canonical).toBe("/engagements/offering");
     expect(m.openGraph.url).toBe("/engagements/offering");
+    expect(m.openGraph.images[0].url).toBe("/card/engagements/offering"); // the preview shows the page the canonical names
   });
 
   it("keeps the site's static card for the home page", () => {
@@ -118,9 +122,15 @@ describe("card registry", () => {
 });
 
 describe("every page has its own share card", () => {
+  it("covers every route: a dynamic route outside the swept list fails until it is added to this test", () => {
+    expect(homeRoute).toHaveLength(1);
+    const unknown = routes.filter((r) => r.segs.some((s) => s.startsWith("["))).map((r) => r.path).filter((p) => !DYNAMIC_WITH_CARDS.includes(p));
+    expect(unknown).toEqual([]);
+  });
+
   it("gives every page, case study, and post a distinct og:url equal to its canonical, a card image, and matching titles", async () => {
     const pages = await allPages();
-    expect(pages.length).toBe(staticRoutes.length + caseStudies.length + posts.length);
+    expect(pages.length).toBe(1 + staticRoutes.length + caseStudies.length + posts.length);
     const problems: string[] = [];
     for (const [path, m] of pages) {
       const canonical = m.alternates?.canonical;
@@ -129,7 +139,11 @@ describe("every page has its own share card", () => {
       if (m.openGraph?.url !== (canonical ?? path)) problems.push(`${path}: og:url ${m.openGraph?.url} != ${canonical ?? path}`);
       if (m.alternates?.canonical !== (m.openGraph?.url ?? "")) problems.push(`${path}: no canonical equal to og:url`);
       const img = m.openGraph?.images?.[0];
-      if (!img?.url.startsWith("/card/")) problems.push(`${path}: og:image is ${img?.url}`);
+      const expectedImage = path === "/" ? "/opengraph-image.png" : `/card${canonical ?? path}`;
+      if (img?.url !== expectedImage) problems.push(`${path}: og:image is ${img?.url}, expected ${expectedImage}`);
+      if (path !== "/" && !socialCard(canonical ?? path, new Date("2100-01-01T12:00:00Z"))) problems.push(`${path}: no card entry for ${canonical ?? path}`);
+      if (path !== "/" && !/^Jason Cook Design share card: .+/.test(img?.alt ?? "")) problems.push(`${path}: alt is "${img?.alt}"`);
+      if (img?.alt?.includes("| Jason Cook Design")) problems.push(`${path}: alt repeats the site suffix`);
       if (img && (img.width !== 1200 || img.height !== 630 || !img.alt)) problems.push(`${path}: image needs 1200x630 and alt`);
       if (m.twitter?.images?.[0] !== img?.url) problems.push(`${path}: twitter image differs from og:image`);
       if (m.openGraph?.title !== m.title) problems.push(`${path}: og:title differs from title`);
@@ -153,7 +167,7 @@ describe("every page has its own share card", () => {
     }
   });
 
-  it("keeps the home page on the site defaults, with og:url '/' and the static card", () => {
-    expect((layout.openGraph as { url?: string }).url).toBe("/");
+  it("keeps og:url out of the root layout, so no page or 404 can inherit the home URL", () => {
+    expect((layout.openGraph as { url?: string }).url).toBeUndefined();
   });
 });
