@@ -6,6 +6,7 @@
 // names), and that email addresses are used only to reply.
 export const CONTACT_EMAIL = "hello@jasoncookdesign.com";
 const UPDATED = "Last updated: October 19, 2026.";
+const PRIVACY_UPDATED = "Last updated: November 8, 2026.";
 
 export type LegalEntry = { term: string; detail: string };
 export type LegalSection = { id: string; heading: string; eyebrow: string; entries: LegalEntry[] };
@@ -19,7 +20,11 @@ export const legalSections: LegalSection[] = [
       {
         term: "Summary",
         detail:
-          "This page explains what happens to your information when you use jasoncookdesign.com. The site has no accounts, no forms, and no ads, and we don't sell anything about you.",
+          "This policy covers the website at jasoncookdesign.com and the pages on it. It explains what happens to your information when you use them. The site has no accounts, no forms, and no ads, and we don't sell anything about you.",
+      },
+      {
+        term: "Who we are",
+        detail: `Jason Cook Design LLC, a Texas limited liability company, operates jasoncookdesign.com and decides how the information described here is used. To reach us about this policy, write to ${CONTACT_EMAIL}.`,
       },
       {
         term: "Booking",
@@ -29,7 +34,7 @@ export const legalSections: LegalSection[] = [
       {
         term: "Analytics",
         detail:
-          "If you accept the privacy notice, the site loads Google Tag Manager and Google Analytics. They record which pages you visit, roughly where you are, what device and browser you use, and whether you click the email link, finish a booking, download the sample report, book a call from the sample page, or reach the checklist on it. Loading them sends your IP address to Google, which sets cookies for this. We haven't turned on Google's advertising features, such as Google signals. If you decline or ignore the notice, none of it loads.",
+          "If you accept the privacy notice, the site loads Google Tag Manager and Google Analytics. They record which pages you visit, roughly where you are, what device and browser you use, and whether you click the email link, finish a booking, download the sample report, book a call from the sample page, or reach the checklist on it. Loading them sends your IP address to Google. Google sets two cookies for this, only after you accept: one named _ga, and one whose name starts with _ga_. Both are set on jasoncookdesign.com and hold random identifiers that Google uses to tell visits and sessions apart. We haven't turned on Google's advertising features, such as Google signals. If you decline or ignore the notice, none of it loads.",
       },
       {
         term: "Retention",
@@ -58,7 +63,7 @@ export const legalSections: LegalSection[] = [
         term: "Your choices",
         detail: `To change your answer on analytics, clear this site's data in your browser and the notice returns. Analytics then stay off from your next page load until you choose again. To ask what we hold about you, or to have it deleted, write to ${CONTACT_EMAIL}.`,
       },
-      { term: "Changes", detail: `If this policy changes, the date below changes with it. ${UPDATED}` },
+      { term: "Changes", detail: `If this policy changes, the date below changes with it. ${PRIVACY_UPDATED}` },
     ],
   },
   {

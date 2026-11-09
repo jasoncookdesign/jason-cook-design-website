@@ -101,3 +101,44 @@ describe("the privacy notice names what is tracked on the sample page", () => {
     expect(t).toMatch(/reach the checklist/i);
   });
 });
+
+describe("the privacy policy states its scope, its controller, and its cookies", () => {
+  it("says it covers the website at jasoncookdesign.com and names no other hostname", () => {
+    const t = text("privacy");
+    expect(t).toMatch(/This policy covers the website at jasoncookdesign\.com and the pages on it/);
+    expect(t).not.toMatch(/(?<!@)\b[a-z0-9-]+\.jasoncookdesign\.com/i);
+  });
+
+  it("names Jason Cook Design LLC, a Texas limited liability company, as the party that runs the site and decides how the information is used", () => {
+    const t = text("privacy");
+    expect(t).toMatch(/Jason Cook Design LLC, a Texas limited liability company, operates jasoncookdesign\.com/);
+    expect(t).toMatch(/decides how the information described here is used/);
+  });
+
+  it("gives the contact address in the opening entries, as a link", () => {
+    const { container } = render(<LegalPage />);
+    const who = Array.from(container.querySelectorAll("section#privacy dt")).find((e) => e.textContent === "Who we are");
+    expect(who).toBeDefined();
+    const body = who!.nextElementSibling as HTMLElement;
+    expect(body.querySelector('a[href="mailto:hello@jasoncookdesign.com"]')).not.toBeNull();
+  });
+
+  it("names the two analytics cookies and says they are set on jasoncookdesign.com only after the visitor accepts", () => {
+    const t = text("privacy");
+    expect(t).toMatch(/_ga\b/);
+    expect(t).toMatch(/_ga_/);
+    expect(t).toMatch(/set on jasoncookdesign\.com/);
+    expect(t).toMatch(/only after you accept/);
+  });
+
+  it("uses we and the company's name, never I, my, me, or firm", () => {
+    const t = text("privacy");
+    expect(t).toMatch(/\bwe\b/i);
+    expect(t).not.toMatch(/\b(I|my|me)\b/);
+    expect(t).not.toMatch(/\bfirm\b/i);
+  });
+
+  it("dates the privacy section November 8, 2026", () => {
+    expect(text("privacy")).toMatch(/Last updated: November 8, 2026\./);
+  });
+});
