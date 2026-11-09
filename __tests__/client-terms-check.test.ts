@@ -34,7 +34,7 @@ function termsFile(body: string) {
   return f;
 }
 
-describe("check-no-client-terms.sh (M9, INV-10)", () => {
+describe("check-no-client-terms.sh", () => {
   it("passes on a clean repo when terms are supplied", () => {
     const dir = makeRepo({ "a.md": "nothing here\n", ".sdlc/n.md": "clean\n" }, ["a.md", ".sdlc/n.md"]);
     expect(run(dir, termsFile(`${TERM}\n`)).status).toBe(0);

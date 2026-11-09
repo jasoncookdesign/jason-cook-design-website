@@ -1,6 +1,6 @@
 # DNS cutover plan: GitHub Pages to Vercel
 
-**Status: executed 2026-10-19.** The domains were added to the Vercel project and the Squarespace records were swapped the same day, skipping the T−1 TTL lowering (records stayed at 1 hour; propagation was complete within minutes). Still open: retire the old Pages custom domain at T+2 days (2026-10-21 or later). The T+1 week TTL step is moot because TTLs were never lowered.
+**Status: executed 2026-10-19.** The domains were added to the Vercel project and the DNS records were swapped the same day. Retire the old Pages custom domain at T+2 days or later.
 
 Records applied, for rollback:
 - Apex A records `185.199.108.153`, `.109.153`, `.110.153`, `.111.153` (GitHub) became `216.198.79.1` and `64.29.17.1` (the values Vercel displayed for this project).
