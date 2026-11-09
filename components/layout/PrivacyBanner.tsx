@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useSyncExternalStore } from "react";
 import { setConsent, useConsent } from "@/lib/consent";
 
-// DRAFT — Jason to edit. The policy text itself is pending on the legal page.
 /**
  * The privacy notice: what the site loads from third parties, with Decline and Accept. Shown until a choice is
  * stored; rendered only after mount so returning visitors never see it flash.

@@ -1,9 +1,6 @@
-// DRAFT — Jason to edit, and counsel to review the privacy and terms text before launch.
-// Drafted only from what the site does today: the third parties it loads (Cal.com, and Google Tag Manager after
-// consent), what it stores in the browser (the privacy choice, the layers-view preferences), and the one contact
-// address. Verified against the analytics property on 2026-10-19: data retention is 14 months and Google signals
-// is off. A fresh-context audit checked each claim against the code on 2026-10-19. Facts to confirm before the cutover: the hosting provider (written as Vercel, which the cutover plan
-// names), and that email addresses are used only to reply.
+// Privacy policy and terms copy rendered on the legal page (app/legal/page.tsx), as typed sections of term/detail entries.
+// Each claim describes what the site does: the third parties it loads (Cal.com, and Google Tag Manager after consent),
+// what it stores in the browser (the privacy choice, the layers-view preferences), and the one contact address.
 export const CONTACT_EMAIL = "hello@jasoncookdesign.com";
 const UPDATED = "Last updated: October 19, 2026.";
 const PRIVACY_UPDATED = "Last updated: November 8, 2026.";

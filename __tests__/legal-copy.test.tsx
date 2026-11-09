@@ -1,9 +1,8 @@
 import { render } from "@testing-library/react";
 import LegalPage from "@/app/legal/page";
 
-// The legal copy is drafted from what the site verifiably does, so each claim is pinned to a fact about the
-// code: the third parties it loads, what it stores, when analytics run, and who to contact. The draft is for the
-// owner's edit and for counsel's review before launch.
+// Each claim in the legal copy is pinned to a fact about the code: the third parties the site loads, what it
+// stores, when analytics run, and who to contact.
 
 const text = (id: string) => {
   const { container } = render(<LegalPage />);
