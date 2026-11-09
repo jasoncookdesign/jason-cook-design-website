@@ -5,7 +5,7 @@ const root = path.resolve(__dirname, "..");
 const read = (rel: string) => fs.readFileSync(path.join(root, rel), "utf8");
 const GAP = "[GAP: Phase 0 price pending]";
 
-describe("docs track the new routes and tokens (INV-08)", () => {
+describe("docs track the new routes and tokens", () => {
   it("README route table has a row for the chooser and for each type route", () => {
     const readme = read("README.md");
     expect(readme).toMatch(/^\| `\/engagements` \|/m);
