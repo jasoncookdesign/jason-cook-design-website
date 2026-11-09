@@ -2,13 +2,13 @@
 
 **Status: executed 2026-10-19.** The domains were added to the Vercel project and the Squarespace records were swapped the same day, skipping the T−1 TTL lowering (records stayed at 1 hour; propagation was complete within minutes). Still open: retire the old Pages custom domain at T+2 days (2026-10-21 or later). The T+1 week TTL step is moot because TTLs were never lowered.
 
-What was applied, for rollback and audit:
+Records applied, for rollback:
 - Apex A records `185.199.108.153`, `.109.153`, `.110.153`, `.111.153` (GitHub) became `216.198.79.1` and `64.29.17.1` (the values Vercel displayed for this project).
 - `www` CNAME `jasoncookdesign.github.io.` became `fca9bb2a0ee02daa.vercel-dns-017.com.`
 - `www` redirects to the apex with a 308, set through Vercel's project-domain setting.
 - The certificate was not issued automatically after the DNS switch; `vercel certs issue jasoncookdesign.com www.jasoncookdesign.com` fixed the browser's "not secure" warning within a minute.
 - MX, SPF, DKIM, the Google verification records, the two Squarespace presets, and the nameservers and DNSSEC were not touched.
-- The Vercel project lives in the `jason-os` team on the Hobby plan, which is limited to non-commercial use; move it to a paid plan.
+- The Vercel Hobby plan is limited to non-commercial use; move the project to a paid plan.
 
 The original plan follows.
 
@@ -45,16 +45,16 @@ Gathered with `dig`, `whois`, `curl -I`, and `gh api repos/jasoncookdesign/jason
 
 **Mail note, separate from the cutover:** the SPF record names only Mailgun while MX points at Google Workspace. Mail sent through Workspace may fail SPF. Fix it on its own day, never in the same change as the cutover, so a mail problem can't be confused with a web one.
 
-## What must be true before Jason's go
+## What must be true before go-live
 
-1. Jason has done his content and polish pass and reviewed a Vercel preview deployment of `main`.
-2. No placeholder tokens render, and Jason has confirmed the Capabilities NAICS codes against his SAM.gov Goods and Services list. The `/legal` text is a draft: confirm the facts listed at the top of `lib/legal.ts` (hosting provider, email use) and have the privacy and terms text reviewed. Check the preview with a search for `[` followed by capitals, and confirm the new routes `/engagements`, `/engagements/operating`, and `/engagements/offering` load.
+1. The content and polish pass is done and a reviewer has checked a Vercel preview deployment of `main`.
+2. No placeholder tokens render, and the Capabilities NAICS codes are confirmed against the SAM.gov Goods and Services list. The `/legal` text is a draft: confirm the facts listed at the top of `lib/legal.ts` (hosting provider, email use) and have the privacy and terms text reviewed. Check the preview with a search for `[` followed by capitals, and confirm the new routes `/engagements`, `/engagements/operating`, and `/engagements/offering` load.
 3. No page cites a case without the client's consent.
 4. ~~Decision on the three old PDFs~~ Done: copied into `public/`. Spot-check that each URL returns 200 on the preview.
 5. Analytics: `NEXT_PUBLIC_GTM_ID` is set for production in the Vercel project and production is redeployed (Next inlines it at build time), the container is published, and the GA4 stream is the one the old site reports to, so history continues.
 6. The Vercel project exists, builds `main` as production, and passes on the preview: `npm test`, `npm run build`, and the redirect spot checks below.
 7. Recommended: verify `jasoncookdesign.com` in the GitHub account's Pages settings (adds a `_github-pages-challenge-…` TXT record). Once the old repo's custom domain is removed, any DNS record still pointing at GitHub (for example during a late rollback) could let another account's Pages site claim the domain; verification blocks that.
-8. Access confirmed: Jason can log in to the DNS dashboard and to Vercel, and has a copy of the current record table above.
+8. Access confirmed: the owner can log in to the DNS dashboard and to Vercel, and has a copy of the current record table above.
 
 ## Steps, in order
 
