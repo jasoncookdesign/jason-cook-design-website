@@ -3,7 +3,7 @@
 // what it stores in the browser (the privacy choice, the layers-view preferences), and the one contact address.
 export const CONTACT_EMAIL = "hello@jasoncookdesign.com";
 const UPDATED = "Last updated: October 19, 2026.";
-const PRIVACY_UPDATED = "Last updated: November 8, 2026.";
+const PRIVACY_UPDATED = "Last updated: November 9, 2026.";
 
 export type LegalEntry = { term: string; detail: string };
 export type LegalSection = { id: string; heading: string; eyebrow: string; entries: LegalEntry[] };
@@ -31,7 +31,7 @@ export const legalSections: LegalSection[] = [
       {
         term: "Analytics",
         detail:
-          "If you accept the privacy notice, the site loads Google Tag Manager and Google Analytics. They record which pages you visit, roughly where you are, what device and browser you use, and whether you click the email link, finish a booking, download the sample report, book a call from the sample page, or reach the checklist on it. Loading them sends your IP address to Google. Google sets two cookies for this, only after you accept: one named _ga, and one whose name starts with _ga_. Both are set on jasoncookdesign.com and hold random identifiers that Google uses to tell visits and sessions apart. We haven't turned on Google's advertising features, such as Google signals. If you decline or ignore the notice, none of it loads.",
+          "If you accept the privacy notice, the site loads Google Tag Manager and Google Analytics. They record which pages you visit, roughly where you are, what device and browser you use, and whether you click the email link, finish a booking, download the sample report, book a call from the sample page, or reach the checklist on it. Loading them sends your IP address to Google. Google sets two cookies for this, only after you accept: one named _ga, and one whose name starts with _ga_. Both are stored for this site's own address only, not for other jasoncookdesign.com addresses such as our client portal, and they hold random identifiers that Google uses to tell visits and sessions apart. We haven't turned on Google's advertising features, such as Google signals. If you decline or ignore the notice, none of it loads.",
       },
       {
         term: "Retention",
@@ -46,6 +46,11 @@ export const legalSections: LegalSection[] = [
         term: "On your device",
         detail:
           "The site keeps your answer to the privacy notice in your browser's local storage, under the name jcd_privacy_consent, and keeps your display preferences for the layers view until you close the tab. Neither leaves your device.",
+      },
+      {
+        term: "Client portal",
+        detail:
+          "Clients reach their own project materials through a separate sign-in site. It has its own terms and privacy notice, and nothing you do on this site is shared with it.",
       },
       {
         term: "Other sites",

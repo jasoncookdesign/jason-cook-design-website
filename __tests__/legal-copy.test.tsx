@@ -43,6 +43,14 @@ describe("privacy copy matches what the site does", () => {
     expect(t).toMatch(/jcd_privacy_consent/);
   });
 
+  it("says the analytics cookies are stored for this site's own address only, and mentions the separate client sign-in site", () => {
+    const t = text("privacy");
+    expect(t).toMatch(/own address only/i);
+    expect(t).not.toMatch(/Both are set on jasoncookdesign\.com/);
+    expect(t).toMatch(/Client portal/);
+    expect(t).toMatch(/own terms and privacy notice/i);
+  });
+
   it("says links to other sites leave this policy's scope", () => {
     expect(text("privacy")).toMatch(/other sites/i);
   });
@@ -122,11 +130,10 @@ describe("the privacy policy states its scope, its controller, and its cookies",
     expect(body.querySelector('a[href="mailto:hello@jasoncookdesign.com"]')).not.toBeNull();
   });
 
-  it("names the two analytics cookies and says they are set on jasoncookdesign.com only after the visitor accepts", () => {
+  it("names the two analytics cookies and says they are set only after the visitor accepts, for this site's own address", () => {
     const t = text("privacy");
     expect(t).toMatch(/_ga\b/);
     expect(t).toMatch(/_ga_/);
-    expect(t).toMatch(/set on jasoncookdesign\.com/);
     expect(t).toMatch(/only after you accept/);
   });
 
@@ -137,7 +144,7 @@ describe("the privacy policy states its scope, its controller, and its cookies",
     expect(t).not.toMatch(/\bfirm\b/i);
   });
 
-  it("dates the privacy section November 8, 2026", () => {
-    expect(text("privacy")).toMatch(/Last updated: November 8, 2026\./);
+  it("dates the privacy section November 9, 2026", () => {
+    expect(text("privacy")).toMatch(/Last updated: November 9, 2026\./);
   });
 });
