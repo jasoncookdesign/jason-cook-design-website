@@ -22,11 +22,11 @@
     },
     {
       "type": "p",
-      "html": "The Constitution and the Machine started as an idea for a blog post. Today it's a book, and you can read it here for free."
+      "html": "The Constitution and the Machine started as an idea for a blog post. Today it's a book, and you can <a href=\"/writing/longform\">read it here for free</a>."
     },
     {
       "type": "p",
-      "html": "The first question was simple: could a democracy work without political parties? I asked it as a thought experiment, mostly to see what would happen when I pulled on it. Within a few exchanges two problems showed up, and both of them were mine. People group up on their own, so a ban on parties would only produce unofficial ones. And a system that bans organized groups hands an advantage to whoever already has money or name recognition. Those looked like two problems about parties. They were one problem about power changing form."
+      "html": "The first question was simple: could a democracy work without political parties? I asked it as a thought experiment, mostly to see what would happen when I kept unpacking it. Two problems showed up. First, people group up on their own, so a ban on parties would only produce unofficial ones. Second, a system that bans organized groups hands an advantage to whoever already has money or name recognition. Those looked like two problems about parties. They were one problem about power changing form."
     },
     {
       "type": "p",
@@ -34,7 +34,7 @@
     },
     {
       "type": "p",
-      "html": "Then came the research, which is where a blog post stopped being the right container. I used AI tools to dig through sources, and it went the way good research goes. Some of what I believed held up, and some of it didn't. The hypothesis that held was the one I started with: a distributed democracy and a computational autocracy run on the same technological architecture. The one that didn't was my assumption that real expansions of political power need violence. Athens didn't become a democracy by overthrowing a king, and Britain widened its vote through three Reform Acts, each passed by legislation. I count both as results, because a refuted hypothesis keeps you from building on it."
+      "html": "Then came the research, which is where a blog post stopped being the right container. I used AI tools to dig through sources, bought a few books to see what the author had actually written, and it went the way good research goes. Some of what I believed held up, and some of it didn't. The hypothesis that held was the one I started with: a distributed democracy and a computational autocracy run on the same technological architecture. The one that didn't was my assumption that real expansions of political power need violence. Athens didn't become a democracy by overthrowing a king, and Britain widened its vote through three Reform Acts, each passed by legislation. I count both as results, because a refuted hypothesis keeps you from building on it."
     },
     {
       "type": "p",
