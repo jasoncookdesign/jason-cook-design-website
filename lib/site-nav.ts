@@ -21,5 +21,5 @@ export const SITE_NAV: NavItem[] = [
   { label: "About", href: "/about" },
 ];
 
-/** The client portal, a separate site. Linked last in the menu (after a hairline) and in the footer. */
+/** The client portal, a separate site. Linked after About in the header bar and the mobile menu, and in the footer. */
 export const CLIENT_LOGIN = { label: "Client login", href: "https://clients.jasoncookdesign.com" } as const;

@@ -23,10 +23,10 @@ const ORDER = ["Home", "Engagements", "Work", "Writing", "About"];
 const read = (f: string) => readFileSync(join(process.cwd(), f), "utf8");
 
 describe("menu order", () => {
-  it("lists Home, Engagements, Work, Writing, About in the header", () => {
+  it("lists Home, Engagements, Work, Writing, About, Client login in the header", () => {
     const { container } = render(<Nav />);
     const links = Array.from(container.querySelectorAll("header nav > ul > li > a")).map((a) => a.textContent);
-    expect(links).toEqual(ORDER);
+    expect(links).toEqual([...ORDER, "Client login"]);
   });
 
   it("lists them in the same order in the mobile menu", () => {

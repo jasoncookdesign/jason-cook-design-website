@@ -76,9 +76,9 @@ describe("EngagementFaq accordion — mouse affordance", () => {
 // Nav — desktop nav links (already have hover; confirm it isn't broken)
 // ---------------------------------------------------------------------------
 describe("Nav desktop links — mouse affordance (regression)", () => {
-  it("all five desktop nav links are kit-styled and the kit gives them a hover rule", () => {
+  it("all six desktop nav links are kit-styled and the kit gives them a hover rule", () => {
     const { container } = render(<Nav />);
-    expect(container.querySelectorAll(".nav > ul > li > a")).toHaveLength(5);
+    expect(container.querySelectorAll(".nav > ul > li > a")).toHaveLength(6);
     expect(kitCss).toMatch(/\.nav a:hover\s*\{/);
   });
 });

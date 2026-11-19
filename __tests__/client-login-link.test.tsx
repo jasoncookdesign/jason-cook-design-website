@@ -10,19 +10,25 @@ describe("Client login link", () => {
     expect(CLIENT_LOGIN).toEqual({ label: "Client login", href: "https://clients.jasoncookdesign.com" });
   });
 
-  it("menu: is the last item, after a hairline divider", () => {
+  it("mobile menu: sits after About and before Start a conversation, with no divider", () => {
     const { container } = render(<Nav />);
     fireEvent.click(container.querySelector("button.menu-btn")!);
     const menu = container.querySelector("#mobile-menu")!;
-    const kids = Array.from(menu.children);
-    const last = kids[kids.length - 1] as HTMLAnchorElement;
-    expect(last.tagName).toBe("A");
+    const labels = Array.from(menu.children).map((el) => el.textContent);
+    const at = labels.indexOf("Client login");
+    expect(labels[at - 1]).toBe("About");
+    expect(labels[at + 1]).toBe("Start a conversation");
+    expect(menu.querySelector("hr")).toBeNull();
+    expect(menu.children[at].getAttribute("href")).toBe(CLIENT_LOGIN.href);
+  });
+
+  it("header bar: is the last item of the main navigation, after About", () => {
+    const { container } = render(<Nav />);
+    const items = Array.from(container.querySelectorAll('nav[aria-label="Main navigation"] > ul > li'));
+    const last = items[items.length - 1];
+    expect(items[items.length - 2].textContent).toBe("About");
     expect(last.textContent).toBe("Client login");
-    expect(last.getAttribute("href")).toBe(CLIENT_LOGIN.href);
-    const divider = kids[kids.length - 2];
-    expect(divider.tagName).toBe("HR");
-    expect(divider.getAttribute("aria-hidden")).toBe("true");
-    expect(divider.className).toMatch(/menu-rule/);
+    expect(last.querySelector("a")!.getAttribute("href")).toBe(CLIENT_LOGIN.href);
   });
 
   it("footer: links to the portal from the site list", () => {
