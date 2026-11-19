@@ -59,6 +59,9 @@ export default function Nav() {
               )}
             </li>
           ))}
+          <li>
+            <a href={CLIENT_LOGIN.href}>{CLIENT_LOGIN.label}</a>
+          </li>
         </ul>
       </nav>
 
@@ -93,6 +96,9 @@ export default function Nav() {
                 ))}
               </Fragment>
             ))}
+            <a href={CLIENT_LOGIN.href} onClick={() => setOpen(false)}>
+              {CLIENT_LOGIN.label}
+            </a>
             <Link
               href={BOOKING_PATH}
               onClick={() => setOpen(false)}
@@ -100,10 +106,6 @@ export default function Nav() {
             >
               Start a conversation
             </Link>
-            <hr className="menu-rule" aria-hidden="true" />
-            <a href={CLIENT_LOGIN.href} onClick={() => setOpen(false)}>
-              {CLIENT_LOGIN.label}
-            </a>
           </nav>
         )}
       </div>
