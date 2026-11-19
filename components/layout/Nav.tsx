@@ -5,7 +5,7 @@ import Link from "next/link";
 import { BOOKING_PATH } from "@/lib/booking";
 import JcdMark from "@/components/brand/JcdMark";
 import LayerView from "@/components/layout/LayerView";
-import { SITE_NAV } from "@/lib/site-nav";
+import { SITE_NAV, CLIENT_LOGIN } from "@/lib/site-nav";
 
 
 const DOCK_AFTER_PX = 120;
@@ -100,6 +100,10 @@ export default function Nav() {
             >
               Start a conversation
             </Link>
+            <hr className="menu-rule" aria-hidden="true" />
+            <a href={CLIENT_LOGIN.href} onClick={() => setOpen(false)}>
+              {CLIENT_LOGIN.label}
+            </a>
           </nav>
         )}
       </div>

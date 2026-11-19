@@ -309,6 +309,11 @@ main section {
 .bar .menu nav a:hover {
   background: var(--paper2);
 }
+.bar .menu nav .menu-rule {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
 .bar .menu nav .menu-cta {
   margin: 12px 0;
   justify-content: space-between;

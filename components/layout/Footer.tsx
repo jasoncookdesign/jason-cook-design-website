@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SITE_NAV } from "@/lib/site-nav";
+import { SITE_NAV, CLIENT_LOGIN } from "@/lib/site-nav";
 import JcdMark from "@/components/brand/JcdMark";
 
 // The foot of the sheet: a plate of three ruled cells (the mark, the site, the contact) over the colophon row.
@@ -30,6 +30,7 @@ export default function Footer() {
               </li>
             ))}
             <li><Link href="/capabilities">Capabilities and institutional work</Link></li>
+            <li><a href={CLIENT_LOGIN.href}>{CLIENT_LOGIN.label}</a></li>
           </ul>
         </nav>
 
